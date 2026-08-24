@@ -2,6 +2,7 @@ import Formalization.TriangleModularGroup
 import Formalization.SeifertSphereFibrations
 import Formalization.GeneralSeifertClassification
 import Formalization.SymplecticTriangleRepresentations
+import Formalization.BrieskornManifolds
 
 /-!
 # Original Research Formalization Suite: Triangle Groups & Seifert Homology Spheres
@@ -42,4 +43,11 @@ and Mathlib.
    - Classification of unipotent cusp monodromies (Type I: $N=0$, Type II: $N \ne 0, N^2=0$, Type III: $N^2 \ne 0, N^4=0$) and machine-proof that $(3,4,\infty)$ is strictly Type II.
    - Monodromy weight filtration $W_0 = \{0\} \subset W_1 = \operatorname{im} N \subset W_2 = \mathbb{Z}^4$ with verified inclusion chain.
    - Polarized skew-symmetric symplectic form $\Omega_6$ preserving the $S_6$ Seifert family from `TriangleModularGroup`.
+
+5. **`Formalization.BrieskornManifolds`**:
+   - Brieskorn polynomial $f_a(z) = \sum z_j^{a_j}$, singularity link $\Sigma(a) = f_a^{-1}(0) \cap S^{2n-1}$, and real dimension $2n-3$.
+   - Brieskorn graph $G(a)$, isolated vertices, and the Brieskorn Sphere Criterion (Brieskorn 1966, Milnor 1968).
+   - The 28 Milnor-Kervaire exotic 7-spheres $\Sigma(2,2,2,3,6k-1)$ ($k \in \{1,\dots,28\}$) generating $b P_8 \cong \Theta_7 \cong \mathbb{Z}/28\mathbb{Z}$.
+   - Exact Milnor fiber signature $\sigma(p,q,r) = N_+ - N_-$ and Dedekind sum Casson invariant formula $\lambda(\Sigma(p,q,r)) = \frac{1}{8} |\sigma(p,q,r)|$.
+   - Certified Casson invariant values: $\lambda(\Sigma(2,3,5)) = 1$, $\lambda(\Sigma(2,3,7)) = 1$, $\lambda(\Sigma(2,3,11)) = 2$, $\lambda(\Sigma(2,5,7)) = 2$.
 -/
