@@ -1,5 +1,7 @@
 import Formalization.TriangleModularGroup
 import Formalization.SeifertSphereFibrations
+import Formalization.GeneralSeifertClassification
+import Formalization.SymplecticTriangleRepresentations
 
 /-!
 # Original Research Formalization Suite: Triangle Groups & Seifert Homology Spheres
@@ -23,4 +25,21 @@ and Mathlib.
    - Classification of canonical hyperbolic triangle families: $(2,3,\infty)$, $(3,4,\infty)$, $(2,5,\infty)$, $(3,5,\infty)$.
    - Pairwise coprime solvability for 3-point compact Seifert 3-manifolds (`pairwise_coprime_exists_sphere3`).
    - Formal certificates for Poincaré $\Sigma(2,3,5)$ and Brieskorn $\Sigma(2,3,7)$ homology spheres.
+
+3. **`Formalization.GeneralSeifertClassification`**:
+   - Generalized $k$-point Seifert invariant order formula $O_k(a; \ell_0, \ell) = (\prod a_i)\ell_0 - \sum A_j \ell_j$.
+   - Cofactor products $A_j = \prod_{i \ne j} a_i$ and cofactor GCD $\gcd(A_1, \dots, A_k)$.
+   - Master Diophantine Solvability Theorem: $|O_k(a; \ell_0, \ell)| = 1 \iff \gcd(A_1, \dots, A_k) = 1$.
+   - Pairwise Coprimality Sufficiency Theorem: pairwise coprime $\implies \gcd(A_1, \dots, A_k) = 1 \implies \exists \vec{\ell}, |O_k| = 1$.
+   - Common Divisor Obstruction: $\gcd(a_i, a_j) = d > 1 \implies d \mid A_m$ for all $m \implies d \mid O_k$ and no homology sphere is possible.
+   - Concrete classifications and certificates for 3-point ($\Sigma(2,3,5), \Sigma(2,3,7), \Sigma(2,3,11)$, obstruction $\Sigma(2,4,6)$) and 4-point families ($\Sigma(2,3,5,7), \Sigma(2,3,5,11)$, obstruction $\Sigma(2,3,4,5)$).
+   - List-based invariant formulations and verification tests.
+
+4. **`Formalization.SymplecticTriangleRepresentations`**:
+   - Canonical non-degenerate skew-symmetric symplectic form $J \in \mathrm{Mat}_4(\mathbb{Z})$ ($J^T = -J, J^2 = -I_4$) and symplectic predicate `IsSymplectic`.
+   - Symplectic representation of $\Delta(3,4,\infty)$ in $\mathrm{Sp}_4(\mathbb{Z})$: order 3 ($T_1^3 = I_4$), order 4 ($T_2^4 = I_4$), and parabolic monodromy $T_0 = (T_1 T_2)^{-1}$.
+   - Symplectic representation of $(2,3,\infty)$ modular family in $\mathrm{Sp}_4(\mathbb{Z})$: order 2 ($S_1^2 = I_4$), order 3 ($S_2^3 = I_4$), and parabolic monodromy $S_0 = (S_1 S_2)^{-1}$.
+   - Classification of unipotent cusp monodromies (Type I: $N=0$, Type II: $N \ne 0, N^2=0$, Type III: $N^2 \ne 0, N^4=0$) and machine-proof that $(3,4,\infty)$ is strictly Type II.
+   - Monodromy weight filtration $W_0 = \{0\} \subset W_1 = \operatorname{im} N \subset W_2 = \mathbb{Z}^4$ with verified inclusion chain.
+   - Polarized skew-symmetric symplectic form $\Omega_6$ preserving the $S_6$ Seifert family from `TriangleModularGroup`.
 -/
