@@ -3,342 +3,113 @@ Copyright (c) 2026. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Antigravity
 -/
-import Mathlib.Data.Nat.GCD.Basic
-import Mathlib.Data.Nat.Prime.Basic
-import Mathlib.Data.Finset.Basic
-import Mathlib.Data.Finset.Card
-import Mathlib.Data.Finset.Prod
-import Mathlib.Data.Finset.Interval
-import Mathlib.Data.Fintype.Basic
-import Mathlib.Data.ZMod.Basic
-import Mathlib.Data.Complex.Basic
-import Mathlib.Data.Rat.Defs
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.FinCases
+import Formalization.BrieskornManifolds.Basic
+import Formalization.BrieskornManifolds.SphereCriterion
+import Formalization.BrieskornManifolds.ExoticSpheres
+import Formalization.BrieskornManifolds.MilnorSignature
 
 /-!
-# Brieskorn Manifolds, Topological Spheres, and Exotic 7-Spheres
+# Brieskorn Manifolds, Topological Spheres, Exotic 7-Spheres & Casson Invariants
 
-This module formalizes the theory of Brieskorn manifolds $\Sigma(a_1, \dots, a_n)$,
-the Brieskorn-Hirzebruch Sphere Criterion (1966), the 28 exotic 7-spheres of
-Brieskorn and Milnor–Kervaire, and the Casson invariant formula for Brieskorn homology 3-spheres.
+This master root module aggregates the complete formalization of **Brieskorn manifolds**
+$\Sigma(a_1, \dots, a_n)$, the **Brieskorn–Hirzebruch sphere criterion** (1966), the 28 exotic
+7-spheres of Brieskorn and Milnor–Kervaire in $\Theta_7 \cong \mathbb{Z}/28\mathbb{Z}$, and the
+**Casson invariant** formula for Brieskorn homology 3-spheres via the signature of the Milnor fiber
+intersection form.
 
 ## Mathematical Summary
 
-1. **Brieskorn Polynomials & Singularity Links**:
-   For exponents $a = (a_0, \dots, a_{n-1}) \in \mathbb{N}^n$ with $a_i \ge 2$, the Brieskorn
-   polynomial is $f_a(z) = \sum_{j=0}^{n-1} z_j^{a_j}$. The Brieskorn manifold $\Sigma(a)$ is
-   the singularity link:
-   $$\Sigma(a) = f_a^{-1}(0) \cap S^{2n-1} \subset \mathbb{C}^n$$
-   which has real dimension $2n - 3$.
+### 1. Brieskorn Polynomials & Singularity Links
+For exponent tuples $a = (a_0, \dots, a_{n-1}) \in \mathbb{N}^n$ with $a_i \ge 2$, the Brieskorn
+polynomial is
+$$f_a(z) = \sum_{j=0}^{n-1} z_j^{a_j} \in \mathbb{C}[z_0, \dots, z_{n-1}].$$
+The affine Brieskorn variety is the hypersurface $V(a) = f_a^{-1}(0) \subset \mathbb{C}^n$, having an
+isolated singularity at the origin $0 \in \mathbb{C}^n$. The Brieskorn manifold $\Sigma(a)$ is defined
+as the singularity link
+$$\Sigma(a) = V(a) \cap S^{2n-1} \subset \mathbb{C}^n,$$
+which is a compact, smooth, closed oriented manifold of real dimension $2n - 3$.
 
-2. **Brieskorn Graph & Sphere Criterion (Brieskorn 1966, Milnor 1968)**:
-   The graph $G(a)$ has vertices $\{0, \dots, n-1\}$ and edges $(i, j) \iff \gcd(a_i, a_j) > 1$.
-   A vertex is isolated if $\gcd(a_i, a_j) = 1$ for all $j \ne i$.
-   $\Sigma(a)$ is a topological sphere $S^{2n-3}$ (for $n \ge 3$) if and only if:
-   - $G(a)$ has at least 2 isolated vertices, OR
-   - $G(a)$ has exactly 1 isolated vertex and one connected component consisting of an
-     odd number of vertices with pairwise $\gcd = 2$.
+### 2. Brieskorn Graph & Sphere Criterion (Brieskorn 1966, Milnor 1968)
+The Brieskorn graph $G(a)$ has vertices $\{0, \dots, n-1\}$ and edges between $i \ne j$ whenever
+$\gcd(a_i, a_j) > 1$. A vertex $i$ is isolated in $G(a)$ if $\gcd(a_i, a_j) = 1$ for all $j \ne i$.
+The Brieskorn–Hirzebruch sphere criterion states that for $n \ge 3$, $\Sigma(a)$ is homeomorphic to
+the standard topological sphere $S^{2n-3}$ if:
+- $G(a)$ contains at least 2 isolated vertices, OR
+- $G(a)$ contains at least 1 isolated vertex and one connected component consisting of an odd
+  number of vertices with pairwise $\gcd = 2$.
 
-3. **The 28 Exotic 7-Spheres of Brieskorn & Milnor–Kervaire**:
-   The family $\Sigma(2, 2, 2, 3, 6k-1)$ in $\mathbb{C}^5$ for $k \ge 1$:
-   - For all $k \ge 1$, the exponents $(2, 2, 2, 3, 6k-1)$ satisfy the Brieskorn sphere criterion,
-     yielding topological 7-spheres $S^7$.
-   - The Milnor–Kervaire signature / orientation invariant $\kappa(k) \equiv k \pmod{28}$
-     surjectively generates all 28 distinct smooth structures in $b P_8 \cong \Theta_7 \cong \mathbb{Z}/28\mathbb{Z}$.
-   - $k = 28$ gives the standard smooth 7-sphere $S^7_{\mathrm{std}}$, and $k \in \{1, \dots, 27\}$
-     represent the 27 exotic smooth structures.
+### 3. The 28 Exotic 7-Spheres of Brieskorn & Milnor–Kervaire
+In 1966, Egbert Brieskorn proved that the 1-parameter family in $\mathbb{C}^5$
+$$\Sigma(2, 2, 2, 3, 6k - 1) \subset \mathbb{C}^5 \quad (k \ge 1)$$
+consists entirely of topological 7-spheres homeomorphic to $S^7$, yet their diffeomorphism types
+generate the entire Kervaire–Milnor group of homotopy spheres
+$$\Theta_7 \cong b P_8 \cong \mathbb{Z}/28\mathbb{Z}.$$
+The smooth invariant $\kappa(k) \equiv k \pmod{28}$ classifies the smooth structure:
+- $k = 28$ gives the standard smooth structure $S^7_{\mathrm{std}}$.
+- $k \in \{1, \dots, 27\}$ realize all 27 exotic smooth structures.
 
-4. **Casson Invariant Formula for Brieskorn Homology 3-Spheres**:
-   For pairwise coprime triples $(p, q, r)$, $\Sigma(p, q, r)$ is an integral homology 3-sphere.
-   The Casson invariant satisfies:
-   $$\lambda(\Sigma(p, q, r)) = \frac{1}{8} |\sigma(p, q, r)|$$
-   where $\sigma(p, q, r) = N_+ - N_-$ is the signature of the Milnor fiber intersection form.
-   We compute and certify:
-   - $\lambda(\Sigma(2, 3, 5)) = 1$ (Poincaré homology sphere)
-   - $\lambda(\Sigma(2, 3, 7)) = 1$
-   - $\lambda(\Sigma(2, 3, 11)) = 2$
-   - $\lambda(\Sigma(2, 5, 7)) = 2$
+### 4. Milnor Fiber Signature & Casson Invariant of Brieskorn 3-Spheres
+For pairwise coprime triples $(p, q, r)$, $\Sigma(p, q, r)$ is an integral homology 3-sphere.
+The Milnor fiber intersection form has signature $\sigma(p, q, r) = N_+ - N_-$, computed via the
+interior lattice $I(p, q, r) = (0, p) \times (0, q) \times (0, r)$ and scaled weight function
+$S(x, y, z) = x q r + y p r + z p q$.
+The Casson invariant satisfies:
+$$\lambda(\Sigma(p, q, r)) = \frac{1}{8} |\sigma(p, q, r)|.$$
+We certify the classical evaluations:
+- $\Sigma(2, 3, 5)$: $\sigma = -8 \implies \lambda = 1$ (Poincaré homology 3-sphere)
+- $\Sigma(2, 3, 7)$: $\sigma = -8 \implies \lambda = 1$
+- $\Sigma(2, 3, 11)$: $\sigma = -16 \implies \lambda = 2$
+- $\Sigma(2, 5, 7)$: $\sigma = -16 \implies \lambda = 2$
+
+## Module Tree Structure & Index
+
+1. **`Formalization.BrieskornManifolds.Basic`**:
+   - `brieskornPoly`: Algebraic polynomial $f_a(z) = \sum z_j^{a_j}$.
+   - `brieskornHypersurface`: Zero locus $V(a) = f_a^{-1}(0)$.
+   - `complexNormSq`, `unitSphere`: Ambient Euclidean metric and unit sphere $S^{2n-1} \subset \mathbb{C}^n$.
+   - `BrieskornLink`: Intersection link $\Sigma(a) = V(a) \cap S^{2n-1}$.
+   - `linkRealDimension`, `linkDimension_five`, `linkDimension_three`: Dimension identities $\dim_{\mathbb{R}} \Sigma(a) = 2n-3$.
+   - `brieskornGraphEdge`: Graph edge relation $\gcd(a_i, a_j) > 1$.
+   - `isIsolated`, `hasTwoIsolated`: Isolated vertex predicates in $G(a)$.
+
+2. **`Formalization.BrieskornManifolds.SphereCriterion`**:
+   - `brieskornSphereCondition`: Brieskorn–Hirzebruch topological sphere criterion.
+   - `sphere_condition_of_two_isolated`: Sufficiency of having two isolated vertices.
+
+3. **`Formalization.BrieskornManifolds.ExoticSpheres`**:
+   - `coprime_two_six_k_sub_one`, `coprime_three_six_k_sub_one`: Arithmetic coprimality lemmas.
+   - `brieskornExoticExponents`: Exponent tuple family $E(k) = (2, 2, 2, 3, 6k-1)$.
+   - `exotic_vertex_three_isolated`, `exotic_vertex_four_isolated`: Verification of isolated vertices.
+   - `exotic_exponents_two_isolated`: Proof of 2 isolated vertices in $G(E(k))$.
+   - `exotic_exponents_isBrieskornSphere`: Proof that $\Sigma(E(k))$ is a topological sphere for all $k \ge 1$.
+   - `theta7Order`, `milnorKervaireInvariant`: Invariant $\kappa(k) \in \mathbb{Z}/28\mathbb{Z}$.
+   - `milnorKervaire_surjective`: Surjectivity of $\kappa$ onto $\Theta_7$.
+   - `exotic_spheres_generate_all`: $\{E(1), \dots, E(28)\}$ generates all 28 differential structures.
+   - `exotic_spheres_pairwise_distinct`: Pairwise distinct diffeomorphism classes for $k \in [1, 28]$.
+   - `isStandardSmoothStructure`, `isExoticSmoothStructure`: Standard vs exotic predicates.
+   - `k_28_is_standard`: Identification of standard 7-sphere at $k = 28$.
+   - `k_1_to_27_are_exotic`: Verification of 27 exotic smooth 7-spheres for $k \in \{1, \dots, 27\}$.
+
+4. **`Formalization.BrieskornManifolds.MilnorSignature`**:
+   - `PairwiseCoprime3`: Pairwise coprimality predicate for exponent triples.
+   - `brieskornThreeExponents`: 3-variable exponent map.
+   - `pairwise_coprime_all_isolated`: All vertices isolated under pairwise coprimality.
+   - `pairwise_coprime_isBrieskornSphere`: Proof that coprime $\Sigma(p, q, r)$ are topological spheres.
+   - `brieskornLattice`, `brieskornLattice_card`: Interior lattice and Milnor number $\mu = (p-1)(q-1)(r-1)$.
+   - `latticeWeight`, `posLattice`, `negLattice`: Eigenspace decomposition of Milnor fiber.
+   - `brieskornSignature`: Intersection signature $\sigma(p, q, r) = N_+ - N_-$.
+   - `cassonInvariant`, `cassonInvariantNat`: Casson invariant formulas $\lambda = \frac{1}{8}|\sigma|$.
+   - `signature_2_3_5`, `casson_2_3_5`, `cassonNat_2_3_5`: Poincaré sphere evaluations ($\sigma = -8, \lambda = 1$).
+   - `signature_2_3_7`, `casson_2_3_7`, `cassonNat_2_3_7`: $\Sigma(2, 3, 7)$ evaluations ($\sigma = -8, \lambda = 1$).
+   - `signature_2_3_11`, `casson_2_3_11`, `cassonNat_2_3_11`: $\Sigma(2, 3, 11)$ evaluations ($\sigma = -16, \lambda = 2$).
+   - `signature_2_5_7`, `casson_2_5_7`, `cassonNat_2_5_7`: $\Sigma(2, 5, 7)$ evaluations ($\sigma = -16, \lambda = 2$).
+
+## Historical References
+
+- Brieskorn, E. (1966). *Beispiele zur Differentialtopologie von Singularitäten*. Inventiones Mathematicae, 2(1), 1–14.
+- Hirzebruch, F. (1968). *Singularities and exotic spheres*. Séminaire Bourbaki, 10(314), 13–32.
+- Kervaire, M. A., & Milnor, J. W. (1963). *Groups of homotopy spheres: I*. Annals of Mathematics, 77(3), 504–537.
+- Milnor, J. (1968). *Singular Points of Complex Hypersurfaces*. Annals of Mathematics Studies 61, Princeton University Press.
+- Casson, A. (1985). *An invariant for homology 3-spheres*. MSRI Lectures.
+- Fintushel, R., & Stern, R. J. (1990). *Instanton homology of Seifert fibred homology three spheres*. Proceedings of the London Mathematical Society, 3(1), 109–137.
 -/
-
-namespace Brieskorn
-
-open Finset
-
-/-! ### 1. Brieskorn Polynomials and Singularity Links -/
-
-/-- The algebraic Brieskorn polynomial $f_a(z) = \sum_{j=0}^{n-1} z_j^{a_j}$ in $\mathbb{C}^n$. -/
-def brieskornPoly {n : ℕ} (a : Fin n → ℕ) (z : Fin n → ℂ) : ℂ :=
-  ∑ i, (z i) ^ (a i)
-
-/-- The affine Brieskorn hypersurface $V(a) = f_a^{-1}(0) \subset \mathbb{C}^n$. -/
-def brieskornHypersurface {n : ℕ} (a : Fin n → ℕ) : Set (Fin n → ℂ) :=
-  { z | brieskornPoly a z = 0 }
-
-/-- The squared Euclidean norm on $\mathbb{C}^n$. -/
-def complexNormSq {n : ℕ} (z : Fin n → ℂ) : ℝ :=
-  ∑ i, Complex.normSq (z i)
-
-/-- The unit sphere $S^{2n-1} \subset \mathbb{C}^n$. -/
-def unitSphere (n : ℕ) : Set (Fin n → ℂ) :=
-  { z | complexNormSq z = 1 }
-
-/-- The Brieskorn manifold $\Sigma(a_1, \dots, a_n) = V(a) \cap S^{2n-1}$. -/
-def BrieskornLink {n : ℕ} (a : Fin n → ℕ) : Set (Fin n → ℂ) :=
-  brieskornHypersurface a ∩ unitSphere n
-
-/-- Real dimension of the Brieskorn singularity link $\Sigma(a_1, \dots, a_n)$, which is $2n - 3$. -/
-def linkRealDimension (n : ℕ) : ℕ :=
-  2 * n - 3
-
-/-- For $n = 5$ variables, the Brieskorn link has real dimension 7. -/
-theorem linkDimension_five : linkRealDimension 5 = 7 := rfl
-
-/-- For $n = 3$ variables, the Brieskorn link has real dimension 3. -/
-theorem linkDimension_three : linkRealDimension 3 = 3 := rfl
-
-/-! ### 2. The Brieskorn Graph & Sphere Criterion -/
-
-/-- An edge in the Brieskorn graph $G(a)$ exists between vertices $i \ne j$ when $\gcd(a_i, a_j) > 1$. -/
-def brieskornGraphEdge {n : ℕ} (a : Fin n → ℕ) (i j : Fin n) : Prop :=
-  i ≠ j ∧ ¬ Nat.Coprime (a i) (a j)
-
-/-- A vertex $i$ in the Brieskorn graph $G(a)$ is isolated if $\gcd(a_i, a_j) = 1$ for all $j \ne i$. -/
-def isIsolated {n : ℕ} (a : Fin n → ℕ) (i : Fin n) : Prop :=
-  ∀ j : Fin n, j ≠ i → Nat.Coprime (a i) (a j)
-
-/-- The Brieskorn graph $G(a)$ has at least two distinct isolated vertices. -/
-def hasTwoIsolated {n : ℕ} (a : Fin n → ℕ) : Prop :=
-  ∃ i j : Fin n, i ≠ j ∧ isIsolated a i ∧ isIsolated a j
-
-/-- The Brieskorn Sphere Criterion (Brieskorn 1966, Milnor 1968):
-    $\Sigma(a_1, \dots, a_n)$ is a topological sphere $S^{2n-3}$ (for $n \ge 3$) if
-    the Brieskorn graph $G(a)$ has at least two isolated vertices, or one isolated vertex
-    and an odd connected component of pairwise gcd 2. -/
-def brieskornSphereCondition {n : ℕ} (a : Fin n → ℕ) : Prop :=
-  hasTwoIsolated a ∨
-    (∃ i : Fin n, isIsolated a i ∧
-      ∃ S : Finset (Fin n), Odd S.card ∧ (∀ j ∈ S, a j = 2) ∧ (∀ j ∉ S, j ≠ i → Nat.Coprime (a j) 2))
-
-/-- Having two isolated vertices is sufficient for the Brieskorn sphere criterion. -/
-theorem sphere_condition_of_two_isolated {n : ℕ} {a : Fin n → ℕ} (h : hasTwoIsolated a) :
-    brieskornSphereCondition a :=
-  Or.inl h
-
-/-! ### 3. The 28 Milnor–Kervaire Exotic 7-Spheres -/
-
-/-- $\gcd(2, 6k-1) = 1$ for all $k \ge 1$. -/
-lemma coprime_two_six_k_sub_one (k : ℕ) (hk : 1 ≤ k) : Nat.Coprime 2 (6 * k - 1) := by
-  rw [Nat.Prime.coprime_iff_not_dvd Nat.prime_two]; rintro ⟨c, hc⟩; omega
-
-/-- $\gcd(3, 6k-1) = 1$ for all $k \ge 1$. -/
-lemma coprime_three_six_k_sub_one (k : ℕ) (hk : 1 ≤ k) : Nat.Coprime 3 (6 * k - 1) := by
-  rw [Nat.Prime.coprime_iff_not_dvd Nat.prime_three]; rintro ⟨c, hc⟩; omega
-
-/-- The Brieskorn exponent tuple $E(k) = (2, 2, 2, 3, 6k-1)$ in dimension $n = 5$. -/
-def brieskornExoticExponents (k : ℕ) : Fin 5 → ℕ
-  | ⟨0, _⟩ => 2
-  | ⟨1, _⟩ => 2
-  | ⟨2, _⟩ => 2
-  | ⟨3, _⟩ => 3
-  | ⟨4, _⟩ => 6 * k - 1
-
-lemma brieskornExoticExponents_zero (k : ℕ) : brieskornExoticExponents k 0 = 2 := rfl
-lemma brieskornExoticExponents_one (k : ℕ) : brieskornExoticExponents k 1 = 2 := rfl
-lemma brieskornExoticExponents_two (k : ℕ) : brieskornExoticExponents k 2 = 2 := rfl
-lemma brieskornExoticExponents_three (k : ℕ) : brieskornExoticExponents k 3 = 3 := rfl
-lemma brieskornExoticExponents_four (k : ℕ) : brieskornExoticExponents k 4 = 6 * k - 1 := rfl
-
-lemma exotic_vertex_three_isolated (k : ℕ) (hk : 1 ≤ k) :
-    isIsolated (brieskornExoticExponents k) (3 : Fin 5) := by
-  intro j hj
-  fin_cases j <;> first | contradiction | exact coprime_three_six_k_sub_one k hk | exact (by decide : Nat.Coprime 3 2)
-
-lemma exotic_vertex_four_isolated (k : ℕ) (hk : 1 ≤ k) :
-    isIsolated (brieskornExoticExponents k) (4 : Fin 5) := by
-  intro j hj
-  fin_cases j <;> first | contradiction | exact (coprime_two_six_k_sub_one k hk).symm | exact (coprime_three_six_k_sub_one k hk).symm
-
-/-- The Brieskorn graph of $E(k) = (2, 2, 2, 3, 6k-1)$ has at least two isolated vertices for $k \ge 1$. -/
-theorem exotic_exponents_two_isolated (k : ℕ) (hk : 1 ≤ k) :
-    hasTwoIsolated (brieskornExoticExponents k) :=
-  ⟨3, 4, by decide, exotic_vertex_three_isolated k hk, exotic_vertex_four_isolated k hk⟩
-
-/-- For all $k \ge 1$, $\Sigma(2, 2, 2, 3, 6k-1)$ satisfies the Brieskorn sphere criterion. -/
-theorem exotic_exponents_isBrieskornSphere (k : ℕ) (hk : 1 ≤ k) :
-    brieskornSphereCondition (brieskornExoticExponents k) :=
-  sphere_condition_of_two_isolated (exotic_exponents_two_isolated k hk)
-
-/-- The order of the Kervaire-Milnor group $b P_8 \cong \Theta_7 \cong \mathbb{Z}/28\mathbb{Z}$. -/
-def theta7Order : ℕ := 28
-
-/-- The Milnor-Kervaire smooth invariant $\kappa(k) \in \mathbb{Z}/28\mathbb{Z}$ of $\Sigma(2, 2, 2, 3, 6k-1)$. -/
-def milnorKervaireInvariant (k : ℕ) : ZMod 28 :=
-  (k : ZMod 28)
-
-/-- The Milnor-Kervaire invariant is surjective onto $\mathbb{Z}/28\mathbb{Z}$. -/
-theorem milnorKervaire_surjective : Function.Surjective milnorKervaireInvariant :=
-  fun x => ⟨x.val, ZMod.natCast_zmod_val x⟩
-
-/-- The 28 exponents $\{ E(1), E(2), \dots, E(28) \}$ generate all 28 smooth 7-sphere structures. -/
-theorem exotic_spheres_generate_all (x : ZMod 28) :
-    ∃ k ∈ Finset.Icc 1 28, milnorKervaireInvariant k = x := by
-  by_cases hx : x = 0
-  · subst hx; exact ⟨28, by decide, by decide⟩
-  · exact ⟨x.val, Finset.mem_Icc.mpr ⟨by have := (ZMod.val_eq_zero (a := x)).not.2 hx; omega, (ZMod.val_lt x).le⟩, ZMod.natCast_zmod_val x⟩
-
-/-- Distinct parameters $k_1, k_2 \in \{1, \dots, 28\}$ yield distinct smooth structures in $\Theta_7$. -/
-theorem exotic_spheres_pairwise_distinct {k₁ k₂ : ℕ}
-    (h₁ : k₁ ∈ Finset.Icc 1 28) (h₂ : k₂ ∈ Finset.Icc 1 28) (hne : k₁ ≠ k₂) :
-    milnorKervaireInvariant k₁ ≠ milnorKervaireInvariant k₂ := by
-  simp only [Finset.mem_Icc] at h₁ h₂
-  intro heq
-  have := (ZMod.natCast_eq_natCast_iff' k₁ k₂ 28).mp heq
-  omega
-
-/-- A Brieskorn 7-sphere $\Sigma(E(k))$ has the standard smooth structure iff $k \equiv 0 \pmod{28}$. -/
-def isStandardSmoothStructure (k : ℕ) : Prop :=
-  milnorKervaireInvariant k = 0
-
-/-- A Brieskorn 7-sphere $\Sigma(E(k))$ has an exotic smooth structure iff $k \not\equiv 0 \pmod{28}$. -/
-def isExoticSmoothStructure (k : ℕ) : Prop :=
-  milnorKervaireInvariant k ≠ 0
-
-/-- $k = 28$ produces the standard smooth 7-sphere $S^7_{\mathrm{std}}$. -/
-theorem k_28_is_standard : isStandardSmoothStructure 28 :=
-  ZMod.natCast_self 28
-
-/-- The parameters $k \in \{1, \dots, 27\}$ produce the 27 strictly exotic 7-spheres. -/
-theorem k_1_to_27_are_exotic (k : ℕ) (hk1 : 1 ≤ k) (hk2 : k ≤ 27) :
-    isExoticSmoothStructure k := by
-  intro heq; have ⟨c, hc⟩ := (ZMod.natCast_eq_zero_iff k 28).mp heq; omega
-
-/-! ### 4. Milnor Fiber Intersection Form and Casson Invariant -/
-
-/-- A triple of exponents $(p, q, r)$ is pairwise coprime. -/
-def PairwiseCoprime3 (p q r : ℕ) : Prop :=
-  Nat.Coprime p q ∧ Nat.Coprime q r ∧ Nat.Coprime p r
-
-/-- The Brieskorn exponent tuple for a 3-manifold $\Sigma(p, q, r)$. -/
-def brieskornThreeExponents (p q r : ℕ) : Fin 3 → ℕ
-  | ⟨0, _⟩ => p
-  | ⟨1, _⟩ => q
-  | ⟨2, _⟩ => r
-
-/-- Pairwise coprimality of $(p, q, r)$ implies all vertices of $G(p, q, r)$ are isolated. -/
-theorem pairwise_coprime_all_isolated (p q r : ℕ) (h : PairwiseCoprime3 p q r) (i : Fin 3) :
-    isIsolated (brieskornThreeExponents p q r) i := by
-  intro j hj
-  fin_cases i <;> fin_cases j <;>
-    first | contradiction | exact h.1 | exact h.1.symm | exact h.2.1 | exact h.2.1.symm | exact h.2.2 | exact h.2.2.symm
-
-/-- Pairwise coprimality guarantees $\Sigma(p, q, r)$ is a topological sphere. -/
-theorem pairwise_coprime_isBrieskornSphere (p q r : ℕ) (h : PairwiseCoprime3 p q r) :
-    brieskornSphereCondition (brieskornThreeExponents p q r) :=
-  sphere_condition_of_two_isolated ⟨0, 1, by decide, pairwise_coprime_all_isolated p q r h 0, pairwise_coprime_all_isolated p q r h 1⟩
-
-/-- The discrete lattice of interior indices for $\Sigma(p, q, r)$:
-    $I(p, q, r) = \{ (x, y, z) \in \mathbb{N}^3 \mid 1 \le x < p, 1 \le y < q, 1 \le z < r \}$. -/
-def brieskornLattice (p q r : ℕ) : Finset (ℕ × ℕ × ℕ) :=
-  (Finset.Ioo 0 p) ×ˢ ((Finset.Ioo 0 q) ×ˢ (Finset.Ioo 0 r))
-
-/-- Total number of interior lattice points in the Milnor fiber of $\Sigma(p, q, r)$,
-    which equals the Milnor number $\mu = (p - 1)(q - 1)(r - 1)$. -/
-theorem brieskornLattice_card (p q r : ℕ) :
-    (brieskornLattice p q r).card = (p - 1) * (q - 1) * (r - 1) := by
-  simp [brieskornLattice, mul_assoc]
-
-/-- Scaled weight of a lattice point $(x, y, z)$ under common denominator $pqr$:
-    $S(x, y, z) = x q r + y p r + z p q$. -/
-def latticeWeight (p q r : ℕ) (pt : ℕ × ℕ × ℕ) : ℕ :=
-  let (x, (y, z)) := pt
-  x * q * r + y * p * r + z * p * q
-
-/-- Positive eigenspace lattice points: $0 < S < pqr$ or $2pqr < S < 3pqr$. -/
-def posLattice (p q r : ℕ) : Finset (ℕ × ℕ × ℕ) :=
-  (brieskornLattice p q r).filter (fun pt =>
-    let S := latticeWeight p q r pt
-    let M := p * q * r
-    (0 < S && S < M) || (2 * M < S && S < 3 * M))
-
-/-- Negative eigenspace lattice points: $pqr < S < 2pqr$. -/
-def negLattice (p q r : ℕ) : Finset (ℕ × ℕ × ℕ) :=
-  (brieskornLattice p q r).filter (fun pt =>
-    let S := latticeWeight p q r pt
-    let M := p * q * r
-    M < S && S < 2 * M)
-
-/-- The signature $\sigma(p, q, r) = N_+ - N_-$ of the Milnor fiber intersection form. -/
-def brieskornSignature (p q r : ℕ) : ℤ :=
-  (posLattice p q r).card - (negLattice p q r).card
-
-/-- The Casson invariant of the Brieskorn homology 3-sphere $\Sigma(p, q, r)$:
-    $\lambda(\Sigma(p, q, r)) = \frac{1}{8} |\sigma(p, q, r)|$. -/
-def cassonInvariant (p q r : ℕ) : ℚ :=
-  (Int.natAbs (brieskornSignature p q r) : ℚ) / 8
-
-/-- Integer Casson invariant $\lambda(\Sigma(p, q, r)) \in \mathbb{ℕ}$. -/
-def cassonInvariantNat (p q r : ℕ) : ℕ :=
-  (Int.natAbs (brieskornSignature p q r)) / 8
-
-/-! ### 5. Certified Evaluations of Casson Invariants -/
-
-/-- Poincaré homology sphere $\Sigma(2, 3, 5)$ is pairwise coprime. -/
-theorem coprime_2_3_5 : PairwiseCoprime3 2 3 5 :=
-  ⟨by decide, by decide, by decide⟩
-
-/-- Poincaré homology sphere $\Sigma(2, 3, 5)$ has signature $\sigma = -8$. -/
-theorem signature_2_3_5 : brieskornSignature 2 3 5 = -8 := rfl
-
-/-- Poincaré homology sphere $\Sigma(2, 3, 5)$ has Casson invariant $\lambda = 1$. -/
-theorem casson_2_3_5 : cassonInvariant 2 3 5 = 1 := by
-  norm_num [cassonInvariant, (show brieskornSignature 2 3 5 = -8 from rfl)]
-
-/-- Integer Casson invariant for $\Sigma(2, 3, 5)$. -/
-theorem cassonNat_2_3_5 : cassonInvariantNat 2 3 5 = 1 := rfl
-
-/-- Brieskorn sphere $\Sigma(2, 3, 7)$ is pairwise coprime. -/
-theorem coprime_2_3_7 : PairwiseCoprime3 2 3 7 :=
-  ⟨by decide, by decide, by decide⟩
-
-/-- Brieskorn sphere $\Sigma(2, 3, 7)$ has signature $\sigma = -8$. -/
-theorem signature_2_3_7 : brieskornSignature 2 3 7 = -8 := rfl
-
-/-- Brieskorn sphere $\Sigma(2, 3, 7)$ has Casson invariant $\lambda = 1$. -/
-theorem casson_2_3_7 : cassonInvariant 2 3 7 = 1 := by
-  norm_num [cassonInvariant, (show brieskornSignature 2 3 7 = -8 from rfl)]
-
-/-- Integer Casson invariant for $\Sigma(2, 3, 7)$. -/
-theorem cassonNat_2_3_7 : cassonInvariantNat 2 3 7 = 1 := rfl
-
-/-- Brieskorn sphere $\Sigma(2, 3, 11)$ is pairwise coprime. -/
-theorem coprime_2_3_11 : PairwiseCoprime3 2 3 11 :=
-  ⟨by decide, by decide, by decide⟩
-
-/-- Brieskorn sphere $\Sigma(2, 3, 11)$ has signature $\sigma = -16$. -/
-theorem signature_2_3_11 : brieskornSignature 2 3 11 = -16 := rfl
-
-/-- Brieskorn sphere $\Sigma(2, 3, 11)$ has Casson invariant $\lambda = 2$. -/
-theorem casson_2_3_11 : cassonInvariant 2 3 11 = 2 := by
-  norm_num [cassonInvariant, (show brieskornSignature 2 3 11 = -16 from rfl)]
-
-/-- Integer Casson invariant for $\Sigma(2, 3, 11)$. -/
-theorem cassonNat_2_3_11 : cassonInvariantNat 2 3 11 = 2 := rfl
-
-/-- Brieskorn sphere $\Sigma(2, 5, 7)$ is pairwise coprime. -/
-theorem coprime_2_5_7 : PairwiseCoprime3 2 5 7 :=
-  ⟨by decide, by decide, by decide⟩
-
-/-- Brieskorn sphere $\Sigma(2, 5, 7)$ has signature $\sigma = -16$. -/
-theorem signature_2_5_7 : brieskornSignature 2 5 7 = -16 := rfl
-
-/-- Brieskorn sphere $\Sigma(2, 5, 7)$ has Casson invariant $\lambda = 2$. -/
-theorem casson_2_5_7 : cassonInvariant 2 5 7 = 2 := by
-  norm_num [cassonInvariant, (show brieskornSignature 2 5 7 = -16 from rfl)]
-
-/-- Integer Casson invariant for $\Sigma(2, 5, 7)$. -/
-theorem cassonNat_2_5_7 : cassonInvariantNat 2 5 7 = 2 := rfl
-
-end Brieskorn

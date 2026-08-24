@@ -10,85 +10,71 @@ import Formalization.PicardFuchsMirrorMonodromy
 import Formalization.UniversalMonodromyWeightFiltration
 
 /-!
-# Original Research Formalization Suite: Triangle Groups & Seifert Homology Spheres
+# Original Research Formalization Suite: Triangle Groups, Moduli & Seifert Homology Spheres
 
 This repository contains original machine-checked mathematical research formalized in Lean 4
-and Mathlib.
+and Mathlib, organized into modular submodule trees matching the architecture of `lean-theorems-3`.
 
-## Module Index
+## Module Index & Submodule Directory Trees
 
 1. **`Formalization.TriangleModularGroup`**:
-   - Discrete matrix representation of the hyperbolic triangle group $\Delta(3,4,\infty)$ in $\mathrm{GL}_4(\mathbb{Z})$.
-   - Verification of group relations $T_1^3 = I_4$, $T_2^4 = I_4$, $(T_1 T_2) T_0 = I_4$.
-   - Unipotent cusp monodromy $N = T_0 - I_4$ satisfying $N^2 = 0$.
-   - Nilpotent action on the basis $(\gamma, u, w, \delta)$: $N\gamma = 0, Nu = 0, Nw = -u, N\delta = \gamma$.
-   - Evaluation of the $(3,4,\infty)$ Seifert order invariant $|12(0) - 4(1) - 3(-1)| = 1 \implies \pi_1(X) \cong 0$.
+   - `Basic.lean`: Discrete matrix representation of the hyperbolic triangle group $\Delta(3,4,\infty)$ in $\mathrm{GL}_4(\mathbb{Z})$ ($T_1^3 = I_4, T_2^4 = I_4, (T_1 T_2) T_0 = I_4$) and unipotent cusp monodromy $N = T_0 - I_4$ ($N^2 = 0$).
+   - `LatticeAction.lean`: Nilpotent action on the lattice basis $(\gamma, u, w, \delta)$: $N\gamma = 0, Nu = 0, Nw = -u, N\delta = \gamma$.
+   - `SeifertInvariant.lean`: Seifert invariant evaluation $|12\ell_0 - 4\ell_1 - 3\ell_2| = 1$ for $(\ell_0, \ell_1, \ell_2) = (0, 1, -1) \implies \pi_1(X) \cong 0$.
 
 2. **`Formalization.SeifertSphereFibrations`**:
-   - General Diophantine classification of sphere-yielding Seifert fibrations over $S^2(a_1, a_2, \infty)$ and $S^2(a_1, a_2, a_3)$.
-   - Constructive Bézout existence theorem (`coprime_exists_sphere`, `coprime_witnesses_isHomotopySphere`) via `Int.gcdA` and `Int.gcdB`.
-   - Divisibility obstruction theorem (`noncoprime_obstruction`): common factors $d > 1$ preclude any homology sphere.
-   - Classification of canonical hyperbolic triangle families: $(2,3,\infty)$, $(3,4,\infty)$, $(2,5,\infty)$, $(3,5,\infty)$.
-   - Pairwise coprime solvability for 3-point compact Seifert 3-manifolds (`pairwise_coprime_exists_sphere3`).
-   - Formal certificates for Poincaré $\Sigma(2,3,5)$ and Brieskorn $\Sigma(2,3,7)$ homology spheres.
+   - `Basic.lean`: Foundational Seifert invariant order formula $O(a_1, a_2; \ell_0, \ell_1, \ell_2) = a_1 a_2 \ell_0 - a_2 \ell_1 - a_1 \ell_2$ and Bézout witness constructor.
+   - `CoprimeSolvability.lean`: Constructive Bézout existence theorem (`coprime_exists_sphere`) and divisibility obstruction theorem (`noncoprime_obstruction`).
+   - `CanonicalFamilies.lean`: Explicit certified sphere-yielding solutions for $(2,3,\infty), (3,4,\infty), (2,5,\infty), (3,5,\infty)$.
+   - `CompactThreePoint.lean`: Compact 3-point Seifert 3-manifolds over $S^2(a_1, a_2, a_3)$ (`pairwise_coprime_exists_sphere3`, `noncoprime_obstruction3_12`) and Poincaré $\Sigma(2,3,5)$ / Brieskorn $\Sigma(2,3,7)$ certificates.
 
 3. **`Formalization.GeneralSeifertClassification`**:
-   - Generalized $k$-point Seifert invariant order formula $O_k(a; \ell_0, \ell) = (\prod a_i)\ell_0 - \sum A_j \ell_j$.
-   - Cofactor products $A_j = \prod_{i \ne j} a_i$ and cofactor GCD $\gcd(A_1, \dots, A_k)$.
-   - Master Diophantine Solvability Theorem: $|O_k(a; \ell_0, \ell)| = 1 \iff \gcd(A_1, \dots, A_k) = 1$.
-   - Pairwise Coprimality Sufficiency Theorem: pairwise coprime $\implies \gcd(A_1, \dots, A_k) = 1 \implies \exists \vec{\ell}, |O_k| = 1$.
-   - Common Divisor Obstruction: $\gcd(a_i, a_j) = d > 1 \implies d \mid A_m$ for all $m \implies d \mid O_k$ and no homology sphere is possible.
-   - Concrete classifications and certificates for 3-point ($\Sigma(2,3,5), \Sigma(2,3,7), \Sigma(2,3,11)$, obstruction $\Sigma(2,4,6)$) and 4-point families ($\Sigma(2,3,5,7), \Sigma(2,3,5,11)$, obstruction $\Sigma(2,3,4,5)$).
-   - List-based invariant formulations and verification tests.
+   - `Cofactors.lean`: Generalized $k$-point Seifert invariant order $O_k(a; \ell_0, \ell) = (\prod a_i)\ell_0 - \sum A_j \ell_j$, cofactors $A_j = \prod_{i \ne j} a_i$, and cofactor GCD $\gcd(A_1, \dots, A_k)$.
+   - `Solvability.lean`: Master Diophantine Solvability Theorem ($|O_k| = 1 \iff \gcd(A_1,\dots,A_k) = 1$) and Pairwise Coprimality Sufficiency Theorem.
+   - `Obstructions.lean`: Common divisor and non-coprime pair obstructions preventing homology sphere solutions.
+   - `Certificates.lean`: Machine-checked classifications and certificates for 3-point ($\Sigma(2,3,5), \Sigma(2,3,7), \Sigma(2,3,11)$, obstruction $\Sigma(2,4,6)$) and 4-point families ($\Sigma(2,3,5,7), \Sigma(2,3,5,11)$, obstruction $\Sigma(2,3,4,5)$).
 
 4. **`Formalization.SymplecticTriangleRepresentations`**:
-   - Canonical non-degenerate skew-symmetric symplectic form $J \in \mathrm{Mat}_4(\mathbb{Z})$ ($J^T = -J, J^2 = -I_4$) and symplectic predicate `IsSymplectic`.
-   - Symplectic representation of $\Delta(3,4,\infty)$ in $\mathrm{Sp}_4(\mathbb{Z})$: order 3 ($T_1^3 = I_4$), order 4 ($T_2^4 = I_4$), and parabolic monodromy $T_0 = (T_1 T_2)^{-1}$.
-   - Symplectic representation of $(2,3,\infty)$ modular family in $\mathrm{Sp}_4(\mathbb{Z})$: order 2 ($S_1^2 = I_4$), order 3 ($S_2^3 = I_4$), and parabolic monodromy $S_0 = (S_1 S_2)^{-1}$.
-   - Classification of unipotent cusp monodromies (Type I: $N=0$, Type II: $N \ne 0, N^2=0$, Type III: $N^2 \ne 0, N^4=0$) and machine-proof that $(3,4,\infty)$ is strictly Type II.
-   - Monodromy weight filtration $W_0 = \{0\} \subset W_1 = \operatorname{im} N \subset W_2 = \mathbb{Z}^4$ with verified inclusion chain.
-   - Polarized skew-symmetric symplectic form $\Omega_6$ preserving the $S_6$ Seifert family from `TriangleModularGroup`.
+   - `Basic.lean`: Canonical non-degenerate skew-symmetric symplectic form $J \in \mathrm{Mat}_4(\mathbb{Z})$ ($J^T = -J, J^2 = -I_4$) and symplectic predicate `IsSymplectic`.
+   - `Representations.lean`: Symplectic representations of $(3,4,\infty)$ ($T_1, T_2, T_0$) and $(2,3,\infty)$ ($S_1, S_2, S_0$) in $\mathrm{Sp}_4(\mathbb{Z})$.
+   - `MonodromyClassification.lean`: Classification of unipotent cusp monodromies (Type I, Type II, Type III) and machine-checked proofs that $(3,4,\infty)$ and $(2,3,\infty)$ are Type II.
+   - `WeightFiltration.lean`: Monodromy weight filtration $W_0 \subseteq W_1 \subseteq W_2$ and polarized symplectic form $\Omega_6$ for the geometric $S_6$-family.
 
-5. **`Formalization.BrieskornManifolds`**:
-   - Brieskorn polynomial $f_a(z) = \sum z_j^{a_j}$, singularity link $\Sigma(a) = f_a^{-1}(0) \cap S^{2n-1}$, and real dimension $2n-3$.
-   - Brieskorn graph $G(a)$, isolated vertices, and the Brieskorn Sphere Criterion (Brieskorn 1966, Milnor 1968).
-   - The 28 Milnor-Kervaire exotic 7-spheres $\Sigma(2,2,2,3,6k-1)$ ($k \in \{1,\dots,28\}$) generating $b P_8 \cong \Theta_7 \cong \mathbb{Z}/28\mathbb{Z}$.
-   - Exact Milnor fiber signature $\sigma(p,q,r) = N_+ - N_-$ and Dedekind sum Casson invariant formula $\lambda(\Sigma(p,q,r)) = \frac{1}{8} |\sigma(p,q,r)|$.
-   - Certified Casson invariant values: $\lambda(\Sigma(2,3,5)) = 1$, $\lambda(\Sigma(2,3,7)) = 1$, $\lambda(\Sigma(2,3,11)) = 2$, $\lambda(\Sigma(2,5,7)) = 2$.
+5. **`Formalization.AbelianSurfaceDegenerations`**:
+   - `SiegelSpace.lean`: Siegel upper half-space $\mathbb{H}_2$ ($g=2$), positive definiteness `IsPosDef2`, diagonal basepoints, $\mathrm{Sp}_4(\mathbb{Z})$ block decompositions, and fractional linear transformations.
+   - `NilpotentOrbit.lean`: Schmid's Nilpotent Orbit Theorem, cusp shift matrix $N_\tau$, period map $\tau_{\text{nilp}}$, and monodromy periodicity.
+   - `BoundaryStratification.lean`: Boundary stratification $\overline{\mathcal{A}_2} = \mathcal{A}_2 \cup \Delta_1 \cup \Delta_0$, toric rank classification (0, 1, 2), and semi-abelian boundary extension $\Delta_1$.
+   - `PicardStratification.lean`: Néron–Severi rank stratification $\rho(A_{\text{gen}}) = 1$, CM jump points $\rho(A_{t_1}) = \rho(A_{t_2}) = 4 \ge 2$, and splitting $A_{t_i} \sim E \times E$.
 
-6. **`Formalization.OrbifoldSpectralZeta`**:
-   - Signature $(p, q, \infty)$ for 1-cusped hyperbolic 2-orbifolds $\mathcal{O}(p, q, \infty) = \Delta(p, q, \infty) \backslash \mathbb{H}$.
-   - Orbifold Euler characteristic $\chi_{\text{orb}}(\mathbb{P}^1(p, q, \infty)) = 1/p + 1/q - 1$ and Gauss–Bonnet area $\operatorname{Area}(\mathcal{O}) = 2\pi(1 - 1/p - 1/q)$.
-   - Machine-certified areas: $(3,4,\infty) \implies 5\pi/6$, $(2,3,\infty) \implies \pi/3$, $(2,5,\infty) \implies 3\pi/5$, $(3,5,\infty) \implies 7\pi/15$.
-   - Eisenstein scattering determinant $\phi(s)$: functional equation $\phi(s)\phi(1-s) = 1$, critical line unitarity $|\phi(1/2+ir)| = 1$, residue $\operatorname{Res}_{s=1} \phi(s) = 1/\mu_{\text{orb}}$.
-   - Orbifold Selberg trace formula decomposing discrete Maass cusp spectrum, continuous Eisenstein scattering, and geometric conjugacy classes (identity, elliptic cone points of orders $p, q$, parabolic cusp, hyperbolic geodesics).
-   - Selberg zeta function $\mathcal{Z}_{\mathcal{O}}(s)$ Euler product and spectral eigenvalue duality $s(1-s) = 1/4 + r^2$.
+6. **`Formalization.BrieskornManifolds`**:
+   - `Basic.lean`: Brieskorn polynomials $f_a(z) = \sum z_j^{a_j}$, singularity links $\Sigma(a)$, and real dimensions $2n-3$.
+   - `SphereCriterion.lean`: Brieskorn graph $G(a)$, isolated vertices, and the Brieskorn–Hirzebruch sphere criterion.
+   - `ExoticSpheres.lean`: The 28 Milnor–Kervaire exotic 7-spheres $\Sigma(2,2,2,3,6k-1)$ generating $\Theta_7 \cong \mathbb{Z}/28\mathbb{Z}$.
+   - `MilnorSignature.lean`: Milnor fiber signature $\sigma(p,q,r) = N_+ - N_-$, Casson invariant formula $\lambda(\Sigma(p,q,r)) = \frac{1}{8}|\sigma(p,q,r)|$, and certified values for $\Sigma(2,3,5), \Sigma(2,3,7), \Sigma(2,3,11), \Sigma(2,5,7)$.
 
-7. **`Formalization.AbelianSurfaceDegenerations`**:
-   - Siegel Upper Half-Space $\mathbb{H}_2$ for $g=2$: symmetric complex $2 \times 2$ matrices with positive definite imaginary part.
-   - Fractional linear transformations in $\mathrm{Sp}_4(\mathbb{Z})$ and symplectic block invariance theorems.
-   - Nilpotent Orbit Theorem (Schmid 1973) for unipotent cusp degeneration: period map $\tau_{\text{nilp}}(\tau_0, z) = \tau_0 + z N_\tau \in \mathbb{H}_2$ and monodromy periodicity.
-   - Kodaira–Mumford toric degeneration of abelian surfaces at the boundary $\partial \overline{\mathcal{A}_2}$: toric rank 1 semi-abelian extension $0 \to \mathbb{G}_m \to A_0 \to E \to 0$ in $\Delta_1 \cong \mathcal{A}_1$.
-   - Néron–Severi rank / Picard number stratification: $\rho(A_{\text{gen}}) = 1$, jumps $\rho(A_{t_1}) = 4 \ge 2$ and $\rho(A_{t_2}) = 4 \ge 2$ with complex multiplication and splitting $A_{t_i} \sim E \times E$.
+7. **`Formalization.OrbifoldSpectralZeta`**:
+   - `GaussBonnet.lean`: Signature $(p, q, \infty)$ 1-cusped 2-orbifolds $\mathcal{O}(p,q,\infty)$, Euler characteristic $\chi_{\text{orb}}$, Gauss–Bonnet area $\operatorname{Area} = 2\pi(1 - 1/p - 1/q)$, and certified areas.
+   - `ScatteringDeterminant.lean`: Eisenstein scattering determinant $\phi(s)$, functional equation $\phi(s)\phi(1-s)=1$, and critical line unitarity $|\phi(1/2+ir)|=1$.
+   - `ResidueProduct.lean`: Residue-area product formula $\operatorname{Res}_{s=1}\phi(s) \cdot \operatorname{Area} = 2\pi$.
+   - `SelbergTrace.lean`: Orbifold Selberg trace formula, Maass spectrum, continuous spectrum, conjugacy classes, and Selberg zeta $\mathcal{Z}_{\mathcal{O}}(s)$.
 
-8. **`Formalization.BrieskornSU2CharacterVariety`** (Track 2):
-   - $SU(2)$ Character Varieties for Brieskorn homology 3-spheres $\Sigma(p, q, r)$.
-   - Diophantine angle condition $1 \le a < p, 1 \le b < q, 1 \le c < r$ reducing $xyz = 1$ to spherical triangle inequalities with odd central fiber parity.
-   - Certified representation counts: $|\mathcal{R}^*(\Sigma(2,3,5))| = 2, |\mathcal{R}^*(\Sigma(2,3,7))| = 2, |\mathcal{R}^*(\Sigma(2,3,11))| = 4, |\mathcal{R}^*(\Sigma(2,5,7))| = 4$.
-   - Casson invariant formula $\lambda(\Sigma(p,q,r)) = \frac{1}{2} |\mathcal{R}^*(\Sigma(p,q,r))|$ matching `Brieskorn.cassonInvariant`.
-   - Fricke-Vogt trace variety $\Phi(t_x, t_y, t_z) = t_x^2 + t_y^2 + t_z^2 + t_x t_y t_z - 4 = 0$ and central fiber mapping $h \mapsto -I$.
+8. **`Formalization.BrieskornSU2CharacterVariety`**:
+   - `Basic.lean`: Irreducible $SU(2)$ character varieties of Brieskorn homology 3-spheres $\Sigma(p,q,r)$ and central fiber condition $h \mapsto -I$.
+   - `SphericalAngles.lean`: Diophantine spherical triangle angle inequalities, `IsSphericalAngleTriple`, and representation set `IrredSU2RepSet`.
+   - `RepresentationCounts.lean`: Certified representation counts for $\Sigma(2,3,5), \Sigma(2,3,7), \Sigma(2,3,11), \Sigma(2,5,7)$.
+   - `CassonInvariant.lean`: Gauge-theoretic Casson invariant $\lambda_{SU(2)} = \frac{1}{2}\#\mathcal{R}^*$ and exact identification with Milnor signature Casson invariant.
+   - `FrickeVogt.lean`: Fricke–Vogt trace variety $\Phi(t_x, t_y, t_z) = 0$ and trace hypersurface discriminant identities.
 
-9. **`Formalization.PicardFuchsMirrorMonodromy`** (Track 2):
-   - Order-4 hypergeometric Picard-Fuchs differential operator $\mathcal{L}_4 = \theta^4 - z \prod (\theta + \alpha_i)$ with Calabi-Yau self-duality sum $\sum \alpha_i = 2$.
-   - Local monodromy at cusp $z = 0$ matching verified nilpotent operator $N = T_0 - I_4$.
-   - Index-2 unipotence $N^2 = 0$ (Type II) for abelian surfaces vs Type III MUM ($N_{\text{MUM}}^4 = 0, N_{\text{MUM}}^2 \ne 0$).
-   - Griffiths transversality: infinitesimal symplectic Lie algebra invariance $N^T J + J N = 0$ and $N^T \Omega_6 + \Omega_6 N = 0$.
-   - Classical Yukawa coupling $C_{zzz}(z) = \frac{\kappa_0}{z^3 (1 - \mu z)}$ and instanton expansion $C_{ttt}(q) = K_0 + \sum d^3 n_d \frac{q^d}{1 - q^d}$.
+9. **`Formalization.PicardFuchsMirrorMonodromy`**:
+   - `DifferentialOperator.lean`: Order-4 hypergeometric Picard–Fuchs operator $\mathcal{L}_4$, symbol expansion, and Calabi–Yau self-duality sum $\sum \alpha_i = 2$.
+   - `CuspMonodromy.lean`: Nilpotent cusp monodromy $N = T_0 - I_4$ and index-2 unipotence (Type II vs Type III MUM).
+   - `SymplecticInvariance.lean`: Griffiths transversality: infinitesimal symplectic Lie algebra invariance $N^T J + J N = 0$ and $N^T \Omega_6 + \Omega_6 N = 0$.
+   - `YukawaInstantons.lean`: Classical Yukawa coupling $C_{zzz}(z)$ and multi-instanton BPS expansions $C_{ttt}(q)$, with quintic certificates.
 
-10. **`Formalization.UniversalMonodromyWeightFiltration`** (Track 2):
-    - Deligne-Schmid canonical monodromy weight filtration $W_l(N, k) = \bigcup_{j=0}^k (\ker(N^{j+1}) \cap \operatorname{im}(N^{j - l + k}))$.
-    - Fundamental filtration axioms: weight shift $N(W_l) \subseteq W_{l-2}$, monotonicity $W_{l-1} \subseteq W_l$, and $W_{2k} = V$.
-    - Explicit computation on $\mathbb{Z}^4$ for $(3,4,\infty)$ unipotent cusp monodromy ($W_0 = \{0\} \subset W_1 = \operatorname{im} N \subset W_2 = \mathbb{Z}^4$).
-    - Explicit 4-step filtration for Type III MUM monodromy on $\mathbb{Z}^4$.
+10. **`Formalization.UniversalMonodromyWeightFiltration`**:
+    - `DeligneFormula.lean`: Kernel and image powers, `DeligneSummand`, and `DeligneWeightSpace`.
+    - `FiltrationProperties.lean`: Shift property $N(W_l) \subseteq W_{l-2}$, monotonicity $W_{l-1} \subseteq W_l$, and top space $W_{2k} = V$.
+    - `Filtrations4D.lean`: Explicit 2-step Type II filtration for $(3,4,\infty)$ and explicit 4-step Type III MUM filtration.
+    - `HodgeRiemannPairing.lean`: Hodge–Riemann symplectic polarization pairing $Q_N(v,w) = \langle v, N w \rangle_J$, symmetry, and strict positivity on primitive generators.
 -/
 
