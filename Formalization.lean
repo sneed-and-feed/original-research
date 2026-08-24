@@ -5,6 +5,9 @@ import Formalization.SymplecticTriangleRepresentations
 import Formalization.BrieskornManifolds
 import Formalization.OrbifoldSpectralZeta
 import Formalization.AbelianSurfaceDegenerations
+import Formalization.BrieskornSU2CharacterVariety
+import Formalization.PicardFuchsMirrorMonodromy
+import Formalization.UniversalMonodromyWeightFiltration
 
 /-!
 # Original Research Formalization Suite: Triangle Groups & Seifert Homology Spheres
@@ -67,4 +70,25 @@ and Mathlib.
    - Nilpotent Orbit Theorem (Schmid 1973) for unipotent cusp degeneration: period map $\tau_{\text{nilp}}(\tau_0, z) = \tau_0 + z N_\tau \in \mathbb{H}_2$ and monodromy periodicity.
    - Kodaira–Mumford toric degeneration of abelian surfaces at the boundary $\partial \overline{\mathcal{A}_2}$: toric rank 1 semi-abelian extension $0 \to \mathbb{G}_m \to A_0 \to E \to 0$ in $\Delta_1 \cong \mathcal{A}_1$.
    - Néron–Severi rank / Picard number stratification: $\rho(A_{\text{gen}}) = 1$, jumps $\rho(A_{t_1}) = 4 \ge 2$ and $\rho(A_{t_2}) = 4 \ge 2$ with complex multiplication and splitting $A_{t_i} \sim E \times E$.
+
+8. **`Formalization.BrieskornSU2CharacterVariety`** (Track 2):
+   - $SU(2)$ Character Varieties for Brieskorn homology 3-spheres $\Sigma(p, q, r)$.
+   - Diophantine angle condition $1 \le a < p, 1 \le b < q, 1 \le c < r$ reducing $xyz = 1$ to spherical triangle inequalities with odd central fiber parity.
+   - Certified representation counts: $|\mathcal{R}^*(\Sigma(2,3,5))| = 2, |\mathcal{R}^*(\Sigma(2,3,7))| = 2, |\mathcal{R}^*(\Sigma(2,3,11))| = 4, |\mathcal{R}^*(\Sigma(2,5,7))| = 4$.
+   - Casson invariant formula $\lambda(\Sigma(p,q,r)) = \frac{1}{2} |\mathcal{R}^*(\Sigma(p,q,r))|$ matching `Brieskorn.cassonInvariant`.
+   - Fricke-Vogt trace variety $\Phi(t_x, t_y, t_z) = t_x^2 + t_y^2 + t_z^2 + t_x t_y t_z - 4 = 0$ and central fiber mapping $h \mapsto -I$.
+
+9. **`Formalization.PicardFuchsMirrorMonodromy`** (Track 2):
+   - Order-4 hypergeometric Picard-Fuchs differential operator $\mathcal{L}_4 = \theta^4 - z \prod (\theta + \alpha_i)$ with Calabi-Yau self-duality sum $\sum \alpha_i = 2$.
+   - Local monodromy at cusp $z = 0$ matching verified nilpotent operator $N = T_0 - I_4$.
+   - Index-2 unipotence $N^2 = 0$ (Type II) for abelian surfaces vs Type III MUM ($N_{\text{MUM}}^4 = 0, N_{\text{MUM}}^2 \ne 0$).
+   - Griffiths transversality: infinitesimal symplectic Lie algebra invariance $N^T J + J N = 0$ and $N^T \Omega_6 + \Omega_6 N = 0$.
+   - Classical Yukawa coupling $C_{zzz}(z) = \frac{\kappa_0}{z^3 (1 - \mu z)}$ and instanton expansion $C_{ttt}(q) = K_0 + \sum d^3 n_d \frac{q^d}{1 - q^d}$.
+
+10. **`Formalization.UniversalMonodromyWeightFiltration`** (Track 2):
+    - Deligne-Schmid canonical monodromy weight filtration $W_l(N, k) = \bigcup_{j=0}^k (\ker(N^{j+1}) \cap \operatorname{im}(N^{j - l + k}))$.
+    - Fundamental filtration axioms: weight shift $N(W_l) \subseteq W_{l-2}$, monotonicity $W_{l-1} \subseteq W_l$, and $W_{2k} = V$.
+    - Explicit computation on $\mathbb{Z}^4$ for $(3,4,\infty)$ unipotent cusp monodromy ($W_0 = \{0\} \subset W_1 = \operatorname{im} N \subset W_2 = \mathbb{Z}^4$).
+    - Explicit 4-step filtration for Type III MUM monodromy on $\mathbb{Z}^4$.
 -/
+
