@@ -74,21 +74,13 @@ def coneOrders (sig : HyperbolicTriangleSignature) : List ℕ := [sig.p, sig.q]
 /-- The hyperbolic condition is equivalent to $p + q < pq$. -/
 theorem hyperbolic_iff_mul (p q : ℕ) (hp : 0 < p) (hq : 0 < q) :
     (p : ℚ)⁻¹ + (q : ℚ)⁻¹ < 1 ↔ p + q < p * q := by
-  have hpq : (0 : ℚ) < (p : ℚ) * (q : ℚ) := mul_pos (Nat.cast_pos.mpr hp) (Nat.cast_pos.mpr hq)
-  have hp_q : (p : ℚ) ≠ 0 := (Nat.cast_pos.mpr hp).ne'
-  have hq_q : (q : ℚ) ≠ 0 := (Nat.cast_pos.mpr hq).ne'
-  rw [← mul_lt_mul_iff_of_pos_right hpq]
-  have h1 : ((p : ℚ)⁻¹ + (q : ℚ)⁻¹) * ((p : ℚ) * (q : ℚ)) = (q : ℚ) + (p : ℚ) := by
-    calc
-      ((p : ℚ)⁻¹ + (q : ℚ)⁻¹) * ((p : ℚ) * (q : ℚ))
-        = (p : ℚ)⁻¹ * ((p : ℚ) * (q : ℚ)) + (q : ℚ)⁻¹ * ((p : ℚ) * (q : ℚ)) := by ring
-      _ = ((p : ℚ)⁻¹ * (p : ℚ)) * (q : ℚ) + ((q : ℚ)⁻¹ * (q : ℚ)) * (p : ℚ) := by ring
-      _ = 1 * (q : ℚ) + 1 * (p : ℚ) := by rw [inv_mul_cancel₀ hp_q, inv_mul_cancel₀ hq_q]
-      _ = (q : ℚ) + (p : ℚ) := by ring
-  rw [h1, one_mul]
-  have h2 : (q : ℚ) + (p : ℚ) = ((p + q : ℕ) : ℚ) := by push_cast; ring
-  have h3 : (p : ℚ) * (q : ℚ) = ((p * q : ℕ) : ℚ) := by push_cast; rfl
-  rw [h2, h3, Nat.cast_lt]
+  have hp0 : (p : ℚ) ≠ 0 := Nat.cast_ne_zero.2 hp.ne'
+  have hq0 : (q : ℚ) ≠ 0 := Nat.cast_ne_zero.2 hq.ne'
+  have hpq : 0 < (p : ℚ) * q := mul_pos (Nat.cast_pos.2 hp) (Nat.cast_pos.2 hq)
+  rw [← mul_lt_mul_iff_of_pos_right hpq, one_mul]
+  have h : ((p : ℚ)⁻¹ + (q : ℚ)⁻¹) * ((p : ℚ) * q) = ((p + q : ℕ) : ℚ) := by
+    push_cast; linear_combination (q : ℚ) * inv_mul_cancel₀ hp0 + (p : ℚ) * inv_mul_cancel₀ hq0
+  rw [h, ← Nat.cast_mul, Nat.cast_lt]
 
 /-! ## 2. Orbifold Euler Characteristic & Gauss–Bonnet Hyperbolic Area -/
 
@@ -117,212 +109,134 @@ noncomputable def hyperbolicArea (sig : HyperbolicTriangleSignature) : ℝ :=
   2 * Real.pi * normalizedAreaReal sig
 
 /-- The orbifold Euler characteristic is strictly negative for all hyperbolic triangle signatures. -/
-theorem chiOrb_neg (sig : HyperbolicTriangleSignature) : chiOrb sig < 0 := by
-  have h := sig.hyperbolic
-  dsimp [chiOrb]
-  linarith
+theorem chiOrb_neg (sig : HyperbolicTriangleSignature) : chiOrb sig < 0 :=
+  sub_neg.2 sig.hyperbolic
 
 /-- The normalized hyperbolic area is strictly positive. -/
 theorem normalizedArea_pos (sig : HyperbolicTriangleSignature) : 0 < normalizedArea sig := by
-  have h := sig.hyperbolic
-  dsimp [normalizedArea]
-  linarith
+  have h := sig.hyperbolic; dsimp [normalizedArea]; linarith
 
 /-- Normalized area is exactly the negative of the orbifold Euler characteristic. -/
 theorem normalizedArea_eq_neg_chiOrb (sig : HyperbolicTriangleSignature) :
     normalizedArea sig = - chiOrb sig := by
-  dsimp [normalizedArea, chiOrb]
-  ring
+  dsimp [normalizedArea, chiOrb]; ring
 
 /-- Real normalized area coincides with rational normalized area cast to $\mathbb{R}$. -/
 theorem normalizedAreaReal_eq_coe (sig : HyperbolicTriangleSignature) :
     normalizedAreaReal sig = (normalizedArea sig : ℝ) := by
-  dsimp [normalizedAreaReal, normalizedArea]
-  push_cast
-  rfl
+  dsimp [normalizedAreaReal, normalizedArea]; push_cast; rfl
 
 /-- Real orbifold Euler characteristic coincides with rational Euler characteristic cast to $\mathbb{R}$. -/
 theorem chiOrbReal_eq_coe (sig : HyperbolicTriangleSignature) :
     chiOrbReal sig = (chiOrb sig : ℝ) := by
-  dsimp [chiOrbReal, chiOrb]
-  push_cast
-  rfl
+  dsimp [chiOrbReal, chiOrb]; push_cast; rfl
 
 /-- Gauss–Bonnet theorem for 1-cusped hyperbolic 2-orbifolds:
 $\operatorname{Area}(\mathcal{O}(p, q, \infty)) = -2\pi \chi_{\text{orb}}(\mathcal{O}(p, q, \infty))$. -/
 theorem gauss_bonnet_area (sig : HyperbolicTriangleSignature) :
     hyperbolicArea sig = -2 * Real.pi * chiOrbReal sig := by
-  dsimp [hyperbolicArea, normalizedAreaReal, chiOrbReal]
-  ring
+  dsimp [hyperbolicArea, normalizedAreaReal, chiOrbReal]; ring
 
 /-- The Gauss–Bonnet hyperbolic area is strictly positive when $\pi > 0$. -/
 theorem hyperbolicArea_pos (sig : HyperbolicTriangleSignature) (hpi : 0 < Real.pi) :
     0 < hyperbolicArea sig := by
-  dsimp [hyperbolicArea]
-  have hnorm : 0 < normalizedAreaReal sig := by
-    rw [normalizedAreaReal_eq_coe]
-    have hq := normalizedArea_pos sig
-    exact Rat.cast_pos.mpr hq
-  exact mul_pos (mul_pos (by norm_num) hpi) hnorm
+  rw [hyperbolicArea, normalizedAreaReal_eq_coe]
+  exact mul_pos (mul_pos (by norm_num) hpi) (Rat.cast_pos.2 (normalizedArea_pos sig))
 
 /-- Hyperbolic area is twice the fundamental triangle area. -/
 theorem hyperbolicArea_eq_two_triangleArea (sig : HyperbolicTriangleSignature) :
     hyperbolicArea sig = 2 * triangleArea sig := by
-  dsimp [hyperbolicArea, triangleArea]
-  ring
+  dsimp [hyperbolicArea, triangleArea]; ring
 
 /-! ## 3. Machine-Proved Certified Exact Values for Canonical Families -/
 
 /-- The canonical $(3, 4, \infty)$ hyperbolic triangle orbifold signature. -/
-def sig34 : HyperbolicTriangleSignature where
-  p := 3
-  q := 4
-  hp := by decide
-  hq := by decide
-  hyperbolic := by norm_num
+def sig34 : HyperbolicTriangleSignature := ⟨3, 4, by decide, by decide, by norm_num⟩
 
 /-- Exact rational Euler characteristic $\chi_{\text{orb}}(3, 4, \infty) = -5/12$. -/
 theorem chiOrb_sig34 : chiOrb sig34 = -5 / 12 := by
-  dsimp [chiOrb, sig34]
-  norm_num
+  norm_num [chiOrb, sig34]
 
 /-- Exact normalized area $\mu_{\text{orb}}(3, 4, \infty) = 5/12$. -/
 theorem normalizedArea_sig34 : normalizedArea sig34 = 5 / 12 := by
-  dsimp [normalizedArea, sig34]
-  norm_num
+  norm_num [normalizedArea, sig34]
 
 /-- Exact Gauss–Bonnet hyperbolic area $\operatorname{Area}(\mathcal{O}(3, 4, \infty)) = 5\pi / 6$. -/
 theorem hyperbolicArea_sig34 : hyperbolicArea sig34 = 5 * Real.pi / 6 := by
-  dsimp [hyperbolicArea]
-  rw [normalizedAreaReal_eq_coe, normalizedArea_sig34]
-  push_cast
-  ring
+  rw [hyperbolicArea, normalizedAreaReal_eq_coe, normalizedArea_sig34]; push_cast; ring
 
 /-- The canonical $(2, 3, \infty)$ modular triangle orbifold signature. -/
-def sig23 : HyperbolicTriangleSignature where
-  p := 2
-  q := 3
-  hp := by decide
-  hq := by decide
-  hyperbolic := by norm_num
+def sig23 : HyperbolicTriangleSignature := ⟨2, 3, by decide, by decide, by norm_num⟩
 
 /-- Exact rational Euler characteristic $\chi_{\text{orb}}(2, 3, \infty) = -1/6$. -/
 theorem chiOrb_sig23 : chiOrb sig23 = -1 / 6 := by
-  dsimp [chiOrb, sig23]
-  norm_num
+  norm_num [chiOrb, sig23]
 
 /-- Exact normalized area $\mu_{\text{orb}}(2, 3, \infty) = 1/6$. -/
 theorem normalizedArea_sig23 : normalizedArea sig23 = 1 / 6 := by
-  dsimp [normalizedArea, sig23]
-  norm_num
+  norm_num [normalizedArea, sig23]
 
 /-- Exact Gauss–Bonnet hyperbolic area $\operatorname{Area}(\mathcal{O}(2, 3, \infty)) = \pi / 3$. -/
 theorem hyperbolicArea_sig23 : hyperbolicArea sig23 = Real.pi / 3 := by
-  dsimp [hyperbolicArea]
-  rw [normalizedAreaReal_eq_coe, normalizedArea_sig23]
-  push_cast
-  ring
+  rw [hyperbolicArea, normalizedAreaReal_eq_coe, normalizedArea_sig23]; push_cast; ring
 
 /-- The canonical $(2, 5, \infty)$ hyperbolic triangle orbifold signature. -/
-def sig25 : HyperbolicTriangleSignature where
-  p := 2
-  q := 5
-  hp := by decide
-  hq := by decide
-  hyperbolic := by norm_num
+def sig25 : HyperbolicTriangleSignature := ⟨2, 5, by decide, by decide, by norm_num⟩
 
 /-- Exact rational Euler characteristic $\chi_{\text{orb}}(2, 5, \infty) = -3/10$. -/
 theorem chiOrb_sig25 : chiOrb sig25 = -3 / 10 := by
-  dsimp [chiOrb, sig25]
-  norm_num
+  norm_num [chiOrb, sig25]
 
 /-- Exact normalized area $\mu_{\text{orb}}(2, 5, \infty) = 3/10$. -/
 theorem normalizedArea_sig25 : normalizedArea sig25 = 3 / 10 := by
-  dsimp [normalizedArea, sig25]
-  norm_num
+  norm_num [normalizedArea, sig25]
 
 /-- Exact Gauss–Bonnet hyperbolic area $\operatorname{Area}(\mathcal{O}(2, 5, \infty)) = 3\pi / 5$. -/
 theorem hyperbolicArea_sig25 : hyperbolicArea sig25 = 3 * Real.pi / 5 := by
-  dsimp [hyperbolicArea]
-  rw [normalizedAreaReal_eq_coe, normalizedArea_sig25]
-  push_cast
-  ring
+  rw [hyperbolicArea, normalizedAreaReal_eq_coe, normalizedArea_sig25]; push_cast; ring
 
 /-- The canonical $(3, 5, \infty)$ hyperbolic triangle orbifold signature. -/
-def sig35 : HyperbolicTriangleSignature where
-  p := 3
-  q := 5
-  hp := by decide
-  hq := by decide
-  hyperbolic := by norm_num
+def sig35 : HyperbolicTriangleSignature := ⟨3, 5, by decide, by decide, by norm_num⟩
 
 /-- Exact rational Euler characteristic $\chi_{\text{orb}}(3, 5, \infty) = -7/15$. -/
 theorem chiOrb_sig35 : chiOrb sig35 = -7 / 15 := by
-  dsimp [chiOrb, sig35]
-  norm_num
+  norm_num [chiOrb, sig35]
 
 /-- Exact normalized area $\mu_{\text{orb}}(3, 5, \infty) = 7/15$. -/
 theorem normalizedArea_sig35 : normalizedArea sig35 = 7 / 15 := by
-  dsimp [normalizedArea, sig35]
-  norm_num
+  norm_num [normalizedArea, sig35]
 
 /-- Exact Gauss–Bonnet hyperbolic area $\operatorname{Area}(\mathcal{O}(3, 5, \infty)) = 14\pi / 15$. -/
 theorem hyperbolicArea_sig35 : hyperbolicArea sig35 = 14 * Real.pi / 15 := by
-  dsimp [hyperbolicArea]
-  rw [normalizedAreaReal_eq_coe, normalizedArea_sig35]
-  push_cast
-  ring
+  rw [hyperbolicArea, normalizedAreaReal_eq_coe, normalizedArea_sig35]; push_cast; ring
 
 /-- Exact fundamental triangle area $\operatorname{Area}_\Delta(3, 5, \infty) = 7\pi / 15$. -/
 theorem triangleArea_sig35 : triangleArea sig35 = 7 * Real.pi / 15 := by
-  dsimp [triangleArea]
-  rw [normalizedAreaReal_eq_coe, normalizedArea_sig35]
-  push_cast
-  ring
+  rw [triangleArea, normalizedAreaReal_eq_coe, normalizedArea_sig35]; push_cast; ring
 
 /-- Additional canonical family $(2, 4, \infty)$. -/
-def sig24 : HyperbolicTriangleSignature where
-  p := 2
-  q := 4
-  hp := by decide
-  hq := by decide
-  hyperbolic := by norm_num
+def sig24 : HyperbolicTriangleSignature := ⟨2, 4, by decide, by decide, by norm_num⟩
 
 theorem chiOrb_sig24 : chiOrb sig24 = -1 / 4 := by
-  dsimp [chiOrb, sig24]
-  norm_num
+  norm_num [chiOrb, sig24]
 
 theorem normalizedArea_sig24 : normalizedArea sig24 = 1 / 4 := by
-  dsimp [normalizedArea, sig24]
-  norm_num
+  norm_num [normalizedArea, sig24]
 
 theorem hyperbolicArea_sig24 : hyperbolicArea sig24 = Real.pi / 2 := by
-  dsimp [hyperbolicArea]
-  rw [normalizedAreaReal_eq_coe, normalizedArea_sig24]
-  push_cast
-  ring
+  rw [hyperbolicArea, normalizedAreaReal_eq_coe, normalizedArea_sig24]; push_cast; ring
 
 /-- Additional canonical family $(4, 4, \infty)$. -/
-def sig44 : HyperbolicTriangleSignature where
-  p := 4
-  q := 4
-  hp := by decide
-  hq := by decide
-  hyperbolic := by norm_num
+def sig44 : HyperbolicTriangleSignature := ⟨4, 4, by decide, by decide, by norm_num⟩
 
 theorem chiOrb_sig44 : chiOrb sig44 = -1 / 2 := by
-  dsimp [chiOrb, sig44]
-  norm_num
+  norm_num [chiOrb, sig44]
 
 theorem normalizedArea_sig44 : normalizedArea sig44 = 1 / 2 := by
-  dsimp [normalizedArea, sig44]
-  norm_num
+  norm_num [normalizedArea, sig44]
 
 theorem hyperbolicArea_sig44 : hyperbolicArea sig44 = Real.pi := by
-  dsimp [hyperbolicArea]
-  rw [normalizedAreaReal_eq_coe, normalizedArea_sig44]
-  push_cast
-  ring
+  rw [hyperbolicArea, normalizedAreaReal_eq_coe, normalizedArea_sig44]; push_cast; ring
 
 /-! ## 4. Eisenstein Series Scattering Determinant $\phi(s)$ -/
 
@@ -350,55 +264,39 @@ structure ScatteringDeterminantData (sig : HyperbolicTriangleSignature) where
 
 /-- Certified scattering residue for $(3, 4, \infty)$: $\operatorname{Res}_{s=1} \phi(s) = 12/5$. -/
 theorem residue_sig34 : residueValue sig34 = 12 / 5 := by
-  dsimp [residueValue, sig34, normalizedArea]
-  norm_num
+  norm_num [residueValue, sig34, normalizedArea]
 
 /-- Certified scattering residue for $(2, 3, \infty)$: $\operatorname{Res}_{s=1} \phi(s) = 6$. -/
 theorem residue_sig23 : residueValue sig23 = 6 := by
-  dsimp [residueValue, sig23, normalizedArea]
-  norm_num
+  norm_num [residueValue, sig23, normalizedArea]
 
 /-- Certified scattering residue for $(2, 5, \infty)$: $\operatorname{Res}_{s=1} \phi(s) = 10/3$. -/
 theorem residue_sig25 : residueValue sig25 = 10 / 3 := by
-  dsimp [residueValue, sig25, normalizedArea]
-  norm_num
+  norm_num [residueValue, sig25, normalizedArea]
 
 /-- Certified scattering residue for $(3, 5, \infty)$: $\operatorname{Res}_{s=1} \phi(s) = 15/7$. -/
 theorem residue_sig35 : residueValue sig35 = 15 / 7 := by
-  dsimp [residueValue, sig35, normalizedArea]
-  norm_num
+  norm_num [residueValue, sig35, normalizedArea]
 
 /-- Certified scattering residue for $(2, 4, \infty)$: $\operatorname{Res}_{s=1} \phi(s) = 4$. -/
 theorem residue_sig24 : residueValue sig24 = 4 := by
-  dsimp [residueValue, sig24, normalizedArea]
-  norm_num
+  norm_num [residueValue, sig24, normalizedArea]
 
 /-- Certified scattering residue for $(4, 4, \infty)$: $\operatorname{Res}_{s=1} \phi(s) = 2$. -/
 theorem residue_sig44 : residueValue sig44 = 2 := by
-  dsimp [residueValue, sig44, normalizedArea]
-  norm_num
+  norm_num [residueValue, sig44, normalizedArea]
 
 /-- Fundamental algebraic relation: $\operatorname{Res}_{s=1} \phi(s) \cdot \mu_{\text{orb}}(\mathcal{O}) = 1$. -/
 theorem residue_mul_normalizedArea (sig : HyperbolicTriangleSignature) :
-    residueValue sig * normalizedArea sig = 1 := by
-  dsimp [residueValue]
-  have hpos : normalizedArea sig ≠ 0 := (normalizedArea_pos sig).ne'
-  exact inv_mul_cancel₀ hpos
+    residueValue sig * normalizedArea sig = 1 :=
+  inv_mul_cancel₀ (normalizedArea_pos sig).ne'
 
 /-- Fundamental spectral-geometric identity: $\operatorname{Res}_{s=1} \phi(s) \cdot \operatorname{Area}(\mathcal{O}) = 2\pi$. -/
 theorem residue_area_product (sig : HyperbolicTriangleSignature) :
     (residueValue sig : ℝ) * hyperbolicArea sig = 2 * Real.pi := by
-  dsimp [residueValue, hyperbolicArea]
-  rw [normalizedAreaReal_eq_coe]
-  have hpos : (normalizedArea sig : ℝ) ≠ 0 := by
-    have hq := normalizedArea_pos sig
-    exact (Rat.cast_pos.mpr hq).ne'
-  push_cast
-  calc
-    (normalizedArea sig : ℝ)⁻¹ * (2 * Real.pi * (normalizedArea sig : ℝ))
-      = 2 * Real.pi * ((normalizedArea sig : ℝ)⁻¹ * (normalizedArea sig : ℝ)) := by ring
-    _ = 2 * Real.pi * 1 := by rw [inv_mul_cancel₀ hpos]
-    _ = 2 * Real.pi := by ring
+  have hpos : (normalizedArea sig : ℝ) ≠ 0 := (Rat.cast_pos.2 (normalizedArea_pos sig)).ne'
+  rw [residueValue, hyperbolicArea, normalizedAreaReal_eq_coe]; push_cast
+  linear_combination 2 * Real.pi * inv_mul_cancel₀ hpos
 
 /-! ## 5. Orbifold Selberg Trace Formula -/
 
@@ -453,11 +351,7 @@ def geometricSide (id_term : ℝ) (ell_p_term : ℝ) (ell_q_term : ℝ) (par_ter
 /-- The prefactor of the identity term $\frac{\operatorname{Area}(\mathcal{O})}{4\pi}$ is exactly $\frac{\mu_{\text{orb}}}{2}$. -/
 theorem identity_prefactor_eq_half_normalizedArea (sig : HyperbolicTriangleSignature) (hpi : Real.pi ≠ 0) :
     hyperbolicArea sig / (4 * Real.pi) = normalizedAreaReal sig / 2 := by
-  dsimp [hyperbolicArea]
-  have h4pi : 4 * Real.pi = (2 * Real.pi) * 2 := by ring
-  rw [h4pi]
-  have h2pi : 2 * Real.pi ≠ 0 := mul_ne_zero (by norm_num) hpi
-  exact mul_div_mul_left (normalizedAreaReal sig) 2 h2pi
+  dsimp [hyperbolicArea]; field_simp; ring
 
 /-- The complete Orbifold Selberg Trace Formula identity for $\mathcal{O}(p, q, \infty)$. -/
 structure OrbifoldSelbergTraceFormula (sig : HyperbolicTriangleSignature) where
@@ -489,9 +383,7 @@ theorem trace_identity_with_normalizedArea (sig : HyperbolicTriangleSignature) (
       stf.ell_q_term
       (parabolicContribution stf.par_data)
       stf.hyp_geodesic_sum := by
-  have h := stf.trace_identity
-  rw [identity_prefactor_eq_half_normalizedArea sig hpi] at h
-  exact h
+  rw [← identity_prefactor_eq_half_normalizedArea sig hpi, stf.trace_identity]
 
 /-! ## 6. Selberg Zeta Function $\mathcal{Z}_{\mathcal{O}}(s)$ & Spectral Duality -/
 
@@ -515,23 +407,12 @@ structure OrbifoldSelbergZetaData (sig : HyperbolicTriangleSignature) where
 
 /-- Symmetry of the Laplacian eigenvalue parameterization: $s(1-s) = (1-s)(1 - (1-s))$. -/
 theorem eigenvalue_param_symm (s : ℂ) :
-    s * (1 - s) = (1 - s) * (1 - (1 - s)) := by
-  ring
+    s * (1 - s) = (1 - s) * (1 - (1 - s)) := by ring
 
 /-- On the critical line $s = 1/2 + i r$, the eigenvalue is real: $s(1-s) = 1/4 + r^2$. -/
 theorem eigenvalue_critical_line (r : ℝ) :
     (1/2 + Complex.I * (r : ℂ)) * (1 - (1/2 + Complex.I * (r : ℂ))) =
     ((1/4 + r^2 : ℝ) : ℂ) := by
-  have hI2 : Complex.I ^ 2 = -1 := Complex.I_sq
-  calc
-    (1/2 + Complex.I * (r : ℂ)) * (1 - (1/2 + Complex.I * (r : ℂ)))
-      = (1/2 + Complex.I * (r : ℂ)) * (1/2 - Complex.I * (r : ℂ)) := by ring
-    _ = (1/2)^2 - (Complex.I * (r : ℂ))^2 := by ring
-    _ = 1/4 - Complex.I^2 * (r : ℂ)^2 := by ring
-    _ = 1/4 - (-1) * (r : ℂ)^2 := by rw [hI2]
-    _ = 1/4 + (r : ℂ)^2 := by ring
-    _ = ((1/4 + r^2 : ℝ) : ℂ) := by
-        push_cast
-        ring
+  push_cast; linear_combination - (r : ℂ) ^ 2 * Complex.I_sq
 
 end OrbifoldSpectralZeta
