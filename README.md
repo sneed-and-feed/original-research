@@ -15,6 +15,9 @@ This repository provides machine-checked formalizations, certified proofs, and f
 | 5 | **Brieskorn Manifolds, Topological Spheres, and Exotic 7-Spheres** | [`exotic_exponents_isBrieskornSphere`](Formalization/BrieskornManifolds.lean), [`exotic_spheres_generate_all`](Formalization/BrieskornManifolds.lean), [`poincare_casson_invariant`](Formalization/BrieskornManifolds.lean), [`brieskorn_sphere_criterion`](Formalization/BrieskornManifolds.lean) | Differential Topology & Singularity Links | Brieskorn (1966), Milnor & Kervaire (1963), Casson (1985) | **100% Machine-Verified (0 Sorries)** (Brieskorn graph sphere criterion, 28 Milnor-Kervaire exotic 7-spheres in $\Theta_7 \cong \mathbb{Z}/28\mathbb{Z}$, and Casson invariant formula verified) |
 | 6 | **Moduli Families of Abelian Surfaces & Toric Degenerations** | [`SiegelHalfSpace2`](Formalization/AbelianSurfaceDegenerations.lean), [`nilpotent_orbit_in_Siegel`](Formalization/AbelianSurfaceDegenerations.lean), [`cusp_34_in_Delta1`](Formalization/AbelianSurfaceDegenerations.lean), [`master_neron_severi_stratification`](Formalization/AbelianSurfaceDegenerations.lean) | Moduli of Abelian Varieties & Toric Geometry | Schmid (1973), Mumford (1977), Kodaira (1963) | **100% Machine-Verified (0 Sorries)** (Siegel half-space $\mathbb{H}_2$, $\mathrm{Sp}_4(\mathbb{Z})$ fractional linear action, Schmid's nilpotent orbit theorem, semi-abelian boundary stratum $\Delta_1$, and Picard number jumps verified) |
 | 7 | **Hyperbolic Orbifold Spectral Zeta & Cusp Scattering** | [`gauss_bonnet_area`](Formalization/OrbifoldSpectralZeta.lean), [`residue_area_product`](Formalization/OrbifoldSpectralZeta.lean), [`hyperbolicArea_sig34`](Formalization/OrbifoldSpectralZeta.lean), [`trace_identity_with_normalizedArea`](Formalization/OrbifoldSpectralZeta.lean) | Spectral Geometry & Automorphic Forms | Selberg (1956), Hejhal (1983), Venkov (1990) | **100% Machine-Verified (0 Sorries)** (Orbifold Gauss-Bonnet area $\operatorname{Area}=2\pi(1-1/p-1/q)$, Eisenstein scattering determinant $\phi(s)\phi(1-s)=1$, residue product $\operatorname{Res}\cdot\operatorname{Area}=2\pi$, and Selberg trace formula verified) |
+| 8 | **$SU(2)$ Character Varieties, Diophantine Angles & Casson Invariants** | [`IsSphericalAngleTriple`](Formalization/BrieskornSU2CharacterVariety.lean), [`card_irred_su2_2_3_5`](Formalization/BrieskornSU2CharacterVariety.lean), [`casson_su2_eq_brieskorn_2_3_5`](Formalization/BrieskornSU2CharacterVariety.lean), [`frickeVogt_discriminant_identity`](Formalization/BrieskornSU2CharacterVariety.lean) | Gauge Theory, Character Varieties & 3-Manifold Invariants | Fintushel & Stern (1990), Casson (1985), Brieskorn (1966) | **100% Machine-Verified (0 Sorries)** (Diophantine angle conditions for central fiber $h \mapsto -I$, certified representation counts for $\Sigma(2,3,5), \Sigma(2,3,7), \Sigma(2,3,11), \Sigma(2,5,7)$, exact Casson invariant agreement, and Fricke-Vogt trace relations verified) |
+| 9 | **Order-4 Picard-Fuchs Differential Equations & Yukawa Couplings for $\Delta(p,q,\infty)$** | [`pfSymbol_expansion`](Formalization/PicardFuchsMirrorMonodromy.lean), [`sum_alpha_3_4_infty`](Formalization/PicardFuchsMirrorMonodromy.lean), [`isInfinitesimalSymplectic_N`](Formalization/PicardFuchsMirrorMonodromy.lean), [`symplecticPairing_N_invariant`](Formalization/PicardFuchsMirrorMonodromy.lean), [`quintic_instanton_k2`](Formalization/PicardFuchsMirrorMonodromy.lean) | Mirror Symmetry, Differential Equations & Symplectic Monodromies | Candelas et al. (1991), Morrison (1993), Griffiths (1970) | **100% Machine-Verified (0 Sorries)** (Order-4 Picard-Fuchs operator symbol $\mathcal{L}_4$, Calabi-Yau self-duality sum $\sum \alpha_i = 2$, unipotent cusp monodromy $N = T_0 - I_4$ matching $\mathrm{Sp}_4(\mathbb{Z})$, Griffiths transversality $N^T J + J N = 0$, and multi-instanton BPS expansions verified) |
+| 10 | **Deligne-Schmid Mixed Hodge Weight Filtrations $W_\bullet(N)$ & Symplectic Polarizations** | [`DeligneWeightSpace_shift`](Formalization/UniversalMonodromyWeightFiltration.lean), [`DeligneWeightSpace_mono`](Formalization/UniversalMonodromyWeightFiltration.lean), [`DeligneWeightSpace_top`](Formalization/UniversalMonodromyWeightFiltration.lean), [`W_MUM_complete_chain`](Formalization/UniversalMonodromyWeightFiltration.lean), [`Q_N_u_add_w_strictly_positive`](Formalization/UniversalMonodromyWeightFiltration.lean) | Hodge Theory & Degenerations of Mixed Hodge Structures | Deligne (1971), Schmid (1973), Steenbrink (1976) | **100% Machine-Verified (0 Sorries)** (Universal canonical subspace formula $W_l(N, k) = \bigcup_j (\ker(N^{j+1}) \cap \operatorname{im}(N^{j - l + k}))$, shift property $N(W_l) \subseteq W_{l-2}$, 2-step Type II and 4-step Type III MUM filtrations on $\mathbb{Z}^4$, and Hodge-Riemann polarization positivity verified) |
 
 ---
 
@@ -70,23 +73,64 @@ This repository provides machine-checked formalizations, certified proofs, and f
 
 ---
 
+### 8. $SU(2)$ Character Varieties, Diophantine Angles & Casson Invariants
+* **Module:** [`Formalization/BrieskornSU2CharacterVariety.lean`](Formalization/BrieskornSU2CharacterVariety.lean)
+* **Primary Declarations:** `IsSphericalAngleTriple`, `IrredSU2RepSet`, `card_irred_su2_2_3_5`, `card_irred_su2_2_3_7`, `card_irred_su2_2_3_11`, `card_irred_su2_2_5_7`, `cassonSU2`, `casson_su2_eq_brieskorn_2_3_5`, `frickeVogtPoly`, `frickeVogt_discriminant_identity`
+* **Mathematical Overview:**
+  For Brieskorn homology 3-spheres $\Sigma(p,q,r)$, irreducible $SU(2)$ representations of $\pi_1(\Sigma(p,q,r))$ map the central regular fiber $h \mapsto -I$. The fundamental relations reduce to strict spherical triangle angle inequalities on rotation parameters $(a/p, b/q, c/r) \in (0,1)^3$:
+  $$a q r + b p r > c p q, \quad a q r + c p q > b p r, \quad b p r + c p q > a q r, \quad a q r + b p r + c p q < 2 p q r$$
+  with odd parity conditions. The gauge-theoretic Casson invariant satisfies $\lambda_{SU(2)}(\Sigma(p,q,r)) = \frac{1}{2} \#\mathcal{R}^*(\Sigma(p,q,r))$, exactly matching the Milnor fiber signature formula.
+
+---
+
+### 9. Order-4 Picard-Fuchs Differential Equations & Yukawa Couplings
+* **Module:** [`Formalization/PicardFuchsMirrorMonodromy.lean`](Formalization/PicardFuchsMirrorMonodromy.lean)
+* **Primary Declarations:** `pfSymbol`, `pfSymbol_expansion`, `alpha_3_4_infty`, `sum_alpha_3_4_infty`, `N_unipotent_index_2`, `N_MUM_is_typeIII`, `isInfinitesimalSymplectic_N`, `symplecticPairing_N_invariant`, `C_zzz`, `instantonYukawa`, `quintic_instanton_k2`
+* **Mathematical Overview:**
+  Formalizes the order-4 hypergeometric Picard-Fuchs differential operator:
+  $$\mathcal{L}_4 = \theta^4 - z(\theta + \alpha_1)(\theta + \alpha_2)(\theta + \alpha_3)(\theta + \alpha_4) = (1-z)\theta^4 - z(e_1 \theta^3 + e_2 \theta^2 + e_3 \theta + e_4)$$
+  with Calabi-Yau self-duality sum $\sum \alpha_i = 2$. Cusp unipotent monodromy $N = T_0 - I_4$ matches $\mathrm{Sp}_4(\mathbb{Z})$ modular representations, satisfies Griffiths transversality ($N^T J + J N = 0$), and governs multi-instanton BPS Yukawa expansions.
+
+---
+
+### 10. Deligne-Schmid Mixed Hodge Weight Filtrations $W_\bullet(N)$
+* **Module:** [`Formalization/UniversalMonodromyWeightFiltration.lean`](Formalization/UniversalMonodromyWeightFiltration.lean)
+* **Primary Declarations:** `imPower`, `kerPower`, `DeligneSummand`, `DeligneWeightSpace`, `DeligneWeightSpace_mono`, `DeligneWeightSpace_shift`, `DeligneWeightSpace_top`, `W0_sub_W1`, `W1_sub_W2`, `W_MUM_complete_chain`, `Q_N_symm`, `Q_N_u_add_w_strictly_positive`
+* **Mathematical Overview:**
+  Formalizes Deligne's canonical subspace formula for a nilpotent monodromy operator $N$ with $N^{k+1} = 0$:
+  $$W_l(N, k) = \bigcup_{j=0}^k \left( \ker(N^{j+1}) \cap \operatorname{im}(N^{j - l + k}) \right)$$
+  Machine-checks fundamental shift axioms $N(W_l) \subseteq W_{l-2}$, monotonicity $W_{l-1} \subseteq W_l$, top dimension $W_{2k} = V$, and Hodge-Riemann polarization pairings $Q_N(v, w) = \langle v, N w \rangle_J$ with strict positivity on primitive generators.
+
+---
+
 ## Architectural & Blueprint Dependency Graph
 
 ```mermaid
 graph TD
     subgraph ModularTriangleGeometry ["1. Modular Triangle Groups & Lattices"]
         TMG["TriangleModularGroup.lean<br/>(GL₄(ℤ) Representation & Nilpotent Cusp)"]
+        STR["SymplecticTriangleRepresentations.lean<br/>(Sp₄(ℤ) Embeddings & Lie Algebra)"]
     end
 
     subgraph SeifertTopology ["2. Seifert Fibrations & Homology Spheres"]
         SSF["SeifertSphereFibrations.lean<br/>(Diophantine Classification & Bézout Existence)"]
+        GSC["GeneralSeifertClassification.lean<br/>(k-Point Master Bézout Obstructions)"]
+        BM["BrieskornManifolds.lean<br/>(Exotic 7-Spheres & Casson Invariants)"]
+        BSU2["BrieskornSU2CharacterVariety.lean<br/>(SU(2) Character Varieties & Diophantine Angles)"]
+    end
+
+    subgraph ModuliAndMonodromy ["3. Moduli, Picard-Fuchs & Hodge Theory"]
+        ASD["AbelianSurfaceDegenerations.lean<br/>(Siegel Moduli ℍ₂ & Toric Degenerations)"]
+        OSZ["OrbifoldSpectralZeta.lean<br/>(Selberg Trace & Scattering Determinant)"]
+        PFM["PicardFuchsMirrorMonodromy.lean<br/>(Order-4 Picard-Fuchs & Yukawa Instantons)"]
+        UMW["UniversalMonodromyWeightFiltration.lean<br/>(Deligne-Schmid Mixed Hodge Filtrations)"]
     end
 
     subgraph RootFormalization ["Master Project Suite"]
         F_Master["Formalization.lean"]
     end
 
-    TMG & SSF --> F_Master
+    TMG & STR & SSF & GSC & BM & BSU2 & ASD & OSZ & PFM & UMW --> F_Master
 ```
 
 ---
@@ -113,3 +157,9 @@ lake build
 5. **Mumford, D.** (1977). *Hirzebruch's proportionality theorem in the non-compact case*. Inventiones Mathematicae, 42(1), 239–272.
 6. **Smale, S.** (1961). *Generalized Poincaré's conjecture in dimensions greater than four*. Annals of Mathematics, 74(2), 391–406.
 7. **Kervaire, M. A., & Milnor, J. W.** (1963). *Groups of homotopy spheres: I*. Annals of Mathematics, 77(3), 504–537.
+8. **Fintushel, R., & Stern, R. J.** (1990). *Instanton homology of Seifert fibred homology three spheres*. Proceedings of the London Mathematical Society, 3(2), 333–370.
+9. **Deligne, P.** (1971). *Théorie de Hodge: II*. Publications Mathématiques de l'IHÉS, 40, 5–57.
+10. **Schmid, W.** (1973). *Variation of Hodge structure: the singularities of the period mapping*. Inventiones Mathematicae, 22(3), 211–319.
+11. **Candelas, P., De La Ossa, X. C., Green, P. S., & Parkes, L.** (1991). *A pair of Calabi-Yau manifolds as an exactly soluble superconformal theory*. Nuclear Physics B, 359(1), 21–74.
+12. **Morrison, D. R.** (1993). *Mirror symmetry and rational curves on Calabi-Yau threefolds: a guide for mathematicians*. Journal of the American Mathematical Society, 6(1), 223–247.
+
