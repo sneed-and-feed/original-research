@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Antigravity
 -/
 import Mathlib.Data.Nat.GCD.Basic
+import Mathlib.Data.Nat.Prime.Basic
 import Mathlib.Data.Finset.Basic
 import Mathlib.Data.Finset.Card
 import Mathlib.Data.Finset.Prod
@@ -93,10 +94,10 @@ def linkRealDimension (n : ℕ) : ℕ :=
   2 * n - 3
 
 /-- For $n = 5$ variables, the Brieskorn link has real dimension 7. -/
-theorem linkDimension_five : linkRealDimension 5 = 7 := by rfl
+theorem linkDimension_five : linkRealDimension 5 = 7 := rfl
 
 /-- For $n = 3$ variables, the Brieskorn link has real dimension 3. -/
-theorem linkDimension_three : linkRealDimension 3 = 3 := by rfl
+theorem linkDimension_three : linkRealDimension 3 = 3 := rfl
 
 /-! ### 2. The Brieskorn Graph & Sphere Criterion -/
 
@@ -130,39 +131,11 @@ theorem sphere_condition_of_two_isolated {n : ℕ} {a : Fin n → ℕ} (h : hasT
 
 /-- $\gcd(2, 6k-1) = 1$ for all $k \ge 1$. -/
 lemma coprime_two_six_k_sub_one (k : ℕ) (hk : 1 ≤ k) : Nat.Coprime 2 (6 * k - 1) := by
-  have hdvd : Nat.gcd 2 (6 * k - 1) ∣ 2 := Nat.gcd_dvd_left 2 (6 * k - 1)
-  have hdvd2 : Nat.gcd 2 (6 * k - 1) ∣ 6 * k - 1 := Nat.gcd_dvd_right 2 (6 * k - 1)
-  have h_cases : Nat.gcd 2 (6 * k - 1) = 1 ∨ Nat.gcd 2 (6 * k - 1) = 2 := by
-    have : Nat.gcd 2 (6 * k - 1) ≤ 2 := Nat.le_of_dvd (by decide) hdvd
-    have : 0 < Nat.gcd 2 (6 * k - 1) := Nat.gcd_pos_of_pos_left _ (by decide)
-    omega
-  rcases h_cases with h1 | h2
-  · exact h1
-  · exfalso
-    have hdiv : 2 ∣ 6 * k - 1 := by rw [← h2]; exact hdvd2
-    have hmod : (6 * k - 1) % 2 = 0 := Nat.mod_eq_zero_of_dvd hdiv
-    have hmod_one : (6 * k - 1) % 2 = 1 := by omega
-    omega
+  rw [Nat.Prime.coprime_iff_not_dvd Nat.prime_two]; rintro ⟨c, hc⟩; omega
 
 /-- $\gcd(3, 6k-1) = 1$ for all $k \ge 1$. -/
 lemma coprime_three_six_k_sub_one (k : ℕ) (hk : 1 ≤ k) : Nat.Coprime 3 (6 * k - 1) := by
-  have hdvd : Nat.gcd 3 (6 * k - 1) ∣ 3 := Nat.gcd_dvd_left 3 (6 * k - 1)
-  have hdvd2 : Nat.gcd 3 (6 * k - 1) ∣ 6 * k - 1 := Nat.gcd_dvd_right 3 (6 * k - 1)
-  have h_cases : Nat.gcd 3 (6 * k - 1) = 1 ∨ Nat.gcd 3 (6 * k - 1) = 3 := by
-    have : Nat.gcd 3 (6 * k - 1) ≤ 3 := Nat.le_of_dvd (by decide) hdvd
-    have : 0 < Nat.gcd 3 (6 * k - 1) := Nat.gcd_pos_of_pos_left _ (by decide)
-    have : Nat.gcd 3 (6 * k - 1) ≠ 2 := by
-      intro h
-      have : 2 ∣ 3 := by rw [← h]; exact hdvd
-      revert this; decide
-    omega
-  rcases h_cases with h1 | h3
-  · exact h1
-  · exfalso
-    have hdiv : 3 ∣ 6 * k - 1 := by rw [← h3]; exact hdvd2
-    have hmod : (6 * k - 1) % 3 = 0 := Nat.mod_eq_zero_of_dvd hdiv
-    have hmod_two : (6 * k - 1) % 3 = 2 := by omega
-    omega
+  rw [Nat.Prime.coprime_iff_not_dvd Nat.prime_three]; rintro ⟨c, hc⟩; omega
 
 /-- The Brieskorn exponent tuple $E(k) = (2, 2, 2, 3, 6k-1)$ in dimension $n = 5$. -/
 def brieskornExoticExponents (k : ℕ) : Fin 5 → ℕ
@@ -181,33 +154,17 @@ lemma brieskornExoticExponents_four (k : ℕ) : brieskornExoticExponents k 4 = 6
 lemma exotic_vertex_three_isolated (k : ℕ) (hk : 1 ≤ k) :
     isIsolated (brieskornExoticExponents k) (3 : Fin 5) := by
   intro j hj
-  fin_cases j
-  · show Nat.Coprime 3 2; decide
-  · show Nat.Coprime 3 2; decide
-  · show Nat.Coprime 3 2; decide
-  · contradiction
-  · show Nat.Coprime 3 (6 * k - 1)
-    exact coprime_three_six_k_sub_one k hk
+  fin_cases j <;> first | contradiction | exact coprime_three_six_k_sub_one k hk | exact (by decide : Nat.Coprime 3 2)
 
 lemma exotic_vertex_four_isolated (k : ℕ) (hk : 1 ≤ k) :
     isIsolated (brieskornExoticExponents k) (4 : Fin 5) := by
   intro j hj
-  fin_cases j
-  · show Nat.Coprime (6 * k - 1) 2
-    exact (coprime_two_six_k_sub_one k hk).symm
-  · show Nat.Coprime (6 * k - 1) 2
-    exact (coprime_two_six_k_sub_one k hk).symm
-  · show Nat.Coprime (6 * k - 1) 2
-    exact (coprime_two_six_k_sub_one k hk).symm
-  · show Nat.Coprime (6 * k - 1) 3
-    exact (coprime_three_six_k_sub_one k hk).symm
-  · contradiction
+  fin_cases j <;> first | contradiction | exact (coprime_two_six_k_sub_one k hk).symm | exact (coprime_three_six_k_sub_one k hk).symm
 
 /-- The Brieskorn graph of $E(k) = (2, 2, 2, 3, 6k-1)$ has at least two isolated vertices for $k \ge 1$. -/
 theorem exotic_exponents_two_isolated (k : ℕ) (hk : 1 ≤ k) :
-    hasTwoIsolated (brieskornExoticExponents k) := by
-  use (3 : Fin 5), (4 : Fin 5)
-  refine ⟨by decide, exotic_vertex_three_isolated k hk, exotic_vertex_four_isolated k hk⟩
+    hasTwoIsolated (brieskornExoticExponents k) :=
+  ⟨3, 4, by decide, exotic_vertex_three_isolated k hk, exotic_vertex_four_isolated k hk⟩
 
 /-- For all $k \ge 1$, $\Sigma(2, 2, 2, 3, 6k-1)$ satisfies the Brieskorn sphere criterion. -/
 theorem exotic_exponents_isBrieskornSphere (k : ℕ) (hk : 1 ≤ k) :
@@ -222,59 +179,24 @@ def milnorKervaireInvariant (k : ℕ) : ZMod 28 :=
   (k : ZMod 28)
 
 /-- The Milnor-Kervaire invariant is surjective onto $\mathbb{Z}/28\mathbb{Z}$. -/
-theorem milnorKervaire_surjective : Function.Surjective milnorKervaireInvariant := by
-  intro x
-  use x.val
-  dsimp [milnorKervaireInvariant]
-  exact ZMod.natCast_zmod_val x
+theorem milnorKervaire_surjective : Function.Surjective milnorKervaireInvariant :=
+  fun x => ⟨x.val, ZMod.natCast_zmod_val x⟩
 
 /-- The 28 exponents $\{ E(1), E(2), \dots, E(28) \}$ generate all 28 smooth 7-sphere structures. -/
 theorem exotic_spheres_generate_all (x : ZMod 28) :
     ∃ k ∈ Finset.Icc 1 28, milnorKervaireInvariant k = x := by
   by_cases hx : x = 0
-  · use 28
-    refine ⟨by simp [Finset.mem_Icc], ?_⟩
-    dsimp [milnorKervaireInvariant]
-    have h28 : (28 : ZMod 28) = 0 := ZMod.natCast_self 28
-    exact h28.trans hx.symm
-  · use x.val
-    refine ⟨?_, ?_⟩
-    · rw [Finset.mem_Icc]
-      have hval_pos : 1 ≤ x.val := by
-        have : x.val ≠ 0 := by
-          intro h0
-          apply hx
-          have hcast := ZMod.natCast_zmod_val x
-          rw [h0] at hcast
-          exact hcast.symm
-        omega
-      have hval_lt : x.val < 28 := ZMod.val_lt x
-      exact ⟨hval_pos, by omega⟩
-    · dsimp [milnorKervaireInvariant]
-      exact ZMod.natCast_zmod_val x
+  · subst hx; exact ⟨28, by decide, by decide⟩
+  · exact ⟨x.val, Finset.mem_Icc.mpr ⟨by have := (ZMod.val_eq_zero (a := x)).not.2 hx; omega, (ZMod.val_lt x).le⟩, ZMod.natCast_zmod_val x⟩
 
 /-- Distinct parameters $k_1, k_2 \in \{1, \dots, 28\}$ yield distinct smooth structures in $\Theta_7$. -/
 theorem exotic_spheres_pairwise_distinct {k₁ k₂ : ℕ}
     (h₁ : k₁ ∈ Finset.Icc 1 28) (h₂ : k₂ ∈ Finset.Icc 1 28) (hne : k₁ ≠ k₂) :
     milnorKervaireInvariant k₁ ≠ milnorKervaireInvariant k₂ := by
-  rw [Finset.mem_Icc] at h₁ h₂
+  simp only [Finset.mem_Icc] at h₁ h₂
   intro heq
-  dsimp [milnorKervaireInvariant] at heq
-  have hmod : k₁ % 28 = k₂ % 28 := (ZMod.natCast_eq_natCast_iff' k₁ k₂ 28).mp heq
-  have hk1_eq : k₁ % 28 = if k₁ = 28 then 0 else k₁ := by
-    split_ifs with h28
-    · subst h28; rfl
-    · exact Nat.mod_eq_of_lt (by omega)
-  have hk2_eq : k₂ % 28 = if k₂ = 28 then 0 else k₂ := by
-    split_ifs with h28
-    · subst h28; rfl
-    · exact Nat.mod_eq_of_lt (by omega)
-  rw [hk1_eq, hk2_eq] at hmod
-  split_ifs at hmod with h28_1 h28_2
-  · exact hne (h28_1.trans h28_2.symm)
-  · omega
-  · omega
-  · exact hne hmod
+  have := (ZMod.natCast_eq_natCast_iff' k₁ k₂ 28).mp heq
+  omega
 
 /-- A Brieskorn 7-sphere $\Sigma(E(k))$ has the standard smooth structure iff $k \equiv 0 \pmod{28}$. -/
 def isStandardSmoothStructure (k : ℕ) : Prop :=
@@ -285,22 +207,13 @@ def isExoticSmoothStructure (k : ℕ) : Prop :=
   milnorKervaireInvariant k ≠ 0
 
 /-- $k = 28$ produces the standard smooth 7-sphere $S^7_{\mathrm{std}}$. -/
-theorem k_28_is_standard : isStandardSmoothStructure 28 := by
-  dsimp [isStandardSmoothStructure, milnorKervaireInvariant]
-  exact ZMod.natCast_self 28
+theorem k_28_is_standard : isStandardSmoothStructure 28 :=
+  ZMod.natCast_self 28
 
 /-- The parameters $k \in \{1, \dots, 27\}$ produce the 27 strictly exotic 7-spheres. -/
 theorem k_1_to_27_are_exotic (k : ℕ) (hk1 : 1 ≤ k) (hk2 : k ≤ 27) :
     isExoticSmoothStructure k := by
-  intro heq
-  dsimp [isExoticSmoothStructure, milnorKervaireInvariant] at heq
-  have hdvd : 28 ∣ k := (ZMod.natCast_eq_zero_iff k 28).mp heq
-  have : k = 0 ∨ 28 ≤ k := by
-    rcases hdvd with ⟨c, hc⟩
-    rcases c with _ | c'
-    · left; omega
-    · right; omega
-  omega
+  intro heq; have ⟨c, hc⟩ := (ZMod.natCast_eq_zero_iff k 28).mp heq; omega
 
 /-! ### 4. Milnor Fiber Intersection Form and Casson Invariant -/
 
@@ -318,23 +231,13 @@ def brieskornThreeExponents (p q r : ℕ) : Fin 3 → ℕ
 theorem pairwise_coprime_all_isolated (p q r : ℕ) (h : PairwiseCoprime3 p q r) (i : Fin 3) :
     isIsolated (brieskornThreeExponents p q r) i := by
   intro j hj
-  fin_cases i <;> fin_cases j
-  · contradiction
-  · show Nat.Coprime p q; exact h.1
-  · show Nat.Coprime p r; exact h.2.2
-  · show Nat.Coprime q p; exact h.1.symm
-  · contradiction
-  · show Nat.Coprime q r; exact h.2.1
-  · show Nat.Coprime r p; exact h.2.2.symm
-  · show Nat.Coprime r q; exact h.2.1.symm
-  · contradiction
+  fin_cases i <;> fin_cases j <;>
+    first | contradiction | exact h.1 | exact h.1.symm | exact h.2.1 | exact h.2.1.symm | exact h.2.2 | exact h.2.2.symm
 
 /-- Pairwise coprimality guarantees $\Sigma(p, q, r)$ is a topological sphere. -/
 theorem pairwise_coprime_isBrieskornSphere (p q r : ℕ) (h : PairwiseCoprime3 p q r) :
-    brieskornSphereCondition (brieskornThreeExponents p q r) := by
-  apply sphere_condition_of_two_isolated
-  use (0 : Fin 3), (1 : Fin 3)
-  refine ⟨by decide, pairwise_coprime_all_isolated p q r h _, pairwise_coprime_all_isolated p q r h _⟩
+    brieskornSphereCondition (brieskornThreeExponents p q r) :=
+  sphere_condition_of_two_isolated ⟨0, 1, by decide, pairwise_coprime_all_isolated p q r h 0, pairwise_coprime_all_isolated p q r h 1⟩
 
 /-- The discrete lattice of interior indices for $\Sigma(p, q, r)$:
     $I(p, q, r) = \{ (x, y, z) \in \mathbb{N}^3 \mid 1 \le x < p, 1 \le y < q, 1 \le z < r \}$. -/
@@ -345,10 +248,7 @@ def brieskornLattice (p q r : ℕ) : Finset (ℕ × ℕ × ℕ) :=
     which equals the Milnor number $\mu = (p - 1)(q - 1)(r - 1)$. -/
 theorem brieskornLattice_card (p q r : ℕ) :
     (brieskornLattice p q r).card = (p - 1) * (q - 1) * (r - 1) := by
-  dsimp [brieskornLattice]
-  rw [Finset.card_product, Finset.card_product, Nat.card_Ioo, Nat.card_Ioo, Nat.card_Ioo]
-  simp only [tsub_zero]
-  rw [mul_assoc]
+  simp [brieskornLattice, mul_assoc]
 
 /-- Scaled weight of a lattice point $(x, y, z)$ under common denominator $pqr$:
     $S(x, y, z) = x q r + y p r + z p q$. -/
@@ -390,67 +290,55 @@ theorem coprime_2_3_5 : PairwiseCoprime3 2 3 5 :=
   ⟨by decide, by decide, by decide⟩
 
 /-- Poincaré homology sphere $\Sigma(2, 3, 5)$ has signature $\sigma = -8$. -/
-theorem signature_2_3_5 : brieskornSignature 2 3 5 = -8 := by rfl
+theorem signature_2_3_5 : brieskornSignature 2 3 5 = -8 := rfl
 
 /-- Poincaré homology sphere $\Sigma(2, 3, 5)$ has Casson invariant $\lambda = 1$. -/
 theorem casson_2_3_5 : cassonInvariant 2 3 5 = 1 := by
-  have hs : brieskornSignature 2 3 5 = -8 := rfl
-  dsimp [cassonInvariant]
-  rw [hs]
-  norm_num
+  norm_num [cassonInvariant, (show brieskornSignature 2 3 5 = -8 from rfl)]
 
 /-- Integer Casson invariant for $\Sigma(2, 3, 5)$. -/
-theorem cassonNat_2_3_5 : cassonInvariantNat 2 3 5 = 1 := by rfl
+theorem cassonNat_2_3_5 : cassonInvariantNat 2 3 5 = 1 := rfl
 
 /-- Brieskorn sphere $\Sigma(2, 3, 7)$ is pairwise coprime. -/
 theorem coprime_2_3_7 : PairwiseCoprime3 2 3 7 :=
   ⟨by decide, by decide, by decide⟩
 
 /-- Brieskorn sphere $\Sigma(2, 3, 7)$ has signature $\sigma = -8$. -/
-theorem signature_2_3_7 : brieskornSignature 2 3 7 = -8 := by rfl
+theorem signature_2_3_7 : brieskornSignature 2 3 7 = -8 := rfl
 
 /-- Brieskorn sphere $\Sigma(2, 3, 7)$ has Casson invariant $\lambda = 1$. -/
 theorem casson_2_3_7 : cassonInvariant 2 3 7 = 1 := by
-  have hs : brieskornSignature 2 3 7 = -8 := rfl
-  dsimp [cassonInvariant]
-  rw [hs]
-  norm_num
+  norm_num [cassonInvariant, (show brieskornSignature 2 3 7 = -8 from rfl)]
 
 /-- Integer Casson invariant for $\Sigma(2, 3, 7)$. -/
-theorem cassonNat_2_3_7 : cassonInvariantNat 2 3 7 = 1 := by rfl
+theorem cassonNat_2_3_7 : cassonInvariantNat 2 3 7 = 1 := rfl
 
 /-- Brieskorn sphere $\Sigma(2, 3, 11)$ is pairwise coprime. -/
 theorem coprime_2_3_11 : PairwiseCoprime3 2 3 11 :=
   ⟨by decide, by decide, by decide⟩
 
 /-- Brieskorn sphere $\Sigma(2, 3, 11)$ has signature $\sigma = -16$. -/
-theorem signature_2_3_11 : brieskornSignature 2 3 11 = -16 := by rfl
+theorem signature_2_3_11 : brieskornSignature 2 3 11 = -16 := rfl
 
 /-- Brieskorn sphere $\Sigma(2, 3, 11)$ has Casson invariant $\lambda = 2$. -/
 theorem casson_2_3_11 : cassonInvariant 2 3 11 = 2 := by
-  have hs : brieskornSignature 2 3 11 = -16 := rfl
-  dsimp [cassonInvariant]
-  rw [hs]
-  norm_num
+  norm_num [cassonInvariant, (show brieskornSignature 2 3 11 = -16 from rfl)]
 
 /-- Integer Casson invariant for $\Sigma(2, 3, 11)$. -/
-theorem cassonNat_2_3_11 : cassonInvariantNat 2 3 11 = 2 := by rfl
+theorem cassonNat_2_3_11 : cassonInvariantNat 2 3 11 = 2 := rfl
 
 /-- Brieskorn sphere $\Sigma(2, 5, 7)$ is pairwise coprime. -/
 theorem coprime_2_5_7 : PairwiseCoprime3 2 5 7 :=
   ⟨by decide, by decide, by decide⟩
 
 /-- Brieskorn sphere $\Sigma(2, 5, 7)$ has signature $\sigma = -16$. -/
-theorem signature_2_5_7 : brieskornSignature 2 5 7 = -16 := by rfl
+theorem signature_2_5_7 : brieskornSignature 2 5 7 = -16 := rfl
 
 /-- Brieskorn sphere $\Sigma(2, 5, 7)$ has Casson invariant $\lambda = 2$. -/
 theorem casson_2_5_7 : cassonInvariant 2 5 7 = 2 := by
-  have hs : brieskornSignature 2 5 7 = -16 := rfl
-  dsimp [cassonInvariant]
-  rw [hs]
-  norm_num
+  norm_num [cassonInvariant, (show brieskornSignature 2 5 7 = -16 from rfl)]
 
 /-- Integer Casson invariant for $\Sigma(2, 5, 7)$. -/
-theorem cassonNat_2_5_7 : cassonInvariantNat 2 5 7 = 2 := by rfl
+theorem cassonNat_2_5_7 : cassonInvariantNat 2 5 7 = 2 := rfl
 
 end Brieskorn
