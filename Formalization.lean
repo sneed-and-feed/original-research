@@ -3,6 +3,8 @@ import Formalization.SeifertSphereFibrations
 import Formalization.GeneralSeifertClassification
 import Formalization.SymplecticTriangleRepresentations
 import Formalization.BrieskornManifolds
+import Formalization.OrbifoldSpectralZeta
+import Formalization.AbelianSurfaceDegenerations
 
 /-!
 # Original Research Formalization Suite: Triangle Groups & Seifert Homology Spheres
@@ -50,4 +52,19 @@ and Mathlib.
    - The 28 Milnor-Kervaire exotic 7-spheres $\Sigma(2,2,2,3,6k-1)$ ($k \in \{1,\dots,28\}$) generating $b P_8 \cong \Theta_7 \cong \mathbb{Z}/28\mathbb{Z}$.
    - Exact Milnor fiber signature $\sigma(p,q,r) = N_+ - N_-$ and Dedekind sum Casson invariant formula $\lambda(\Sigma(p,q,r)) = \frac{1}{8} |\sigma(p,q,r)|$.
    - Certified Casson invariant values: $\lambda(\Sigma(2,3,5)) = 1$, $\lambda(\Sigma(2,3,7)) = 1$, $\lambda(\Sigma(2,3,11)) = 2$, $\lambda(\Sigma(2,5,7)) = 2$.
+
+6. **`Formalization.OrbifoldSpectralZeta`**:
+   - Signature $(p, q, \infty)$ for 1-cusped hyperbolic 2-orbifolds $\mathcal{O}(p, q, \infty) = \Delta(p, q, \infty) \backslash \mathbb{H}$.
+   - Orbifold Euler characteristic $\chi_{\text{orb}}(\mathbb{P}^1(p, q, \infty)) = 1/p + 1/q - 1$ and Gauss–Bonnet area $\operatorname{Area}(\mathcal{O}) = 2\pi(1 - 1/p - 1/q)$.
+   - Machine-certified areas: $(3,4,\infty) \implies 5\pi/6$, $(2,3,\infty) \implies \pi/3$, $(2,5,\infty) \implies 3\pi/5$, $(3,5,\infty) \implies 7\pi/15$.
+   - Eisenstein scattering determinant $\phi(s)$: functional equation $\phi(s)\phi(1-s) = 1$, critical line unitarity $|\phi(1/2+ir)| = 1$, residue $\operatorname{Res}_{s=1} \phi(s) = 1/\mu_{\text{orb}}$.
+   - Orbifold Selberg trace formula decomposing discrete Maass cusp spectrum, continuous Eisenstein scattering, and geometric conjugacy classes (identity, elliptic cone points of orders $p, q$, parabolic cusp, hyperbolic geodesics).
+   - Selberg zeta function $\mathcal{Z}_{\mathcal{O}}(s)$ Euler product and spectral eigenvalue duality $s(1-s) = 1/4 + r^2$.
+
+7. **`Formalization.AbelianSurfaceDegenerations`**:
+   - Siegel Upper Half-Space $\mathbb{H}_2$ for $g=2$: symmetric complex $2 \times 2$ matrices with positive definite imaginary part.
+   - Fractional linear transformations in $\mathrm{Sp}_4(\mathbb{Z})$ and symplectic block invariance theorems.
+   - Nilpotent Orbit Theorem (Schmid 1973) for unipotent cusp degeneration: period map $\tau_{\text{nilp}}(\tau_0, z) = \tau_0 + z N_\tau \in \mathbb{H}_2$ and monodromy periodicity.
+   - Kodaira–Mumford toric degeneration of abelian surfaces at the boundary $\partial \overline{\mathcal{A}_2}$: toric rank 1 semi-abelian extension $0 \to \mathbb{G}_m \to A_0 \to E \to 0$ in $\Delta_1 \cong \mathcal{A}_1$.
+   - Néron–Severi rank / Picard number stratification: $\rho(A_{\text{gen}}) = 1$, jumps $\rho(A_{t_1}) = 4 \ge 2$ and $\rho(A_{t_2}) = 4 \ge 2$ with complex multiplication and splitting $A_{t_i} \sim E \times E$.
 -/
