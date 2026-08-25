@@ -71,15 +71,15 @@ inductive BoundaryStratum
 
 /-- Toric rank (dimension of the torus part in the semi-abelian reduction) of a stratum. -/
 def toricRank : BoundaryStratum → ℕ
-  | BoundaryStratum.Interior       => 0
-  | BoundaryStratum.BoundaryDelta1 => 1
-  | BoundaryStratum.BoundaryDelta0 => 2
+  | .Interior       => 0
+  | .BoundaryDelta1 => 1
+  | .BoundaryDelta0 => 2
 
 /-- Abelian rank (dimension of the abelian variety quotient) of a stratum. -/
 def abelianRank : BoundaryStratum → ℕ
-  | BoundaryStratum.Interior       => 2
-  | BoundaryStratum.BoundaryDelta1 => 1
-  | BoundaryStratum.BoundaryDelta0 => 0
+  | .Interior       => 2
+  | .BoundaryDelta1 => 1
+  | .BoundaryDelta0 => 0
 
 /-- Dimension conservation theorem for semi-abelian surface reductions:
     $\operatorname{toricRank}(S) + \operatorname{abelianRank}(S) = 2$ for all strata. -/
@@ -92,26 +92,21 @@ theorem semiabelian_dim_conservation (s : BoundaryStratum) :
     - Type II ($M \ne 0, M^2=0$) $\mapsto$ Toric rank 1 ($\Delta_1 \cong \mathcal{A}_1$).
     - Type III ($M^2 \ne 0, M^4=0$) $\mapsto$ Toric rank 2 ($\Delta_0 \cong \mathcal{A}_0$). -/
 def stratumOfMonodromy (M : Matrix (Fin 4) (Fin 4) ℤ) : BoundaryStratum :=
-  if M = 0 then BoundaryStratum.Interior
-  else if M * M = 0 then BoundaryStratum.BoundaryDelta1
-  else BoundaryStratum.BoundaryDelta0
+  if M = 0 then .Interior
+  else if M * M = 0 then .BoundaryDelta1
+  else .BoundaryDelta0
 
 /-- Theorem: The $(3,4,\infty)$ cusp monodromy degeneration lands strictly in $\Delta_1 \cong \mathcal{A}_1$. -/
 theorem cusp_34_in_Delta1 :
-    stratumOfMonodromy N = BoundaryStratum.BoundaryDelta1 := by
-  decide
+    stratumOfMonodromy N = BoundaryStratum.BoundaryDelta1 := rfl
 
 /-- The toric rank of the $(3,4,\infty)$ cusp degenerating fiber is 1. -/
 theorem cusp_34_toric_rank_eq_one :
-    toricRank (stratumOfMonodromy N) = 1 := by
-  rw [cusp_34_in_Delta1]
-  rfl
+    toricRank (stratumOfMonodromy N) = 1 := rfl
 
 /-- The abelian rank of the $(3,4,\infty)$ cusp degenerating fiber is 1 (an elliptic curve quotient $E$). -/
 theorem cusp_34_abelian_rank_eq_one :
-    abelianRank (stratumOfMonodromy N) = 1 := by
-  rw [cusp_34_in_Delta1]
-  rfl
+    abelianRank (stratumOfMonodromy N) = 1 := rfl
 
 /-- Limit elliptic curve modular parameter: the $(1,1)$-entry $\tau_{22} = (\tau_0)_{11} \in \mathbb{H}_1$. -/
 def limitEllipticParameter (tau0 : SiegelHalfSpace2) : ℂ :=
@@ -120,9 +115,7 @@ def limitEllipticParameter (tau0 : SiegelHalfSpace2) : ℂ :=
 /-- Machine-checked proof that the limit elliptic parameter has strictly positive imaginary part:
     $\operatorname{Im}(\tau_{22}) > 0$, so $\tau_{22} \in \mathbb{H}_1$. -/
 theorem limitEllipticParameter_in_H1 (tau0 : SiegelHalfSpace2) :
-    (limitEllipticParameter tau0).im > 0 := by
-  dsimp [limitEllipticParameter]
-  have h11 : (imMatrix tau0.Z) 1 1 > 0 := posDef_implies_M11_pos tau0.pos_def
-  exact h11
+    (limitEllipticParameter tau0).im > 0 :=
+  posDef_implies_M11_pos tau0.pos_def
 
 end AbelianSurfaceDegenerations

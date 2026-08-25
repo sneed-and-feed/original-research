@@ -45,6 +45,9 @@ and Mathlib, organized into modular submodule trees matching the architecture of
    - `NilpotentOrbit.lean`: Schmid's Nilpotent Orbit Theorem, cusp shift matrix $N_\tau$, period map $\tau_{\text{nilp}}$, and monodromy periodicity.
    - `BoundaryStratification.lean`: Boundary stratification $\overline{\mathcal{A}_2} = \mathcal{A}_2 \cup \Delta_1 \cup \Delta_0$, toric rank classification (0, 1, 2), and semi-abelian boundary extension $\Delta_1$.
    - `PicardStratification.lean`: Néron–Severi rank stratification $\rho(A_{\text{gen}}) = 1$, CM jump points $\rho(A_{t_1}) = \rho(A_{t_2}) = 4 \ge 2$, and splitting $A_{t_i} \sim E \times E$.
+   - `NilpotentOrbitAsymptotics.lean`: Matrix exponential $\exp(z N)$, group law $\exp((z_1+z_2)N)$, symplectic invariance $(\exp(z N))^T J_{\mathbb{C}} \exp(z N) = J_{\mathbb{C}}$, $2 \times 2$ block projections, FLT translation compatibility, bundled `SchmidAsymptoticEstimate`, and limit elliptic parameter isolation.
+   - `CompleteBoundaryStratification.lean`: Baily–Borel stratification $\mathcal{A}_2^* = \mathcal{A}_2 \sqcup \mathcal{A}_1 \sqcup \mathcal{A}_0$ (dims 3, 1, 0; codims 0, 2, 3), Toroidal compactification $\overline{\mathcal{A}_2}^{\text{tor}} = \mathcal{A}_2 \cup \Delta_1 \cup \Delta_0$ (codims 0, 1, 2), semi-abelian fiber rank conservation, and master cusp boundary classifications for all 6 triangle groups and CY3 MUM cusps.
+   - `WeightFiltrationCoupling.lean`: Graded homology pieces $\operatorname{Gr}_1^W, \operatorname{Gr}_2^W$ ($2+2=4$), quadratic energy function $E_v(z)$, exact linear growth formula $E_v(z) = E_v(0) + (\operatorname{Im} z) v_0^2$, stationarity on $\ker(N_\tau)$, Hodge-Riemann pairing compatibility, and master moduli degeneration coupling theorem.
 
 6. **`Formalization.BrieskornManifolds`**:
    - `Basic.lean`: Brieskorn polynomials $f_a(z) = \sum z_j^{a_j}$, singularity links $\Sigma(a)$, and real dimensions $2n-3$.
@@ -56,7 +59,7 @@ and Mathlib, organized into modular submodule trees matching the architecture of
    - `GaussBonnet.lean`: Signature $(p, q, \infty)$ 1-cusped 2-orbifolds $\mathcal{O}(p,q,\infty)$, Euler characteristic $\chi_{\text{orb}}$, Gauss–Bonnet area $\operatorname{Area} = 2\pi(1 - 1/p - 1/q)$, and certified areas.
    - `ScatteringDeterminant.lean`: Eisenstein scattering determinant $\phi(s)$, functional equation $\phi(s)\phi(1-s)=1$, and critical line unitarity $|\phi(1/2+ir)|=1$.
    - `ResidueProduct.lean`: Residue-area product formula $\operatorname{Res}_{s=1}\phi(s) \cdot \operatorname{Area} = 2\pi$.
-   - `SelbergTrace.lean`: Orbifold Selberg trace formula, Maass spectrum, continuous spectrum, conjugacy classes, and Selberg zeta $\mathcal{Z}_{\mathcal{O}}(s)$.
+   - `SelbergTrace.lean`: Orbifold Selberg trace formula, Maass spectrum, continuous spectrum, conjugacy classes, and Selberg zeta $\mathcal{Z}_{\mathcal{O}}(s).$
 
 8. **`Formalization.BrieskornSU2CharacterVariety`**:
    - `Basic.lean`: Irreducible $SU(2)$ character varieties of Brieskorn homology 3-spheres $\Sigma(p,q,r)$ and central fiber condition $h \mapsto -I$.
@@ -77,4 +80,3 @@ and Mathlib, organized into modular submodule trees matching the architecture of
     - `Filtrations4D.lean`: Explicit 2-step Type II filtration for $(3,4,\infty)$ and explicit 4-step Type III MUM filtration.
     - `HodgeRiemannPairing.lean`: Hodge–Riemann symplectic polarization pairing $Q_N(v,w) = \langle v, N w \rangle_J$, symmetry, and strict positivity on primitive generators.
 -/
-

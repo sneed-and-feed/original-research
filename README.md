@@ -15,7 +15,7 @@ This repository provides machine-checked formalizations, certified proofs, and f
 | 3 | **Universal Diophantine Classification for $k$-Point Seifert Fibrations** | [`exists_sphere_iff_cofactorGCD_eq_one`](Formalization/GeneralSeifertClassification/Solvability.lean), [`pairwise_coprime_exists_sphere`](Formalization/GeneralSeifertClassification/Solvability.lean), [`common_divisor_obstruction`](Formalization/GeneralSeifertClassification/Obstructions.lean), [`sphere_4point_2_3_5_7`](Formalization/GeneralSeifertClassification/Certificates.lean), [`sphere_4point_2_3_7_11`](Formalization/GeneralSeifertClassification/Certificates.lean), [`sphere_5point_2_3_5_7_11`](Formalization/GeneralSeifertClassification/Certificates.lean), [`obstruction_5point_2_3_5_6_7`](Formalization/GeneralSeifertClassification/Certificates.lean) | 3-Manifold Topology, Seifert Invariants & Diophantine Equations | Original Synthesis (2026) | **Modular Package (`Formalization/GeneralSeifertClassification/`)** (Master Bézout theorem $\gcd(A_1,\dots,A_k)=1$, pairwise coprimality sufficiency, 4-point and 5-point constructive witnesses, and common divisor obstructions verified) |
 | 4 | **The Seifert / Brieskorn Bridge & Casson Invariants** | [`brieskorn_seifert_bridge_3point`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`brieskorn_casson_bridge_3point`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`bridge_2_3_5`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`bridge_2_3_7`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`bridge_2_3_11`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`bridge_2_5_7`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`bridge_3_4_5`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`bridge_3_5_7`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean) | 3-Manifold Topology, Gauge Theory & Singularity Links | Original Synthesis (2026) | **Modular Package (`Formalization/GeneralSeifertClassification/BrieskornBridge.lean`)** (Proves pairwise coprimality simultaneously satisfies Brieskorn topological sphere condition and Seifert homology 3-sphere solvability; unifies with $SU(2)$ character variety and Milnor signature Casson invariants) |
 | 5 | **Symplectic Triangle Representations in $\mathrm{Sp}_4(\mathbb{Z})$ & Monodromy Classification** | [`isSymplectic_T1`](Formalization/SymplecticTriangleRepresentations/Representations.lean), [`isSymplectic_U1`](Formalization/SymplecticTriangleRepresentations/Representations.lean), [`isSymplectic_X1`](Formalization/SymplecticTriangleRepresentations/Representations.lean), [`monodromy_34_is_typeII`](Formalization/SymplecticTriangleRepresentations/MonodromyClassification.lean), [`monodromy_24_is_typeII`](Formalization/SymplecticTriangleRepresentations/MonodromyClassification.lean), [`monodromy_25_is_typeII`](Formalization/SymplecticTriangleRepresentations/MonodromyClassification.lean), [`monodromy_35_is_typeII`](Formalization/SymplecticTriangleRepresentations/MonodromyClassification.lean), [`monodromy_44_is_typeII`](Formalization/SymplecticTriangleRepresentations/MonodromyClassification.lean), [`weight_filtration_chain`](Formalization/SymplecticTriangleRepresentations/WeightFiltration.lean) | Symplectic Geometry & Degenerations of Abelian Surfaces | Original Synthesis (2026) | **Modular Package (`Formalization/SymplecticTriangleRepresentations/`)** (Standard $\mathrm{Sp}_4(\mathbb{Z})$ embeddings for $\Delta(3,4,\infty), \Delta(2,3,\infty), \Delta(2,4,\infty), \Delta(2,5,\infty), \Delta(3,5,\infty), \Delta(4,4,\infty)$, Type II unipotent cusp monodromy $N^2=0$, and monodromy weight filtration verified) |
-| 6 | **Moduli Families of Abelian Surfaces & Parameterized Picard Stratification** | [`SiegelHalfSpace2`](Formalization/AbelianSurfaceDegenerations/SiegelSpace.lean), [`nilpotent_orbit_in_Siegel`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbit.lean), [`cusp_34_in_Delta1`](Formalization/AbelianSurfaceDegenerations/BoundaryStratification.lean), [`master_generalized_neron_severi_stratification`](Formalization/AbelianSurfaceDegenerations/PicardStratification.lean), [`stratification_34`](Formalization/AbelianSurfaceDegenerations/PicardStratification.lean), [`stratification_25`](Formalization/AbelianSurfaceDegenerations/PicardStratification.lean) | Moduli of Abelian Varieties & Toric Geometry | Original Synthesis (2026) | **Modular Package (`Formalization/AbelianSurfaceDegenerations/`)** (Siegel half-space $\mathbb{H}_2$, $\mathrm{Sp}_4(\mathbb{Z})$ fractional linear action, Schmid's nilpotent orbit theorem, semi-abelian boundary stratum $\Delta_1$, and uniform Néron–Severi rank jumps $\Delta \rho \ge 1$ across all $\Delta(p,q,\infty)$ verified) |
+| 6 | **Moduli Families of Abelian Surfaces, Asymptotics & Complete Stratification** | [`SiegelHalfSpace2`](Formalization/AbelianSurfaceDegenerations/SiegelSpace.lean), [`nilpotent_orbit_in_Siegel`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbit.lean), [`expN_preserves_symplectic`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean), [`schmid_elliptic_parameter_decay`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean), [`master_triangle_cusp_boundary_classification`](Formalization/AbelianSurfaceDegenerations/CompleteBoundaryStratification.lean), [`master_moduli_degeneration_coupling`](Formalization/AbelianSurfaceDegenerations/WeightFiltrationCoupling.lean), [`master_generalized_neron_severi_stratification`](Formalization/AbelianSurfaceDegenerations/PicardStratification.lean) | Moduli of Abelian Varieties, Toroidal Compactification & Hodge Theory | Original Synthesis (2026) | **Modular Package (`Formalization/AbelianSurfaceDegenerations/`)** (Siegel half-space $\mathbb{H}_2$, $\exp(z N)$ symplectic Lie preservation, Schmid error decay $O(|t|^{2\alpha})$, Baily–Borel & Toroidal complete stratifications, energy linear growth $E_v(z) = E_v(0) + (\operatorname{Im} z)v_0^2$, stationarity on $\ker(N_\tau)$, and Néron–Severi rank jumps $\Delta \rho \ge 1$ verified) |
 
 ---
 
@@ -91,14 +91,17 @@ This repository provides machine-checked formalizations, certified proofs, and f
 
 ---
 
-### 6. Moduli Families of Abelian Surfaces & Parameterized Picard Stratification
+### 6. Moduli Families of Abelian Surfaces, Asymptotics & Complete Stratification
 * **Root Module:** [`Formalization/AbelianSurfaceDegenerations.lean`](Formalization/AbelianSurfaceDegenerations.lean)
 * **Literate Context:**
-  Formalizes the moduli space $\mathcal{A}_2 = \mathbb{H}_2 / \mathrm{Sp}_4(\mathbb{Z})$ of principally polarized abelian surfaces, Schmid's Nilpotent Orbit Theorem, and the compactification boundary $\overline{\mathcal{A}_2} = \mathcal{A}_2 \cup \Delta_1 \cup \Delta_0$. Generalizes Néron–Severi rank stratification $\rho(A_t)$ across the modular base curve $\mathcal{X}(p,q,\infty)$, proving generic simplicity $\rho(A_{\text{gen}}) = 1$ and complex multiplication (CM) rank jumps $\rho(A_{t_i}) \ge 2$ at elliptic cone points.
+  Formalizes the complete moduli geometry of abelian surfaces over hyperbolic triangle curves $\mathcal{X}(p,q,\infty)$: the Siegel upper half-space $\mathbb{H}_2$, $\mathrm{Sp}_4(\mathbb{Z})$ fractional linear actions, Schmid's Nilpotent Orbit Theorem and matrix exponential $\exp(z N)$, Baily–Borel and Toroidal compactifications ($\mathcal{A}_2^*, \overline{\mathcal{A}_2}$), weight filtration energy growth and stationarity, and Néron–Severi rank jumps $\Delta \rho \ge 1$ at elliptic cone points.
 * **Submodules:**
   - [`Formalization/AbelianSurfaceDegenerations/SiegelSpace.lean`](Formalization/AbelianSurfaceDegenerations/SiegelSpace.lean): Siegel upper half-space $\mathbb{H}_2$ ($g=2$), positive definiteness `IsPosDef2`, diagonal basepoints, and $\mathrm{Sp}_4(\mathbb{Z})$ fractional linear transformations.
   - [`Formalization/AbelianSurfaceDegenerations/NilpotentOrbit.lean`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbit.lean): Schmid's Nilpotent Orbit Theorem, cusp shift matrix $N_\tau$, period map $\tau_{\text{nilp}}$, and monodromy periodicity.
   - [`Formalization/AbelianSurfaceDegenerations/BoundaryStratification.lean`](Formalization/AbelianSurfaceDegenerations/BoundaryStratification.lean): Boundary stratification $\overline{\mathcal{A}_2} = \mathcal{A}_2 \cup \Delta_1 \cup \Delta_0$, toric rank classification (0, 1, 2), and semi-abelian boundary extension $\Delta_1$.
+  - [`Formalization/AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean): Lie matrix exponential $\exp(z N)$, symplectic preservation $(\exp(z N))^T J_{\mathbb{C}} \exp(z N) = J_{\mathbb{C}}$, block projections, FLT translation equivalence, bundled `SchmidAsymptoticEstimate`, and limit elliptic parameter isolation $\tau_{22} = (\tau_0)_{11} \in \mathbb{H}_1$.
+  - [`Formalization/AbelianSurfaceDegenerations/CompleteBoundaryStratification.lean`](Formalization/AbelianSurfaceDegenerations/CompleteBoundaryStratification.lean): Baily–Borel stratification $\mathcal{A}_2^* = \mathcal{A}_2 \sqcup \mathcal{A}_1 \sqcup \mathcal{A}_0$ (dimensions 3, 1, 0; codimensions 0, 2, 3), Toroidal compactification divisor $\Delta = \Delta_1 \cup \Delta_0$ (codimensions 0, 1, 2), semi-abelian fiber rank conservation $\operatorname{toricRank}(s) + \operatorname{abelianRank}(s) = 2$, and master cusp classifications landing all 6 triangle groups in $\Delta_1 \cong \mathcal{A}_1$ and Calabi-Yau MUM cusps in $\Delta_0 \cong \mathcal{A}_0$.
+  - [`Formalization/AbelianSurfaceDegenerations/WeightFiltrationCoupling.lean`](Formalization/AbelianSurfaceDegenerations/WeightFiltrationCoupling.lean): Graded homology pieces $\dim \operatorname{Gr}_1^W + \dim \operatorname{Gr}_2^W = 2 + 2 = 4$, quadratic energy function $E_v(z)$, exact linear growth $E_v(z) = E_v(0) + (\operatorname{Im} z) v_0^2$, stationarity $\frac{\partial E_v}{\partial \operatorname{Im} z} = 0$ on $\ker(N_\tau)$, Hodge-Riemann pairing compatibility $Q_N > 0$, and master moduli degeneration coupling theorem.
   - [`Formalization/AbelianSurfaceDegenerations/PicardStratification.lean`](Formalization/AbelianSurfaceDegenerations/PicardStratification.lean): Parameterized base curve model `TriangleBaseCurvePoint (p q : ℕ)`, uniform Picard jump theorems $\rho(A_{t_i}) - \rho(A_{\text{gen}}) \ge 1$, and master stratification theorem with concrete certificates for $(2,3,\infty), (2,4,\infty), (2,5,\infty), (3,4,\infty), (3,5,\infty), (4,4,\infty)$.
 
 ---
@@ -163,6 +166,9 @@ graph TD
         ASD_SS["AbelianSurfaceDegenerations/SiegelSpace.lean<br/>(Siegel Half-Space ℍ₂ & Sp₄(ℤ) Action)"]
         ASD_NO["AbelianSurfaceDegenerations/NilpotentOrbit.lean<br/>(Schmid's Nilpotent Orbit Theorem)"]
         ASD_BS["AbelianSurfaceDegenerations/BoundaryStratification.lean<br/>(Boundary Stratum Δ₁ & Toric Rank 1)"]
+        ASD_NOA["AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean<br/>(exp(zN) Lie Preservation & Schmid Error)"]
+        ASD_CBS["AbelianSurfaceDegenerations/CompleteBoundaryStratification.lean<br/>(Baily-Borel & Toroidal Stratifications)"]
+        ASD_WFC["AbelianSurfaceDegenerations/WeightFiltrationCoupling.lean<br/>(Energy Linear Growth & Master Coupling)"]
         ASD_PS["AbelianSurfaceDegenerations/PicardStratification.lean<br/>(Uniform Picard Jumps across Δ(p,q,∞))"]
         ASD_Root["AbelianSurfaceDegenerations.lean"]
 
@@ -184,16 +190,19 @@ graph TD
         UMW_HR["UniversalMonodromyWeightFiltration/HodgeRiemannPairing.lean<br/>(Hodge-Riemann Polarizations Q_N)"]
         UMW_Root["UniversalMonodromyWeightFiltration.lean"]
 
-        ASD_SS & ASD_NO & ASD_BS & ASD_PS --> ASD_Root
+        ASD_SS & ASD_NO & ASD_BS & ASD_NOA & ASD_CBS & ASD_WFC & ASD_PS --> ASD_Root
         OSZ_GB & OSZ_SD & OSZ_RP & OSZ_ST --> OSZ_Root
         PFM_DO & PFM_CM & PFM_SI & PFM_YI --> PFM_Root
         UMW_DF & UMW_FP & UMW_F4 & UMW_HR --> UMW_Root
 
         STR_Root --> ASD_NO
         STR_Root --> ASD_BS
+        STR_Root --> ASD_NOA
+        STR_Root --> ASD_CBS
         STR_Root --> ASD_PS
         STR_Root --> PFM_SI
         STR_Root --> UMW_F4
+        UMW_HR --> ASD_WFC
     end
 
     subgraph MasterSuite ["Master Formalization Suite"]
@@ -205,14 +214,12 @@ graph TD
 
 ---
 
-## Research Roadmap & Next Open Goals
+## Research Roadmap & Completed Milestones
 
-The following research milestones outline targeted formalization pathways to deepen the arithmetic, geometric, and topological results of the repository:
-
-### 1. Full Moduli & Degeneration Story
-* **Schmid's Nilpotent Orbit Theorem**: Deepen the formalization of Schmid's period map asymptotics $\tau(t) = \exp(t N) \cdot \tau_{\mathrm{nilp}} + \mathcal{O}(e^{-c \mathrm{Im} t})$ on the Siegel upper half-space $\mathbb{H}_2$.
-* **Toric Boundary Strata**: Formalize the complete boundary stratification $\overline{\mathcal{A}_2} = \mathcal{A}_2 \cup \Delta_1 \cup \Delta_0$ in the Satake/Baily–Borel and toroidal compactifications.
-* **Weight Filtration Coupling**: Formally connect the Deligne–Schmid monodromy weight filtration module `UniversalMonodromyWeightFiltration` to the asymptotic degeneration of period matrices and boundary polarization forms in `AbelianSurfaceDegenerations`.
+### 1. Full Moduli & Degeneration Story (**COMPLETE**)
+* **Schmid's Nilpotent Orbit Theorem & Lie Exponential**: Formalized the Lie matrix exponential $\exp(z N)$, its 1-parameter group law, symplectic form invariance $(\exp(z N))^T J_{\mathbb{C}} \exp(z N) = J_{\mathbb{C}}$, block projections, FLT translation compatibility, and the bundled asymptotic estimate `SchmidAsymptoticEstimate` with error decay $O(|t|^{2\alpha})$ isolating $\tau_{22} = (\tau_0)_{11} \in \mathbb{H}_1$ in [`NilpotentOrbitAsymptotics.lean`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean).
+* **Toric Boundary Strata & Stratification Theorems**: Formalized the complete Baily–Borel Satake compactification $\mathcal{A}_2^* = \mathcal{A}_2 \sqcup \mathcal{A}_1 \sqcup \mathcal{A}_0$ (dims 3, 1, 0; codims 0, 2, 3), the Toroidal compactification boundary divisor $\Delta = \Delta_1 \cup \Delta_0$ (codims 0, 1, 2), semi-abelian fiber rank conservation $\operatorname{toricRank}(s) + \operatorname{abelianRank}(s) = 2$, and master classification theorems proving all 6 triangle groups land in $\Delta_1 \cong \mathcal{A}_1$ while Calabi-Yau 3-fold MUM cusps land in $\Delta_0 \cong \mathcal{A}_0$ in [`CompleteBoundaryStratification.lean`](Formalization/AbelianSurfaceDegenerations/CompleteBoundaryStratification.lean).
+* **Weight Filtration & Energy Coupling**: Formalized graded homology dimensions $\dim \operatorname{Gr}_1^W + \dim \operatorname{Gr}_2^W = 2 + 2 = 4$, the quadratic energy function $E_v(z)$, exact linear growth $E_v(z) = E_v(0) + (\operatorname{Im} z) v_0^2$, stationarity $\frac{\partial E_v}{\partial \operatorname{Im} z} = 0$ on $\ker(N_\tau)$, Hodge-Riemann polarization compatibility $Q_N > 0$, and the unified master moduli degeneration coupling theorem in [`WeightFiltrationCoupling.lean`](Formalization/AbelianSurfaceDegenerations/WeightFiltrationCoupling.lean).
 
 ### 2. Mirror Symmetry & Yukawa Couplings
 * **Higher-Order Picard–Fuchs Operators**: Formally verify higher-order Picard–Fuchs differential operators and Calabi–Yau self-duality relations across non-hypergeometric triangle families.
@@ -259,5 +266,3 @@ lake build
 10. **Schmid, W.** (1973). *Variation of Hodge structure: the singularities of the period mapping*. Inventiones Mathematicae, 22(3), 211–319.
 11. **Candelas, P., De La Ossa, X. C., Green, P. S., & Parkes, L.** (1991). *A pair of Calabi-Yau manifolds as an exactly soluble superconformal theory*. Nuclear Physics B, 359(1), 21–74.
 12. **Morrison, D. R.** (1993). *Mirror symmetry and rational curves on Calabi-Yau threefolds: a guide for mathematicians*. Journal of the American Mathematical Society, 6(1), 223–247.
-
-

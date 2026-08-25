@@ -49,6 +49,7 @@ Schmid's Nilpotent Orbit Theorem guarantees that:
 - `AbelianSurfaceDegenerations.N_tau_C`: Complex embedding of $N_\tau$.
 - `AbelianSurfaceDegenerations.N_tau_symm`, `AbelianSurfaceDegenerations.N_tau_C_symm`: Symmetry proofs.
 - `AbelianSurfaceDegenerations.nilpotentOrbit`: Nilpotent orbit period map $\tau_{\mathrm{nilp}}(\tau_0, z) = \tau_0 + z N_\tau$.
+- `AbelianSurfaceDegenerations.nilpotentOrbit_zero`, `AbelianSurfaceDegenerations.nilpotentOrbit_add`: Group action laws.
 - `AbelianSurfaceDegenerations.imMatrix_nilpotentOrbit`: Formula for $\operatorname{Im}(\tau_{\mathrm{nilp}}(\tau_0, z))$.
 - `AbelianSurfaceDegenerations.nilpotent_orbit_in_Siegel`: Machine-checked proof that $\tau_{\mathrm{nilp}}(\tau_0, z) \in \mathbb{H}_2$ for $\operatorname{Im}(z) \ge 0$.
 - `AbelianSurfaceDegenerations.nilpotentOrbit_symm`: Symmetry preservation under nilpotent shift.
@@ -85,6 +86,16 @@ theorem N_tau_C_symm : N_tau_Cᵀ = N_tau_C := by
     parameterized by upper half-plane coordinate $z \in \mathbb{C}$. -/
 def nilpotentOrbit (tau0 : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ) : Matrix (Fin 2) (Fin 2) ℂ :=
   tau0 + z • N_tau_C
+
+/-- Nilpotent orbit at $z = 0$ returns the base matrix $\tau_0$. -/
+theorem nilpotentOrbit_zero (tau0 : Matrix (Fin 2) (Fin 2) ℂ) :
+    nilpotentOrbit tau0 0 = tau0 := by
+  simp [nilpotentOrbit]
+
+/-- Additivity of the nilpotent orbit shift: $\tau_{\mathrm{nilp}}(\tau_0, z_1 + z_2) = \tau_{\mathrm{nilp}}(\tau_0, z_1) + z_2 N_\tau$. -/
+theorem nilpotentOrbit_add (tau0 : Matrix (Fin 2) (Fin 2) ℂ) (z1 z2 : ℂ) :
+    nilpotentOrbit tau0 (z1 + z2) = nilpotentOrbit tau0 z1 + z2 • N_tau_C := by
+  simp [nilpotentOrbit, add_smul, add_assoc]
 
 /-- Imaginary part formula for the Nilpotent Orbit:
     $\operatorname{Im}(\tau_{\text{nilp}}(\tau_0, z)) = \operatorname{Im}(\tau_0) + (\operatorname{Im} z) N_\tau$. -/
@@ -144,8 +155,7 @@ def nilpotentOrbitSiegel (tau0 : SiegelHalfSpace2) (z : ℂ) (hz : 0 ≤ z.im) :
     $\tau_{\text{nilp}}(\tau_0, z + 1) = \tau_{\text{nilp}}(\tau_0, z) + N_\tau$. -/
 theorem nilpotent_orbit_monodromy_periodicity (tau0 : Matrix (Fin 2) (Fin 2) ℂ) (z : ℂ) :
     nilpotentOrbit tau0 (z + 1) = nilpotentOrbit tau0 z + N_tau_C := by
-  dsimp [nilpotentOrbit]
-  rw [add_smul, one_smul, add_assoc]
+  simp [nilpotentOrbit_add]
 
 /-- Real scaling parametrization: $\tau_{\text{real}}(\tau_0, s) = \tau_0 + i s N_\tau$ for $s \ge 0$. -/
 def nilpotentOrbitReal (tau0 : Matrix (Fin 2) (Fin 2) ℂ) (s : ℝ) : Matrix (Fin 2) (Fin 2) ℂ :=
