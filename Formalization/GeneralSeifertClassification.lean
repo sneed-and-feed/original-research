@@ -2,12 +2,15 @@ import Formalization.GeneralSeifertClassification.Cofactors
 import Formalization.GeneralSeifertClassification.Solvability
 import Formalization.GeneralSeifertClassification.Obstructions
 import Formalization.GeneralSeifertClassification.Certificates
+import Formalization.GeneralSeifertClassification.BrieskornBridge
 
 /-!
 # Universal Diophantine Classification for $k$-Point Seifert Fibrations & Homology Spheres
 
 This root aggregator module formalizes the universal Diophantine classification of sphere-yielding
-Seifert fibrations over base 2-orbifolds with an arbitrary number of conical singularities $k \ge 1$.
+Seifert fibrations over base 2-orbifolds with an arbitrary number of conical singularities $k \ge 1$,
+and provides the complete topological and gauge-theoretic bridge to Brieskorn singularity links
+$\Sigma(p, q, r)$, Milnor fiber intersection signatures, and $SU(2)$ character varieties.
 
 ## Mathematical Background
 
@@ -42,7 +45,14 @@ The 3-manifold is a homology sphere if and only if $|O_k(a; \ell_0, \ell)| = 1$.
 
 5. **Concrete Family Classifications & Certificates**:
    - 3-point families: Poincaré $\Sigma(2,3,5)$, Brieskorn $\Sigma(2,3,7)$, $\Sigma(2,3,11)$, and non-coprime obstruction $\Sigma(2,4,6)$.
-   - 4-point families: $\Sigma(2,3,5,7)$, $\Sigma(2,3,5,11)$, and non-coprime obstruction $\Sigma(2,3,4,5)$.
+   - 4-point families: $\Sigma(2,3,5,7)$, $\Sigma(2,3,5,11)$, $\Sigma(2,3,7,11)$, $\Sigma(2,3,7,13)$, $\Sigma(3,4,5,7)$, and non-coprime obstructions $\Sigma(2,3,4,5)$, $\Sigma(2,4,6,8)$, $\Sigma(2,3,6,7)$.
+   - 5-point families: $\Sigma(2,3,5,7,11)$ and non-coprime obstruction $\Sigma(2,3,5,6,7)$.
+
+6. **Topological & Gauge-Theoretic Brieskorn Bridge**:
+   - `pairwiseCoprime_3_implies_hasTwoIsolated`, `pairwiseCoprime_3_implies_brieskornSphere`.
+   - `brieskorn_seifert_bridge_3point`: Unification of Brieskorn and Seifert sphere criteria.
+   - `brieskorn_casson_bridge_3point`: Unification of Seifert sphere existence with Milnor fiber signature and $SU(2)$ character variety Casson invariants.
+   - Certified bridge records for $\Sigma(2,3,5)$, $\Sigma(2,3,7)$, $\Sigma(2,3,11)$, $\Sigma(2,5,7)$, $\Sigma(3,4,5)$, $\Sigma(3,5,7)$.
 
 ## Module Architecture & Index
 
@@ -74,16 +84,25 @@ This module is organized into the following submodules:
    - `GeneralSeifert.noncoprime_pair_obstruction`: Non-coprime pair obstruction theorem.
 
 4. `Formalization.GeneralSeifertClassification.Certificates`:
-   - `GeneralSeifert.vec3`, `GeneralSeifert.twist3`, `GeneralSeifert.vec4`, `GeneralSeifert.twist4`: Vector constructors.
+   - `GeneralSeifert.vec3`, `GeneralSeifert.twist3`, `GeneralSeifert.vec4`, `GeneralSeifert.twist4`, `GeneralSeifert.vec5`, `GeneralSeifert.twist5`: Vector constructors.
    - `GeneralSeifert.sphere_3point_2_3_5`: Poincaré sphere certificate $\Sigma(2,3,5)$.
    - `GeneralSeifert.sphere_3point_2_3_7`: Brieskorn sphere certificate $\Sigma(2,3,7)$.
    - `GeneralSeifert.sphere_3point_2_3_11`: Brieskorn sphere certificate $\Sigma(2,3,11)$.
    - `GeneralSeifert.obstruction_3point_2_4_6`: Obstruction certificate for $\Sigma(2,4,6)$.
-   - `GeneralSeifert.sphere_4point_2_3_5_7`: 4-point sphere certificate $\Sigma(2,3,5,7)$.
-   - `GeneralSeifert.sphere_4point_2_3_5_11`: 4-point sphere certificate $\Sigma(2,3,5,11)$.
-   - `GeneralSeifert.obstruction_4point_2_3_4_5`: Obstruction certificate for $\Sigma(2,3,4,5)$.
+   - `GeneralSeifert.sphere_4point_2_3_5_7`, `sphere_4point_2_3_5_11`, `sphere_4point_2_3_7_11`, `sphere_4point_2_3_7_13`, `sphere_4point_3_4_5_7`: 4-point certificates.
+   - `GeneralSeifert.obstruction_4point_2_3_4_5`, `obstruction_4point_2_4_6_8`, `obstruction_4point_2_3_6_7`: 4-point obstructions.
+   - `GeneralSeifert.sphere_5point_2_3_5_7_11`: 5-point sphere certificate $\Sigma(2,3,5,7,11)$.
+   - `GeneralSeifert.obstruction_5point_2_3_5_6_7`: 5-point obstruction certificate.
    - `GeneralSeifert.cofactorList`, `GeneralSeifert.seifertOrderList`, `GeneralSeifert.IsHomotopySphereList`: List-based definitions.
-   - `GeneralSeifert.sphere_list_2_3_5`, `GeneralSeifert.sphere_list_2_3_7`, `GeneralSeifert.sphere_list_2_3_5_7`, `GeneralSeifert.sphere_list_2_3_5_11`: List-based certificates.
+   - `GeneralSeifert.sphere_list_2_3_5`, `GeneralSeifert.sphere_list_2_3_7`, `GeneralSeifert.sphere_list_2_3_5_7`,
+     `GeneralSeifert.sphere_list_2_3_5_11`, `GeneralSeifert.sphere_list_2_3_7_11`, `GeneralSeifert.sphere_list_3_4_5_7`,
+     `GeneralSeifert.sphere_list_2_3_5_7_11`: List-based certificates.
+
+5. `Formalization.GeneralSeifertClassification.BrieskornBridge`:
+   - `GeneralSeifert.pairwiseCoprime_3_implies_hasTwoIsolated`, `GeneralSeifert.pairwiseCoprime_3_implies_brieskornSphere`.
+   - `GeneralSeifert.brieskorn_seifert_bridge_3point`, `GeneralSeifert.brieskorn_casson_bridge_3point`.
+   - `GeneralSeifert.SeifertBrieskornBridge3`: Bundled bridge data structure.
+   - `GeneralSeifert.bridge_2_3_5`, `bridge_2_3_7`, `bridge_2_3_11`, `bridge_2_5_7`, `bridge_3_4_5`, `bridge_3_5_7`.
 
 ## References
 
