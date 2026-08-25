@@ -1,3 +1,8 @@
+/-
+Copyright (c) 2026. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Antigravity
+-/
 import Formalization.TriangleModularGroup
 import Formalization.SeifertSphereFibrations
 import Formalization.GeneralSeifertClassification
@@ -69,10 +74,12 @@ and Mathlib, organized into modular submodule trees matching the architecture of
    - `FrickeVogt.lean`: Fricke–Vogt trace variety $\Phi(t_x, t_y, t_z) = 0$ and trace hypersurface discriminant identities.
 
 9. **`Formalization.PicardFuchsMirrorMonodromy`**:
-   - `DifferentialOperator.lean`: Order-4 hypergeometric Picard–Fuchs operator $\mathcal{L}_4$, symbol expansion, and Calabi–Yau self-duality sum $\sum \alpha_i = 2$.
-   - `CuspMonodromy.lean`: Nilpotent cusp monodromy $N = T_0 - I_4$ and index-2 unipotence (Type II vs Type III MUM).
-   - `SymplecticInvariance.lean`: Griffiths transversality: infinitesimal symplectic Lie algebra invariance $N^T J + J N = 0$ and $N^T \Omega_6 + \Omega_6 N = 0$.
-   - `YukawaInstantons.lean`: Classical Yukawa coupling $C_{zzz}(z)$ and multi-instanton BPS expansions $C_{ttt}(q)$, with quintic certificates.
+   - `DifferentialOperator.lean`: Order-4 hypergeometric Picard–Fuchs operator $\mathcal{L}_4$, algebraic symbol expansion, Calabi–Yau self-duality sum $\sum \alpha_i = 2, e_3 = e_2 - 1$, and parameters for all 6 triangle modular and Calabi-Yau 3-fold families.
+   - `CuspMonodromy.lean`: Parabolic cusp monodromy $T_0 \in \mathrm{Sp}_4(\mathbb{Z})$, nilpotent operator $N = T_0 - I_4$, index-2 unipotence ($N^2 = 0$, Type II), action on geometric basis, and classification vs Type III MUM ($N_{\mathrm{MUM}}^4 = 0$).
+   - `MirrorMap.lean`: Frobenius series ($w_0, w_1$), flat mirror map $q(z) = z(1+q_1 z+q_2 z^2)$, inverse series $z(q)$ ($z_1=-q_1, z_2=2q_1^2-q_2$), matrix exponentials $\exp(N)$, monodromy shift $t \mapsto t + 1$, and certified inversion pairs for Quintic, $\Delta(3,4,\infty)$, and $\Delta(2,3,\infty)$.
+   - `YukawaInstantons.lean`: Classical Yukawa coupling $C_{zzz}(z)$, cusp/conifold regularizations, multi-covering Aspinwall-Morrison formula $N_d = \sum_{k \mid d} n_{d/k}/k^3$, Möbius inversion roundtrip, asymptotic equivalences $C_{ttt}(q) \sim C_{\mathrm{GW}}(q)$, BPS integrality/positivity, and certified instanton counts.
+   - `SymplecticInvariance.lean`: Infinitesimal symplectic Lie algebra invariance $N^T J + J N = 0$, polarized invariance $N^T \Omega_6 + \Omega_6 N = 0$, finite group invariance, and invariant bilinear pairings.
+   - `GriffithsTransversality.lean`: Dimension-independent symplectic forms $J_{2g}$ ($g=1,2,3$), generalized Lie algebra $\mathfrak{sp}_{2g}(\mathbb{Z})$ invariance, 4D Hodge filtration flags $F^3 \subset F^2 \subset F^1 \subset F^0$, Hodge-Riemann relations, Griffiths transversality $M(F^p) \subseteq F^{p-1}$ for $N_{\mathrm{MUM}}, N, N_{S_6}$, and $g=1,3$ parabolic generators.
 
 10. **`Formalization.UniversalMonodromyWeightFiltration`**:
     - `DeligneFormula.lean`: Kernel and image powers, `DeligneSummand`, and `DeligneWeightSpace`.

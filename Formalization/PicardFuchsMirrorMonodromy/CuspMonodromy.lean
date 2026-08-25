@@ -6,6 +6,7 @@ Authors: Antigravity
 import Formalization.TriangleModularGroup
 import Formalization.SymplecticTriangleRepresentations
 import Mathlib.Data.Matrix.Basic
+import Mathlib.Data.Fin.VecNotation
 import Mathlib.Algebra.BigOperators.Fin
 import Mathlib.Tactic.FinCases
 import Mathlib.Tactic.Ring
@@ -149,26 +150,22 @@ theorem N_act_e3 : N *ᵥ ![0, 0, 0, 1] = 0 := by
 /-- Matrix-vector multiplication for standard $N$. -/
 theorem mulVec_N (v : Fin 4 → ℤ) :
     N *ᵥ v = ![-v 1, 0, 0, v 2] := by
-  ext i
-  fin_cases i <;> simp [N, SymplecticTriangleRepresentations.N, mulVec, dotProduct, Fin.sum_univ_four]
+  ext i; fin_cases i <;> simp [mulVec, dotProduct, Fin.sum_univ_four, N, SymplecticTriangleRepresentations.N]
 
 /-- Matrix-vector multiplication for standard $T_0$. -/
 theorem mulVec_T0 (v : Fin 4 → ℤ) :
     T0 *ᵥ v = ![v 0 - v 1, v 1, v 2, v 2 + v 3] := by
-  ext i
-  fin_cases i <;> simp [T0, SymplecticTriangleRepresentations.T0, mulVec, dotProduct, Fin.sum_univ_four, sub_eq_add_neg]
+  ext i; fin_cases i <;> simp [mulVec, dotProduct, Fin.sum_univ_four, T0, SymplecticTriangleRepresentations.T0, sub_eq_add_neg]
 
 /-- Matrix-vector multiplication for $S_6$ monodromy operator $N_{S_6}$. -/
 theorem mulVec_S6_N (v : Fin 4 → ℤ) :
     ModularFamilyS6.N *ᵥ v = ![v 3, -v 2, 0, 0] := by
-  ext i
-  fin_cases i <;> simp [ModularFamilyS6.N, mulVec, dotProduct, Fin.sum_univ_four]
+  ext i; fin_cases i <;> simp [mulVec, dotProduct, Fin.sum_univ_four, ModularFamilyS6.N]
 
 /-- Matrix-vector multiplication for $S_6$ cusp monodromy $T_{0, S_6}$. -/
 theorem mulVec_S6_T0 (v : Fin 4 → ℤ) :
     ModularFamilyS6.T0 *ᵥ v = ![v 0 + v 3, v 1 - v 2, v 2, v 3] := by
-  ext i
-  fin_cases i <;> simp [ModularFamilyS6.T0, mulVec, dotProduct, Fin.sum_univ_four, sub_eq_add_neg]
+  ext i; fin_cases i <;> simp [mulVec, dotProduct, Fin.sum_univ_four, ModularFamilyS6.T0, sub_eq_add_neg]
 
 /-- The standard Calabi-Yau 3-fold Maximally Unipotent Monodromy (MUM) nilpotent operator
     exhibiting index 4 nilpotence: $N^4 = 0$ and $N^3 \ne 0$. -/
