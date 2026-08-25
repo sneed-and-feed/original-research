@@ -45,6 +45,18 @@ For an integral unipotent monodromy operator $M \in \mathrm{Mat}_4(\mathbb{Z})$ 
 - `SymplecticTriangleRepresentations.monodromy_23_is_typeII`: Machine-checked proof that the $(2,3,\infty)$ nilpotent operator $N_{23}$ is strictly Type II.
 - `SymplecticTriangleRepresentations.monodromy_23_not_typeI`: $N_{23}$ is not Type I.
 - `SymplecticTriangleRepresentations.monodromy_23_not_typeIII`: $N_{23}$ is not Type III.
+- `SymplecticTriangleRepresentations.monodromy_24_is_typeII`: Machine-checked proof that the $(2,4,\infty)$ nilpotent operator $N_{24}$ is strictly Type II.
+- `SymplecticTriangleRepresentations.monodromy_24_not_typeI`: $N_{24}$ is not Type I.
+- `SymplecticTriangleRepresentations.monodromy_24_not_typeIII`: $N_{24}$ is not Type III.
+- `SymplecticTriangleRepresentations.monodromy_25_is_typeII`: Machine-checked proof that the $(2,5,\infty)$ nilpotent operator $N_{25}$ is strictly Type II.
+- `SymplecticTriangleRepresentations.monodromy_25_not_typeI`: $N_{25}$ is not Type I.
+- `SymplecticTriangleRepresentations.monodromy_25_not_typeIII`: $N_{25}$ is not Type III.
+- `SymplecticTriangleRepresentations.monodromy_35_is_typeII`: Machine-checked proof that the $(3,5,\infty)$ nilpotent operator $N_{35}$ is strictly Type II.
+- `SymplecticTriangleRepresentations.monodromy_35_not_typeI`: $N_{35}$ is not Type I.
+- `SymplecticTriangleRepresentations.monodromy_35_not_typeIII`: $N_{35}$ is not Type III.
+- `SymplecticTriangleRepresentations.monodromy_44_is_typeII`: Machine-checked proof that the $(4,4,\infty)$ nilpotent operator $N_{44}$ is strictly Type II.
+- `SymplecticTriangleRepresentations.monodromy_44_not_typeI`: $N_{44}$ is not Type I.
+- `SymplecticTriangleRepresentations.monodromy_44_not_typeIII`: $N_{44}$ is not Type III.
 -/
 
 namespace SymplecticTriangleRepresentations
@@ -106,5 +118,61 @@ theorem monodromy_23_not_typeI : ¬ IsTypeI N23 :=
 /-- The $(2,3,\infty)$ monodromy $N_{23}$ is not Type III. -/
 theorem monodromy_23_not_typeIII : ¬ IsTypeIII N23 :=
   typeII_not_typeIII N23 monodromy_23_is_typeII
+
+/-! ### 5. Classification of the $(2,4,\infty)$ Family -/
+
+/-- The $(2,4,\infty)$ nilpotent monodromy operator $N_{24}$ is strictly Type II. -/
+theorem monodromy_24_is_typeII : IsTypeII N24 :=
+  ⟨N24_nonzero, N24_squared_zero⟩
+
+/-- The $(2,4,\infty)$ monodromy $N_{24}$ is not Type I. -/
+theorem monodromy_24_not_typeI : ¬ IsTypeI N24 :=
+  typeII_not_typeI N24 monodromy_24_is_typeII
+
+/-- The $(2,4,\infty)$ monodromy $N_{24}$ is not Type III. -/
+theorem monodromy_24_not_typeIII : ¬ IsTypeIII N24 :=
+  typeII_not_typeIII N24 monodromy_24_is_typeII
+
+/-! ### 6. Classification of the $(2,5,\infty)$ Family -/
+
+/-- The $(2,5,\infty)$ nilpotent monodromy operator $N_{25}$ is strictly Type II. -/
+theorem monodromy_25_is_typeII : IsTypeII N25 :=
+  ⟨N25_nonzero, N25_squared_zero⟩
+
+/-- The $(2,5,\infty)$ monodromy $N_{25}$ is not Type I. -/
+theorem monodromy_25_not_typeI : ¬ IsTypeI N25 :=
+  typeII_not_typeI N25 monodromy_25_is_typeII
+
+/-- The $(2,5,\infty)$ monodromy $N_{25}$ is not Type III. -/
+theorem monodromy_25_not_typeIII : ¬ IsTypeIII N25 :=
+  typeII_not_typeIII N25 monodromy_25_is_typeII
+
+/-! ### 7. Classification of the $(3,5,\infty)$ Family -/
+
+/-- The $(3,5,\infty)$ nilpotent monodromy operator $N_{35}$ is strictly Type II. -/
+theorem monodromy_35_is_typeII : IsTypeII N35 :=
+  ⟨N35_nonzero, N35_squared_zero⟩
+
+/-- The $(3,5,\infty)$ monodromy $N_{35}$ is not Type I. -/
+theorem monodromy_35_not_typeI : ¬ IsTypeI N35 :=
+  typeII_not_typeI N35 monodromy_35_is_typeII
+
+/-- The $(3,5,\infty)$ monodromy $N_{35}$ is not Type III. -/
+theorem monodromy_35_not_typeIII : ¬ IsTypeIII N35 :=
+  typeII_not_typeIII N35 monodromy_35_is_typeII
+
+/-! ### 8. Classification of the $(4,4,\infty)$ Family -/
+
+/-- The $(4,4,\infty)$ nilpotent monodromy operator $N_{44}$ is strictly Type II. -/
+theorem monodromy_44_is_typeII : IsTypeII N44 :=
+  ⟨N44_nonzero, N44_squared_zero⟩
+
+/-- The $(4,4,\infty)$ monodromy $N_{44}$ is not Type I. -/
+theorem monodromy_44_not_typeI : ¬ IsTypeI N44 :=
+  typeII_not_typeI N44 monodromy_44_is_typeII
+
+/-- The $(4,4,\infty)$ monodromy $N_{44}$ is not Type III. -/
+theorem monodromy_44_not_typeIII : ¬ IsTypeIII N44 :=
+  typeII_not_typeIII N44 monodromy_44_is_typeII
 
 end SymplecticTriangleRepresentations

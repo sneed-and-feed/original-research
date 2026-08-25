@@ -114,9 +114,17 @@ This module is partitioned into 4 cohesive submodules:
    - `AbelianSurfaceDegenerations.fiberEndomorphismType`, `fiberPicardNumber`: Fiber invariants.
    - `AbelianSurfaceDegenerations.generic_fiber_picard_eq_one`: Generic Picard number $\rho = 1$.
    - `AbelianSurfaceDegenerations.order3_fiber_picard_eq_four`, `order4_fiber_picard_eq_four`: Special CM fiber Picard numbers $\rho = 4$.
-   - `AbelianSurfaceDegenerations.picard_jump_order3`, `picard_jump_order4`: Jump theorem $\Delta \rho = 3$.
    - `AbelianSurfaceDegenerations.picard_strict_increase_order3`, `picard_strict_increase_order4`: Strict rank inequalities.
    - `AbelianSurfaceDegenerations.master_neron_severi_stratification`: Master Néron–Severi stratification theorem.
+   - `AbelianSurfaceDegenerations.TriangleBaseCurvePoint`: Parameterized base curve points for signature $(p,q,\infty)$.
+   - `AbelianSurfaceDegenerations.generalizedFiberEndomorphismType`: Fiber endomorphism algebra for signature $(p,q,\infty)$.
+   - `AbelianSurfaceDegenerations.generalizedFiberPicardNumber`: Fiber Picard number for signature $(p,q,\infty)$.
+   - `AbelianSurfaceDegenerations.generic_fiber_picard_eq_one_gen`: $\rho(A_{\mathrm{gen}}) = 1$ in general.
+   - `AbelianSurfaceDegenerations.order_p_fiber_picard_ge_two`, `order_q_fiber_picard_ge_two`: Picard number bounds at elliptic points.
+   - `AbelianSurfaceDegenerations.picard_jump_order_p_ge_one`, `picard_jump_order_q_ge_one`: Jump theorems $\Delta \rho \ge 1$.
+   - `AbelianSurfaceDegenerations.picard_strict_increase_order_p`, `picard_strict_increase_order_q`: Strict jumps $\rho(A_{\mathrm{gen}}) < \rho(A_{t_i})$.
+   - `AbelianSurfaceDegenerations.master_generalized_neron_severi_stratification`: Master stratification theorem for general $(p,q,\infty)$.
+   - `AbelianSurfaceDegenerations.stratification_23`, `stratification_24`, `stratification_25`, `stratification_34`, `stratification_35`, `stratification_44`: Concrete certified instances for triangle signatures.
 
 ## References
 

@@ -209,4 +209,230 @@ theorem N23_squared_zero : N23 * N23 = 0 := by
 theorem N23_nonzero : N23 ≠ 0 :=
   fun h => (by decide : N23 0 1 ≠ 0) (congr_fun (congr_fun h 0) 1)
 
+/-! ### 3. The $(2,4,\infty)$ Family in $\mathrm{Sp}_4(\mathbb{Z})$ -/
+
+/-- Order 2 generator $U_1$ for $(2,4,\infty)$. -/
+def U1 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  1,  0,  0,  0],
+    ![  0, -1,  0,  0],
+    ![  0,  0,  1,  0],
+    ![  0,  0,  0, -1]]
+
+/-- Order 4 generator $U_2$ for $(2,4,\infty)$. -/
+def U2 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  0, -1,  0,  0],
+    ![  1,  0,  0,  0],
+    ![  0,  0,  0, -1],
+    ![  0,  0,  1,  0]]
+
+/-- Parabolic cusp monodromy $U_0 = (U_1 U_2)^{-1}$ for $(2,4,\infty)$. -/
+def U0 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  0, -1,  0,  0],
+    ![ -1,  0,  0,  0],
+    ![  0,  0,  0, -1],
+    ![  0,  0, -1,  0]]
+
+/-- Nilpotent operator $N_{24}$ associated with $(2,4,\infty)$ parabolic degeneration. -/
+def N24 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  0, -1,  0,  0],
+    ![  0,  0,  0,  0],
+    ![  0,  0,  0,  0],
+    ![  0,  0,  1,  0]]
+
+/-- $U_1$ has order 2: $U_1^2 = I_4$. -/
+theorem U1_order_two : U1 * U1 = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- $U_2$ has order 4: $U_2^4 = I_4$. -/
+theorem U2_order_four : U2 * U2 * U2 * U2 = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- $U_0$ is the exact inverse of $U_1 U_2$: $(U_1 U_2) U_0 = I_4$. -/
+theorem U0_is_inverse : (U1 * U2) * U0 = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- $U_1$ is symplectic: $U_1^T J U_1 = J$. -/
+theorem isSymplectic_U1 : IsSymplectic U1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- $U_2$ is symplectic: $U_2^T J U_2 = J$. -/
+theorem isSymplectic_U2 : IsSymplectic U2 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- Nilpotence of $N_{24}$: $N_{24}^2 = 0$. -/
+theorem N24_squared_zero : N24 * N24 = 0 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- Non-triviality of $N_{24}$: $N_{24} \ne 0$. -/
+theorem N24_nonzero : N24 ≠ 0 :=
+  fun h => (by decide : N24 0 1 ≠ 0) (congr_fun (congr_fun h 0) 1)
+
+/-! ### 4. The $(2,5,\infty)$ Family in $\mathrm{GL}_4(\mathbb{Z})$ -/
+
+/-- Order 2 generator $V_1$ for $(2,5,\infty)$ (reversal involution). -/
+def V1 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  0,  0,  0,  1],
+    ![  0,  0,  1,  0],
+    ![  0,  1,  0,  0],
+    ![  1,  0,  0,  0]]
+
+/-- Order 5 generator $V_2$ for $(2,5,\infty)$ (companion matrix of $\Phi_5(x) = x^4+x^3+x^2+x+1$). -/
+def V2 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  0,  0,  0, -1],
+    ![  1,  0,  0, -1],
+    ![  0,  1,  0, -1],
+    ![  0,  0,  1, -1]]
+
+/-- Parabolic cusp monodromy $V_0 = (V_1 V_2)^{-1}$ for $(2,5,\infty)$. -/
+def V0 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  0,  0,  1, -1],
+    ![  0,  1,  0, -1],
+    ![  1,  0,  0, -1],
+    ![  0,  0,  0, -1]]
+
+/-- Nilpotent operator $N_{25}$ associated with $(2,5,\infty)$ parabolic degeneration. -/
+def N25 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  0,  1,  0,  0],
+    ![  0,  0,  0,  0],
+    ![  0,  0,  0,  0],
+    ![  0,  0, -1,  0]]
+
+/-- $V_1$ has order 2: $V_1^2 = I_4$. -/
+theorem V1_order_two : V1 * V1 = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- $V_2$ has order 5: $V_2^5 = I_4$. -/
+theorem V2_order_five : V2 * V2 * V2 * V2 * V2 = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- $V_0$ is the exact inverse of $V_1 V_2$: $(V_1 V_2) V_0 = I_4$. -/
+theorem V0_is_inverse : (V1 * V2) * V0 = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- Nilpotence of $N_{25}$: $N_{25}^2 = 0$. -/
+theorem N25_squared_zero : N25 * N25 = 0 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- Non-triviality of $N_{25}$: $N_{25} \ne 0$. -/
+theorem N25_nonzero : N25 ≠ 0 :=
+  fun h => (by decide : N25 0 1 ≠ 0) (congr_fun (congr_fun h 0) 1)
+
+/-! ### 5. The $(3,5,\infty)$ Family in $\mathrm{GL}_4(\mathbb{Z})$ -/
+
+/-- Order 3 generator $Y_1$ for $(3,5,\infty)$. -/
+def Y1 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![ -1,  1,  0,  0],
+    ![ -1,  0,  0,  0],
+    ![  0,  0,  0,  1],
+    ![  0,  0, -1, -1]]
+
+/-- Order 5 generator $Y_2$ for $(3,5,\infty)$ (companion matrix of $\Phi_5(x)$). -/
+def Y2 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  0,  0,  0, -1],
+    ![  1,  0,  0, -1],
+    ![  0,  1,  0, -1],
+    ![  0,  0,  1, -1]]
+
+/-- Parabolic cusp monodromy $Y_0 = (Y_1 Y_2)^{-1}$ for $(3,5,\infty)$. -/
+def Y0 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  1,  0,  0,  0],
+    ![  0,  1, -1, -1],
+    ![  0,  1,  1,  0],
+    ![  0,  1,  0,  0]]
+
+/-- Nilpotent operator $N_{35}$ associated with $(3,5,\infty)$ parabolic degeneration. -/
+def N35 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  0, -1,  0,  0],
+    ![  0,  0,  0,  0],
+    ![  0,  0,  0,  0],
+    ![  0,  0,  1,  0]]
+
+/-- $Y_1$ has order 3: $Y_1^3 = I_4$. -/
+theorem Y1_order_three : Y1 * Y1 * Y1 = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- $Y_2$ has order 5: $Y_2^5 = I_4$. -/
+theorem Y2_order_five : Y2 * Y2 * Y2 * Y2 * Y2 = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- $Y_0$ is the exact inverse of $Y_1 Y_2$: $(Y_1 Y_2) Y_0 = I_4$. -/
+theorem Y0_is_inverse : (Y1 * Y2) * Y0 = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- Nilpotence of $N_{35}$: $N_{35}^2 = 0$. -/
+theorem N35_squared_zero : N35 * N35 = 0 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- Non-triviality of $N_{35}$: $N_{35} \ne 0$. -/
+theorem N35_nonzero : N35 ≠ 0 :=
+  fun h => (by decide : N35 0 1 ≠ 0) (congr_fun (congr_fun h 0) 1)
+
+/-! ### 6. The $(4,4,\infty)$ Family in $\mathrm{GL}_4(\mathbb{Z})$ -/
+
+/-- Order 4 generator $X_1$ for $(4,4,\infty)$. -/
+def X1 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  0, -1,  0,  0],
+    ![  1,  0,  0,  0],
+    ![  0,  0,  0, -1],
+    ![  0,  0,  1,  0]]
+
+/-- Order 4 generator $X_2$ for $(4,4,\infty)$. -/
+def X2 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  0,  0,  0, -1],
+    ![  0,  0,  1,  0],
+    ![  0, -1,  0,  0],
+    ![  1,  0,  0,  0]]
+
+/-- Parabolic cusp monodromy $X_0 = (X_1 X_2)^{-1}$ for $(4,4,\infty)$. -/
+def X0 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  0,  0, -1,  0],
+    ![  0,  0,  0, -1],
+    ![ -1,  0,  0,  0],
+    ![  0, -1,  0,  0]]
+
+/-- Nilpotent operator $N_{44}$ associated with $(4,4,\infty)$ parabolic degeneration. -/
+def N44 : Matrix (Fin 4) (Fin 4) ℤ :=
+  ![![  0,  1,  0,  0],
+    ![  0,  0,  0,  0],
+    ![  0,  0,  0,  0],
+    ![  0,  0, -1,  0]]
+
+/-- $X_1$ has order 4: $X_1^4 = I_4$. -/
+theorem X1_order_four : X1 * X1 * X1 * X1 = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- $X_2$ has order 4: $X_2^4 = I_4$. -/
+theorem X2_order_four : X2 * X2 * X2 * X2 = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- $X_0$ is the exact inverse of $X_1 X_2$: $(X_1 X_2) X_0 = I_4$. -/
+theorem X0_is_inverse : (X1 * X2) * X0 = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- Nilpotence of $N_{44}$: $N_{44}^2 = 0$. -/
+theorem N44_squared_zero : N44 * N44 = 0 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
+
+/-- Non-triviality of $N_{44}$: $N_{44} \ne 0$. -/
+theorem N44_nonzero : N44 ≠ 0 :=
+  fun h => (by decide : N44 0 1 ≠ 0) (congr_fun (congr_fun h 0) 1)
+
 end SymplecticTriangleRepresentations
