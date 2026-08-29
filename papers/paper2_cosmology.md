@@ -102,7 +102,7 @@ In this work, we demonstrate that the Poincaré Dodecahedral Space $S^3 / I^\ast
 The unit 3-sphere $S^3 \subset \mathbb{H} \cong \mathbb{R}^4$ is identified with the Lie group $\mathrm{SU}(2)$ of unit quaternions:
 
 $$
-S^3 = \left\{ q = x_0 + x_1 \mathbf{i} + x_2 \mathbf{j} + x_3 \mathbf{k} \in \mathbb{H} \;\middle|\; \lvert q \rvert^2 = x_0^2 + x_1^2 + x_2^2 + x_3^2 = 1 \right\}
+S^3 = \{ q = x_0 + x_1 \mathbf{i} + x_2 \mathbf{j} + x_3 \mathbf{k} \in \mathbb{H} \mid \lvert q \rvert^2 = x_0^2 + x_1^2 + x_2^2 + x_3^2 = 1 \}
 $$
 
 Equipped with a round Riemannian metric of curvature radius $R_c$, the line element in hyperspherical coordinates $(\chi, \theta, \phi)$ reads:
@@ -323,7 +323,7 @@ Although primordial fluctuations vanish at the surface of last scattering ($z_\a
 In conformal Newtonian gauge with gravitational potential $\Phi$, the temperature perturbation along line-of-sight direction $\hat{n}$ is:
 
 $$
-\left. \frac{\Delta T(\hat{n})}{T_0} \right|_{\mathrm{ISW}} = 2 \int_{\eta_\ast}^{\eta_0} \dot{\Phi}(\eta, (\eta_0 - \eta)\hat{n})\,d\eta
+\frac{\Delta T(\hat{n})}{T_0}\Bigg|_{\mathrm{ISW}} = 2 \int_{\eta_\ast}^{\eta_0} \dot{\Phi}(\eta, (\eta_0 - \eta)\hat{n})\,d\eta
 $$
 
 where $\eta$ is conformal time ($d\eta = dt/a$), $\eta_0$ is the present epoch, $\eta_\ast$ is the recombination epoch, and the dot denotes $\partial/\partial\eta$.

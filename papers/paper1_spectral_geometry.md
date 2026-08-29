@@ -26,7 +26,7 @@ In this monograph, we present a complete spectral-geometric and representation-t
 The standard unit 3-sphere $S^3 \subset \mathbb{R}^4$ is canonically identified with the compact Lie group of unit quaternions $\mathrm{Sp}(1) \cong \mathrm{SU}(2)$:
 
 $$
-S^3 = \left\{ q = x_0 + x_1 \mathbf{i} + x_2 \mathbf{j} + x_3 \mathbf{k} \in \mathbb{H} \;\middle|\; \lvert q \rvert^2 = x_0^2 + x_1^2 + x_2^2 + x_3^2 = 1 \right\}.
+S^3 = \{ q = x_0 + x_1 \mathbf{i} + x_2 \mathbf{j} + x_3 \mathbf{k} \in \mathbb{H} \mid \lvert q \rvert^2 = x_0^2 + x_1^2 + x_2^2 + x_3^2 = 1 \}.
 $$
 
 Quaternionic multiplication is governed by Hamilton's relations:
@@ -273,7 +273,7 @@ $$
 > 3. **Exact Periodicity of Arithmetic Fluctuations**: The arithmetic oscillation $\Delta m_\ell = m_\ell - \ell/120$ is strictly quasi-periodic with fundamental period:
 >
 > $$
-> P = \mathrm{lcm}\left(\left\{ \mathrm{ord}(g) \;\middle|\; g \in I^\ast \right\}\right) = \mathrm{lcm}(1, 2, 3, 4, 5, 6, 10) = 60.
+> P = \mathrm{lcm}(\{ \mathrm{ord}(g) \mid g \in I^\ast \}) = \mathrm{lcm}(1, 2, 3, 4, 5, 6, 10) = 60.
 > $$
 
 | Degree $\ell$ | $L = \ell/2$ | $\dim V_\ell$ | $m_\ell^{\mathrm{SU}(2)}$ | $m_L^{\mathrm{SO}(3)}$ | Physical / Geometric Interpretation |
@@ -544,7 +544,7 @@ We now situate the smooth manifold $M = \mathbb{R} \times (S^3 / I^\ast)$ within
 The global adele ring $\mathbb{A}_{\mathbb{Q}}$ over the rational numbers $\mathbb{Q}$ is the restricted topological product:
 
 $$
-\mathbb{A}_{\mathbb{Q}} = \mathbb{R} \times {\prod_{p < \infty}}' \mathbb{Q}_p = \left\{ (x_\infty, x_2, x_3, x_5, \dots) \;\middle|\; x_\infty \in \mathbb{R}, x_p \in \mathbb{Q}_p, \text{ and } x_p \in \mathbb{Z}_p \text{ for almost all } p \right\},
+\mathbb{A}_{\mathbb{Q}} = \mathbb{R} \times {\prod_{p < \infty}}' \mathbb{Q}_p = \{ (x_\infty, x_2, x_3, x_5, \dots) \mid x_\infty \in \mathbb{R}, x_p \in \mathbb{Q}_p, \text{ and } x_p \in \mathbb{Z}_p \text{ for almost all } p \},
 $$
 
 where:
