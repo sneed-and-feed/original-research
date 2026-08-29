@@ -9,14 +9,14 @@
 
 ### Abstract
 
-We present a unified mathematical treatise, machine-checked formalization in Lean 4, and comprehensive spectral geometry survey of the algebraic, combinatorial, and spectral invariants characterizing closed 3-manifolds across all eight canonical Thurston model geometries: **Spherical** ($\mathbb{S}^3$), **Hyperbolic** ($\mathbb{H}^3$), **Euclidean** ($\mathbb{E}^3$), **Nilpotent** ($\mathrm{Nil}^3$), **Solvable** ($\mathrm{Sol}^3$), **Universal Cover** ($\tilde{\mathrm{SL}}(2, \mathbb{R})$), **Spherical Cylinder** ($\mathbb{S}^2 \times \mathbb{R}$), and **Hyperbolic Cylinder** ($\mathbb{H}^2 \times \mathbb{R}$).
+We present a unified mathematical treatise, machine-checked formalization in Lean 4, and comprehensive spectral geometry survey of the algebraic, combinatorial, and spectral invariants characterizing closed 3-manifolds across all eight canonical Thurston model geometries: **Spherical** ($\mathbb{S}^3$), **Hyperbolic** ($\mathbb{H}^3$), **Euclidean** ($\mathbb{E}^3$), **Nilpotent** ($\mathrm{Nil}^3$), **Solvable** ($\mathrm{Sol}^3$), **Universal Cover** $(\tilde{\mathrm{SL}}(2, \mathbb{R}))$, **Spherical Cylinder** ($\mathbb{S}^2 \times \mathbb{R}$), and **Hyperbolic Cylinder** ($\mathbb{H}^2 \times \mathbb{R}$).
 
 1. **Spherical Geometry** ($\mathbb{S}^3$): We formalize the Diophantine classification of Seifert homology spheres $\Sigma(p,q,r)$, the Fintushel–Stern and Kirk–Klassen exact rational Chern–Simons actions on isolated irreducible $\mathrm{SU}(2)$ character varieties $\mathcal{R}^\ast(\Sigma(p,q,r))$, the stationary phase partition sums, and their connection to Lawrence–Zagier false theta characters $\chi_{120}$ and rational exponents $-\Delta(n) - 1/120$.
 2. **Hyperbolic Geometry** ($\mathbb{H}^3$): We formalize the Weeks manifold $\mathcal{W}$ fundamental group presentation $\pi_1(\mathcal{W})$, homology $H_1 \cong (\mathbb{Z}/5\mathbb{Z})^2$, invariant cubic trace field $k = \mathbb{Q}(\theta)$ ($\mathrm{Disc} = -23$), the tri-polynomial disambiguation ($P_1, P_2, P_3$), the 12-point character variety decomposition under $(\mathbb{Z}/2\mathbb{Z})^2$ spin-lift action, and quaternion algebra ramification; we survey the Gabai–Meyerhoff–Milley minimal volume classification ($\mathrm{Vol} \approx 0.942707$) and the Ramanujan–Selberg spectral gap $\lambda_1 \approx 27.80195 > 1$.
 3. **Euclidean Geometry** ($\mathbb{E}^3$): We formalize the Hantzsche–Wendt didicosm $G_6$ (the unique closed orientable flat 3-manifold with first Betti number $b_1 = 0$), establishing the Spectral Gap Doubling Theorem $\lambda_1(G_6) = 2\lambda_1(T^3) = 8\pi^2/L^2$ via destructive Fourier parity interference under affine screw-motions.
 4. **Nilpotent Geometry** ($\mathrm{Nil}^3$): We formalize the Heisenberg nilmanifold $N_3$ as a principal circle bundle over $T^2$ with Euler class $e = 1$, deriving the discrete Landau harmonic oscillator spectral towers with exact spectral gap $\Delta\lambda_{\mathrm{HO}} = 2\pi > 0$, ground state $\lambda_1 = 4\pi^2$, and scalar curvature $R = -1/2$.
 5. **Solvable Geometry** ($\mathrm{Sol}^3$): We formalize the Fibonacci Anosov solvmanifold $M_A = T^2 \rtimes_A S^1$, its unimodular matrix representation, golden ratio spectrum $\lambda_1 = \varphi^2$, Lyapunov exponent $\mu = 2\ln\varphi > 0$, mixed sectional curvatures $K \in \{-1, +1\}$, scalar curvature $R = -2$, and fundamental fiber spectral gap $\lambda_{0,1} = (2\pi / (2\ln\varphi))^2 > 0$.
-6. **Universal Cover Geometry** ($\tilde{\mathrm{SL}}(2, \mathbb{R})$): We formalize the Lie algebra $\mathfrak{sl}(2, \mathbb{R})$, universal cover central extension by $\mathbb{Z}$, unit tangent bundles $T^1(\Sigma_g)$ ($g \ge 2$) with Euler class $e = 2 - 2g$, mixed sectional curvatures $K \in \{-3/4, +1/4\}$, scalar curvature $R = -1/2$, Casimir eigenvalue decomposition $\lambda_{j,m} = \lambda_j(\Sigma_g) + m^2/4$, and positive spectral gap $\lambda_1 = \min(\lambda_1(\Sigma_g), 1/4) > 0$.
+6. **Universal Cover Geometry** $(\tilde{\mathrm{SL}}(2, \mathbb{R}))$: We formalize the Lie algebra $\mathfrak{sl}(2, \mathbb{R})$, universal cover central extension by $\mathbb{Z}$, unit tangent bundles $T^1(\Sigma_g)$ ($g \ge 2$) with Euler class $e = 2 - 2g$, mixed sectional curvatures $K \in \{-3/4, +1/4\}$, scalar curvature $R = -1/2$, Casimir eigenvalue decomposition $\lambda_{j,m} = \lambda_j(\Sigma_g) + m^2/4$, and positive spectral gap $\lambda_1 = \min(\lambda_1(\Sigma_g), 1/4) > 0$.
 7. **Spherical Cylinder Geometry** ($\mathbb{S}^2 \times \mathbb{R}$): We formalize the direct product manifold $S^2 \times S^1_L$ ($L > 0$), Künneth homology, non-negative sectional curvatures $K \in \{0, 1\}$, scalar curvature $R = 2$, joint Laplace–Beltrami eigenvalues $\lambda_{\ell, n} = \ell(\ell+1) + (2\pi n/L)^2$, and ground state spectral gap $\lambda_1(L) = \min(2, 4\pi^2/L^2) > 0$ with critical length $L_c = \pi\sqrt{2}$.
 8. **Hyperbolic Cylinder Geometry** ($\mathbb{H}^2 \times \mathbb{R}$): We formalize the direct product manifold $\Sigma_g \times S^1_L$ ($g \ge 2, L > 0$), Künneth Betti numbers $b_1 = b_2 = 2g+1$, non-positive sectional curvatures $K \le 0$, scalar curvature $R = -2$, Selberg $3/16$ spectral gap $\lambda_1 \ge \min(3/16, 4\pi^2/L^2) > 0$, critical length $L_{\mathrm{crit}} = 8\pi/\sqrt{3}$, and Seeley–DeWitt heat kernel coefficients $a_0 > 0, a_1 < 0$.
 
@@ -151,7 +151,7 @@ Evaluating at $n = 1$ and $n = 13$ yields the exact Chern–Simons invariants of
 
 ### 3.1 Census Identification, Multi-Surgery Triangulation & Canonical Presentation
 
-The Weeks manifold $\mathcal{W}$ is the unique closed orientable hyperbolic 3-manifold of minimal volume ($\mathrm{Vol}(\mathcal{W}) \approx 0.9427073627769...$), proven by David Gabai, Robert Meyerhoff, and Peter Milley (2009). It admits several dual topological descriptions across canonical census databases and surgery presentations:
+The Weeks manifold $\mathcal{W}$ is the unique closed orientable hyperbolic 3-manifold of minimal volume $(\mathrm{Vol}(\mathcal{W}) \approx 0.9427073627769...)$, proven by David Gabai, Robert Meyerhoff, and Peter Milley (2009). It admits several dual topological descriptions across canonical census databases and surgery presentations:
 
 1. **Hodgson–Weeks & SnapPea/SnapPy Census (`m003(-3,1)`)**:
    In the cusped hyperbolic census, `m003` denotes the sister manifold of the figure-eight knot complement (the Gieseking sibling / $(-2,3,8)$ manifold). Performing $(-3, 1)$ Dehn filling on the single cusp of `m003` yields $\mathcal{W} = \text{m003}(-3,1)$.
@@ -204,21 +204,21 @@ d_k = -23, \quad |d_k| = 23
 
 In the literature, three different defining monic cubic polynomials are standardly employed to represent the cubic field $k$:
 
-1. **Plastic / Minimal Pisot Cubic** ($P_1(T)$):
+1. **Plastic / Minimal Pisot Cubic** $(P_1(T))$:
 
 ```math
 P_1(T) = T^3 - T - 1 = 0
 ```
 
    with discriminant $\mathrm{Disc}(P_1) = -4(0)^3 - 27(-1)^2 - 4(-1)^3 = 4 - 27 = -23$. The unique real root $T_0 \approx 1.324717957...$ is the *plastic number* (the smallest Pisot–Vijayaraghavan number).
-2. **Weeks / SnapPea Trace Polynomial** ($P_2(\vartheta)$):
+2. **Weeks / SnapPea Trace Polynomial** $(P_2(\vartheta))$:
 
 ```math
 P_2(\vartheta) = \vartheta^3 - \vartheta^2 + 1 = 0
 ```
 
    with discriminant $\mathrm{Disc}(P_2) = (-1)^2(0)^2 - 4(1)(0)^3 - 4(-1)^3(1) - 27(1)^2(1)^2 + 18(1)(-1)(0)(1) = 4 - 27 = -23$. The unique real root is $\vartheta_0 \approx -0.754877666... \in (-1, 0)$, and the two complex conjugate roots are $\vartheta_1, \vartheta_2 \approx 0.877439 \pm 0.744862 i$.
-3. **Neumann Trace Polynomial** ($P_3(x)$):
+3. **Neumann Trace Polynomial** $(P_3(x))$:
 
 ```math
 P_3(x) = x^3 - x + 1 = 0
@@ -329,7 +329,7 @@ H^1(\mathcal{W}_{\mathrm{rel}}, \mathbb{Z}/2\mathbb{Z}) \cong (\mathbb{Z}/2\math
 \lvert\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C}))\rvert = 3 \times 4 = 12
 ```
 
-   with uniform fiberwise cardinality $\lvert\mathrm{fiber}(g)\rvert = 4$ for all $g \in \mathrm{GaloisBranch}$, and exactly one true $\mathrm{SL}(2, \mathbb{C})$ representation ($(\epsilon_1, \epsilon_2) = (+1, +1)$) per Galois branch.
+   with uniform fiberwise cardinality $\lvert\mathrm{fiber}(g)\rvert = 4$ for all $g \in \mathrm{GaloisBranch}$, and exactly one true $\mathrm{SL}(2, \mathbb{C})$ representation $((\epsilon_1, \epsilon_2) = (+1, +1))$ per Galois branch.
 
 - Lean Theorems: [`WeeksManifold.Arithmetic.weeks_commutator_trace`](../Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_card_eq_three`](../Formalization/WeeksManifold/Arithmetic.lean), [`spin_lifts_per_representation_eq_four`](../Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_card_eq_twelve`](../Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_iso`](../Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_iso`](../Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_iso_card`](../Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_iso_card`](../Formalization/WeeksManifold/Arithmetic.lean), [`fiber_card_eq_four`](../Formalization/WeeksManifold/Arithmetic.lean), [`fiber_spin_bijective`](../Formalization/WeeksManifold/Arithmetic.lean), [`spin_injection_injective`](../Formalization/WeeksManifold/Arithmetic.lean).
 
@@ -630,7 +630,7 @@ A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix} \in \mathrm{SL}(2, \mathbb{Z}),
 ```
 
 - Golden Ratio Spectrum: $\lambda_1 = \varphi^2 = \frac{3+\sqrt{5}}{2} \approx 2.61803$, $\lambda_2 = \varphi^{-2} = \frac{3-\sqrt{5}}{2}$, $\lambda_1 \lambda_2 = 1$.
-- Abelianization & Homology: $A - I = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$ with $\det(A - I) = -1$, yielding $H_1(M_A, \mathbb{Z}) \cong \mathbb{Z}$ ($b_1(M_A) = 1$).
+- Abelianization & Homology: $A - I = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$ with $\det(A - I) = -1$, yielding $H_1(M_A, \mathbb{Z}) \cong \mathbb{Z}$ $(b_1(M_A) = 1)$.
 
 - Lean Theorems: [`Solvmanifold.Basic.matrixRep_mul`](../Formalization/Solvmanifold/Basic.lean), [`fibonacciAnosov_det`](../Formalization/Solvmanifold/Basic.lean), [`fibonacciAnosov_trace`](../Formalization/Solvmanifold/Basic.lean), [`betti1_eq_one`](../Formalization/Solvmanifold/Basic.lean).
 
@@ -793,7 +793,7 @@ In `Formalization.ThurstonOctet`, we integrate all eight model geometries into a
       - **Zero Scalar Curvature** ($R = 0$): $\mathbb{E}^3 (0)$.
       - **Negative Scalar Curvature** ($R < 0$): $\mathbb{H}^3 (-6), \mathrm{Nil}^3 (-1/2), \mathrm{Sol}^3 (-2), \tilde{\mathrm{SL}}(2, \mathbb{R}) (-1/2), \mathbb{H}^2 \times \mathbb{R} (-2)$.
 5. **Seifert Fibration Compatibility**:
-   Exactly 6 of the 8 geometries fiber over 2-orbifolds ($\mathbb{S}^3, \mathbb{E}^3, \mathrm{Nil}^3, \tilde{\mathrm{SL}}(2, \mathbb{R}), \mathbb{S}^2 \times \mathbb{R}, \mathbb{H}^2 \times \mathbb{R}$). $\mathrm{Sol}^3$ is uniquely an Anosov mapping torus, and $\mathbb{H}^3$ is non-fibered.
+   Exactly 6 of the 8 geometries fiber over 2-orbifolds $(\mathbb{S}^3, \mathbb{E}^3, \mathrm{Nil}^3, \tilde{\mathrm{SL}}(2, \mathbb{R}), \mathbb{S}^2 \times \mathbb{R}, \mathbb{H}^2 \times \mathbb{R})$. $\mathrm{Sol}^3$ is uniquely an Anosov mapping torus, and $\mathbb{H}^3$ is non-fibered.
 6. **Universal Spectral Gap Positivity**:
    Every Thurston geometry admits a closed space form $M_g$ with strictly positive Laplace–Beltrami spectral gap $\lambda_1(M_g) > 0$.
 
@@ -915,7 +915,7 @@ graph LR
 ```
 
 #### Milestone 1: Elliptic Regularity, Sobolev Spaces & Manifold Spectral Theory
-- **Mathematical Goal**: Construct the intrinsic Hilbert Sobolev spaces $H^s(M)$ on compact smooth Riemannian manifolds $(M, g)$, prove the Rellich–Kondrachov compactness theorem ($H^1(M) \hookrightarrow L^2(M)$), and establish the Spectral Theorem for compact self-adjoint operators.
+- **Mathematical Goal**: Construct the intrinsic Hilbert Sobolev spaces $H^s(M)$ on compact smooth Riemannian manifolds $(M, g)$, prove the Rellich–Kondrachov compactness theorem $(H^1(M) \hookrightarrow L^2(M))$, and establish the Spectral Theorem for compact self-adjoint operators.
 - **Formal Target**: Formalize the Laplace–Beltrami operator $\Delta_g : H^2(M) \to L^2(M)$, its self-adjoint Friedrichs extension, and prove that the spectrum is purely discrete, non-negative, and diverges:
 
 ```math
