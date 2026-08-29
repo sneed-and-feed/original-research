@@ -16,7 +16,7 @@ We present a unified mathematical treatise and machine-checked formalization in 
 3. **Euclidean Geometry** ($\mathbb{E}^3$): We formalize the Hantzsche–Wendt didicosm $G_6$ (the unique closed orientable flat 3-manifold with first Betti number $b_1 = 0$), establishing the Spectral Gap Doubling Theorem $\lambda_1(G_6) = 2\lambda_1(T^3) = 8\pi^2/L^2$ via destructive Fourier parity interference under affine screw-motions.
 4. **Nilpotent Geometry** ($\mathrm{Nil}^3$): We formalize the Heisenberg nilmanifold $N_3$ as a principal circle bundle over $T^2$ with Euler class $e = 1$, deriving the discrete Landau harmonic oscillator spectral towers with exact spectral gap $\Delta\lambda_{\mathrm{HO}} = 2\pi > 0$, ground state $\lambda_1 = 4\pi^2$, and scalar curvature $R = -1/2$.
 5. **Solvable Geometry** ($\mathrm{Sol}^3$): We formalize the Fibonacci Anosov solvmanifold $M_A = T^2 \rtimes_A S^1$, its unimodular matrix representation, golden ratio spectrum $\lambda_1 = \varphi^2$, Lyapunov exponent $\mu = 2\ln\varphi > 0$, mixed sectional curvatures $K \in \{-1, +1\}$, scalar curvature $R = -2$, and fundamental fiber spectral gap $\lambda_{0,1} = (2\pi / (2\ln\varphi))^2 > 0$.
-6. **Universal Cover Geometry** ($\widetilde{\mathrm{SL}}_2(\mathbb{R})$): We formalize the Lie algebra $\mathfrak{sl}_2(\mathbb{R})$, universal cover central extension by $\mathbb{Z}$, unit tangent bundles $T^1(\Sigma_g)$ ($g \ge 2$) with Euler class $e = 2 - 2g$, mixed sectional curvatures $K \in \{-3/4, +1/4\}$, scalar curvature $R = -1/2$, Casimir eigenvalue decomposition $\lambda_{j,m} = \lambda_j(\Sigma_g) + m^2/4$, and positive spectral gap $\lambda_1 = \min(\lambda_1(\Sigma_g), 1/4) > 0$.
+6. **Universal Cover Geometry** ($\widetilde{\mathrm{SL}}(2, \mathbb{R})$): We formalize the Lie algebra $\mathfrak{sl}(2, \mathbb{R})$, universal cover central extension by $\mathbb{Z}$, unit tangent bundles $T^1(\Sigma_g)$ ($g \ge 2$) with Euler class $e = 2 - 2g$, mixed sectional curvatures $K \in \{-3/4, +1/4\}$, scalar curvature $R = -1/2$, Casimir eigenvalue decomposition $\lambda_{j,m} = \lambda_j(\Sigma_g) + m^2/4$, and positive spectral gap $\lambda_1 = \min(\lambda_1(\Sigma_g), 1/4) > 0$.
 7. **Spherical Cylinder Geometry** ($\mathbb{S}^2 \times \mathbb{R}$): We formalize the direct product manifold $S^2 \times S^1_L$ ($L > 0$), Künneth homology, non-negative sectional curvatures $K \in \{0, 1\}$, scalar curvature $R = 2$, joint Laplace–Beltrami eigenvalues $\lambda_{\ell, n} = \ell(\ell+1) + (2\pi n/L)^2$, and ground state spectral gap $\lambda_1(L) = \min(2, 4\pi^2/L^2) > 0$ with critical length $L_c = \pi\sqrt{2}$.
 8. **Hyperbolic Cylinder Geometry** ($\mathbb{H}^2 \times \mathbb{R}$): We formalize the direct product manifold $\Sigma_g \times S^1_L$ ($g \ge 2, L > 0$), Künneth Betti numbers $b_1 = b_2 = 2g+1$, non-positive sectional curvatures $K \le 0$, scalar curvature $R = -2$, Selberg $3/16$ spectral gap $\lambda_1 \ge \min(3/16, 4\pi^2/L^2) > 0$, critical length $L_{\mathrm{crit}} = 8\pi/\sqrt{3}$, and Seeley–DeWitt heat kernel coefficients $a_0 > 0, a_1 < 0$.
 
@@ -303,7 +303,7 @@ The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety $\mathcal{X}^{\m
 \vartheta_1, \vartheta_2 \approx 0.877439 \pm 0.744862 i, \quad \mathrm{tr}([\rho(a), \rho(b)]) \approx -0.5698 \pm 2.6143 i \notin [-2, 2]
 ```
 
-     defining the unique conjugate pair of hyperbolic holonomy representations $(\rho_{\mathrm{geom}}, \overline{\rho}_{\mathrm{geom}})$.
+   defining the unique conjugate pair of hyperbolic holonomy representations $(\rho_{\mathrm{geom}}, \overline{\rho}_{\mathrm{geom}})$.
 3. **Central Spin-Lift Cohomology Action & $\mathrm{SL}(2, \mathbb{C})$ Bridge Isomorphism**:
    Lifting a representation from $\mathrm{PSL}(2, \mathbb{C})$ to $\mathrm{SL}(2, \mathbb{C})$ allows independent sign choices on the two relators $\rho(w_1) = \epsilon_1 I, \rho(w_2) = \epsilon_2 I$ with $(\epsilon_1, \epsilon_2) \in \{\pm 1\}^2$.
    The central spin-lift cohomology group:
@@ -551,7 +551,7 @@ M(x, y, z) = \begin{pmatrix} e^z & 0 & x \\ 0 & e^{-z} & y \\ 0 & 0 & 1 \end{pma
 A closed solvmanifold $M_A = T^2 \rtimes_A S^1$ is constructed as the mapping torus of the 2-torus $T^2 = \mathbb{R}^2/\mathbb{Z}^2$ under the hyperbolic Fibonacci Anosov automorphism:
 
 ```math
-A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix} \in \mathrm{SL}_2(\mathbb{Z}), \quad \det(A) = 1, \quad \operatorname{Tr}(A) = 3 > 2
+A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix} \in \mathrm{SL}_2(\mathbb{Z}), \quad \det(A) = 1, \quad \mathrm{Tr}(A) = 3 > 2
 ```
 
 - Golden Ratio Spectrum: $\lambda_1 = \varphi^2 = \frac{3+\sqrt{5}}{2} \approx 2.61803$, $\lambda_2 = \varphi^{-2} = \frac{3-\sqrt{5}}{2}$, $\lambda_1 \lambda_2 = 1$.
@@ -564,7 +564,7 @@ A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix} \in \mathrm{SL}_2(\mathbb{Z}), 
 Equipped with the standard left-invariant metric $ds^2 = e^{-2z} dx^2 + e^{2z} dy^2 + dz^2$ and orthonormal frame $X = e^z \partial_x, Y = e^{-z} \partial_y, Z = \partial_z$:
 - Lie Brackets of $\mathfrak{sol}^3$: $[X, Z] = -X, [Y, Z] = Y, [X, Y] = 0$.
 - Sectional Curvatures: $K(X, Y) = -1, K(X, Z) = +1, K(Y, Z) = +1$.
-- Ricci Tensor: $\operatorname{Ric}(X, X) = 0, \operatorname{Ric}(Y, Y) = 0, \operatorname{Ric}(Z, Z) = -2$.
+- Ricci Tensor: $\mathrm{Ric}(X, X) = 0, \mathrm{Ric}(Y, Y) = 0, \mathrm{Ric}(Z, Z) = -2$.
 - Scalar Curvature: $R = 0 + 0 - 2 = -2 < 0$.
 - Mapping Torus Volume: $\mathrm{Vol}(M_A) = L = \ln(\lambda_1) = 2 \ln \varphi > 0$.
 
@@ -598,7 +598,7 @@ In `Formalization.SL2RGeometry.Basic`:
 - Commutation relations: $[e_1, e_2] = 2e_3, [e_2, e_3] = -2e_1, [e_3, e_1] = -2e_2$.
 - Unit tangent bundle quotient: $T^1(\Sigma_g) \cong \widetilde{\Gamma}_g \backslash \widetilde{\mathrm{SL}}_2(\mathbb{R})$ over closed hyperbolic surfaces $\Sigma_g$ ($g \ge 2$).
 - Euler class: $e(T^1(\Sigma_g)) = \chi(\Sigma_g) = 2 - 2g < 0$.
-- Volume: $\operatorname{Vol}(T^1(\Sigma_g)) = 4\pi^2(g - 1) > 0$.
+- Volume: $\mathrm{Vol}(T^1(\Sigma_g)) = 4\pi^2(g - 1) > 0$.
 - First homology: $H_1(T^1(\Sigma_g), \mathbb{Z}) \cong \mathbb{Z}^{2g} \oplus \mathbb{Z}/(2g-2)\mathbb{Z}$ ($b_1 = 2g$).
 
 - Lean Theorems: [`SL2RGeometry.bracket_e1_e2`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/Basic.lean), [`eulerClass_eq_eulerChar`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/Basic.lean), [`volume_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/Basic.lean), [`betti1_eq_two_mul_genus`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/Basic.lean).
@@ -637,7 +637,7 @@ The model geometry $\mathbb{S}^2 \times \mathbb{R}$ produces compact quotients $
 In `Formalization.S2xRGeometry.Geometry` and `SpectralDecomposition`:
 - Product metric: $g = d\theta^2 + \sin^2\theta \, d\varphi^2 + dz^2$. Volume: $\mathrm{Vol} = 4\pi L > 0$.
 - Sectional curvatures: $K(\partial_\theta, \partial_\varphi) = 1 > 0$, $K(\partial_\theta, \partial_z) = 0$, $K(\partial_\varphi, \partial_z) = 0$ ($K \ge 0$).
-- Ricci tensor: $\operatorname{Ric} = \operatorname{diag}(1, 1, 0)$. Scalar curvature: $R = 2 > 0$.
+- Ricci tensor: $\mathrm{Ric} = \mathrm{diag}(1, 1, 0)$. Scalar curvature: $R = 2 > 0$.
 - Joint Laplace–Beltrami eigenvalues:
 
 ```math
@@ -671,7 +671,7 @@ The model geometry $\mathbb{H}^2 \times \mathbb{R}$ has standard compact quotien
 In `Formalization.H2xRGeometry.Geometry` and `SpectralDecomposition`:
 - Product metric: $g = \frac{dx^2 + dy^2}{y^2} + dz^2$.
 - Sectional curvatures: $K(\partial_x, \partial_y) = -1 < 0, K(\partial_x, \partial_z) = 0, K(\partial_y, \partial_z) = 0$ ($K \le 0$).
-- Ricci tensor: $\mathrm{Ric} = \operatorname{diag}(-1, -1, 0)$. Scalar curvature: $R = -2 < 0$.
+- Ricci tensor: $\mathrm{Ric} = \mathrm{diag}(-1, -1, 0)$. Scalar curvature: $R = -2 < 0$.
 - Joint eigenvalues: $\lambda_{j, n} = \lambda_j(\Sigma_g) + 4\pi^2 n^2 / L^2$.
 - Selberg $3/16$ Bound: $\lambda_1(\Sigma_g) \ge 3/16 = 0.1875$.
 - Certified spectral gap:
@@ -710,7 +710,7 @@ In `Formalization.ThurstonOctet`, we integrate all eight model geometries into a
 3. **Einstein Classification**:
 
 ```math
-\operatorname{IsEinstein}(g) \iff g \in \{\mathbb{S}^3, \mathbb{H}^3, \mathbb{E}^3\}
+\mathrm{IsEinstein}(g) \iff g \in \{\mathbb{S}^3, \mathbb{H}^3, \mathbb{E}^3\}
 ```
 
 4. **Scalar Curvature Sign Trichotomy**:

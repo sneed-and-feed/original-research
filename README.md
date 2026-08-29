@@ -18,7 +18,7 @@ This repository provides machine-checked formalizations, certified proofs, and a
 | 3 | Universal Diophantine Classification for $k$-Point Seifert Fibrations | [`exists_sphere_iff_cofactorGCD_eq_one`](Formalization/GeneralSeifertClassification/Solvability.lean), [`pairwise_coprime_exists_sphere`](Formalization/GeneralSeifertClassification/Solvability.lean), [`common_divisor_obstruction`](Formalization/GeneralSeifertClassification/Obstructions.lean), [`sphere_4point_2_3_5_7`](Formalization/GeneralSeifertClassification/Certificates.lean), [`sphere_4point_2_3_7_11`](Formalization/GeneralSeifertClassification/Certificates.lean), [`sphere_5point_2_3_5_7_11`](Formalization/GeneralSeifertClassification/Certificates.lean), [`obstruction_5point_2_3_5_6_7`](Formalization/GeneralSeifertClassification/Certificates.lean) | 3-Manifold Topology, Seifert Invariants & Diophantine Equations | Original Synthesis (2026) | **Modular Package (`Formalization/GeneralSeifertClassification/`)** (Master Bézout theorem $\gcd(A_1,\dots,A_k)=1$, pairwise coprimality sufficiency, 4-point and 5-point constructive witnesses, and common divisor obstructions verified) |
 | 4 | **The Seifert / Brieskorn Bridge & Casson Invariants** | [`brieskorn_seifert_bridge_3point`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`brieskorn_casson_bridge_3point`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`bridge_2_3_5`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`bridge_2_3_7`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`bridge_2_3_11`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`bridge_2_5_7`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`bridge_3_4_5`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean), [`bridge_3_5_7`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean) | 3-Manifold Topology, Gauge Theory & Singularity Links | Original Synthesis (2026) | **Modular Package (`Formalization/GeneralSeifertClassification/BrieskornBridge.lean`)** (Proves pairwise coprimality simultaneously satisfies Brieskorn topological sphere condition and Seifert homology 3-sphere solvability; unifies with $\mathrm{SU}(2)$ character variety and Milnor signature Casson invariants) |
 | 5 | Symplectic Triangle Representations in $\mathrm{Sp}_4(\mathbb{Z})$ & Monodromy Classification | [`isSymplectic_T1`](Formalization/SymplecticTriangleRepresentations/Representations.lean), [`isSymplectic_U1`](Formalization/SymplecticTriangleRepresentations/Representations.lean), [`isSymplectic_X1`](Formalization/SymplecticTriangleRepresentations/Representations.lean), [`monodromy_34_is_typeII`](Formalization/SymplecticTriangleRepresentations/MonodromyClassification.lean), [`monodromy_24_is_typeII`](Formalization/SymplecticTriangleRepresentations/MonodromyClassification.lean), [`monodromy_25_is_typeII`](Formalization/SymplecticTriangleRepresentations/MonodromyClassification.lean), [`monodromy_35_is_typeII`](Formalization/SymplecticTriangleRepresentations/MonodromyClassification.lean), [`monodromy_44_is_typeII`](Formalization/SymplecticTriangleRepresentations/MonodromyClassification.lean), [`weight_filtration_chain`](Formalization/SymplecticTriangleRepresentations/WeightFiltration.lean) | Symplectic Geometry & Degenerations of Abelian Surfaces | Original Synthesis (2026) | **Modular Package (`Formalization/SymplecticTriangleRepresentations/`)** (Standard $\mathrm{Sp}_4(\mathbb{Z})$ embeddings for $\Delta(3,4,\infty), \Delta(2,3,\infty), \Delta(2,4,\infty), \Delta(2,5,\infty), \Delta(3,5,\infty), \Delta(4,4,\infty)$, Type II unipotent cusp monodromy $N^2=0$, and monodromy weight filtration verified) |
-| 6 | **Moduli Families of Abelian Surfaces, Asymptotics & Complete Stratification** | [`SiegelHalfSpace2`](Formalization/AbelianSurfaceDegenerations/SiegelSpace.lean), [`nilpotent_orbit_in_Siegel`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbit.lean), [`expN_preserves_symplectic`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean), [`schmid_elliptic_parameter_decay`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean), [`master_triangle_cusp_boundary_classification`](Formalization/AbelianSurfaceDegenerations/CompleteBoundaryStratification.lean), [`master_moduli_degeneration_coupling`](Formalization/AbelianSurfaceDegenerations/WeightFiltrationCoupling.lean), [`master_generalized_neron_severi_stratification`](Formalization/AbelianSurfaceDegenerations/PicardStratification.lean) | Moduli of Abelian Varieties, Toroidal Compactification & Hodge Theory | Original Synthesis (2026) | **Modular Package (`Formalization/AbelianSurfaceDegenerations/`)** (Siegel half-space $\mathbb{H}_2$, $\exp(z N)$ symplectic Lie preservation, Schmid error decay $\mathcal{O}(\lvert t \rvert^{2\alpha})$, Baily–Borel & Toroidal complete stratifications, energy linear growth $E_v(z) = E_v(0) + (\operatorname{Im} z)v_0^2$, stationarity on $\ker(N_\tau)$, and Néron–Severi rank jumps $\Delta \rho \ge 1$ verified) |
+| 6 | **Moduli Families of Abelian Surfaces, Asymptotics & Complete Stratification** | [`SiegelHalfSpace2`](Formalization/AbelianSurfaceDegenerations/SiegelSpace.lean), [`nilpotent_orbit_in_Siegel`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbit.lean), [`expN_preserves_symplectic`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean), [`schmid_elliptic_parameter_decay`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean), [`master_triangle_cusp_boundary_classification`](Formalization/AbelianSurfaceDegenerations/CompleteBoundaryStratification.lean), [`master_moduli_degeneration_coupling`](Formalization/AbelianSurfaceDegenerations/WeightFiltrationCoupling.lean), [`master_generalized_neron_severi_stratification`](Formalization/AbelianSurfaceDegenerations/PicardStratification.lean) | Moduli of Abelian Varieties, Toroidal Compactification & Hodge Theory | Original Synthesis (2026) | **Modular Package (`Formalization/AbelianSurfaceDegenerations/`)** (Siegel half-space $\mathbb{H}_2$, $\exp(z N)$ symplectic Lie preservation, Schmid error decay $\mathcal{O}(\lvert t \rvert^{2\alpha})$, Baily–Borel & Toroidal complete stratifications, energy linear growth $E_v(z) = E_v(0) + (\mathrm{Im} z)v_0^2$, stationarity on $\ker(N_\tau)$, and Néron–Severi rank jumps $\Delta \rho \ge 1$ verified) |
 
 ---
 
@@ -42,7 +42,7 @@ This repository provides machine-checked formalizations, certified proofs, and a
 | 13 | **The Weeks Manifold** ($\mathbb{H}^3$ Hyperbolic Space Forms) | [`weeksCubic_discriminant`](Formalization/WeeksManifold/Arithmetic.lean), [`weeksHomology_order`](Formalization/WeeksManifold/Basic.lean), [`volume_lt_Meyerhoff`](Formalization/WeeksManifold/Basic.lean), [`lambda1_gt_one`](Formalization/WeeksManifold/SpectralGap.lean), [`sls_strictly_contained_in_fundamental_domain`](Formalization/WeeksManifold/SpectralGap.lean) | Hyperbolic 3-Manifolds, Arithmetic Invariants & Spectral Gaps | Weeks (1985), Gabai–Meyerhoff–Milley (2009), Chinburg et al. (2007) | **Modular Package (`Formalization/WeeksManifold/`)** (2-relator group $\pi_1(\mathcal{W})$, $H_1 \cong \mathbb{Z}_5 \oplus \mathbb{Z}_5$, minimal volume $\mathrm{Vol} \approx 0.9427$, trace field $D = -23$, quaternion ramification, and Ramanujan–Selberg spectral gap $\lambda_1 \approx 27.80 > 1$ verified) |
 | 14 | **The Hantzsche-Wendt Didicosm** ($\mathbb{E}^3$ Flat Space Forms) | [`gamma1_sq`](Formalization/HantzscheWendt/Basic.lean), [`holonomy_card`](Formalization/HantzscheWendt/Basic.lean), [`spectral_gap_doubling`](Formalization/HantzscheWendt/SpectralSelection.lean), [`admissible_energy_ge_two`](Formalization/HantzscheWendt/SpectralSelection.lean), [`cosmic_matched_circles_count`](Formalization/HantzscheWendt/CosmicTopology.lean) | Flat Riemannian Manifolds, Bieberbach Groups & Fourier Analysis | Hantzsche & Wendt (1935), Bieberbach (1911), Aurich et al. (2008) | **Modular Package (`Formalization/HantzscheWendt/`)** (Affine screw generators in $\mathrm{Isom}(\mathbb{R}^3)$, holonomy $H \cong \mathbb{Z}_2^2$, $H_1 \cong \mathbb{Z}_4^2$ ($b_1=0$), Fourier parity destructive interference, and **Spectral Gap Doubling** $\lambda_1(G_6) = 2\lambda_1(T^3)$ verified) |
 | 15 | **The Heisenberg Nilmanifold** ($\mathrm{Nil}^3$ Nilpotent Space Forms) | [`commutator_X_Y`](Formalization/HeisenbergNilmanifold/Basic.lean), [`eulerClass_eq_one`](Formalization/HeisenbergNilmanifold/Basic.lean), [`harmonic_oscillator_gap`](Formalization/HeisenbergNilmanifold/SpectralTowers.lean), [`scalarCurvature_eq`](Formalization/HeisenbergNilmanifold/Geometry.lean), [`ricciAnisotropyRatio_eq`](Formalization/HeisenbergNilmanifold/Geometry.lean) | Nilpotent Lie Groups, Nilmanifolds & Landau Quantum Spectrum | Malcev (1951), Gordon & Wilson (1984), Pesce (1993) | **Modular Package (`Formalization/HeisenbergNilmanifold/`)** (Upper unitriangular Heisenberg group $\mathcal{H}_3(\mathbb{Z})$, circle bundle $e=1$, continuous 2D torus spectrum, discrete **Landau oscillator towers** $\lambda_{k,n}$, harmonic gap $\Delta\lambda = 2\pi > 0$, and mixed Ricci curvatures verified) |
-| 16 | **The Fibonacci Solvmanifold** ($\mathrm{Sol}^3$ Solvable Space Forms) | [`fibonacciAnosov_trace`](Formalization/Solvmanifold/Basic.lean), [`betti1_eq_one`](Formalization/Solvmanifold/Basic.lean), [`bracket_X_Z`](Formalization/Solvmanifold/Geometry.lean), [`scalarCurvature_eq`](Formalization/Solvmanifold/Geometry.lean), [`fiberSpectralGap_pos`](Formalization/Solvmanifold/SpectralGeometry.lean) | Solvable Lie Groups, Anosov Diffeomorphisms & Foliated Spectra | Thurston (1997), Scott (1983), Milnor (1976) | **Modular Package (`Formalization/Solvmanifold/`)** (Solvable Lie group $\mathbb{R}^2 \rtimes \mathbb{R}$, Fibonacci Anosov matrix $\operatorname{Tr}(A)=3$, golden ratio spectrum $\lambda_1=\varphi^2$, Lyapunov exponent $\mu=2\ln\varphi$, mixed curvatures $K \in \{-1,1\}$, $R=-2$, and fiber gap $\lambda_{0,1}>0$ verified) |
+| 16 | **The Fibonacci Solvmanifold** ($\mathrm{Sol}^3$ Solvable Space Forms) | [`fibonacciAnosov_trace`](Formalization/Solvmanifold/Basic.lean), [`betti1_eq_one`](Formalization/Solvmanifold/Basic.lean), [`bracket_X_Z`](Formalization/Solvmanifold/Geometry.lean), [`scalarCurvature_eq`](Formalization/Solvmanifold/Geometry.lean), [`fiberSpectralGap_pos`](Formalization/Solvmanifold/SpectralGeometry.lean) | Solvable Lie Groups, Anosov Diffeomorphisms & Foliated Spectra | Thurston (1997), Scott (1983), Milnor (1976) | **Modular Package (`Formalization/Solvmanifold/`)** (Solvable Lie group $\mathbb{R}^2 \rtimes \mathbb{R}$, Fibonacci Anosov matrix $\mathrm{Tr}(A)=3$, golden ratio spectrum $\lambda_1=\varphi^2$, Lyapunov exponent $\mu=2\ln\varphi$, mixed curvatures $K \in \{-1,1\}$, $R=-2$, and fiber gap $\lambda_{0,1}>0$ verified) |
 | 17 | **Unit Tangent Bundles over Surfaces** ($\widetilde{\mathrm{SL}}_2(\mathbb{R})$ Geometry) | [`bracket_e1_e2`](Formalization/SL2RGeometry/Basic.lean), [`eulerClass_eq_eulerChar`](Formalization/SL2RGeometry/Basic.lean), [`secE1E2_eq_neg_three_fourths`](Formalization/SL2RGeometry/Geometry.lean), [`casimirEigenvalue_fiber_invariant`](Formalization/SL2RGeometry/SpectralDecomposition.lean), [`totalSpectralGap_pos`](Formalization/SL2RGeometry/SpectralDecomposition.lean) | Lie Groups, Unit Tangent Bundles & Casimir Operators | Milnor (1976), Scott (1983), Buser (1992) | **Modular Package (`Formalization/SL2RGeometry/`)** ($\mathfrak{sl}_2(\mathbb{R})$ Lie algebra, $T^1(\Sigma_g)$ ($g \ge 2$) topology with Euler class $e = 2-2g$, mixed sectional curvatures $K \in \{-3/4, 1/4\}$, $R=-1/2$, Casimir spectrum $\lambda_{j,m} = \lambda_j + m^2/4$, and spectral gap $\lambda_1 > 0$ verified) |
 | 18 | **Spherical Product Cylinders** ($\mathbb{S}^2 \times \mathbb{R}$ Geometry) | [`kunneth_betti_eq`](Formalization/S2xRGeometry/Basic.lean), [`secThetaPhi_pos`](Formalization/S2xRGeometry/Geometry.lean), [`scalarCurvature_pos`](Formalization/S2xRGeometry/Geometry.lean), [`spectralGap_pos`](Formalization/S2xRGeometry/SpectralDecomposition.lean), [`circle_gap_at_critical`](Formalization/S2xRGeometry/SpectralDecomposition.lean) | Product Manifolds, Spherical Harmonics & Spectral Crossings | Thurston (1997), Scott (1983) | **Modular Package (`Formalization/S2xRGeometry/`)** ($S^2 \times S^1_L$ Künneth homology, non-negative curvature $K \ge 0, R=2$, joint eigenvalues $\ell(\ell+1) + (2\pi n/L)^2$, spectral gap $\min(2, 4\pi^2/L^2) > 0$, and critical length $L_c = \pi\sqrt{2}$ verified) |
 | 19 | **Hyperbolic Product Cylinders** ($\mathbb{H}^2 \times \mathbb{R}$ Geometry) | [`poincare_duality_one_two`](Formalization/H2xRGeometry/Basic.lean), [`sec_xy_neg`](Formalization/H2xRGeometry/Geometry.lean), [`scalarCurvature_eq`](Formalization/H2xRGeometry/Geometry.lean), [`selbergSpectralGap_pos`](Formalization/H2xRGeometry/SpectralDecomposition.lean), [`seeleyDeWittA1_neg`](Formalization/H2xRGeometry/SpectralDecomposition.lean) | Product Manifolds, Hyperbolic Surfaces & Selberg Bounds | Thurston (1997), Selberg (1956) | **Modular Package (`Formalization/H2xRGeometry/`)** ($\Sigma_g \times S^1_L$ ($g \ge 2$) Künneth Betti numbers $b_1=2g+1$, non-positive curvature $K \le 0, R=-2$, Selberg-certified spectral gap $\ge \min(3/16, 4\pi^2/L^2) > 0$, and heat kernel asymptotics verified) |
@@ -54,123 +54,123 @@ This repository provides machine-checked formalizations, certified proofs, and a
 
 ```mermaid
 graph TD
-    subgraph ModularTriangleGeometry ["1. Modular Triangle Groups & Symplectic Reps"]
-        TMG_B["TriangleModularGroup/Basic.lean<br/>(GL₄(ℤ) Automorphisms & Cusp N)"]
-        TMG_L["TriangleModularGroup/LatticeAction.lean<br/>(Basis Action on γ, u, w, δ)"]
-        TMG_S["TriangleModularGroup/SeifertInvariant.lean<br/>(Seifert Invariant Evaluation)"]
-        TMG_Root["TriangleModularGroup.lean"]
+   subgraph ModularTriangleGeometry ["1. Modular Triangle Groups & Symplectic Reps"]
+   TMG_B["TriangleModularGroup/Basic.lean<br/>(GL₄(ℤ) Automorphisms & Cusp N)"]
+   TMG_L["TriangleModularGroup/LatticeAction.lean<br/>(Basis Action on γ, u, w, δ)"]
+   TMG_S["TriangleModularGroup/SeifertInvariant.lean<br/>(Seifert Invariant Evaluation)"]
+   TMG_Root["TriangleModularGroup.lean"]
 
-        STR_B["SymplecticTriangleRepresentations/Basic.lean<br/>(Symplectic Form J & Sp₄(ℤ))"]
-        STR_R["SymplecticTriangleRepresentations/Representations.lean<br/>(Broader Δ(p,q,∞) Representations)"]
-        STR_M["SymplecticTriangleRepresentations/MonodromyClassification.lean<br/>(Type I, II, III Monodromy)"]
-        STR_W["SymplecticTriangleRepresentations/WeightFiltration.lean<br/>(Weight Filtration W_• & Ω₆)"]
-        STR_Root["SymplecticTriangleRepresentations.lean"]
+   STR_B["SymplecticTriangleRepresentations/Basic.lean<br/>(Symplectic Form J & Sp₄(ℤ))"]
+   STR_R["SymplecticTriangleRepresentations/Representations.lean<br/>(Broader Δ(p,q,∞) Representations)"]
+   STR_M["SymplecticTriangleRepresentations/MonodromyClassification.lean<br/>(Type I, II, III Monodromy)"]
+   STR_W["SymplecticTriangleRepresentations/WeightFiltration.lean<br/>(Weight Filtration W_• & Ω₆)"]
+   STR_Root["SymplecticTriangleRepresentations.lean"]
 
-        TMG_B & TMG_L & TMG_S --> TMG_Root
-        STR_B & STR_R & STR_M & STR_W --> STR_Root
-        TMG_Root --> STR_W
-    end
+   TMG_B & TMG_L & TMG_S --> TMG_Root
+   STR_B & STR_R & STR_M & STR_W --> STR_Root
+   TMG_Root --> STR_W
+   end
 
-    subgraph SeifertBrieskornTopology ["2. Seifert Fibrations, Brieskorn Links & Casson Invariants"]
-        SSF_B["SeifertSphereFibrations/Basic.lean<br/>(Seifert Order & Bézout Witnesses)"]
-        SSF_CS["SeifertSphereFibrations/CoprimeSolvability.lean<br/>(Bézout Existence & Obstruction)"]
-        SSF_CF["SeifertSphereFibrations/CanonicalFamilies.lean<br/>((2,3,∞), (3,4,∞), (2,5,∞), (3,5,∞))"]
-        SSF_CTP["SeifertSphereFibrations/CompactThreePoint.lean<br/>(3-Point Spheres & Brieskorn Certificates)"]
-        SSF_Root["SeifertSphereFibrations.lean"]
+   subgraph SeifertBrieskornTopology ["2. Seifert Fibrations, Brieskorn Links & Casson Invariants"]
+   SSF_B["SeifertSphereFibrations/Basic.lean<br/>(Seifert Order & Bézout Witnesses)"]
+   SSF_CS["SeifertSphereFibrations/CoprimeSolvability.lean<br/>(Bézout Existence & Obstruction)"]
+   SSF_CF["SeifertSphereFibrations/CanonicalFamilies.lean<br/>((2,3,∞), (3,4,∞), (2,5,∞), (3,5,∞))"]
+   SSF_CTP["SeifertSphereFibrations/CompactThreePoint.lean<br/>(3-Point Spheres & Brieskorn Certificates)"]
+   SSF_Root["SeifertSphereFibrations.lean"]
 
-        GSC_C["GeneralSeifertClassification/Cofactors.lean<br/>(k-Point Cofactors & Cofactor GCD)"]
-        GSC_S["GeneralSeifertClassification/Solvability.lean<br/>(Master Solvability & Pairwise Coprimality)"]
-        GSC_O["GeneralSeifertClassification/Obstructions.lean<br/>(Common Divisor Obstruction)"]
-        GSC_Cert["GeneralSeifertClassification/Certificates.lean<br/>(3-Point, 4-Point & 5-Point Certificates)"]
-        GSC_Bridge["GeneralSeifertClassification/BrieskornBridge.lean<br/>(Seifert-Brieskorn Bridge & Casson Invariant)"]
-        GSC_Root["GeneralSeifertClassification.lean"]
+   GSC_C["GeneralSeifertClassification/Cofactors.lean<br/>(k-Point Cofactors & Cofactor GCD)"]
+   GSC_S["GeneralSeifertClassification/Solvability.lean<br/>(Master Solvability & Pairwise Coprimality)"]
+   GSC_O["GeneralSeifertClassification/Obstructions.lean<br/>(Common Divisor Obstruction)"]
+   GSC_Cert["GeneralSeifertClassification/Certificates.lean<br/>(3-Point, 4-Point & 5-Point Certificates)"]
+   GSC_Bridge["GeneralSeifertClassification/BrieskornBridge.lean<br/>(Seifert-Brieskorn Bridge & Casson Invariant)"]
+   GSC_Root["GeneralSeifertClassification.lean"]
 
-        BM_B["BrieskornManifolds/Basic.lean<br/>(Brieskorn Links & Graph)"]
-        BM_SC["BrieskornManifolds/SphereCriterion.lean<br/>(Brieskorn Sphere Criterion)"]
-        BM_ES["BrieskornManifolds/ExoticSpheres.lean<br/>(28 Milnor-Kervaire Exotic 7-Spheres)"]
-        BM_MS["BrieskornManifolds/MilnorSignature.lean<br/>(Milnor Fiber Signature & Casson)"]
-        BM_Root["BrieskornManifolds.lean"]
+   BM_B["BrieskornManifolds/Basic.lean<br/>(Brieskorn Links & Graph)"]
+   BM_SC["BrieskornManifolds/SphereCriterion.lean<br/>(Brieskorn Sphere Criterion)"]
+   BM_ES["BrieskornManifolds/ExoticSpheres.lean<br/>(28 Milnor-Kervaire Exotic 7-Spheres)"]
+   BM_MS["BrieskornManifolds/MilnorSignature.lean<br/>(Milnor Fiber Signature & Casson)"]
+   BM_Root["BrieskornManifolds.lean"]
 
-        BSU2_B["BrieskornSU2CharacterVariety/Basic.lean<br/>(Irreducible SU(2) Reps)"]
-        BSU2_SA["BrieskornSU2CharacterVariety/SphericalAngles.lean<br/>(Diophantine Spherical Angles)"]
-        BSU2_RC["BrieskornSU2CharacterVariety/RepresentationCounts.lean<br/>(Certified Counts for Σ(p,q,r))"]
-        BSU2_CI["BrieskornSU2CharacterVariety/CassonInvariant.lean<br/>(SU(2) Casson Agreement)"]
-        BSU2_FV["BrieskornSU2CharacterVariety/FrickeVogt.lean<br/>(Fricke-Vogt Trace Variety)"]
-        BSU2_Root["BrieskornSU2CharacterVariety.lean"]
+   BSU2_B["BrieskornSU2CharacterVariety/Basic.lean<br/>(Irreducible SU(2) Reps)"]
+   BSU2_SA["BrieskornSU2CharacterVariety/SphericalAngles.lean<br/>(Diophantine Spherical Angles)"]
+   BSU2_RC["BrieskornSU2CharacterVariety/RepresentationCounts.lean<br/>(Certified Counts for Σ(p,q,r))"]
+   BSU2_CI["BrieskornSU2CharacterVariety/CassonInvariant.lean<br/>(SU(2) Casson Agreement)"]
+   BSU2_FV["BrieskornSU2CharacterVariety/FrickeVogt.lean<br/>(Fricke-Vogt Trace Variety)"]
+   BSU2_Root["BrieskornSU2CharacterVariety.lean"]
 
-        SSF_B & SSF_CS & SSF_CF & SSF_CTP --> SSF_Root
-        GSC_C & GSC_S & GSC_O & GSC_Cert & GSC_Bridge --> GSC_Root
-        BM_B & BM_SC & BM_ES & BM_MS --> BM_Root
-        BSU2_B & BSU2_SA & BSU2_RC & BSU2_CI & BSU2_FV --> BSU2_Root
+   SSF_B & SSF_CS & SSF_CF & SSF_CTP --> SSF_Root
+   GSC_C & GSC_S & GSC_O & GSC_Cert & GSC_Bridge --> GSC_Root
+   BM_B & BM_SC & BM_ES & BM_MS --> BM_Root
+   BSU2_B & BSU2_SA & BSU2_RC & BSU2_CI & BSU2_FV --> BSU2_Root
         
-        BM_Root & BSU2_Root & GSC_Cert --> GSC_Bridge
-    end
+   BM_Root & BSU2_Root & GSC_Cert --> GSC_Bridge
+   end
 
-    subgraph ModuliAndMonodromy ["3. Moduli, Picard-Fuchs & Hodge Theory"]
-        ASD_SS["AbelianSurfaceDegenerations/SiegelSpace.lean<br/>(Siegel Half-Space ℍ₂ & Sp₄(ℤ) Action)"]
-        ASD_NO["AbelianSurfaceDegenerations/NilpotentOrbit.lean<br/>(Schmid's Nilpotent Orbit Theorem)"]
-        ASD_BS["AbelianSurfaceDegenerations/BoundaryStratification.lean<br/>(Boundary Stratum Δ₁ & Toric Rank 1)"]
-        ASD_NOA["AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean<br/>(exp(zN) Lie Preservation & Schmid Error)"]
-        ASD_CBS["AbelianSurfaceDegenerations/CompleteBoundaryStratification.lean<br/>(Baily-Borel & Toroidal Stratifications)"]
-        ASD_WFC["AbelianSurfaceDegenerations/WeightFiltrationCoupling.lean<br/>(Energy Linear Growth & Master Coupling)"]
-        ASD_PS["AbelianSurfaceDegenerations/PicardStratification.lean<br/>(Uniform Picard Jumps across Δ(p,q,∞))"]
-        ASD_Root["AbelianSurfaceDegenerations.lean"]
+   subgraph ModuliAndMonodromy ["3. Moduli, Picard-Fuchs & Hodge Theory"]
+   ASD_SS["AbelianSurfaceDegenerations/SiegelSpace.lean<br/>(Siegel Half-Space ℍ₂ & Sp₄(ℤ) Action)"]
+   ASD_NO["AbelianSurfaceDegenerations/NilpotentOrbit.lean<br/>(Schmid's Nilpotent Orbit Theorem)"]
+   ASD_BS["AbelianSurfaceDegenerations/BoundaryStratification.lean<br/>(Boundary Stratum Δ₁ & Toric Rank 1)"]
+   ASD_NOA["AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean<br/>(exp(zN) Lie Preservation & Schmid Error)"]
+   ASD_CBS["AbelianSurfaceDegenerations/CompleteBoundaryStratification.lean<br/>(Baily-Borel & Toroidal Stratifications)"]
+   ASD_WFC["AbelianSurfaceDegenerations/WeightFiltrationCoupling.lean<br/>(Energy Linear Growth & Master Coupling)"]
+   ASD_PS["AbelianSurfaceDegenerations/PicardStratification.lean<br/>(Uniform Picard Jumps across Δ(p,q,∞))"]
+   ASD_Root["AbelianSurfaceDegenerations.lean"]
 
-        OSZ_GB["OrbifoldSpectralZeta/GaussBonnet.lean<br/>(Signature (p,q,∞) & Gauss-Bonnet Area)"]
-        OSZ_SD["OrbifoldSpectralZeta/ScatteringDeterminant.lean<br/>(Scattering Determinant φ(s))"]
-        OSZ_RP["OrbifoldSpectralZeta/ResidueProduct.lean<br/>(Residue-Area Product = 2π)"]
-        OSZ_ST["OrbifoldSpectralZeta/SelbergTrace.lean<br/>(Orbifold Selberg Trace Formula)"]
-        OSZ_Root["OrbifoldSpectralZeta.lean"]
+   OSZ_GB["OrbifoldSpectralZeta/GaussBonnet.lean<br/>(Signature (p,q,∞) & Gauss-Bonnet Area)"]
+   OSZ_SD["OrbifoldSpectralZeta/ScatteringDeterminant.lean<br/>(Scattering Determinant φ(s))"]
+   OSZ_RP["OrbifoldSpectralZeta/ResidueProduct.lean<br/>(Residue-Area Product = 2π)"]
+   OSZ_ST["OrbifoldSpectralZeta/SelbergTrace.lean<br/>(Orbifold Selberg Trace Formula)"]
+   OSZ_Root["OrbifoldSpectralZeta.lean"]
 
-        PFM_DO["PicardFuchsMirrorMonodromy/DifferentialOperator.lean<br/>(Order-4 Operator & Calabi-Yau Sum)"]
-        PFM_CM["PicardFuchsMirrorMonodromy/CuspMonodromy.lean<br/>(Cusp Monodromy N & Index-2 Unipotence)"]
-        PFM_MM["PicardFuchsMirrorMonodromy/MirrorMap.lean<br/>(Flat Mirror Map q(z), Inversion z(q) & exp(N))"]
-        PFM_SI["PicardFuchsMirrorMonodromy/SymplecticInvariance.lean<br/>(Symplectic Lie Algebra Invariance & Pairings)"]
-        PFM_YI["PicardFuchsMirrorMonodromy/YukawaInstantons.lean<br/>(Yukawa Couplings & Multi-Instanton BPS)"]
-        PFM_GT["PicardFuchsMirrorMonodromy/GriffithsTransversality.lean<br/>(Hodge Filtration Flags & Griffiths Transversality)"]
-        PFM_Root["PicardFuchsMirrorMonodromy.lean"]
+   PFM_DO["PicardFuchsMirrorMonodromy/DifferentialOperator.lean<br/>(Order-4 Operator & Calabi-Yau Sum)"]
+   PFM_CM["PicardFuchsMirrorMonodromy/CuspMonodromy.lean<br/>(Cusp Monodromy N & Index-2 Unipotence)"]
+   PFM_MM["PicardFuchsMirrorMonodromy/MirrorMap.lean<br/>(Flat Mirror Map q(z), Inversion z(q) & exp(N))"]
+   PFM_SI["PicardFuchsMirrorMonodromy/SymplecticInvariance.lean<br/>(Symplectic Lie Algebra Invariance & Pairings)"]
+   PFM_YI["PicardFuchsMirrorMonodromy/YukawaInstantons.lean<br/>(Yukawa Couplings & Multi-Instanton BPS)"]
+   PFM_GT["PicardFuchsMirrorMonodromy/GriffithsTransversality.lean<br/>(Hodge Filtration Flags & Griffiths Transversality)"]
+   PFM_Root["PicardFuchsMirrorMonodromy.lean"]
 
-        UMW_DF["UniversalMonodromyWeightFiltration/DeligneFormula.lean<br/>(Deligne Canonical Subspaces)"]
-        UMW_FP["UniversalMonodromyWeightFiltration/FiltrationProperties.lean<br/>(Shift N(W_l) ⊆ W_{l-2} & Monotonicity)"]
-        UMW_F4["UniversalMonodromyWeightFiltration/Filtrations4D.lean<br/>(Explicit 2-Step & 4-Step MUM Chains)"]
-        UMW_HR["UniversalMonodromyWeightFiltration/HodgeRiemannPairing.lean<br/>(Hodge-Riemann Polarizations Q_N)"]
-        UMW_Root["UniversalMonodromyWeightFiltration.lean"]
+   UMW_DF["UniversalMonodromyWeightFiltration/DeligneFormula.lean<br/>(Deligne Canonical Subspaces)"]
+   UMW_FP["UniversalMonodromyWeightFiltration/FiltrationProperties.lean<br/>(Shift N(W_l) ⊆ W_{l-2} & Monotonicity)"]
+   UMW_F4["UniversalMonodromyWeightFiltration/Filtrations4D.lean<br/>(Explicit 2-Step & 4-Step MUM Chains)"]
+   UMW_HR["UniversalMonodromyWeightFiltration/HodgeRiemannPairing.lean<br/>(Hodge-Riemann Polarizations Q_N)"]
+   UMW_Root["UniversalMonodromyWeightFiltration.lean"]
 
-        ASD_SS & ASD_NO & ASD_BS & ASD_NOA & ASD_CBS & ASD_WFC & ASD_PS --> ASD_Root
-        OSZ_GB & OSZ_SD & OSZ_RP & OSZ_ST --> OSZ_Root
-        PFM_DO & PFM_CM & PFM_MM & PFM_SI & PFM_YI & PFM_GT --> PFM_Root
-        UMW_DF & UMW_FP & UMW_F4 & UMW_HR --> UMW_Root
+   ASD_SS & ASD_NO & ASD_BS & ASD_NOA & ASD_CBS & ASD_WFC & ASD_PS --> ASD_Root
+   OSZ_GB & OSZ_SD & OSZ_RP & OSZ_ST --> OSZ_Root
+   PFM_DO & PFM_CM & PFM_MM & PFM_SI & PFM_YI & PFM_GT --> PFM_Root
+   UMW_DF & UMW_FP & UMW_F4 & UMW_HR --> UMW_Root
 
-        STR_Root --> ASD_NO
-        STR_Root --> ASD_BS
-        STR_Root --> ASD_NOA
-        STR_Root --> ASD_CBS
-        STR_Root --> ASD_PS
-        STR_Root --> PFM_SI
-        STR_Root --> PFM_GT
-        STR_Root --> UMW_F4
-        UMW_HR --> ASD_WFC
-    end
+   STR_Root --> ASD_NO
+   STR_Root --> ASD_BS
+   STR_Root --> ASD_NOA
+   STR_Root --> ASD_CBS
+   STR_Root --> ASD_PS
+   STR_Root --> PFM_SI
+   STR_Root --> PFM_GT
+   STR_Root --> UMW_F4
+   UMW_HR --> ASD_WFC
+   end
 
-    subgraph ThurstonOctetSuite ["4. The Complete 8-Geometry Thurston Octet"]
-        PDS_Root["PoincareDodecahedron.lean<br/>(𝕊³ Spherical Space Form)"]
-        WM_Root["WeeksManifold.lean<br/>(ℍ³ Hyperbolic Space Form)"]
-        HW_Root["HantzscheWendt.lean<br/>(𝔼³ Flat Space Form)"]
-        HN_Root["HeisenbergNilmanifold.lean<br/>(Nil³ Nilpotent Space Form)"]
-        SOL_Root["Solvmanifold.lean<br/>(Sol³ Solvable Space Form)"]
-        SL2_Root["SL2RGeometry.lean<br/>(SL̃₂(ℝ) Unit Tangent Bundle)"]
-        S2R_Root["S2xRGeometry.lean<br/>(𝕊² × ℝ Product Cylinder)"]
-        H2R_Root["H2xRGeometry.lean<br/>(ℍ² × ℝ Product Cylinder)"]
-        TO_Root["ThurstonOctet.lean<br/>(Master Octet Classification & Certificate)"]
+   subgraph ThurstonOctetSuite ["4. The Complete 8-Geometry Thurston Octet"]
+   PDS_Root["PoincareDodecahedron.lean<br/>(𝕊³ Spherical Space Form)"]
+   WM_Root["WeeksManifold.lean<br/>(ℍ³ Hyperbolic Space Form)"]
+   HW_Root["HantzscheWendt.lean<br/>(𝔼³ Flat Space Form)"]
+   HN_Root["HeisenbergNilmanifold.lean<br/>(Nil³ Nilpotent Space Form)"]
+   SOL_Root["Solvmanifold.lean<br/>(Sol³ Solvable Space Form)"]
+   SL2_Root["SL2RGeometry.lean<br/>(SL̃₂(ℝ) Unit Tangent Bundle)"]
+   S2R_Root["S2xRGeometry.lean<br/>(𝕊² × ℝ Product Cylinder)"]
+   H2R_Root["H2xRGeometry.lean<br/>(ℍ² × ℝ Product Cylinder)"]
+   TO_Root["ThurstonOctet.lean<br/>(Master Octet Classification & Certificate)"]
 
-        PDS_Root & WM_Root & HW_Root & HN_Root & SOL_Root & SL2_Root & S2R_Root & H2R_Root --> TO_Root
-    end
+   PDS_Root & WM_Root & HW_Root & HN_Root & SOL_Root & SL2_Root & S2R_Root & H2R_Root --> TO_Root
+   end
 
-    subgraph MasterSuite ["Master Formalization Suite"]
-        F_Master["Formalization.lean"]
-    end
+   subgraph MasterSuite ["Master Formalization Suite"]
+   F_Master["Formalization.lean"]
+   end
 
-    TMG_Root & STR_Root & SSF_Root & GSC_Root & BM_Root & BSU2_Root & ASD_Root & OSZ_Root & PFM_Root & UMW_Root & TO_Root --> F_Master
+   TMG_Root & STR_Root & SSF_Root & GSC_Root & BM_Root & BSU2_Root & ASD_Root & OSZ_Root & PFM_Root & UMW_Root & TO_Root --> F_Master
 ```
 
 ---
@@ -217,7 +217,7 @@ The repository includes the complete machine-checked formalization and accompany
 4. **Nilpotent Geometry** ($\mathrm{Nil}^3$): The Heisenberg Nilmanifold $N_3$ ([`Formalization/HeisenbergNilmanifold/`](Formalization/HeisenbergNilmanifold.lean))
    - Upper unitriangular Heisenberg group $\mathcal{H}_3(\mathbb{Z})$ in $\mathrm{SL}_3(\mathbb{Z})$, center $Z \cong \mathbb{Z}$, circle bundle Euler class $e = 1$, continuous 2D torus base spectrum, discrete **Landau-level harmonic oscillator towers** $\lambda_{k,n} = 4\pi^2 k^2 + 2\pi \lvert k \rvert(2n+1)$, harmonic gap $\Delta\lambda = 2\pi > 0$, and mixed Ricci curvatures ($R = -1/2$).
 5. **Solvable Geometry** ($\mathrm{Sol}^3$): The Fibonacci Anosov Solvmanifold $M_A$ ([`Formalization/Solvmanifold/`](Formalization/Solvmanifold.lean))
-   - Solvable Lie group $\mathbb{R}^2 \rtimes \mathbb{R}$, Fibonacci Anosov matrix $\operatorname{Tr}(A)=3$, golden ratio spectrum $\lambda_1 = \varphi^2 = \frac{3+\sqrt{5}}{2}$, Lyapunov exponent $\mu = 2\ln\varphi > 0$, mixed sectional curvatures $K \in \{-1, +1\}$, scalar curvature $R = -2$, and fundamental fiber spectral gap $\lambda_{0,1} = (2\pi / (2\ln\varphi))^2 > 0$.
+   - Solvable Lie group $\mathbb{R}^2 \rtimes \mathbb{R}$, Fibonacci Anosov matrix $\mathrm{Tr}(A)=3$, golden ratio spectrum $\lambda_1 = \varphi^2 = \frac{3+\sqrt{5}}{2}$, Lyapunov exponent $\mu = 2\ln\varphi > 0$, mixed sectional curvatures $K \in \{-1, +1\}$, scalar curvature $R = -2$, and fundamental fiber spectral gap $\lambda_{0,1} = (2\pi / (2\ln\varphi))^2 > 0$.
 6. **Universal Cover Geometry** ($\widetilde{\mathrm{SL}}_2(\mathbb{R})$): Unit Tangent Bundles over Hyperbolic Surfaces ([`Formalization/SL2RGeometry/`](Formalization/SL2RGeometry.lean))
    - Lie algebra $\mathfrak{sl}_2(\mathbb{R})$, $T^1(\Sigma_g)$ ($g \ge 2$) topology with Euler class $e = 2 - 2g$, volume $4\pi^2(g-1)$, mixed curvatures $K \in \{-3/4, 1/4\}$, $R = -1/2$, Casimir eigenvalue decomposition $\lambda_{j,m} = \lambda_j(\Sigma_g) + m^2/4$, and positive spectral gap $\lambda_1 = \min(\lambda_1(\Sigma_g), 1/4) > 0$.
 7. **Spherical Cylinder Geometry** ($\mathbb{S}^2 \times \mathbb{R}$): Spherical Cylinder Space Forms ([`Formalization/S2xRGeometry/`](Formalization/S2xRGeometry.lean))

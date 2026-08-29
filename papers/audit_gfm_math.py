@@ -24,15 +24,37 @@ def fix_content(filepath):
     content = content.replace(r'2\chi_*', r'2\chi_\ast')
     content = content.replace(r'\chi_*', r'\chi_\ast')
 
-    # 3. Fix backtick math in table cells:
+    # 3. Fix disallowed \operatorname macro -> \mathrm
+    content = content.replace(r'\operatorname{Vol}', r'\mathrm{Vol}')
+    content = content.replace(r'\operatorname{Tr}', r'\mathrm{Tr}')
+    content = content.replace(r'\operatorname{Ric}', r'\mathrm{Ric}')
+    content = content.replace(r'\operatorname{diag}', r'\mathrm{diag}')
+    content = content.replace(r'\operatorname{IsEinstein}', r'\mathrm{IsEinstein}')
+    content = content.replace(r'\operatorname{Im}', r'\mathrm{Im}')
+    content = content.replace(r'\operatorname{Area}', r'\mathrm{Area}')
+    content = content.replace(r'\operatorname{Res}', r'\mathrm{Res}')
+    content = content.replace(r'\operatorname{Gr}', r'\mathrm{Gr}')
+    content = content.replace(r'\operatorname{rank}', r'\mathrm{rank}')
+    content = content.replace(r'\operatorname{End}', r'\mathrm{End}')
+    content = content.replace(r'\operatorname{toricRank}', r'\mathrm{toricRank}')
+    content = content.replace(r'\operatorname{abelianRank}', r'\mathrm{abelianRank}')
+    content = content.replace(r'\operatorname{codim}', r'\mathrm{codim}')
+    content = content.replace(r'\operatorname{FLT}', r'\mathrm{FLT}')
+    content = re.sub(r'\\operatorname\{([^{}]+)\}', r'\\mathrm{\1}', content)
+
+    # 4. Fix backtick math in table cells:
     content = content.replace(r'`m_SO3_one` $\dots$ `m_SO3_five`', r'`m_SO3_one` .. `m_SO3_five`')
     content = content.replace(r'`m_zero` $\dots$ `m_twelve`', r'`m_zero` .. `m_twelve`')
     content = content.replace(r'`heatTrace`, `heatTraceTerm_zero` $\dots$ `heatTraceTerm_twelve`', r'`heatTrace`, `heatTraceTerm_zero` .. `heatTraceTerm_twelve`')
 
-    # 4. Fix leading math in list prefixes
+    # 5. Fix leading math in list prefixes and eliminate subscript collisions in list titles
     content = content.replace(
         '6. $\\widetilde{\\mathrm{SL}}_2(\\mathbb{R})$ **Geometry**:',
-        '6. **Universal Cover Geometry** ($\\widetilde{\\mathrm{SL}}_2(\\mathbb{R})$):'
+        '6. **Universal Cover Geometry** ($\\widetilde{\\mathrm{SL}}(2, \\mathbb{R})$):'
+    )
+    content = content.replace(
+        '6. **Universal Cover Geometry** ($\\widetilde{\\mathrm{SL}}_2(\\mathbb{R})$): We formalize the Lie algebra $\\mathfrak{sl}_2(\\mathbb{R})$',
+        '6. **Universal Cover Geometry** ($\\widetilde{\\mathrm{SL}}(2, \\mathbb{R})$): We formalize the Lie algebra $\\mathfrak{sl}(2, \\mathbb{R})$'
     )
     content = content.replace(
         '7. $\\mathbb{S}^2 \\times \\mathbb{R}$ **Product Geometry**:',
@@ -63,7 +85,7 @@ def fix_content(filepath):
         '   - **Negative Scalar Curvature** ($R < 0$): $\\mathbb{H}^3 (-6)'
     )
 
-    # 5. Flatten indented ```math blocks to Column 0 with blank lines
+    # 6. Flatten indented ```math blocks to Column 0 and outdent 4+ space continuation lines
     lines = content.splitlines(keepends=False)
     new_lines = []
     in_math_block = False
@@ -88,6 +110,10 @@ def fix_content(filepath):
 
         if len(new_lines) > 0 and new_lines[-1] == '```' and stripped != '':
             new_lines.append('')
+
+        # Outdent 4+ spaces non-list continuation lines
+        if re.match(r'^[ ]{4,}[^ \t\-*+\d>]', line):
+            line = '   ' + line.lstrip()
 
         new_lines.append(line)
 
@@ -162,6 +188,13 @@ def run_strict_linter(fpath):
                 continue
 
             # Inside display math ```math block
+            if r'\operatorname' in line:
+                violations.append({
+                    'file': fpath,
+                    'line': line_num,
+                    'rule': 'Rule 11: Disallowed KaTeX Macro \\operatorname',
+                    'detail': f"Found '\\operatorname' in display math (disallowed on GitHub, use '\\mathrm'): '{line.strip()}'"
+                })
             if re.search(r'\\text(?:rm|bf|normal|it)?\{--\}', line):
                 violations.append({
                     'file': fpath,
@@ -237,6 +270,13 @@ def run_strict_linter(fpath):
             continue
 
         if in_display_math_dollars:
+            if r'\operatorname' in line:
+                violations.append({
+                    'file': fpath,
+                    'line': line_num,
+                    'rule': 'Rule 11: Disallowed KaTeX Macro \\operatorname',
+                    'detail': f"Found '\\operatorname' in display math (disallowed on GitHub, use '\\mathrm'): '{line.strip()}'"
+                })
             if re.search(r'\\text(?:rm|bf|normal|it)?\{--\}', line):
                 violations.append({
                     'file': fpath,
@@ -263,6 +303,15 @@ def run_strict_linter(fpath):
             continue
 
         # In standard prose / table line
+        # Rule 12: 4+ space indented prose block (triggers code block in CommonMark)
+        if re.match(r'^[ ]{4,}[^ \t\-*+\d>]', line):
+            violations.append({
+                'file': fpath,
+                'line': line_num,
+                'rule': 'Rule 12: 4+ Space Indented Prose',
+                'detail': f"Prose line indented by 4+ spaces (parsed as indented code block by CommonMark): '{line}'"
+            })
+
         # Rule 1: Backtick math
         if re.search(r'\$`|`\$|\$\s*`|`\s*\$', line):
             violations.append({
@@ -309,6 +358,15 @@ def run_strict_linter(fpath):
         for m in inline_spans:
             math_content = m.group(1)
             full_match = m.group(0)
+
+            # Rule 11: Disallowed \operatorname macro
+            if r'\operatorname' in math_content:
+                violations.append({
+                    'file': fpath,
+                    'line': line_num,
+                    'rule': 'Rule 11: Disallowed KaTeX Macro \\operatorname',
+                    'detail': f"Found '\\operatorname' in inline math (disallowed on GitHub, use '\\mathrm'): '{full_match}'"
+                })
 
             # Rule 2: Delimiter whitespace
             if math_content.startswith(' ') or math_content.startswith('\t') or math_content.endswith(' ') or math_content.endswith('\t'):
