@@ -14,6 +14,9 @@ import Formalization.BrieskornSU2CharacterVariety
 import Formalization.PicardFuchsMirrorMonodromy
 import Formalization.UniversalMonodromyWeightFiltration
 import Formalization.PoincareDodecahedron
+import Formalization.WeeksManifold
+import Formalization.HantzscheWendt
+import Formalization.HeisenbergNilmanifold
 
 
 /-!
@@ -74,6 +77,7 @@ and Mathlib, organized into modular submodule trees matching the architecture of
    - `RepresentationCounts.lean`: Certified representation counts for $\Sigma(2,3,5), \Sigma(2,3,7), \Sigma(2,3,11), \Sigma(2,5,7)$.
    - `CassonInvariant.lean`: Gauge-theoretic Casson invariant $\lambda_{SU(2)} = \frac{1}{2}\#\mathcal{R}^*$ and exact identification with Milnor signature Casson invariant.
    - `FrickeVogt.lean`: Fricke–Vogt trace variety $\Phi(t_x, t_y, t_z) = 0$ and trace hypersurface discriminant identities.
+   - `ChernSimons.lean`: Exact Chern-Simons actions, discrete partition function sums, and Lawrence-Zagier / Hikami false theta invariants $\chi_{120}, \Delta(n)$.
 
 9. **`Formalization.PicardFuchsMirrorMonodromy`**:
    - `DifferentialOperator.lean`: Order-4 hypergeometric Picard–Fuchs operator $\mathcal{L}_4$, algebraic symbol expansion, Calabi–Yau self-duality sum $\sum \alpha_i = 2, e_3 = e_2 - 1$, and parameters for all 6 triangle modular and Calabi-Yau 3-fold families.
@@ -94,5 +98,19 @@ and Mathlib, organized into modular submodule trees matching the architecture of
     - `SpectralDecomposition.lean`: $\mathrm{SU}(2)$ character formula $\chi_\ell(u)$, 9 conjugacy class sum, Molien projection formula $m_\ell = \frac{1}{120}\sum_{g\in I^*} \chi_\ell(g)$, proofs of selection rules ($m_0=1, m_1..m_5=0, m_6=1$), and heat trace on $S^3/I^*$.
     - `HeatKernelAsymptotics.lean`: Small-$t$ Seeley-DeWitt asymptotic expansion $Z(t) \sim (4\pi t)^{-3/2} (a_0 + a_2 t + \dots)$, volume $\mathrm{Vol}(S^3/I^*) = \pi^2/60$, curvature $R = 6$, and Seeley-DeWitt coefficients $a_0 = \frac{\pi^2/60}{(4\pi)^{3/2}}$, $a_2 = a_0$.
     - `StandardModel.lean`: Almost-commutative spectral triple $(\mathcal{A}, \mathcal{H}, \mathcal{D})$, 96-dimensional fermion Hilbert space $\mathcal{H}_F$ (`dim_HF = 96`), unified gauge coupling $g_1^2 = g_2^2 = g_3^2 = \frac{\pi^2 f_0}{2 f_2 \Lambda^2}$, and Higgs potential minimum.
--/
 
+12. **`Formalization.WeeksManifold`**:
+    - `Basic.lean`: Fundamental group presentation $\pi_1(\mathcal{W}) = \langle a, b \mid w_1 = 1, w_2 = 1 \rangle$, first homology $H_1(\mathcal{W}, \mathbb{Z}) \cong \mathbb{Z}/5\mathbb{Z} \oplus \mathbb{Z}/5\mathbb{Z}$ (order 25, $b_1 = 0$), Gabai-Meyerhoff-Milley volume minimality $\mathrm{Vol}(\mathcal{W}) \approx 0.942707$, systole $l_{\min} \approx 0.584633$, injectivity radius $r_{\mathrm{inj}} \approx 0.292317$, and exact Chern-Simons invariant $\mathrm{CS}(\mathcal{W}) = -1/18 \in \mathbb{Q}$.
+    - `Arithmetic.lean`: Monic defining cubic polynomial $P(x) = x^3 - x^2 + 1$, field discriminant $\mathrm{Disc}(P) = -23$, signature $(r_1, r_2) = (1, 1)$, Chinburg-Hamilton-Long-Reid arithmetic minimality of invariant trace field $k = \mathbb{Q}(\theta)$, ramification at the unique real place and dyadic prime above 2, and Borel volume prefactor $\frac{23^{3/2}}{4\pi^2}\zeta_k(2)$.
+    - `SpectralGap.lean`: Laplace-Beltrami spectrum $\lambda = 1 + k^2$ on $\mathbb{H}^3/\Gamma$, first non-trivial eigenvalue $\lambda_1 \approx 27.80195$ ($k_1 \approx 5.17706$), absence of small eigenvalues in $(0, 1)$ (Ramanujan-Selberg property), and cosmic horizon containment bound $\chi_*/R_c \le 0.222 < r_{\mathrm{inj}}(\mathcal{W})$, proving SLS containment in a single Dirichlet fundamental domain.
+
+13. **`Formalization.HantzscheWendt`**:
+    - `Basic.lean`: Affine screw motion generators $\gamma_1, \gamma_2, \gamma_3, \gamma_z$ on $\mathbb{R}^3$ and $\mathbb{Q}^3$, translation squares $\gamma_1^2 = t_{(1,0,0)}, \gamma_2^2 = t_{(0,1,0)}, \gamma_z^2 = t_{(0,0,1)}$, orientation preservation $\det(\mathrm{Lin}(\gamma_i)) = +1$, Klein four-group holonomy $H = G_6 / \mathbb{Z}^3 \cong \mathbb{Z}_2 \times \mathbb{Z}_2$ ($|H|=4$), first homology $H_1(G_6, \mathbb{Z}) \cong \mathbb{Z}/4\mathbb{Z} \times \mathbb{Z}/4\mathbb{Z}$ ($|H_1|=16, b_1=0$), and Bieberbach fixed-point freeness.
+    - `SpectralSelection.lean`: Fourier wavevector Laplacian energy $E(\vec{n}) = n_x^2 + n_y^2 + n_z^2$, single-axis odd mode parity cancellation under half-lattice screw translations $x \mapsto x + 1/2$, ground state energy on 3-torus $E_{\min}(T^3) = 1$, minimal invariant mode on Didicosm $E_{\min}(G_6) = 2$ at $(1, 1, 0)$, Spectral Gap Doubling Theorem $E_{\min}(G_6) = 2 \cdot E_{\min}(T^3)$ ($\lambda_1(G_6) = 2 \cdot \lambda_1(T^3)$), and admissible energy lower bound $E(\vec{n}) \ge 2$.
+    - `CosmicTopology.lean`: Manifold volume formula $\mathrm{Vol}(G_6) = L^3/4 = \mathrm{Vol}(T^3)/4$, 12-faced fundamental polyhedron geometry ($V=14, E=24, F=12, \chi=2$), 6 face identification pairs with twist angle $\alpha = \pi$, systole $l_{\min}(G_6) = L/2$, injectivity radius $r_{\mathrm{inj}}(G_6) = L/4$ ($r_{\mathrm{inj}}(G_6)/r_{\mathrm{inj}}(T^3) = 1/2$), and 6 pairs of CMB matched circles with twist $\pi$.
+
+14. **`Formalization.HeisenbergNilmanifold`**:
+    - `Basic.lean`: Discrete 3D Heisenberg group $\mathcal{H}_3(\mathbb{Z})$ represented as $3 \times 3$ upper unitriangular integer matrices $M(x, y, z)$, group multiplication $(x_1, y_1, z_1) \cdot (x_2, y_2, z_2) = (x_1+x_2, y_1+y_2, z_1+z_2+x_1 y_2)$, inverse $(-x, -y, -z+x y)$, commutator formula $[g_1, g_2] = (0, 0, x_1 y_2 - x_2 y_1)$, canonical generators $X, Y, Z$ with $[X, Y] = Z, [X, Z] = 1, [Y, Z] = 1$, center $Z(\mathcal{H}_3(\mathbb{Z})) \cong \mathbb{Z}$, abelianization $H_1(N_3, \mathbb{Z}) \cong \mathbb{Z} \oplus \mathbb{Z}$ ($b_1 = 2$), and principal $S^1$-bundle projection with Euler class $e = 1$.
+    - `SpectralTowers.lean`: Left-invariant frame $X = \partial_x, Y = \partial_y + x\partial_z, Z = \partial_z$ and Laplacian $\Delta = -(X^2 + Y^2 + Z^2)$, base torus spectrum $\lambda_{0, m, n} = 4\pi^2(m^2+n^2)$ ($\lambda_1(N_3) = 4\pi^2$), Landau-level quantum harmonic oscillator central towers $\lambda_{k, n} = 4\pi^2 k^2 + 2\pi |k|(2n+1)$ ($k \ne 0$), central ground state $\lambda_{1, 0} = 4\pi^2 + 2\pi$, Harmonic Oscillator Gap Theorem $\lambda_{1, 0} - \lambda_1(N_3) = 2\pi > 0$, and $|k|$-fold geometric degeneracy.
+    - `Geometry.lean`: Unit volume $\mathrm{Vol}(N_3) = 1$, metric scaling $\mathrm{Vol}(N_3, L) = L^3$, mixed sectional curvatures $K(X, Y) = -3/4, K(X, Z) = +1/4, K(Y, Z) = +1/4$, Ricci tensor components $R_{XX} = -1/2, R_{YY} = -1/2, R_{ZZ} = +1/2$, scalar curvature $R = -1/2$, and Ricci anisotropy ratio $R_{ZZ} / R_{XX} = -1$.
+-/

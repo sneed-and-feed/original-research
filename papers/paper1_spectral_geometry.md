@@ -60,7 +60,7 @@ $$
 \frac{1}{2} (\pm 1 \pm \mathbf{i} \pm \mathbf{j} \pm \mathbf{k}).
 $$
 
-   Together with the Lipschitz units, these 24 elements form the binary tetrahedral group $2T \subset I^\ast$ of order $8 + 16 = 24$.
+Together with the Lipschitz units, these 24 elements form the binary tetrahedral group $2T \subset I^\ast$ of order $8 + 16 = 24$.
 
 3. **The 96 Non-Hurwitz Icosahedral Units**: All even permutations of the coordinates:
 
@@ -68,7 +68,7 @@ $$
 \frac{1}{2} \left( 0, \pm \phi^{-1}, \pm 1, \pm \phi \right),
 $$
 
-   where $\phi = \frac{1+\sqrt{5}}{2} \approx 1.618034$ is the golden ratio and $\phi^{-1} = \frac{\sqrt{5}-1}{2} = \phi - 1 \approx 0.618034$. The 12 even coordinate permutations combined with the $2^3 = 8$ sign combinations yield exactly $12 \times 8 = 96$ distinct units.
+where $\phi = \frac{1+\sqrt{5}}{2} \approx 1.618034$ is the golden ratio and $\phi^{-1} = \frac{\sqrt{5}-1}{2} = \phi - 1 \approx 0.618034$. The 12 even coordinate permutations combined with the $2^3 = 8$ sign combinations yield exactly $12 \times 8 = 96$ distinct units.
 
 Summing these three mutually disjoint sets yields the total group cardinality:
 
@@ -428,7 +428,7 @@ $$
 3 \times \left( 4 \text{ leptons } (\nu_L, e_L, \nu_R, e_R) + 12 \text{ quarks } (u_L, d_L, u_R, d_R) \times 3 \text{ colors} \right) = 48.
 $$
 
-   - Real Particle-Antiparticle Degrees of Freedom ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$): Accounting for antiparticles via the antilinear charge conjugation real structure $J_F$ ($J_F^2 = 1, J_F \mathcal{D}_F = \mathcal{D}_F J_F$), yielding $48 \times 2 = 96$ real degrees of freedom.
+- Real Particle-Antiparticle Degrees of Freedom ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$): Accounting for antiparticles via the antilinear charge conjugation real structure $J_F$ ($J_F^2 = 1, J_F \mathcal{D}_F = \mathcal{D}_F J_F$), yielding $48 \times 2 = 96$ real degrees of freedom.
 3. **Finite Dirac Operator**:
 
 $$
@@ -438,7 +438,7 @@ T & \overline{S}
 \end{pmatrix}
 $$
 
-   encoding the $3 \times 3$ Dirac Yukawa matrices $(Y_u, Y_d, Y_e, Y_\nu)$ and the symmetric Majorana mass matrix $M_R$ for right-handed neutrinos (Type-I seesaw mechanism).
+encoding the $3 \times 3$ Dirac Yukawa matrices $(Y_u, Y_d, Y_e, Y_\nu)$ and the symmetric Majorana mass matrix $M_R$ for right-handed neutrinos (Type-I seesaw mechanism).
 
 ### 4.2 Chamseddine--Connes Spectral Action Expansion
 
@@ -484,7 +484,7 @@ $$
 g_1^2 = g_2^2 = g_3^2 = \frac{\pi^2 f_0}{2 f_2 \Lambda^2},
 $$
 
-   where $g_1 = \sqrt{5/3} g_Y$ is the canonical Grand Unified Theory (GUT) normalized hypercharge coupling.
+where $g_1 = \sqrt{5/3} g_Y$ is the canonical Grand Unified Theory (GUT) normalized hypercharge coupling.
 
 2. **Higgs Quartic Potential**:
 
@@ -492,7 +492,7 @@ $$
 V(H) = \lambda \left( \lvert H \rvert^2 - v^2 \right)^2, \quad \lambda = \frac{\pi^2 f_0 Y_4}{2 f_2 \Lambda^2 Y_2^2}, \quad v^2 = \frac{2 f_2 \Lambda^2 Y_2}{f_0 Y_4},
 $$
 
-   where $Y_2 = \mathrm{Tr}(3 Y_u^\dagger Y_u + 3 Y_d^\dagger Y_d + Y_e^\dagger Y_e + Y_\nu^\dagger Y_\nu)$ and $Y_4 = \mathrm{Tr}(3 (Y_u^\dagger Y_u)^2 + 3 (Y_d^\dagger Y_d)^2 + (Y_e^\dagger Y_e)^2 + (Y_\nu^\dagger Y_\nu)^2)$.
+where $Y_2 = \mathrm{Tr}(3 Y_u^\dagger Y_u + 3 Y_d^\dagger Y_d + Y_e^\dagger Y_e + Y_\nu^\dagger Y_\nu)$ and $Y_4 = \mathrm{Tr}(3 (Y_u^\dagger Y_u)^2 + 3 (Y_d^\dagger Y_d)^2 + (Y_e^\dagger Y_e)^2 + (Y_\nu^\dagger Y_\nu)^2)$.
 
 3. **Electroweak Boson and Higgs Mass Relations at Unification**:
 
@@ -500,14 +500,14 @@ $$
 m_W^2 = \frac{1}{4} g_2^2 v^2 = \frac{\pi^2}{4}, \quad m_Z^2 = \frac{1}{4}(g_1^2 + g_2^2) v^2 = 2 m_W^2, \quad m_H^2 = 2 \lambda v^2 = \frac{8 Y_4}{Y_2^2} m_W^2,
 $$
 
-   yielding the scale-invariant mass ratio at the unification scale:
+yielding the scale-invariant mass ratio at the unification scale:
 
 $$
 \frac{m_H^2}{m_W^2} = \frac{8 Y_4}{Y_2^2} \quad \implies \quad m_H^2 = \frac{8 Y_4}{Y_2^2} m_W^2.
 $$
 
 4. **Bare UV Boundary Condition Status**:
-   The relation $m_Z^2 = 2 m_W^2$ (corresponding to bare tree-level $\sin^2 \theta_W(\Lambda) = 1/2$, or $\sin^2 \theta_W = 3/8$ in GUT hypercharge normalization) is strictly the **bare UV boundary condition** holding at the noncommutative spectral cutoff scale $\Lambda \sim 10^{16}\text{ GeV}$. Quantum radiative corrections via 2-loop Renormalization Group running down to $M_Z$ break this equality, shifting the weak mixing angle to its observed low-energy value $\sin^2 \theta_W(M_Z) \approx 0.2312$ and separating the physical masses to $m_W \approx 80.38\text{ GeV}$ and $m_Z \approx 91.19\text{ GeV}$.
+The relation $m_Z^2 = 2 m_W^2$ (corresponding to bare tree-level $\sin^2 \theta_W(\Lambda) = 1/2$, or $\sin^2 \theta_W = 3/8$ in GUT hypercharge normalization) is strictly the **bare UV boundary condition** holding at the noncommutative spectral cutoff scale $\Lambda \sim 10^{16}\text{ GeV}$. Quantum radiative corrections via 2-loop Renormalization Group running down to $M_Z$ break this equality, shifting the weak mixing angle to its observed low-energy value $\sin^2 \theta_W(M_Z) \approx 0.2312$ and separating the physical masses to $m_W \approx 80.38\text{ GeV}$ and $m_Z \approx 91.19\text{ GeV}$.
 
 ### 4.4 Renormalization Group Running: From $\Lambda$ down to $M_Z$
 

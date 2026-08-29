@@ -1,9 +1,8 @@
-# Formalization of Modular Triangle Groups, Seifert Spheres, and Poincaré Spectral Cosmology in Lean 4
+# Machine-Checked Formalization of Modular Triangle Groups, Seifert Spheres, and Poincaré Spectral Geometry in Lean 4
 
-This repository provides machine-checked formalizations, certified proofs, foundational scaffolds, and observational cosmological preprints exploring:
+This repository provides machine-checked formalizations, certified proofs, and a comprehensive mathematical physics monograph exploring:
 1. **Hyperbolic Triangle Groups & Abelian Surface Degenerations**: Representation theory in $\mathrm{GL}_4(\mathbb{Z})$ and $\mathrm{Sp}_4(\mathbb{Z})$, the algebraic backbone of modular families of complex 2-tori, Brieskorn singularity links, gauge-theoretic Casson invariants, and Deligne–Schmid monodromy weight filtrations.
-2. Poincaré Dodecahedral Space $S^3/I^\ast$ & Spectral Action: Exact algebraic construction of the binary icosahedral group $I^\ast \subset \mathrm{SU}(2)$, Chebyshev recurrence character evaluations, Molien invariant projection selection rules ($m_0=1, m_1=\dots=m_5=0, m_6=1$ on $\mathrm{SO}(3)$ and 11-mode spinor gap on $\mathrm{SU}(2)$), off-diagonal mode coupling selection rules and parity conservation theorems ($\Delta L \equiv 0 \pmod 2$), Seeley--DeWitt heat kernel asymptotics ($a_0, a_2, a_4$), 4D Einstein--Hilbert action recovery ($G_{\mathrm{eff}} > 0$), and the almost-commutative Noncommutative Standard Model spectral triple ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$).
-3. **Observational Cosmology & Early Dark Energy Concordance**: Joint MCMC parameter estimation and likelihood engines confronting $S^3/I^\ast$ Early Dark Energy, 2-parameter phenomenological Interacting Dark Radiation ($g_{\mathrm{dark}} \approx 0.151 \pm 0.035, \Delta N_{\mathrm{idr}} \approx 0.51 \pm 0.31$; fiducial $g_{\mathrm{dark}} = 0.085, \Delta N_{\mathrm{idr}} = 0.24$), and Triggered New EDE (NEDE) with Planck 2018/PR4, ACT DR4, SPT-3G, DESI 2024 BAO, Pantheon+ SNe Ia, DES Y3 / KiDS-1000 weak lensing, and SH0ES ($H_0 = 70.93 \pm 0.70\text{ km s}^{-1}\text{Mpc}^{-1}$ [MCMC production, substantially mitigating tension to $1.68\sigma$] / $73.24 \pm 0.82\text{ km s}^{-1}\text{Mpc}^{-1}$ [fiducial], $\mathbf{S}_8 = 0.776 \pm 0.014$ [concordant with IDR damping at $0.00\sigma$], $\Delta \chi^2 = -44.30$, $\Delta\mathrm{AIC} = -34.30$, with $\text{low-}\ell$ quadrupole tension reduced from $+9.70\sigma$ to $+1.48\sigma$ via $\mathcal{D}_2 = 379.4\ \mu\mathrm{K}^2$ with a $+155\ \mu\text{K}^2$ residual, and topology injectivity diameter $2 r_{\mathrm{inj}} \approx 40.0\text{-}90.9\text{ Gpc} > 2\chi_\ast \approx 28.0\text{ Gpc}$ establishing a generous safety margin explaining circles-in-the-sky null detections).
+2. **Poincaré Dodecahedral Space** $S^3/I^\ast$ **& Spectral Geometry**: Exact algebraic construction of the binary icosahedral group $I^\ast \subset \mathrm{SU}(2)$, Chebyshev recurrence character evaluations, Molien invariant projection selection rules ($m_0=1, m_1=\dots=m_5=0, m_6=1$ on $\mathrm{SO}(3)$ and 11-mode spinor gap on $\mathrm{SU}(2)$), off-diagonal mode coupling selection rules and parity conservation theorems ($\Delta L \equiv 0 \pmod 2$), Seeley--DeWitt heat kernel asymptotics ($a_0, a_2, a_4$), 4D Einstein--Hilbert action recovery ($G_{\mathrm{eff}} > 0$), and the almost-commutative Noncommutative Standard Model spectral triple ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$).
 
 ---
 
@@ -269,47 +268,39 @@ graph TD
 
 ---
 
-## Observational Preprints & Monograph Suite (`papers/`)
+## Academic Monograph & Research Preprint (`papers/`)
 
-The repository includes two comprehensive academic preprints formatted in both GitHub Flavored Markdown and standard publication LaTeX (`.tex`):
+The repository includes a comprehensive mathematical physics monograph formatted in both GitHub Flavored Markdown and standard publication LaTeX (`.tex`):
 
-1. **Paper 1: Mathematical Physics & Spectral Geometry**
-   - **Markdown Preprint:** [`papers/paper1_spectral_geometry.md`](papers/paper1_spectral_geometry.md)
-   - **LaTeX Source:** [`papers/paper1_spectral_geometry.tex`](papers/paper1_spectral_geometry.tex)
-   - **Title:** *Spectral Geometry and Invariant Theory on the Poincaré Homology 3-Sphere: Character Projections, Heat Kernel Asymptotics, and Machine-Checked Verification*
-   - **Summary:** Rigorous mathematical foundations of $S^3/I^\ast$: $\mathrm{SU}(2)$ character Chebyshev recurrence over 9 conjugacy classes, Molien invariant projection selection rules ($m_0=1, m_1..m_5=0, m_6=1$ on $\mathrm{SO}(3)$ and 11-mode spinor gap on $\mathrm{SU}(2)$), Seeley--DeWitt coefficients ($a_0 = \sqrt{\pi}/480, a_2 = a_0, a_4 = a_0/2$), 4D Einstein--Hilbert action recovery ($G_{\mathrm{eff}} > 0$), and the almost-commutative Noncommutative Standard Model spectral triple ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$).
+- **Markdown Preprint:** [`papers/paper1_spectral_geometry.md`](papers/paper1_spectral_geometry.md)
+- **LaTeX Source:** [`papers/paper1_spectral_geometry.tex`](papers/paper1_spectral_geometry.tex)
+- **Title:** *Spectral Geometry and Invariant Theory on the Poincaré Homology 3-Sphere: Character Projections, Heat Kernel Asymptotics, and Machine-Checked Verification*
+- **Summary:** Rigorous mathematical foundations of $S^3/I^\ast$: $\mathrm{SU}(2)$ character Chebyshev recurrence over 9 conjugacy classes, Molien invariant projection selection rules ($m_0=1, m_1=\dots=m_5=0, m_6=1$ on $\mathrm{SO}(3)$ and 11-mode spinor gap on $\mathrm{SU}(2)$), Seeley--DeWitt heat kernel coefficients ($a_0 = \sqrt{\pi}/480, a_2 = a_0, a_4 = \sqrt{\pi}/960$), 4D Einstein--Hilbert action recovery ($G_{\mathrm{eff}} > 0$), and the almost-commutative Noncommutative Standard Model spectral triple ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$).
 
-2. **Paper 2: Observational Cosmology & Precision Data Concordance**
-   - **Markdown Preprint:** [`papers/paper2_cosmology.md`](papers/paper2_cosmology.md)
-   - **LaTeX Source:** [`papers/paper2_cosmology.tex`](papers/paper2_cosmology.tex)
-   - **Title:** *Cosmic Topology and Early Dark Energy: Harmonic Selection Rules and Joint Likelihood Constraints on Poincaré Dodecahedral Space*
-   - **Summary:** Observational cosmology and MCMC data analysis: joint likelihood constraints across Planck 2018/PR4 ($TT,TE,EE+\text{lowE}+\text{lensing}$), ACT DR4, SPT-3G, DESI 2024 BAO, Pantheon+ Type Ia Supernovae, DES Y3 / KiDS-1000 weak lensing shear, and SH0ES ($H_0 = 70.93 \pm 0.70\text{ km s}^{-1}\text{Mpc}^{-1}$ [MCMC posterior, $1.68\sigma$ residual pull] / $73.24 \pm 0.82\text{ km s}^{-1}\text{Mpc}^{-1}$ [fiducial], $\mathbf{S}_8 = 0.776 \pm 0.014$ [concordant with IDR damping at $0.00\sigma$ pull], $\Delta \chi^2 = -44.30$, $\Delta\mathrm{AIC} = -34.30$, and $\Delta\mathrm{BIC} = -21.48$ in compressed data space). Solves the 2nd-order relativistic linear growth ODE in logarithmic coordinates $u=\ln a$, evaluates conformal line-of-sight late-time ISW radial numerical quadrature ($I_\ell^{\mathrm{ISW}}(k)$) reducing quadrupole tension from $+9.70\sigma$ in flat $\Lambda\mathrm{CDM}$ down to $+1.48\sigma$ ($\mathcal{D}_2 \approx 379.4\ \mu\mathrm{K}^2$, $+155\ \mu\text{K}^2$ residual), applies Eisenstein & Hu (1998) transfer functions ($T_{\mathrm{EH98}}$, with Boltzmann calibration norm $\mathcal{C}_{\mathrm{norm}} = 1.162$) and 2-parameter phenomenological ETHOS / IDR dark acoustic damping envelopes ($T_{\mathrm{IDR}}$, $g_{\mathrm{dark}} \approx 0.151 \pm 0.035$, $\Delta N_{\mathrm{idr}} \approx 0.51 \pm 0.31$) to alleviate canonical EDE $S_8$ exacerbation down to $S_8 = 0.776 \pm 0.014$ ($0.7325$), establishes topology injectivity diameter $2 r_{\mathrm{inj}} \approx 40.0\text{-}90.9\text{ Gpc} > 2\chi_\ast \approx 28.0\text{ Gpc}$ explaining circles-in-the-sky null detections, reports exact converged production MCMC diagnostics (36,000 steps across 18 walkers, $\hat{R} \in [1.076, 1.142]$ with mean $\hat{R} = 1.114$, $34.8\%$ acceptance), windowed $\sigma_8$ top-hat quadrature, and formal Lean 4 verification of harmonic selection rules with zero sorries.
+To verify manuscript cross-consistency and KaTeX syntax:
+
+```powershell
+# Verify Markdown and LaTeX preprints cross-consistency and equation integrity
+python papers/verify_paper1.py
+
+# Audit Markdown and KaTeX compliance for GitHub rendering
+python papers/verify_markdown_katex.py
+```
 
 ---
 
-## Cosmology & Likelihood Concordance Suite (`cosmology/`)
+## Part III: The 4-Pillar Thurston 3-Manifold Atlas & Spectral Invariants (Paper 3)
 
-The Python cosmological pipeline provides high-performance Likelihood evaluation, exact numerical growth ODE integration, multi-model comparison, publication figure generation, and multi-chain MCMC posterior sampling:
+The repository includes the complete machine-checked formalization and accompanying monograph ([Paper 3: `papers/paper3_thurston_spectral_geometry.md`](papers/paper3_thurston_spectral_geometry.md)) covering all four canonical Thurston 3-manifold geometries:
 
-```powershell
-# Run the complete table verification suite (Table 1, Table 2, Table 3)
-python cosmology/verify_tables.py
-
-# Run the vectorized multi-model evaluation & fast MCMC probe
-python cosmology/run_quick_eval.py
-
-# Run full production MCMC sampling (4 chains x 50,000 samples)
-python cosmology/run_mcmc_production.py
-
-# Run comprehensive unit test suite (27 tests covering growth ODE, ISW, IDR, weak lensing, polarization)
-python -m unittest tests/test_cosmology.py
-
-# Generate publication-quality figures at 300 DPI (Fig 1, Fig 2, Fig 3 in PNG and PDF)
-python papers/generate_figures.py
-
-# Verify Markdown and LaTeX preprints cross-consistency and equation integrity
-python papers/verify_paper2.py
-```
+1. **Spherical Pillar** $\mathbb{S}^3$: Brieskorn Homology Spheres $\Sigma(p,q,r)$ & Quantum Invariants ([`Formalization/BrieskornSU2CharacterVariety/`](Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean))
+   - Exact rational Chern–Simons actions ($CS = -1/120, -169/120$), character variety $\mathcal{R}^\ast$, discrete partition sums, Lawrence–Zagier character $\chi_{120}$ antisymmetry, and false theta exponent matching $-\Delta(n) - 1/120 = CS$.
+2. **Hyperbolic Pillar** $\mathbb{H}^3$: The Weeks Manifold $\mathcal{W}$ ([`Formalization/WeeksManifold/`](Formalization/WeeksManifold.lean))
+   - 2-relator group $\pi_1(\mathcal{W})$, $H_1 \cong \mathbb{Z}_5 \oplus \mathbb{Z}_5$, minimal volume $\mathrm{Vol} \approx 0.9427$, invariant trace field $k = \mathbb{Q}(\theta)$ ($D = -23$), Chinburg–Hamilton–Long–Reid quaternion ramification, and Ramanujan–Selberg spectral gap $\lambda_1 \approx 27.80195 > 1$.
+3. **Euclidean Pillar** $\mathbb{E}^3$: The Hantzsche–Wendt Didicosm $G_6$ ([`Formalization/HantzscheWendt/`](Formalization/HantzscheWendt.lean))
+   - Bieberbach affine screw motions in $\mathrm{Isom}(\mathbb{R}^3)$, holonomy $H \cong \mathbb{Z}_2 \times \mathbb{Z}_2$, $H_1 \cong \mathbb{Z}_4 \oplus \mathbb{Z}_4$ ($b_1 = 0$), destructive Fourier parity interference, and the **Spectral Gap Doubling Theorem** $\lambda_1(G_6) = 2\lambda_1(T^3)$.
+4. **Nilpotent Pillar** $\mathrm{Nil}^3$: The Heisenberg Nilmanifold $N_3$ ([`Formalization/HeisenbergNilmanifold/`](Formalization/HeisenbergNilmanifold.lean))
+   - Upper unitriangular Heisenberg group $\mathcal{H}_3(\mathbb{Z})$ in $\mathrm{SL}_3(\mathbb{Z})$, center $Z \cong \mathbb{Z}$, circle bundle Euler class $e = 1$, continuous 2D torus base spectrum, discrete **Landau-level harmonic oscillator towers** $\lambda_{k,n} = 4\pi^2 k^2 + 2\pi |k|(2n+1)$, harmonic gap $\Delta\lambda = 2\pi > 0$, and mixed Ricci curvatures ($R = -1/2$).
 
 ---
 

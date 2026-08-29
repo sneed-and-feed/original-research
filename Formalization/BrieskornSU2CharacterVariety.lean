@@ -8,6 +8,7 @@ import Formalization.BrieskornSU2CharacterVariety.SphericalAngles
 import Formalization.BrieskornSU2CharacterVariety.RepresentationCounts
 import Formalization.BrieskornSU2CharacterVariety.CassonInvariant
 import Formalization.BrieskornSU2CharacterVariety.FrickeVogt
+import Formalization.BrieskornSU2CharacterVariety.ChernSimons
 
 /-!
 # SU(2) Character Varieties, Diophantine Angles & Casson Invariant Suite
@@ -15,8 +16,8 @@ import Formalization.BrieskornSU2CharacterVariety.FrickeVogt
 This master module aggregates the complete formalization of the theory of irreducible
 $SU(2)$ character varieties for Brieskorn homology 3-spheres $\Sigma(p, q, r)$, connecting
 Seifert sphere presentations to Diophantine spherical triangle angle inequalities, certified
-representation counts, the gauge-theoretic Casson invariant identification, and the Fricke-Vogt
-trace variety.
+representation counts, the gauge-theoretic Casson invariant identification, the Fricke-Vogt
+trace variety, and the exact Chern-Simons actions / Lawrence-Zagier false theta invariants.
 
 ## Mathematical Overview
 
@@ -67,6 +68,18 @@ $$\Phi(t_x, t_y, t_z) = t_x^2 + t_y^2 + t_z^2 + t_x t_y t_z - 4 = 0$$
 satisfying the discriminant identity:
 $$(2 t_z + t_x t_y)^2 - (4 - t_x^2)(4 - t_y^2) = 4 \Phi(t_x, t_y, t_z)$$
 
+### 6. Chern-Simons Action & Lawrence-Zagier / Hikami False Theta Invariants
+For rotation parameters $(a, b, c)$, the exact Chern-Simons action is:
+$$CS(p, q, r; a, b, c) = -\frac{(a q r + b p r + c p q - p q r)^2}{4 p q r} \in \mathbb{Q}$$
+- For $\Sigma(2, 3, 5)$: representations $(1, 1, 1)$ and $(1, 1, 3)$ yield $CS = -1/120$ and $-169/120$.
+- For $\Sigma(2, 3, 7)$: representations $(1, 1, 3)$ and $(1, 1, 5)$ yield $CS = -121/168$ and $-529/168$.
+- For $\Sigma(2, 3, 11)$: representations yield $CS = -49/264, -361/264, -961/264, -1849/264$.
+- For $\Sigma(2, 5, 7)$: representations yield $CS = -81/280, -289/280, -1369/280, -3249/280$.
+- Discrete Chern-Simons sums $\sum_{\rho \in \mathcal{R}^*} CS(\rho)$ are $-17/12, -325/84, -805/66, -1247/70$.
+- The Lawrence-Zagier character $\chi_{120}$ satisfies $\chi_{120}(n + 120) = \chi_{120}(n)$ and
+  $\chi_{120}(60 - n) = -\chi_{120}(n)$, with rational false theta exponents $\Delta(n) = \frac{n^2-1}{120}$
+  matching the Chern-Simons action via $-\Delta(n) - 1/120 = -n^2/120 = CS(2, 3, 5; a, b, c)$.
+
 ## Module Tree Structure
 
 1. **`Formalization.BrieskornSU2CharacterVariety.Basic`**:
@@ -108,12 +121,31 @@ $$(2 t_z + t_x t_y)^2 - (4 - t_x^2)(4 - t_y^2) = 4 \Phi(t_x, t_y, t_z)$$
    - `frickeVogt_boundary_zero_rat`: Vanishing on discriminant boundary.
    - `frickeVogt_order2_specialization`, `frickeVogt_order2_boundary_circle`: Specialization to $p = 2$.
 
+6. **`Formalization.BrieskornSU2CharacterVariety.ChernSimons`**:
+   - `chernSimonsNum`, `chernSimonsRat`, `chernSimonsModInt`, `chernSimonsModOne`: Chern-Simons action definitions.
+   - `irredRepSet_2_3_5_eq`, `irredRepSet_2_3_7_eq`, `irredRepSet_2_3_11_eq`, `irredRepSet_2_5_7_eq`: Explicit sets.
+   - `chernSimons_2_3_5_rep1`, `chernSimons_2_3_5_rep2`: Poincaré sphere evaluations $(-1/120, -169/120)$.
+   - `chernSimons_2_3_7_rep1`, `chernSimons_2_3_7_rep2`: $\Sigma(2, 3, 7)$ evaluations $(-121/168, -529/168)$.
+   - `chernSimons_2_3_11_rep1`..`rep4`: $\Sigma(2, 3, 11)$ evaluations $(-49/264, -361/264, -961/264, -1849/264)$.
+   - `chernSimons_2_5_7_rep1`..`rep4`: $\Sigma(2, 5, 7)$ evaluations $(-81/280, -289/280, -1369/280, -3249/280)$.
+   - `chernSimonsSumRat_2_3_5`, `chernSimonsSumRat_2_3_7`, `chernSimonsSumRat_2_3_11`, `chernSimonsSumRat_2_5_7`: Sums.
+   - `chi120`: Lawrence-Zagier Dirichlet-type false theta character of period 120.
+   - `chi120_periodic_60`, `chi120_periodic_120`, `chi120_neg`: Periodicity and reflection antisymmetry.
+   - `falseThetaExpRat`, `falseThetaExp_1`, `falseThetaExp_11`, `falseThetaExp_13`, `falseThetaExp_19`, `falseThetaExp_29`: Exponents.
+   - `cs_eq_falseThetaExp_rel`, `cs_2_3_5_rep1_falseTheta_match`, `cs_2_3_5_rep2_falseTheta_match`: Chern-Simons matching.
+
 ## Historical References
 
 - Casson, A. (1985). *Three-manifold invariants by gauge theory and representation spaces*.
 - Fintushel, R., & Stern, R. J. (1990). *Instanton homology of Seifert fibred homology three spheres*.
   Proceedings of the London Mathematical Society, 61(1), 109–137.
 - Fricke, R., & Klein, F. (1897). *Vorlesungen über die Theorie der automorphen Functionen*. Teubner.
+- Hikami, K. (2003). *Quantum Invariants, Modular Forms, and Mock Theta Functions*.
+  Letters in Mathematical Physics, 65(2), 105–123.
+- Kirk, P. A., & Klassen, E. P. (1990). *Chern-Simons invariants of 3-manifolds and representation spaces of knot groups*.
+  Mathematische Annalen, 287(1), 343–367.
+- Lawrence, R., & Zagier, D. (1999). *Modular forms and quantum invariants of 3-manifolds*.
+  Asian Journal of Mathematics, 3(1), 93–108.
 - Vogt, H. (1889). *Sur les invariants fondamentaux des équations différentielles linéaires du second ordre*.
   Annales Scientifiques de l'École Normale Supérieure, 6, 3–72.
 - Brieskorn, E. (1966). *Beispiele zur Differentialtopologie von Singularitäten*. Inventiones Mathematicae, 2(1), 1–14.
