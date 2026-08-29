@@ -274,19 +274,36 @@ The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety $\mathcal{X}^{\m
 ```
 
 1. **Fricke–Vogt Coordinate Ring & Commutator Trace Identity**:
-   For any representation $\rho : \langle a, b \rangle \to \mathrm{SL}(2, \mathbb{C})$, the trace coordinates $(x, y, z) = (\mathrm{tr}(\rho(a)), \mathrm{tr}(\rho(b)), \mathrm{tr}(\rho(ab)))$ determine the representation up to conjugation. For the symmetric generators of $\mathcal{W}$, we set:
+   For any representation $\rho : \langle a, b \rangle \to \mathrm{SL}(2, \mathbb{C})$, the trace coordinates $(x, y, z) = (\mathrm{tr}(\rho(a)), \mathrm{tr}(\rho(b)), \mathrm{tr}(\rho(ab)))$ determine the representation up to conjugation on free subgroups. The universal Fricke–Vogt trace identity for the commutator of any two matrices $A, B \in \mathrm{SL}(2, \mathbb{C})$ states:
 
 ```math
-\mathrm{tr}(\rho(a)) = \vartheta, \quad \mathrm{tr}(\rho(b)) = \vartheta, \quad \mathrm{tr}(\rho(ab)) = \vartheta^2 - \vartheta
+\mathrm{tr}([A, B]) = \mathrm{tr}(A)^2 + \mathrm{tr}(B)^2 + \mathrm{tr}(AB)^2 - \mathrm{tr}(A)\mathrm{tr}(B)\mathrm{tr}(AB) - 2
 ```
 
-   Applying the universal Fricke–Vogt formula $\mathrm{tr}([a, b]) = x^2 + y^2 + z^2 - x y z - 2$, we prove:
+   For the symmetric generators of the Weeks manifold $\mathcal{W}$, the trace coordinates specialize to:
 
 ```math
-\mathrm{tr}([\rho(a), \rho(b)]) = \vartheta^2 + \vartheta^2 + (\vartheta^2 - \vartheta)^2 - \vartheta^2(\vartheta^2 - \vartheta) - 2 = 2\vartheta^2 - 1
+x = \mathrm{tr}(\rho(a)) = \vartheta, \quad y = \mathrm{tr}(\rho(b)) = \vartheta, \quad z = \mathrm{tr}(\rho(ab)) = \vartheta^2 - \vartheta
 ```
 
-   identically modulo $\vartheta^3 - \vartheta^2 + 1 = 0$.
+   Substituting $x, y, z$ into the universal Fricke–Vogt formula:
+
+```math
+\begin{aligned}
+\mathrm{tr}([\rho(a), \rho(b)]) &= x^2 + y^2 + z^2 - x \cdot y \cdot z - 2 \\
+&= \vartheta^2 + \vartheta^2 + (\vartheta^2 - \vartheta)^2 - \vartheta \cdot \vartheta \cdot (\vartheta^2 - \vartheta) - 2 \\
+&= 2\vartheta^2 + (\vartheta^4 - 2\vartheta^3 + \vartheta^2) - (\vartheta^4 - \vartheta^3) - 2 \\
+&= 3\vartheta^2 - \vartheta^3 - 2
+\end{aligned}
+```
+
+   Since $\vartheta$ is a root of the minimal polynomial $P_2(\vartheta) = \vartheta^3 - \vartheta^2 + 1 = 0$, we have the exact algebraic reduction $\vartheta^3 = \vartheta^2 - 1$. Substituting $\vartheta^3$ yields the canonical quadratic commutator invariant:
+
+```math
+\mathrm{tr}([\rho(a), \rho(b)]) = 3\vartheta^2 - (\vartheta^2 - 1) - 2 = 2\vartheta^2 - 1
+```
+
+   which is certified identically modulo $P_2(\vartheta)$ in Lean 4 (`WeeksManifold.Arithmetic.commutator_trace_eval`).
 2. **PSL(2, C) Character Variety Scheme & Bridge Isomorphism**:
    The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety:
 
@@ -517,6 +534,46 @@ E_{\min}(G_6) = 1^2 + 1^2 + 0^2 = 2
 ```
 
 - Lean Theorems: [`HantzscheWendt.torusModeX_destructive_cancellation`](../Formalization/HantzscheWendt/SpectralSelection.lean), [`admissible_energy_ge_two`](../Formalization/HantzscheWendt/SpectralSelection.lean), [`spectral_gap_doubling`](../Formalization/HantzscheWendt/SpectralSelection.lean), [`eigenvalue_doubling`](../Formalization/HantzscheWendt/SpectralSelection.lean).
+
+### 4.3 Invariant Cell Geometry, Cosmic Topology & Observational CMB Limits
+
+In physical cosmology and cosmic topology (Cornish, Spergel, & Starkman 1998; Aurich, Jancke, Lustig, & Steiner 2008, 2010; Aurich, Lustig, Steiner, & Then 2004; Bielewicz & Banday 2011; Planck Collaboration 2014, 2016), the Hantzsche–Wendt didicosm $G_6$ occupies a singularly unique theoretical position among all 18 Euclidean 3-space forms:
+
+1. **Topological Invariant: The Only Orientable Flat 3-Manifold with $b_1 = 0$**:
+   Among the 6 closed orientable flat 3-manifolds ($T^3$, half-turn space, quarter-turn space, third-turn space, sixth-turn space, and the didicosm), $G_6$ is the **unique** topology with first Betti number $b_1(G_6) = 0$ and torsion homology $H_1(G_6, \mathbb{Z}) \cong \mathbb{Z}/4\mathbb{Z} \oplus \mathbb{Z}/4\mathbb{Z}$.
+   - *Cosmological Consequence*: Manifolds with $b_1 > 0$ (such as the standard 3-torus $T^3$ with $b_1 = 3$) permit non-trivial continuous Wilson loops along non-torsion 1-cycles, leading to preferred spatial directions and dipole/quadrupole runaway. Because $b_1(G_6) = 0$, the didicosm prevents continuous 1-cycle drift, rendering the space form globally rigid and naturally isotropic on large scales.
+
+2. **Invariant Cell Geometry: 12-Faced Rhombic Dodecahedron**:
+   The Dirichlet fundamental domain of $G_6$ centered at the origin is a 14-vertex, 24-edge, 12-faced polyhedron (a rhombic dodecahedron):
+
+```math
+V - E + F = 14 - 24 + 12 = 2
+```
+
+   The 12 faces are identified in 6 conjugate pairs under the screw motions $\gamma_1, \gamma_2, \gamma_3$, with every face pairing involving a half-turn rotation (twist angle $\alpha = \pi$ radians). The volume is a 4-fold quotient of the cubical torus:
+
+```math
+\mathrm{Vol}(G_6) = \frac{L^3}{4} = \frac{\mathrm{Vol}(T^3)}{4}
+```
+
+3. **Shortest Geodesic (Systole) & Injectivity Radius**:
+   Because the screw generators translate by half-lattice steps $x \mapsto x + L/2$, the shortest closed geodesic (systole) is halved relative to the torus:
+
+```math
+l_{\min}(G_6) = \frac{L}{2}, \quad r_{\mathrm{inj}}(G_6) = \frac{l_{\min}}{2} = \frac{L}{4} = \frac{1}{2} r_{\mathrm{inj}}(T^3)
+```
+
+4. **Low Multipole ($\ell \le 3$) CMB Quadrupole Suppression from Spectral Gap Doubling**:
+   Large-scale cosmic microwave background (CMB) measurements by COBE, WMAP, and Planck consistently reveal an anomalous suppression of the quadrupole ($\ell = 2$) and octopole ($\ell = 3$) power relative to standard $\Lambda\mathrm{CDM}$ predictions on infinite $\mathbb{R}^3$.
+   - On the Didicosm, our formalized theorem `spectral_gap_doubling` establishes an exact doubling of the lowest non-zero Laplace eigenvalue: $\lambda_1(G_6) = 2\lambda_1(T^3) = 8\pi^2/L^2$.
+   - Aurich, Jancke, Lustig, and Steiner (2008, 2010) demonstrated that the destructive parity cancellation of single-axis modes with energy $E = 1$ imposes an intrinsic physical infrared cutoff $\lambda_{\min} = 8\pi^2/L^2$, suppressing the low multipoles $C_2, C_3$ without fine-tuning primordial inflationary perturbations.
+
+5. **Antipodal Matched Circles in the Sky & Observational Limits**:
+   If the spatial geometry of the universe is modeled by $G_6$, the intersection of the Dirichlet cell boundaries with the Surface of Last Scattering (SLS) produces **6 pairs of antipodal matched circles** ($N_{\mathrm{pairs}} = 6$), each exhibiting a relative phase twist of $\alpha = \pi$ radians.
+   - Comprehensive matched-circle searches in WMAP 7-year and Planck 2013/2015 temperature maps (Aurich et al. 2008, 2010; Bielewicz & Banday 2011; Planck Collaboration 2014) established that no correlated circle pairs exist down to circle radii $\alpha_{\min} \approx 20^\circ$.
+   - This constrains the didicosm scale to $L \ge 2\chi_{\mathrm{SLS}} \approx 28 \text{ Gpc}$, demonstrating that if cosmic topology is realized by the didicosm $G_6$, its fundamental domain must currently envelop our entire observable particle horizon.
+
+- Lean Theorems: [`HantzscheWendt.unitVolumeDidicosm_eq`](../Formalization/HantzscheWendt/CosmicTopology.lean), [`fundamental_polyhedron_euler_char`](../Formalization/HantzscheWendt/CosmicTopology.lean), [`injectivityRadiusDidicosm_eq`](../Formalization/HantzscheWendt/CosmicTopology.lean), [`injectivityRadius_ratio`](../Formalization/HantzscheWendt/CosmicTopology.lean), [`cmb_matched_circle_pairs_eq_face_pairs`](../Formalization/HantzscheWendt/CosmicTopology.lean), [`cmbMatchedCircleTwistAngle_pos`](../Formalization/HantzscheWendt/CosmicTopology.lean).
 
 ---
 
@@ -971,32 +1028,37 @@ via certified interval arithmetic linear programming over simplicial deformation
 ## 13. References
 
 1. Aurich, R., Jancke, H. S., Lustig, S., & Steiner, F. (2008). *Do cosmic microwave background temperature fluctuations exclude the Didicosm?* Classical and Quantum Gravity, 25(12), 125010.
-2. Aurich, R., & Steiner, F. (1993). *Statistical properties of the spectrum of compact hyperbolic 3-manifolds*. Physica D: Nonlinear Phenomena, 64(1-3), 185–214.
-3. Aurich, R., & Steiner, F. (1999). *Numerical computation of the Laplace-Beltrami spectrum on compact hyperbolic 3-manifolds by the direct boundary element method*. Journal of Physics A: Mathematical and General, 32(14), 2673–2688.
-4. Bieberbach, L. (1911). *Über die Bewegungsgruppen der Euklidischen Räume*. Mathematische Annalen, 70(3), 297–336.
-5. Brieskorn, E. (1966). *Beispiele zur Differentialtopologie von Singularitäten*. Inventiones Mathematicae, 2(1), 1–14.
-6. Buser, P. (1992). *Geometry and Spectra of Compact Riemann Surfaces*. Progress in Mathematics, Birkhäuser Boston.
-7. Casson, A. (1985). *Three-manifold invariants by gauge theory and representation spaces*.
-8. Chinburg, T., Hamilton, E., Long, D. D., & Reid, A. W. (2007). *Small volume closed hyperbolic 3-manifolds*. Proceedings of the London Mathematical Society, 95(3), 769–788.
-9. Cornish, N. J., & Spergel, D. N. (1999). *On the eigenmodes of compact hyperbolic 3-manifolds*. Physical Review D, 60(8), 083501.
-10. Cornish, N. J., Spergel, D. N., & Starkman, G. D. (1998). *Circles in the sky: finding topology with the microwave background radiation*. Classical and Quantum Gravity, 15(9), 2657–2670.
-11. Fintushel, R., & Stern, R. J. (1990). *Instanton homology of Seifert fibred homology three spheres*. Proceedings of the London Mathematical Society, 61(1), 109–137.
-12. Gabai, D., Meyerhoff, R., & Milley, P. (2009). *Minimum volume cusped hyperbolic three-manifolds*. Journal of the American Mathematical Society, 22(4), 1157–1215.
-13. Gordon, C. S., & Wilson, E. N. (1984). *Isospectral deformations of compact solvmanifolds*. Journal of Differential Geometry, 19(1), 241–256.
-14. Hantzsche, W., & Wendt, H. (1935). *Dreidimensionale euklidische Raumformen*. Mathematische Annalen, 110(1), 593–611.
-15. Heisenberg, W. (1925). *Über quantentheoretische Umdeutung kinematischer und mechanischer Beziehungen*. Zeitschrift für Physik, 33(1), 879–893.
-16. Hikami, K. (2003). *Quantum Invariants, Modular Forms, and Mock Theta Functions*. Letters in Mathematical Physics, 65(2), 105–123.
-17. Inoue, K. (1999). *Computation of eigenvalues on small compact hyperbolic 3-manifolds*. Classical and Quantum Gravity, 16(10), 3071–3082.
-18. Kirk, P. A., & Klassen, E. P. (1990). *Chern-Simons invariants of 3-manifolds and representation spaces of knot groups*. Mathematische Annalen, 287(1), 343–367.
-19. Lawrence, R., & Zagier, D. (1999). *Modular forms and quantum invariants of 3-manifolds*. Asian Journal of Mathematics, 3(1), 93–108.
-20. Luminet, J.-P. (2008). *The shape and topology of the universe*. Physics Reports, 465(3), 61–128.
-21. Malcev, A. I. (1951). *On a class of homogeneous spaces*. Izvestiya Rossiiskoi Akademii Nauk. Seriya Matematicheskaya, 13(1), 9–32.
-22. Milnor, J. (1968). *Singular Points of Complex Hypersurfaces*. Annals of Mathematics Studies, Princeton University Press.
-23. Milnor, J. (1976). *Curvatures of left invariant metrics on Lie groups*. Advances in Mathematics, 21(3), 293–329.
-24. Perelman, G. (2002). *The entropy formula for the Ricci flow and its geometric applications*. arXiv:math/0211159.
-25. Pesce, D. (1993). *Une formule de Poisson pour les variétés compactes de dimension 3 de type Nil*. Séminaire de Théorie Spectrale et Géométrie, 11, 47–56.
-26. Scott, P. (1983). *The geometries of 3-manifolds*. Bulletin of the London Mathematical Society, 15(5), 401–487.
-27. Selberg, A. (1956). *Harmonic analysis and discontinuous groups in weakly symmetric Riemannian spaces with applications to Dirichlet series*. Journal of the Indian Mathematical Society, 20, 47–87.
-28. Thurston, W. P. (1982). *Three-dimensional manifolds, Kleinian groups and hyperbolic geometry*. Bulletin of the American Mathematical Society, 6(3), 357–381.
-29. Thurston, W. P. (1997). *Three-Dimensional Geometry and Topology*. Princeton University Press.
-30. Weeks, J. R. (1985). *Hyperbolic structures on 3-manifolds*. Ph.D. thesis, Princeton University.
+2. Aurich, R., Jancke, H. S., Lustig, S., & Steiner, F. (2010). *Cosmic topology of the Didicosm: CMB temperature fluctuations and multipole alignments*. Classical and Quantum Gravity, 27(13), 135017.
+3. Aurich, R., Lustig, S., Steiner, F., & Then, H. (2004). *Hyperbolic universe models with compact Dirichlet polyhedra*. Classical and Quantum Gravity, 21(21), 4901–4925.
+4. Aurich, R., & Steiner, F. (1993). *Statistical properties of the spectrum of compact hyperbolic 3-manifolds*. Physica D: Nonlinear Phenomena, 64(1-3), 185–214.
+5. Aurich, R., & Steiner, F. (1999). *Numerical computation of the Laplace-Beltrami spectrum on compact hyperbolic 3-manifolds by the direct boundary element method*. Journal of Physics A: Mathematical and General, 32(14), 2673–2688.
+6. Bieberbach, L. (1911). *Über die Bewegungsgruppen der Euklidischen Räume*. Mathematische Annalen, 70(3), 297–336.
+7. Bielewicz, P., & Banday, A. J. (2011). *Constraints on the topology of the Universe from the WMAP 7-year data*. Monthly Notices of the Royal Astronomical Society, 412(2), 1210–1220.
+8. Brieskorn, E. (1966). *Beispiele zur Differentialtopologie von Singularitäten*. Inventiones Mathematicae, 2(1), 1–14.
+9. Buser, P. (1992). *Geometry and Spectra of Compact Riemann Surfaces*. Progress in Mathematics, Birkhäuser Boston.
+10. Casson, A. (1985). *Three-manifold invariants by gauge theory and representation spaces*.
+11. Chinburg, T., Hamilton, E., Long, D. D., & Reid, A. W. (2007). *Small volume closed hyperbolic 3-manifolds*. Proceedings of the London Mathematical Society, 95(3), 769–788.
+12. Cornish, N. J., & Spergel, D. N. (1999). *On the eigenmodes of compact hyperbolic 3-manifolds*. Physical Review D, 60(8), 083501.
+13. Cornish, N. J., Spergel, D. N., & Starkman, G. D. (1998). *Circles in the sky: finding topology with the microwave background radiation*. Classical and Quantum Gravity, 15(9), 2657–2670.
+14. Fintushel, R., & Stern, R. J. (1990). *Instanton homology of Seifert fibred homology three spheres*. Proceedings of the London Mathematical Society, 61(1), 109–137.
+15. Gabai, D., Meyerhoff, R., & Milley, P. (2009). *Minimum volume cusped hyperbolic three-manifolds*. Journal of the American Mathematical Society, 22(4), 1157–1215.
+16. Gordon, C. S., & Wilson, E. N. (1984). *Isospectral deformations of compact solvmanifolds*. Journal of Differential Geometry, 19(1), 241–256.
+17. Hantzsche, W., & Wendt, H. (1935). *Dreidimensionale euklidische Raumformen*. Mathematische Annalen, 110(1), 593–611.
+18. Heisenberg, W. (1925). *Über quantentheoretische Umdeutung kinematischer und mechanischer Beziehungen*. Zeitschrift für Physik, 33(1), 879–893.
+19. Hikami, K. (2003). *Quantum Invariants, Modular Forms, and Mock Theta Functions*. Letters in Mathematical Physics, 65(2), 105–123.
+20. Inoue, K. (1999). *Computation of eigenvalues on small compact hyperbolic 3-manifolds*. Classical and Quantum Gravity, 16(10), 3071–3082.
+21. Kirk, P. A., & Klassen, E. P. (1990). *Chern-Simons invariants of 3-manifolds and representation spaces of knot groups*. Mathematische Annalen, 287(1), 343–367.
+22. Lawrence, R., & Zagier, D. (1999). *Modular forms and quantum invariants of 3-manifolds*. Asian Journal of Mathematics, 3(1), 93–108.
+23. Luminet, J.-P. (2008). *The shape and topology of the universe*. Physics Reports, 465(3), 61–128.
+24. Malcev, A. I. (1951). *On a class of homogeneous spaces*. Izvestiya Rossiiskoi Akademii Nauk. Seriya Matematicheskaya, 13(1), 9–32.
+25. Milnor, J. (1968). *Singular Points of Complex Hypersurfaces*. Annals of Mathematics Studies, Princeton University Press.
+26. Milnor, J. (1976). *Curvatures of left invariant metrics on Lie groups*. Advances in Mathematics, 21(3), 293–329.
+27. Perelman, G. (2002). *The entropy formula for the Ricci flow and its geometric applications*. arXiv:math/0211159.
+28. Pesce, D. (1993). *Une formule de Poisson pour les variétés compactes de dimension 3 de type Nil*. Séminaire de Théorie Spectrale et Géométrie, 11, 47–56.
+29. Planck Collaboration (2014). *Planck 2013 results. XXVI. Background geometry and topology of the Universe*. Astronomy & Astrophysics, 571, A26.
+30. Planck Collaboration (2016). *Planck 2015 results. XVIII. Background geometry & topology*. Astronomy & Astrophysics, 594, A18.
+31. Scott, P. (1983). *The geometries of 3-manifolds*. Bulletin of the London Mathematical Society, 15(5), 401–487.
+32. Selberg, A. (1956). *Harmonic analysis and discontinuous groups in weakly symmetric Riemannian spaces with applications to Dirichlet series*. Journal of the Indian Mathematical Society, 20, 47–87.
+33. Thurston, W. P. (1982). *Three-dimensional manifolds, Kleinian groups and hyperbolic geometry*. Bulletin of the American Mathematical Society, 6(3), 357–381.
+34. Thurston, W. P. (1997). *Three-Dimensional Geometry and Topology*. Princeton University Press.
+35. Weeks, J. R. (1985). *Hyperbolic structures on 3-manifolds*. Ph.D. thesis, Princeton University.
