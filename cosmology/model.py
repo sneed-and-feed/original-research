@@ -916,7 +916,12 @@ class PoincareEDEModel:
                     # In S^3/I*: Primordial mode vanishes (m_L^SO(3) = 0 for L in 2..5).
                     # Physical late-time ISW dominates the quadrupole, with smooth sub-horizon
                     # geometric projection from the first active harmonic L=6.
-                    p_ell = (ell / 6.0)**1.8 * 0.65
+                    # Explicit sub-horizon mode projection parameters:
+                    #   gamma_proj = 1.8  (geometric power-law scaling for mode leakage from L=6)
+                    #   A_proj = 0.65     (projection amplitude factor at the fundamental domain scale)
+                    gamma_proj: float = 1.8
+                    A_proj: float = 0.65
+                    p_ell = ((ell / 6.0) ** gamma_proj) * A_proj
                     D_proj = (D_flat - D_ell_isw) * p_ell
                     d_ell[ell] = float(D_ell_isw + D_proj)
                 else:

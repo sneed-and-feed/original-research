@@ -74,17 +74,17 @@ def build_models() -> Dict[str, Tuple[PoincareEDEModel, int, Dict[str, Any]]]:
     # Model 2: S^3 / I^* EDE Canonical (k=9)
     # --------------------------------------------------------------------------
     params_ede = CosmologicalParameters(
-        H0=73.24,
-        omega_b=0.02253,
-        omega_cdm=0.1302,
-        Omega_k=-0.0008,
-        f_EDE=0.122,
+        H0=70.93,
+        omega_b=0.02247,
+        omega_cdm=0.1565,
+        Omega_k=-0.0044,
+        f_EDE=0.110,
         log10_zc=3.560,
-        theta_i=2.78,
-        n_s=0.988,
+        theta_i=2.80,
+        n_s=0.9880,
         A_s=math.exp(3.062) * 1e-10,  # ln(10^10 A_s) = 3.062 -> ~2.1370e-9
-        w0=-0.950,
-        wa=-0.200,
+        w0=-0.586,
+        wa=-1.327,
         isw_leakage=0.18,
         use_poincare_topology=True,
         model_type="axion_ede"
@@ -101,19 +101,19 @@ def build_models() -> Dict[str, Tuple[PoincareEDEModel, int, Dict[str, Any]]]:
     # Model 3: S^3 / I^* + IDR / NEDE Concordance (k=11)
     # --------------------------------------------------------------------------
     params_idr = CosmologicalParameters(
-        H0=73.45,
-        omega_b=0.02258,
-        omega_cdm=0.1315,
-        Omega_k=-0.0008,
-        f_EDE=0.118,
-        log10_zc=3.580,
-        theta_i=2.82,
-        delta_N_idr=0.24,
-        g_dark_coupling=0.085,       # Tuned dark sector coupling matching log10(Gamma) ~ -2.15
-        n_s=0.991,
-        A_s=math.exp(3.068) * 1e-10,  # ln(10^10 A_s) = 3.068 -> ~2.1499e-9
-        w0=-0.950,
-        wa=-0.200,
+        H0=70.93,
+        omega_b=0.02247,
+        omega_cdm=0.1565,
+        Omega_k=-0.0044,
+        f_EDE=0.110,
+        log10_zc=3.560,
+        theta_i=2.80,
+        delta_N_idr=0.51,
+        g_dark_coupling=0.151,       # Converged dark sector coupling
+        n_s=0.9880,
+        A_s=math.exp(3.062) * 1e-10,  # ln(10^10 A_s) = 3.062 -> ~2.1370e-9
+        w0=-0.586,
+        wa=-1.327,
         isw_leakage=0.18,
         use_poincare_topology=True,
         model_type="idr"
