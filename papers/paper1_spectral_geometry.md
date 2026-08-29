@@ -116,7 +116,7 @@ Because $I^\ast$ acts freely (without fixed points) and isometrically via left-m
 
 Let $S^3(R_c)$ denote the round 3-sphere of physical curvature radius $R_c > 0$, endowed with the standard metric $g_{S^3}$. The quotient Riemannian metric on $S^3 / I^\ast$ inherits constant positive sectional curvature $K = +1/R_c^2$.
 
-> **Theorem 1.3 (Metric Invariants of** $S^3 / I^\ast$**).**  
+> **Theorem 1.3** (Metric Invariants of $S^3 / I^\ast$).  
 > For $S^3 / I^\ast$ equipped with the quotient metric induced from $S^3(R_c)$:
 > 1. **Riemannian Volume**:
 >
@@ -203,7 +203,7 @@ $$
 m_L^{\mathrm{SO}(3)} = m_{2L}^{\mathrm{SU}(2)}.
 $$
 
-> **Theorem 2.1 (Low-Multipole Invariant Vanishing & Emergence at** $L=6$**).**  
+> **Theorem 2.1** (Low-Multipole Invariant Vanishing & Emergence at $L=6$).  
 > Let $m_L^{\mathrm{SO}(3)}$ denote the invariant multiplicity of physical spherical harmonics on $S^3 / I^\ast$. Then:
 > 1. **Monopole**: $m_0^{\mathrm{SO}(3)} = 1$ (the homogeneous constant mode).
 > 2. $\text{Low-}L$ **Vanishing Theorem**:
@@ -340,7 +340,7 @@ $$
 a_0 = \frac{\mathrm{Vol}(M)}{(4 \pi)^{3/2}}, \quad a_2 = \frac{1}{(4 \pi)^{3/2}} \int_M \frac{\mathcal{R}}{6} d\mathrm{vol} = \frac{\mathcal{R}}{6} a_0.
 $$
 
-> **Theorem 3.1 (Exact Seeley--DeWitt Coefficients on** $S^3 / I^\ast$**).**  
+> **Theorem 3.1** (Exact Seeley--DeWitt Coefficients on $S^3 / I^\ast$).  
 > For the Poincaré Homology 3-Sphere $S^3 / I^\ast$ equipped with the round metric of unit radius ($R_c = 1$):
 > 1. **Leading Volume Coefficient**:
 >
@@ -389,7 +389,7 @@ $$
 a_4(M) = \frac{1}{(4\pi)^{3/2}} \frac{1}{360} \int_M \left( 5 \mathcal{R}^2 - 2 \lvert \mathrm{Ric} \rvert^2 + 2 \lvert \mathrm{Riem} \rvert^2 \right) d\mathrm{vol}.
 $$
 
-> **Theorem 3.2 (Exact Fourth Seeley--DeWitt Coefficient** $a_4$ **on** $S^3 / I^\ast$**).**  
+> **Theorem 3.2** (Exact Fourth Seeley--DeWitt Coefficient $a_4$ on $S^3 / I^\ast$).  
 > For the Poincaré Homology 3-Sphere $S^3 / I^\ast$ equipped with the unit round metric ($R_c = 1$):
 > 1. **Gilkey Integrand Evaluation**: With $\mathcal{R} = 6$, $\lvert \mathrm{Ric} \rvert^2 = 12$, and $\lvert \mathrm{Riem} \rvert^2 = 12$:
 >
@@ -611,7 +611,7 @@ $$
 \dim L_0^2(p^{-k} \mathbb{Z}_p^\times) = (p - 1) p^{k-1}, \quad \lambda_k = p^{\alpha k}.
 $$
 
-> **Theorem 5.1 (Exact Local** $p$**-Adic Heat Trace and Absolute Convergence).**  
+> **Theorem 5.1** (Exact Local $p$-Adic Heat Trace and Absolute Convergence).  
 > For every prime $p$ and $t > 0$, the local non-Archimedean heat kernel trace on $\mathbb{Z}_p$ evaluates to the absolutely convergent series:
 >
 > $$
