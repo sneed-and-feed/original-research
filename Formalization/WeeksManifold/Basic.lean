@@ -22,13 +22,13 @@ the unique closed orientable hyperbolic 3-manifold of minimal volume.
 1. **Fundamental Group Presentation**:
    The Weeks manifold is obtained via $(5,1), (5,2)$ Dehn surgery on the Whitehead link.
    Its fundamental group $\pi_1(\mathcal{W})$ admits the 2-generator 2-relator presentation:
-   $$\pi_1(\mathcal{W}) = \langle a, b \mid a^2 b^2 a b^2 a^2 b a b = 1, \; a b^2 a b a b^2 a b^2 = 1 \rangle$$
-   with relation words $w_1 = a^2 b^2 a b^2 a^2 b a b$ and $w_2 = a b^2 a b a b^2 a b^2$.
+   $$\pi_1(\mathcal{W}) = \langle a, b \mid a b a b a^{-1} b^2 a^{-1} b = 1, \; a b a b^{-1} a^2 b^{-1} a b = 1 \rangle$$
+   with relators $w_1 = a b a b a^{-1} b^2 a^{-1} b$ and $w_2 = a b a b^{-1} a^2 b^{-1} a b$.
 
 2. **First Homology and Abelianization**:
-   The abelianization of $\pi_1(\mathcal{W})$ yields the finite abelian group:
+   The abelianization of $\pi_1(\mathcal{W})$ via $M_{\mathrm{ab}} = \begin{pmatrix} 0 & 5 \\ 5 & 0 \end{pmatrix}$ ($\det = -25$) yields:
    $$H_1(\mathcal{W}, \mathbb{Z}) \cong \mathbb{Z}/5\mathbb{Z} \oplus \mathbb{Z}/5\mathbb{Z}$$
-   of order $|H_1(\mathcal{W}, \mathbb{Z})| = 25$ and first Betti number $b_1(\mathcal{W}) = 0$.
+   of order $|H_1(\mathcal{W}, \mathbb{Z})| = |\det(M_{\mathrm{ab}})| = 25$ and first Betti number $b_1(\mathcal{W}) = 0$.
 
 3. **Gabai-Meyerhoff-Milley (2009) Volume Minimality**:
    The hyperbolic volume of $\mathcal{W}$ is:
@@ -55,59 +55,54 @@ inductive Gen | a | b deriving DecidableEq, Repr
 /-- Word representation as a list of generator-exponent pairs. -/
 abbrev Word := List (Gen × ℤ)
 
-/-- The first fundamental relation word $w_1 = a^2 b^2 a b^2 a^2 b a b$. -/
+/-- The first fundamental relation word $w_1 = a b a b a^{-1} b^2 a^{-1} b$. -/
 def w1 : Word :=
-  [(Gen.a, 2), (Gen.b, 2), (Gen.a, 1), (Gen.b, 2),
-   (Gen.a, 2), (Gen.b, 1), (Gen.a, 1), (Gen.b, 1)]
+  [(Gen.a, 1), (Gen.b, 1), (Gen.a, 1), (Gen.b, 1),
+   (Gen.a, -1), (Gen.b, 2), (Gen.a, -1), (Gen.b, 1)]
 
-/-- The second fundamental relation word $w_2 = a b^2 a b a b^2 a b^2$. -/
+/-- The second fundamental relation word $w_2 = a b a b^{-1} a^2 b^{-1} a b$. -/
 def w2 : Word :=
-  [(Gen.a, 1), (Gen.b, 2), (Gen.a, 1), (Gen.b, 1),
-   (Gen.a, 1), (Gen.b, 2), (Gen.a, 1), (Gen.b, 2)]
+  [(Gen.a, 1), (Gen.b, 1), (Gen.a, 1), (Gen.b, -1),
+   (Gen.a, 2), (Gen.b, -1), (Gen.a, 1), (Gen.b, 1)]
 
-/-- Expanded positive letter sequence of $w_1 = a^2 b^2 a b^2 a^2 b a b$. -/
-def w1_letters : List Gen :=
-  [Gen.a, Gen.a, Gen.b, Gen.b, Gen.a, Gen.b, Gen.b,
-   Gen.a, Gen.a, Gen.b, Gen.a, Gen.b]
+/-- Syllable length of the first relator $w_1$ is 8. -/
+theorem w1_length : w1.length = 8 := rfl
 
-/-- Expanded positive letter sequence of $w_2 = a b^2 a b a b^2 a b^2$. -/
-def w2_letters : List Gen :=
-  [Gen.a, Gen.b, Gen.b, Gen.a, Gen.b, Gen.a, Gen.b, Gen.b,
-   Gen.a, Gen.b, Gen.b]
-
-/-- Word length of the first relator $w_1$ in positive generator syllables is 12. -/
-theorem w1_letters_length : w1_letters.length = 12 := rfl
-
-/-- Word length of the second relator $w_2$ in positive generator syllables is 11. -/
-theorem w2_letters_length : w2_letters.length = 11 := rfl
+/-- Syllable length of the second relator $w_2$ is 8. -/
+theorem w2_length : w2.length = 8 := rfl
 
 /-- Total exponent count of a generator `g` in a `Word`. -/
 def exponentSum (g : Gen) (w : Word) : ℤ :=
   (w.filter (fun p => p.1 == g)).foldl (fun acc p => acc + p.2) 0
 
-/-- Exponent sum of generator `a` in $w_1$ is 6: $2 + 1 + 2 + 1 = 6$. -/
-theorem w1_exponent_a : exponentSum Gen.a w1 = 6 := rfl
+/-- Exponent sum of generator `a` in $w_1$ is 0: $1 + 1 - 1 - 1 = 0$. -/
+theorem w1_exponent_a : exponentSum Gen.a w1 = 0 := rfl
 
-/-- Exponent sum of generator `b` in $w_1$ is 6: $2 + 2 + 1 + 1 = 6$. -/
-theorem w1_exponent_b : exponentSum Gen.b w1 = 6 := rfl
+/-- Exponent sum of generator `b` in $w_1$ is 5: $1 + 1 + 2 + 1 = 5$. -/
+theorem w1_exponent_b : exponentSum Gen.b w1 = 5 := rfl
 
-/-- Exponent sum of generator `a` in $w_2$ is 4: $1 + 1 + 1 + 1 = 4$. -/
-theorem w2_exponent_a : exponentSum Gen.a w2 = 4 := rfl
+/-- Exponent sum of generator `a` in $w_2$ is 5: $1 + 1 + 2 + 1 = 5$. -/
+theorem w2_exponent_a : exponentSum Gen.a w2 = 5 := rfl
 
-/-- Exponent sum of generator `b` in $w_2$ is 7: $2 + 1 + 2 + 2 = 7$. -/
-theorem w2_exponent_b : exponentSum Gen.b w2 = 7 := rfl
+/-- Exponent sum of generator `b` in $w_2$ is 0: $1 - 1 - 1 + 1 = 0$. -/
+theorem w2_exponent_b : exponentSum Gen.b w2 = 0 := rfl
 
-/-- Presentation matrix $M_{\mathrm{ab}} = \begin{pmatrix} 6 & 6 \\ 4 & 7 \end{pmatrix}$ for the relators in abelianization. -/
+/-- Presentation matrix $M_{\mathrm{ab}} = \begin{pmatrix} 0 & 5 \\ 5 & 0 \end{pmatrix}$ for the relators in abelianization. -/
 def presentationMatrixAbelian : Fin 2 → Fin 2 → ℤ
-  | 0, 0 => 6
-  | 0, 1 => 6
-  | 1, 0 => 4
-  | 1, 1 => 7
+  | 0, 0 => 0
+  | 0, 1 => 5
+  | 1, 0 => 5
+  | 1, 1 => 0
 
-/-- Determinant of the abelian presentation matrix is 18: $6 \times 7 - 6 \times 4 = 18$. -/
+/-- Determinant of the abelian presentation matrix is -25: $0 \times 0 - 5 \times 5 = -25$. -/
 theorem presentationMatrixAbelian_det :
     presentationMatrixAbelian 0 0 * presentationMatrixAbelian 1 1 -
-    presentationMatrixAbelian 0 1 * presentationMatrixAbelian 1 0 = 18 := rfl
+    presentationMatrixAbelian 0 1 * presentationMatrixAbelian 1 0 = -25 := rfl
+
+/-- Absolute determinant of the abelian presentation matrix is 25, matching $|H_1(\mathcal{W}, \mathbb{Z})| = 25$. -/
+theorem presentationMatrixAbelian_abs_det :
+    |presentationMatrixAbelian 0 0 * presentationMatrixAbelian 1 1 -
+     presentationMatrixAbelian 0 1 * presentationMatrixAbelian 1 0| = 25 := rfl
 
 /-! ### 2. First Homology Invariant $H_1(\mathcal{W}, \mathbb{Z})$ and Betti Number -/
 

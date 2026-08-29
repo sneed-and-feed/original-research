@@ -149,20 +149,20 @@ Evaluating at $n = 1$ and $n = 13$ yields the exact Chern–Simons invariants of
 The Weeks manifold $\mathcal{W}$ (also denoted $M003(-3,1)$ or `vol3`) is obtained via $(5,1), (5,2)$ Dehn surgery on the Whitehead link in $S^3$. Its fundamental group admits the 2-generator 2-relator presentation:
 
 ```math
-\pi_1(\mathcal{W}) = \langle a, b \mid a^2 b^2 a b^2 a^2 b a b = 1, \; a b^2 a b a b^2 a b^2 = 1 \rangle
+\pi_1(\mathcal{W}) = \langle a, b \mid a b a b a^{-1} b^2 a^{-1} b = 1, \; a b a b^{-1} a^2 b^{-1} a b = 1 \rangle
 ```
 
-with relator words $w_1, w_2$ (having syllable lengths 12 and 11, respectively).
+with relators $w_1 = a b a b a^{-1} b^2 a^{-1} b$ and $w_2 = a b a b^{-1} a^2 b^{-1} a b$.
 
 In `Formalization.WeeksManifold.Basic`, we verify:
-- Exponent sums: $\vec{w}_1 = (6, 6)^T, \vec{w}_2 = (4, 7)^T$.
+- Exponent sums: $\vec{w}_1 = (0, 5)^T, \vec{w}_2 = (5, 0)^T$.
 - Abelian presentation matrix:
   ```math
-  M_{\mathrm{ab}} = \begin{pmatrix} 6 & 6 \\ 4 & 7 \end{pmatrix}, \quad \det(M_{\mathrm{ab}}) = 42 - 24 = 18
+  M_{\mathrm{ab}} = \begin{pmatrix} 0 & 5 \\ 5 & 0 \end{pmatrix}, \quad \det(M_{\mathrm{ab}}) = -25, \quad |\det(M_{\mathrm{ab}})| = 25
   ```
-- Smith normal form invariant factors: $[1, 18]$ on generators vs torsion structure:
+- Smith normal form invariant factors: $[5, 5]$ yielding:
   ```math
-  H_1(\mathcal{W}, \mathbb{Z}) \cong \mathbb{Z}/5\mathbb{Z} \oplus \mathbb{Z}/5\mathbb{Z}, \quad |H_1(\mathcal{W}, \mathbb{Z})| = 25, \quad b_1(\mathcal{W}) = 0
+  H_1(\mathcal{W}, \mathbb{Z}) = \mathbb{Z}^2 / \mathrm{Im}(M_{\mathrm{ab}}) \cong \mathbb{Z}/5\mathbb{Z} \oplus \mathbb{Z}/5\mathbb{Z}, \quad |H_1(\mathcal{W}, \mathbb{Z})| = 25, \quad b_1(\mathcal{W}) = 0
   ```
 - Gabai–Meyerhoff–Milley (2009) volume minimality:
   ```math
@@ -171,7 +171,7 @@ In `Formalization.WeeksManifold.Basic`, we verify:
 - Systole: $l_{\min} \approx 0.58463354$. Injectivity radius: $r_{\mathrm{inj}} \approx 0.29231677$.
 - Exact rational Chern–Simons invariant: $\mathrm{CS}(\mathcal{W}) = -1/18 \equiv 17/18 \pmod 1$.
 
-- Lean Theorems: [`WeeksManifold.w1_letters_length`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`presentationMatrixAbelian_det`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`weeksHomology_order`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`volume_lt_Meyerhoff`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`chernSimons_mul_eighteen`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean).
+- Lean Theorems: [`WeeksManifold.w1_length`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`presentationMatrixAbelian_det`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`presentationMatrixAbelian_abs_det`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`weeksHomology_order`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`volume_lt_Meyerhoff`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`chernSimons_mul_eighteen`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean).
 
 ### 3.2 Invariant Trace Field & Quaternion Algebra Ramification
 

@@ -16,12 +16,12 @@ minimal volume:
 
 1. **`Formalization.WeeksManifold.Basic`**:
    - **Fundamental Group Presentation**:
-     $$\pi_1(\mathcal{W}) = \langle a, b \mid a^2 b^2 a b^2 a^2 b a b = 1, \; a b^2 a b a b^2 a b^2 = 1 \rangle$$
-     with relator words $w_1$ (length 12) and $w_2$ (length 11), and abelian presentation matrix
-     $M_{\mathrm{ab}} = \begin{pmatrix} 6 & 6 \\ 4 & 7 \end{pmatrix}$ ($\det = 18$).
+     $$\pi_1(\mathcal{W}) = \langle a, b \mid a b a b a^{-1} b^2 a^{-1} b = 1, \; a b a b^{-1} a^2 b^{-1} a b = 1 \rangle$$
+     with relators $w_1, w_2$ (syllable length 8), and abelian presentation matrix
+     $M_{\mathrm{ab}} = \begin{pmatrix} 0 & 5 \\ 5 & 0 \end{pmatrix}$ ($\det = -25, |\det| = 25$).
    - **First Homology**:
      $$H_1(\mathcal{W}, \mathbb{Z}) \cong \mathbb{Z}/5\mathbb{Z} \oplus \mathbb{Z}/5\mathbb{Z}$$
-     of order 25 and first Betti number $b_1(\mathcal{W}) = 0$.
+     of order $|H_1| = |\det(M_{\mathrm{ab}})| = 25$ and first Betti number $b_1(\mathcal{W}) = 0$.
    - **Volume Minimality (Gabai-Meyerhoff-Milley 2009)**:
      $$\mathrm{Vol}(\mathcal{W}) \approx 0.9427073627769...$$
      strictly smaller than the Meyerhoff manifold ($\approx 0.98137$) and Gieseking manifold ($\approx 1.01494$).
