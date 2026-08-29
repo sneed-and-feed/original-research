@@ -12,7 +12,7 @@
 We present a unified mathematical treatise and machine-checked formalization in Lean 4 of the spectral invariants, discrete group representations, curvature tensors, and topological obstructions characterizing closed 3-manifolds across all eight canonical Thurston model geometries: **Spherical** ($\mathbb{S}^3$), **Hyperbolic** ($\mathbb{H}^3$), **Euclidean** ($\mathbb{E}^3$), **Nilpotent** ($\mathrm{Nil}^3$), **Solvable** ($\mathrm{Sol}^3$), **Universal Cover** ($\widetilde{\mathrm{SL}}_2(\mathbb{R})$), **Spherical Cylinder** ($\mathbb{S}^2 \times \mathbb{R}$), and **Hyperbolic Cylinder** ($\mathbb{H}^2 \times \mathbb{R}$).
 
 1. **Spherical Geometry** ($\mathbb{S}^3$): We formalize the Diophantine classification of Seifert homology spheres $\Sigma(p,q,r)$, the Fintushel–Stern and Kirk–Klassen exact rational Chern–Simons actions on isolated irreducible $\mathrm{SU}(2)$ character varieties $\mathcal{R}^\ast(\Sigma(p,q,r))$, the stationary phase partition sums, and their connection to Lawrence–Zagier false theta characters $\chi_{120}$ and rational exponents $-\Delta(n) - 1/120$.
-2. **Hyperbolic Geometry** ($\mathbb{H}^3$): We formalize the Weeks manifold $\mathcal{W}$ (minimal volume $\mathrm{Vol}(\mathcal{W}) \approx 0.942707$), its fundamental group $\pi_1(\mathcal{W})$, homology $H_1(\mathcal{W}, \mathbb{Z}) \cong \mathbb{Z}_5 \oplus \mathbb{Z}_5$, invariant cubic trace field $k = \mathbb{Q}(\theta)$ with discriminant $\mathrm{Disc} = -23$, Chinburg–Hamilton–Long–Reid quaternion ramification, and the Ramanujan–Selberg spectral gap $\lambda_1(\mathcal{W}) \approx 27.80195 > 1$.
+2. **Hyperbolic Geometry** ($\mathbb{H}^3$): We formalize the Weeks manifold $\mathcal{W}$ (minimal volume $\mathrm{Vol} \approx 0.942707$), fundamental group $\pi_1$, homology $H_1 \cong (\mathbb{Z}/5\mathbb{Z})^2$, invariant cubic trace field $k = \mathbb{Q}(\theta)$ ($\mathrm{Disc} = -23$), the tri-polynomial disambiguation ($P_1, P_2, P_3$), the 12-point character variety decomposition under $(\mathbb{Z}/2\mathbb{Z})^2$ spin-lift action, quaternion algebra ramification, and the Ramanujan–Selberg spectral gap $\lambda_1 \approx 27.80195 > 1$.
 3. **Euclidean Geometry** ($\mathbb{E}^3$): We formalize the Hantzsche–Wendt didicosm $G_6$ (the unique closed orientable flat 3-manifold with first Betti number $b_1 = 0$), establishing the Spectral Gap Doubling Theorem $\lambda_1(G_6) = 2\lambda_1(T^3) = 8\pi^2/L^2$ via destructive Fourier parity interference under affine screw-motions.
 4. **Nilpotent Geometry** ($\mathrm{Nil}^3$): We formalize the Heisenberg nilmanifold $N_3$ as a principal circle bundle over $T^2$ with Euler class $e = 1$, deriving the discrete Landau harmonic oscillator spectral towers with exact spectral gap $\Delta\lambda_{\mathrm{HO}} = 2\pi > 0$, ground state $\lambda_1 = 4\pi^2$, and scalar curvature $R = -1/2$.
 5. **Solvable Geometry** ($\mathrm{Sol}^3$): We formalize the Fibonacci Anosov solvmanifold $M_A = T^2 \rtimes_A S^1$, its unimodular matrix representation, golden ratio spectrum $\lambda_1 = \varphi^2$, Lyapunov exponent $\mu = 2\ln\varphi > 0$, mixed sectional curvatures $K \in \{-1, +1\}$, scalar curvature $R = -2$, and fundamental fiber spectral gap $\lambda_{0,1} = (2\pi / (2\ln\varphi))^2 > 0$.
@@ -181,60 +181,108 @@ In `Formalization.WeeksManifold.Basic`, we verify:
 
 - Lean Theorems: [`WeeksManifold.w1_length`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`presentationMatrixAbelian_det`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`presentationMatrixAbelian_abs_det`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`weeksHomology_order`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`volume_lt_Meyerhoff`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`chernSimons_mul_eighteen`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean).
 
-### 3.2 Invariant Trace Field & Quaternion Algebra Ramification
+### 3.2 Invariant Trace Field Polynomial Disambiguation & Change of Primitive Generator
 
-In `Formalization.WeeksManifold.Arithmetic`, we formalize the invariant trace field $k = \mathbb{Q}(\theta)$ defined by the monic cubic polynomial:
+The invariant trace field $k = \mathbb{Q}(\theta)$ of the Weeks manifold is the unique non-totally real cubic number field of minimal absolute discriminant:
 
 ```math
-P(x) = x^3 - x^2 + 1
+d_k = -23, \quad |d_k| = 23
 ```
 
-- Discriminant: $\mathrm{Disc}(P) = -23$. Since $-23 < 0$, $P(x)$ has signature $(r_1, r_2) = (1, 1)$ (1 real root $\theta_0 \approx -0.754878$ and 1 pair of complex conjugate roots $\theta_{1,2} \approx 0.877439 \pm 0.744862 i$).
-- Arithmetic Minimality (Chinburg–Friedman–Jones–Reid 2001, Chinburg–Hamilton–Long–Reid 2008): The invariant quaternion algebra $A$ over $k$ is ramified at exactly 2 places: the unique real embedding $\sigma : k \hookrightarrow \mathbb{R}$ and the unique dyadic prime ideal $\mathfrak{p}_2 \subset \mathcal{O}_k$ of norm 2. This satisfies the Albert–Brauer–Hasse–Noether parity condition:
+In the literature, three different defining monic cubic polynomials are standardly employed to represent the cubic field $k$:
+
+1. **Plastic / Minimal Pisot Cubic** ($P_1(T)$):
+   ```math
+   P_1(T) = T^3 - T - 1 = 0
+   ```
+   with discriminant $\mathrm{Disc}(P_1) = -4(0)^3 - 27(-1)^2 - 4(-1)^3 = 4 - 27 = -23$. The unique real root $T_0 \approx 1.324717957...$ is the *plastic number* (the smallest Pisot–Vijayaraghavan number).
+2. **Weeks / SnapPea Trace Polynomial** ($P_2(\vartheta)$):
+   ```math
+   P_2(\vartheta) = \vartheta^3 - \vartheta^2 + 1 = 0
+   ```
+   with discriminant $\mathrm{Disc}(P_2) = (-1)^2(0)^2 - 4(1)(0)^3 - 4(-1)^3(1) - 27(1)^2(1)^2 + 18(1)(-1)(0)(1) = 4 - 27 = -23$. The unique real root is $\vartheta_0 \approx -0.754877666... \in (-1, 0)$, and the two complex conjugate roots are $\vartheta_1, \vartheta_2 \approx 0.877439 \pm 0.744862 i$.
+3. **Neumann Trace Polynomial** ($P_3(x)$):
+   ```math
+   P_3(x) = x^3 - x + 1 = 0
+   ```
+   with discriminant $\mathrm{Disc}(P_3) = 4 - 27 = -23$ and unique real root $x_0 = -T_0 \approx -1.324717957...$
+
+#### Canonical Algebraic Change-of-Variables & Isomorphisms
+
+In `Formalization.WeeksManifold.Arithmetic`, we formally prove that all three polynomial generators generate isomorphic cubic number fields $k \cong \mathbb{Q}(T) \cong \mathbb{Q}(\vartheta) \cong \mathbb{Q}(x)$ via the explicit algebraic change-of-variable formulas in any commutative ring $R$:
+
+```math
+x = -T, \quad \vartheta = -\frac{1}{T} = 1 - T^2, \quad T = -\frac{1}{\vartheta} = \vartheta^2 - \vartheta, \quad \vartheta = \frac{1}{x} = 1 - x^2, \quad x = \frac{1}{\vartheta} = \vartheta - \vartheta^2
+```
+
+We establish exact algebraic inversion roundtrips modulo the defining ideals:
+
+```math
+(1 - T^2)^2 - (1 - T^2) \equiv T \pmod{T^3 - T - 1}
+```
+```math
+1 - (\vartheta^2 - \vartheta)^2 \equiv \vartheta \pmod{\vartheta^3 - \vartheta^2 + 1}
+```
+```math
+1 - (\vartheta - \vartheta^2)^2 \equiv \vartheta \pmod{\vartheta^3 - \vartheta^2 + 1}
+```
+
+- **Signature & Root Distribution**: Since $\mathrm{Disc} = -23 < 0$, the signature is $(r_1, r_2) = (1, 1)$, with degree $[k : \mathbb{Q}] = r_1 + 2r_2 = 3$.
+- **Chinburg–Hamilton–Long–Reid (2007) Arithmetic Minimality**: The invariant quaternion algebra $A$ over $k$ is ramified at exactly two places: the real archimedean place and the unique dyadic prime ideal $\mathfrak{p}_2 \subset \mathcal{O}_k$ of norm 2, satisfying:
   ```math
-  |\mathrm{Ram}(A)| = 2 \equiv 0 \pmod 2
+  \lvert\mathrm{Ram}(A)\rvert = 2 \equiv 0 \pmod 2
   ```
-- Borel Volume Formula:
+- **Borel Volume Formula**:
   ```math
   \mathrm{Vol}(\mathcal{W}) = \frac{23^{3/2}}{4\pi^2} \zeta_k(2) \approx 0.94270736...
   ```
   where $\zeta_k(s)$ is the Dedekind zeta function of the cubic field $k = \mathbb{Q}(\theta)$.
 
-- Lean Theorems: [`WeeksManifold.Arithmetic.weeksCubic_discriminant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`real_root_bracket`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`totalRamifiedPlaces_eq_two`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`borel_volume_consistency`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean).
+- Lean Theorems: [`WeeksManifold.Arithmetic.plasticCubic_discriminant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`weeksCubic_discriminant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`neumannCubic_discriminant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`cubic_discriminant_triplet_eq`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`plastic_to_weeks`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`weeks_to_plastic`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`neumann_to_weeks`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`weeks_to_neumann`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`plastic_weeks_roundtrip`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`weeks_plastic_roundtrip`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`totalRamifiedPlaces_eq_two`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`borel_volume_consistency`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean).
 
-### 3.3 Discrete Faithful Representation & Character Variety Rigidity
+### 3.3 Rigorous Character Variety Cardinality & Character Scheme Formalization
 
-The geometric holonomy representation:
+The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety $\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}(2, \mathbb{C}))$ and its affine $\mathrm{SL}(2, \mathbb{C})$ lift variety are formalized via the Fricke–Vogt trace coordinates on the 2-relator presentation:
 
 ```math
-\rho_{\mathrm{geom}} : \pi_1(\mathcal{W}) \longrightarrow \mathrm{PSL}(2, \mathbb{C})
+\pi_1(\mathcal{W}) = \langle a, b \mid w_1 = 1, \; w_2 = 1 \rangle
 ```
 
-lifts to an explicit matrix representation in $\mathrm{SL}(2, \mathcal{O}_k)$, where $\mathcal{O}_k = \mathbb{Z}[\theta]$ is the maximal order of the cubic field $k = \mathbb{Q}(\theta)$.
-
-
-1. **Fricke–Vogt Trace Coordinates**:
-   The traces of the canonical generators and their product evaluate to:
+1. **Fricke–Vogt Coordinate Ring & Master Commutator Trace Theorem**:
+   For any representation $\rho : \langle a, b \rangle \to \mathrm{SL}(2, \mathbb{C})$, the trace coordinates $(x, y, z) = (\mathrm{tr}(\rho(a)), \mathrm{tr}(\rho(b)), \mathrm{tr}(\rho(ab)))$ determine the representation up to conjugation. For the symmetric generators of $\mathcal{W}$, we set:
    ```math
-   \mathrm{tr}(\rho(a)) = \theta, \quad \mathrm{tr}(\rho(b)) = \theta, \quad \mathrm{tr}(\rho(ab)) = \theta^2 - \theta
+   \mathrm{tr}(\rho(a)) = \vartheta, \quad \mathrm{tr}(\rho(b)) = \vartheta, \quad \mathrm{tr}(\rho(ab)) = \vartheta^2 - \vartheta
    ```
-2. **Master Commutator Trace Theorem**:
-   Applying the Fricke identity $\mathrm{tr}([A,B]) = \mathrm{tr}(A)^2 + \mathrm{tr}(B)^2 + \mathrm{tr}(AB)^2 - \mathrm{tr}(A)\mathrm{tr}(B)\mathrm{tr}(AB) - 2$, the commutator trace evaluates in the coordinate ring $\mathbb{Z}[\theta]/(\theta^3 - \theta^2 + 1)$ to:
+   Applying the universal Fricke–Vogt formula $\mathrm{tr}([a, b]) = x^2 + y^2 + z^2 - x y z - 2$, we prove:
    ```math
-   \mathrm{tr}([\rho(a), \rho(b)]) = \theta^2 + \theta^2 + (\theta^2 - \theta)^2 - \theta^2(\theta^2 - \theta) - 2 = 2\theta^2 - 1
+   \mathrm{tr}([\rho(a), \rho(b)]) = \vartheta^2 + \vartheta^2 + (\vartheta^2 - \vartheta)^2 - \vartheta^2(\vartheta^2 - \vartheta) - 2 = 2\vartheta^2 - 1
    ```
-   evaluated at $\theta_{1,2} \approx 0.8774 \pm 0.7449 i$ to $\mathrm{tr}([\rho(a),\rho(b)]) \approx -0.5698 \pm 2.6143 i \ne 2$, proving the representation is non-abelian, irreducible, and non-elementary.
-3. **Relator Evaluation & Spin-Lift Classification**:
-   Evaluating the relator words in $\mathrm{SL}(2, \mathbb{C})$ yields:
+   identically modulo $\vartheta^3 - \vartheta^2 + 1 = 0$.
+2. $\mathrm{PSL}(2, \mathbb{C})$ **Character Variety Scheme**:
+   The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety:
    ```math
-   \rho(w_1) = +I, \quad \rho(w_2) = +I
+   \mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}(2, \mathbb{C})) = \mathrm{Hom}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}(2, \mathbb{C})) // \mathrm{PGL}(2, \mathbb{C})
    ```
-   The representation variety $\mathcal{R}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C}))$ decomposes into exactly 12 isolated 0-dimensional points ($3 \times 4 = 12$):
-   - 3 Galois conjugate representations into $\mathrm{SL}(2, k)$ corresponding to the 3 roots of $\theta^3 - \theta^2 + 1 = 0$ (1 real representation, 2 complex conjugate representations $\rho_{\mathrm{geom}}, \overline{\rho}_{\mathrm{geom}}$).
-   - 4 spin lifts per Galois point corresponding to the sign choices $(\epsilon_1, \epsilon_2) \in \{\pm 1\}^2$ for $(\rho(w_1), \rho(w_2))$.
-   In $\mathrm{PSL}(2, \mathbb{C})$, all 4 spin lifts project to the exact same 3 Galois-rigid points, proving that the geometric holonomy representation is uniquely pinned down and algebraically rigid.
+   is a 0-dimensional scheme consisting of exactly **3 isolated Galois-conjugate points** over $\mathbb{C}$:
+   - **Real Non-Discrete Point**: $\vartheta_0 \approx -0.75488$, with $\mathrm{tr}([\rho(a), \rho(b)]) \approx 0.1396 \in (-2, 2)$ (elliptic/non-discrete).
+   - **Discrete Faithful Geometric Holonomies**: The complex conjugate roots satisfy:
+     ```math
+     \vartheta_1, \vartheta_2 \approx 0.877439 \pm 0.744862 i, \quad \mathrm{tr}([\rho(a), \rho(b)]) \approx -0.5698 \pm 2.6143 i \notin [-2, 2]
+     ```
+     defining the unique hyperbolic holonomy representation and its complex conjugate.
+3. **Central Spin-Lift Cohomology Action &** $\mathrm{SL}(2, \mathbb{C})$ **Character Variety**:
+   Lifting a representation from $\mathrm{PSL}(2, \mathbb{C})$ to $\mathrm{SL}(2, \mathbb{C})$ allows independent sign choices on the two relators $\rho(w_1) = \epsilon_1 I, \rho(w_2) = \epsilon_2 I$ with $(\epsilon_1, \epsilon_2) \in \{\pm 1\}^2$.
+   The central spin-lift cohomology group:
+   ```math
+   H^1(\mathcal{W}_{\mathrm{rel}}, \mathbb{Z}/2\mathbb{Z}) \cong (\mathbb{Z}/2\mathbb{Z})^2, \quad |H^1| = 4
+   ```
+   acts freely and transitively on the 4 lifts over each Galois point. Consequently, the affine character variety $\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C}))$ decomposes into exactly **12 isolated points**:
+   ```math
+   |\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C}))| = 3 \times 4 = 12
+   ```
+   consisting of 3 fibers of 4 spin lifts each, with exactly one true $\mathrm{SL}(2, \mathbb{C})$ representation ($(\epsilon_1, \epsilon_2) = (+1, +1)$) per Galois branch.
 
-- Lean Theorems: [`WeeksManifold.Arithmetic.weeks_commutator_trace`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_card_eq_twelve`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean).
+- Lean Theorems: [`WeeksManifold.Arithmetic.weeks_commutator_trace`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_card_eq_three`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`spin_lifts_per_representation_eq_four`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_card_eq_twelve`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`fiber_card_eq_four`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`fiber_spin_bijective`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`spin_injection_injective`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean).
 
 ### 3.4 Laplace Spectrum & Ramanujan–Selberg Spectral Gap
 

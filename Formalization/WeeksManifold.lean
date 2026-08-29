@@ -31,16 +31,26 @@ minimal volume:
      $$\mathrm{CS}(\mathcal{W}) = -\frac{1}{18} \equiv \frac{17}{18} \pmod 1.$$
 
 2. **`Formalization.WeeksManifold.Arithmetic`**:
-   - **Defining Cubic Polynomial & Field Discriminant**:
-     $$P(x) = x^3 - x^2 + 1, \quad \mathrm{Disc}(P) = -23$$
-     Monic, integer-irreducible, with minimal absolute discriminant $|\Delta| = 23$ among complex cubic fields.
+   - **Polynomial Disambiguation & Discriminant Triplet**:
+     The invariant trace field $k = \mathbb{Q}(\theta)$ has minimal absolute discriminant $|\Delta| = 23$.
+     All three standard literature polynomials share identical discriminant $\mathrm{Disc} = -23$:
+     * $P_1(T) = T^3 - T - 1 = 0$ (canonical plastic / minimal Pisot cubic)
+     * $P_2(\vartheta) = \vartheta^3 - \vartheta^2 + 1 = 0$ (Weeks / SnapPea trace polynomial)
+     * $P_3(x) = x^3 - x + 1 = 0$ (Neumann trace polynomial)
+     with algebraic change-of-variables: $x = -T, \vartheta = 1 - T^2 = -1/T, T = \vartheta^2 - \vartheta = -1/\vartheta, \vartheta = 1 - x^2 = 1/x$.
    - **Root Distribution & Signature**:
-     Signature $(r_1, r_2) = (1, 1)$, with unique real root $\theta_0 \approx -0.75488 \in (-1, 0)$
+     Signature $(r_1, r_2) = (1, 1)$, with unique real root $\vartheta_0 \approx -0.75488 \in (-1, 0)$
      and 1 pair of complex conjugate roots.
    - **Arithmetic Minimality (Chinburg-Hamilton-Long-Reid 2007)**:
      Invariant trace field $k = \mathbb{Q}(\theta)$ with $[k : \mathbb{Q}] = 3$. The invariant
      quaternion algebra $A$ is ramified at exactly 2 places: the unique real embedding and the unique
      dyadic place $\mathfrak{p}_2$ over 2.
+   - **Fricke-Vogt Character Variety Decomposition**:
+     * Irreducible $\mathrm{PSL}_2(\mathbb{C})$ character variety $\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}_2(\mathbb{C}))$
+       has exactly 3 isolated points (1 real, 2 complex conjugate discrete faithful holonomies).
+     * The central spin-lift cohomology group $H^1(\mathcal{W}_{\mathrm{rel}}, \mathbb{Z}/2\mathbb{Z}) \cong (\mathbb{Z}/2\mathbb{Z})^2$ of order 4
+       acts freely and transitively on the lifts of each Galois point, yielding exactly $3 \times 4 = 12$ isolated points
+       in $\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}_2(\mathbb{C}))$.
    - **Borel Volume Formula**:
      $$\mathrm{Vol}(\mathcal{W}) = \frac{23^{3/2}}{4\pi^2} \zeta_k(2) \approx 0.942707...$$
 

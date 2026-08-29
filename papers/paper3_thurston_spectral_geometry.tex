@@ -62,15 +62,31 @@ The fundamental group admits the canonical 2-generator 2-relator presentation:
 \end{equation}
 with relators $w_1, w_2$ of syllable length 8, abelianization matrix $M_{\mathrm{ab}} = \begin{pmatrix} 0 & 5 \\ 5 & 0 \end{pmatrix}$ ($\det = -25$), and first homology $H_1(\mathcal{W}, \mathbb{Z}) \cong \mathbb{Z}/5\mathbb{Z} \oplus \mathbb{Z}/5\mathbb{Z}$ ($b_1 = 0$).
 
-The invariant trace field $k = \mathbb{Q}(\theta)$ is defined by $P(x) = x^3 - x^2 + 1$ with minimal complex discriminant $\mathrm{Disc}(P) = -23$ and signature $(1, 1)$. The invariant quaternion algebra $A$ is ramified at $\{v_\infty, \mathfrak{p}_2\}$ (Chinburg--Friedman--Jones--Reid 2001, Chinburg--Hamilton--Long--Reid 2008).
-
-The geometric holonomy representation $\rho_{\mathrm{geom}} : \pi_1(\mathcal{W}) \to \mathrm{PSL}_2(\mathbb{C})$ lifts to $\mathrm{SL}_2(\mathcal{O}_k)$ with Fricke--Vogt trace coordinates:
+\subsection{Trace Field Polynomial Disambiguation \& Change of Variables}
+The invariant trace field $k = \mathbb{Q}(\theta)$ has minimal absolute discriminant $|\Delta| = 23$ ($\Delta = -23$). Three defining monic cubic polynomials appear across the literature:
+\begin{enumerate}
+\item \textbf{Plastic / Minimal Pisot Cubic}: $P_1(T) = T^3 - T - 1 = 0$, with real plastic root $T_0 \approx 1.324718$.
+\item \textbf{Weeks / SnapPea Trace Polynomial}: $P_2(\vartheta) = \vartheta^3 - \vartheta^2 + 1 = 0$, with real root $\vartheta_0 \approx -0.754878$ and complex roots $\vartheta_{1,2} \approx 0.877439 \pm 0.744862 i$.
+\item \textbf{Neumann Trace Polynomial}: $P_3(x) = x^3 - x + 1 = 0$, with real root $x_0 = -T_0 \approx -1.324718$.
+\end{enumerate}
+All three polynomials share identical discriminant $\mathrm{Disc}(P_1) = \mathrm{Disc}(P_2) = \mathrm{Disc}(P_3) = -23$. We formally prove their explicit algebraic isomorphisms in Lean~4:
 \begin{equation}
-\mathrm{tr}(\rho(a)) = \theta, \quad \mathrm{tr}(\rho(b)) = \theta, \quad \mathrm{tr}(\rho(ab)) = \theta^2 - \theta,
+x = -T, \quad \vartheta = 1 - T^2 = -\frac{1}{T}, \quad T = \vartheta^2 - \vartheta = -\frac{1}{\vartheta}, \quad \vartheta = 1 - x^2 = \frac{1}{x}, \quad x = \vartheta - \vartheta^2 = \frac{1}{\vartheta},
 \end{equation}
-satisfying the Master Commutator Trace Theorem $\mathrm{tr}([\rho(a), \rho(b)]) = 2\theta^2 - 1 \ne 2$ and relator evaluations $\rho(w_1) = +I, \rho(w_2) = +I$. The representation variety $\mathcal{R}(\pi_1(\mathcal{W}), \mathrm{SL}_2(\mathbb{C}))$ consists of exactly $3 \times 4 = 12$ isolated points (3 Galois conjugate representations $\times$ 4 spin lifts), projecting to 3 Galois-rigid points in $\mathrm{PSL}_2(\mathbb{C})$.
+with exact inversion roundtrips modulo the defining ideals. The signature is $(r_1, r_2) = (1, 1)$, and the invariant quaternion algebra $A$ is ramified at $\{v_\infty, \mathfrak{p}_2\}$ (Chinburg--Friedman--Jones--Reid 2001, Chinburg--Hamilton--Long--Reid 2008). The volume satisfies the Borel formula $\mathrm{Vol}(\mathcal{W}) = \frac{23^{3/2}}{4\pi^2}\zeta_k(2) \approx 0.942707$.
 
-The Laplace spectrum satisfies the Ramanujan--Selberg spectral gap $\lambda_1(\mathcal{W}) \approx 27.80195 > 1$, possessing zero small eigenvalues in $(0, 1)$, and the CMB horizon satisfies $\chi_\ast / R_c \le 0.222 < r_{\mathrm{inj}}(\mathcal{W}) \approx 0.2923$, confirming fundamental domain containment.
+\subsection{Character Variety Scheme \& Spin-Lift Cohomology}
+In the Fricke--Vogt coordinate ring with $\mathrm{tr}(\rho(a)) = \vartheta, \mathrm{tr}(\rho(b)) = \vartheta, \mathrm{tr}(\rho(ab)) = \vartheta^2 - \vartheta$, the commutator trace evaluates to:
+\begin{equation}
+\mathrm{tr}([\rho(a), \rho(b)]) = \vartheta^2 + \vartheta^2 + (\vartheta^2 - \vartheta)^2 - \vartheta^2(\vartheta^2 - \vartheta) - 2 = 2\vartheta^2 - 1.
+\end{equation}
+The irreducible $\mathrm{PSL}_2(\mathbb{C})$ character variety $\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}_2(\mathbb{C}))$ consists of exactly 3 isolated Galois points (1 real non-discrete, 2 complex conjugate discrete faithful holonomies). The central spin-lift cohomology group:
+\begin{equation}
+H^1(\mathcal{W}_{\mathrm{rel}}, \mathbb{Z}/2\mathbb{Z}) \cong (\mathbb{Z}/2\mathbb{Z})^2
+\end{equation}
+acts freely and transitively on the relator sign choices $(\epsilon_1, \epsilon_2) \in \{\pm 1\}^2$, decomposing the affine character variety $\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}_2(\mathbb{C}))$ into exactly $3 \times 4 = 12$ isolated points.
+
+The Laplace spectrum satisfies the Ramanujan--Selberg spectral gap $\lambda_1(\mathcal{W}) \approx 27.80195 > 1$, and the CMB horizon satisfies $\chi_\ast / R_c \le 0.222 < r_{\mathrm{inj}}(\mathcal{W}) \approx 0.2923$.
 
 
 \section{Euclidean Geometry ($\mathbb{E}^3$): Hantzsche--Wendt Didicosm}
