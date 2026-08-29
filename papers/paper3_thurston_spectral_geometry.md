@@ -1,4 +1,4 @@
-# Spectral Invariants, Discrete Group Actions, and Topological Obstructions of Closed 3-Manifolds across the Eight Thurston Geometries
+# Algebraic and Combinatorial Invariants of Closed 3-Manifolds across the Eight Thurston Geometries: A Machine-Checked Formalization and Spectral Geometry Survey
 
 **Authors:** Sneed & Feed Research Group  
 **Formalization Repository:** `Formalization/` (Lean 4 / Mathlib v4.34.0-rc2)  
@@ -9,10 +9,10 @@
 
 ### Abstract
 
-We present a unified mathematical treatise and machine-checked formalization in Lean 4 of the spectral invariants, discrete group representations, curvature tensors, and topological obstructions characterizing closed 3-manifolds across all eight canonical Thurston model geometries: **Spherical** ($\mathbb{S}^3$), **Hyperbolic** ($\mathbb{H}^3$), **Euclidean** ($\mathbb{E}^3$), **Nilpotent** ($\mathrm{Nil}^3$), **Solvable** ($\mathrm{Sol}^3$), **Universal Cover** ($\widetilde{\mathrm{SL}}_2(\mathbb{R})$), **Spherical Cylinder** ($\mathbb{S}^2 \times \mathbb{R}$), and **Hyperbolic Cylinder** ($\mathbb{H}^2 \times \mathbb{R}$).
+We present a unified mathematical treatise, machine-checked formalization in Lean 4, and comprehensive spectral geometry survey of the algebraic, combinatorial, and spectral invariants characterizing closed 3-manifolds across all eight canonical Thurston model geometries: **Spherical** ($\mathbb{S}^3$), **Hyperbolic** ($\mathbb{H}^3$), **Euclidean** ($\mathbb{E}^3$), **Nilpotent** ($\mathrm{Nil}^3$), **Solvable** ($\mathrm{Sol}^3$), **Universal Cover** ($\widetilde{\mathrm{SL}}_2(\mathbb{R})$), **Spherical Cylinder** ($\mathbb{S}^2 \times \mathbb{R}$), and **Hyperbolic Cylinder** ($\mathbb{H}^2 \times \mathbb{R}$).
 
 1. **Spherical Geometry** ($\mathbb{S}^3$): We formalize the Diophantine classification of Seifert homology spheres $\Sigma(p,q,r)$, the Fintushel–Stern and Kirk–Klassen exact rational Chern–Simons actions on isolated irreducible $\mathrm{SU}(2)$ character varieties $\mathcal{R}^\ast(\Sigma(p,q,r))$, the stationary phase partition sums, and their connection to Lawrence–Zagier false theta characters $\chi_{120}$ and rational exponents $-\Delta(n) - 1/120$.
-2. **Hyperbolic Geometry** ($\mathbb{H}^3$): We formalize the Weeks manifold $\mathcal{W}$ (minimal volume $\mathrm{Vol} \approx 0.942707$), fundamental group $\pi_1$, homology $H_1 \cong (\mathbb{Z}/5\mathbb{Z})^2$, invariant cubic trace field $k = \mathbb{Q}(\theta)$ ($\mathrm{Disc} = -23$), the tri-polynomial disambiguation ($P_1, P_2, P_3$), the 12-point character variety decomposition under $(\mathbb{Z}/2\mathbb{Z})^2$ spin-lift action, quaternion algebra ramification, and the Ramanujan–Selberg spectral gap $\lambda_1 \approx 27.80195 > 1$.
+2. **Hyperbolic Geometry** ($\mathbb{H}^3$): We formalize the Weeks manifold $\mathcal{W}$ fundamental group presentation $\pi_1(\mathcal{W})$, homology $H_1 \cong (\mathbb{Z}/5\mathbb{Z})^2$, invariant cubic trace field $k = \mathbb{Q}(\theta)$ ($\mathrm{Disc} = -23$), the tri-polynomial disambiguation ($P_1, P_2, P_3$), the 12-point character variety decomposition under $(\mathbb{Z}/2\mathbb{Z})^2$ spin-lift action, and quaternion algebra ramification; we survey the Gabai–Meyerhoff–Milley minimal volume classification ($\mathrm{Vol} \approx 0.942707$) and the Ramanujan–Selberg spectral gap $\lambda_1 \approx 27.80195 > 1$.
 3. **Euclidean Geometry** ($\mathbb{E}^3$): We formalize the Hantzsche–Wendt didicosm $G_6$ (the unique closed orientable flat 3-manifold with first Betti number $b_1 = 0$), establishing the Spectral Gap Doubling Theorem $\lambda_1(G_6) = 2\lambda_1(T^3) = 8\pi^2/L^2$ via destructive Fourier parity interference under affine screw-motions.
 4. **Nilpotent Geometry** ($\mathrm{Nil}^3$): We formalize the Heisenberg nilmanifold $N_3$ as a principal circle bundle over $T^2$ with Euler class $e = 1$, deriving the discrete Landau harmonic oscillator spectral towers with exact spectral gap $\Delta\lambda_{\mathrm{HO}} = 2\pi > 0$, ground state $\lambda_1 = 4\pi^2$, and scalar curvature $R = -1/2$.
 5. **Solvable Geometry** ($\mathrm{Sol}^3$): We formalize the Fibonacci Anosov solvmanifold $M_A = T^2 \rtimes_A S^1$, its unimodular matrix representation, golden ratio spectrum $\lambda_1 = \varphi^2$, Lyapunov exponent $\mu = 2\ln\varphi > 0$, mixed sectional curvatures $K \in \{-1, +1\}$, scalar curvature $R = -2$, and fundamental fiber spectral gap $\lambda_{0,1} = (2\pi / (2\ln\varphi))^2 > 0$.
@@ -23,9 +23,9 @@ We present a unified mathematical treatise and machine-checked formalization in 
 ### Epistemic Scope & Verification Boundaries
 
 To maintain rigorous mathematical and methodological transparency, we distinguish three complementary layers of results presented in this work:
-1. **Machine-Checked Discrete, Algebraic & Topological Invariants in Lean 4 (`Formalization/`)**: Every discrete group presentation, abelianization matrix, Smith normal form, trace coordinate polynomial ring, Galois branch decomposition, quaternion algebra ramification set, Seifert Diophantine cofactor solvability condition, exact rational Chern–Simons partition sum, and discrete Fourier parity selection rule is machine-checked with standard Lean 4 kernel closure (zero custom axioms, zero `sorry` stubs).
-2. **Analytical & Numerical PDE Invariants from Literature**: Continuous Riemannian spectrum calculations (e.g. the Trefftz boundary collocation eigenvalue $\lambda_1(\mathcal{W}) \approx 27.80195$ of Cornish & Spergel 1999 and Inoue 2001), minimal hyperbolic volume proofs (Gabai, Meyerhoff & Milley 2009), and smooth $\mathrm{SU}(2)$ gauge connection Sobolev theory are drawn from the literature and integrated to contextualize the algebraic invariants.
-3. **Synthetic Survey & Classification Atlas**: We provide a unified comparative taxonomy bridging the algebraic, geometric, and spectral properties across all eight Thurston model geometries.
+1. **Machine-Checked Discrete, Algebraic & Combinatorial Invariants in Lean 4 (`Formalization/`)**: Every discrete group presentation, abelianization matrix, Smith normal form, trace coordinate polynomial ring, Galois branch decomposition, quaternion algebra ramification set, Seifert Diophantine cofactor solvability condition, exact rational Chern–Simons partition sum, and discrete Fourier parity selection rule is machine-checked with standard Lean 4 kernel closure (zero custom axioms, zero `sorry` stubs).
+2. **Analytical & Numerical PDE Invariants Surveyed from Literature**: Continuous Riemannian spectrum calculations (e.g. the Trefftz boundary collocation eigenvalue $\lambda_1(\mathcal{W}) \approx 27.80195$ of Cornish & Spergel 1999 and Inoue 2001), minimal hyperbolic volume proofs (Gabai, Meyerhoff & Milley 2009), and smooth $\mathrm{SU}(2)$ gauge connection Sobolev theory are drawn from the literature and integrated to contextualize the algebraic invariants.
+3. **Synthetic Survey & Classification Atlas**: We provide a unified comparative taxonomy bridging the algebraic, geometric, and spectral properties across all eight Thurston model geometries, concluding with a formalization spectrum matrix and a five-milestone roadmap for future mechanization.
 
 ---
 
@@ -54,7 +54,7 @@ The complete 8-geometry classification atlas is summarized below:
 | $\mathbb{S}^2 \times \mathbb{R}$ | $S^2 \times \mathbb{R}$ | $\mathrm{O}(2) \times \mathbb{Z}_2$ | 1 | 4 | Cylinder $S^2 \times S^1_L$ | 1 | $+2$ | $\min(2, 4\pi^2/L^2) > 0$ |
 | $\mathbb{H}^2 \times \mathbb{R}$ | $\mathbb{H}^2 \times \mathbb{R}$ | $\mathrm{O}(2) \times \mathbb{Z}_2$ | 1 | 4 | Cylinder $\Sigma_g \times S^1_L$ | $2g+1$ | $-2$ | $\ge \min(3/16, 4\pi^2/L^2) > 0$ |
 
-Every declaration and theorem discussed herein is verified in the accompanying Lean 4 formalization library `Formalization/`.
+The discrete group presentations, algebraic number fields, character variety decompositions, curvature tensors, and combinatorial selection rules are verified in the accompanying Lean 4 formalization library `Formalization/`, while continuous Laplacian spectral theory, minimal volume theorems, and gauge-theoretic instanton moduli are surveyed from the literature as categorized in Section 12.
 
 ---
 
@@ -287,7 +287,7 @@ The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety $\mathcal{X}^{\m
 ```
 
    identically modulo $\vartheta^3 - \vartheta^2 + 1 = 0$.
-2. **$\mathrm{PSL}(2, \mathbb{C})$ Character Variety Scheme & Bridge Isomorphism**:
+2. **PSL(2, C) Character Variety Scheme & Bridge Isomorphism**:
    The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety:
 
 ```math
@@ -309,7 +309,7 @@ The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety $\mathcal{X}^{\m
 ```
 
    defining the unique conjugate pair of hyperbolic holonomy representations $(\rho_{\mathrm{geom}}, \overline{\rho}_{\mathrm{geom}})$.
-3. **Central Spin-Lift Cohomology Action & $\mathrm{SL}(2, \mathbb{C})$ Bridge Isomorphism**:
+3. **Central Spin-Lift Cohomology Action & SL(2, C) Bridge Isomorphism**:
    Lifting a representation from $\mathrm{PSL}(2, \mathbb{C})$ to $\mathrm{SL}(2, \mathbb{C})$ allows independent sign choices on the two relators $\rho(w_1) = \epsilon_1 I, \rho(w_2) = \epsilon_2 I$ with $(\epsilon_1, \epsilon_2) \in \{\pm 1\}^2$.
    The central spin-lift cohomology group:
 
@@ -332,6 +332,72 @@ H^1(\mathcal{W}_{\mathrm{rel}}, \mathbb{Z}/2\mathbb{Z}) \cong (\mathbb{Z}/2\math
    with uniform fiberwise cardinality $\lvert\mathrm{fiber}(g)\rvert = 4$ for all $g \in \mathrm{GaloisBranch}$, and exactly one true $\mathrm{SL}(2, \mathbb{C})$ representation ($(\epsilon_1, \epsilon_2) = (+1, +1)$) per Galois branch.
 
 - Lean Theorems: [`WeeksManifold.Arithmetic.weeks_commutator_trace`](../Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_card_eq_three`](../Formalization/WeeksManifold/Arithmetic.lean), [`spin_lifts_per_representation_eq_four`](../Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_card_eq_twelve`](../Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_iso`](../Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_iso`](../Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_iso_card`](../Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_iso_card`](../Formalization/WeeksManifold/Arithmetic.lean), [`fiber_card_eq_four`](../Formalization/WeeksManifold/Arithmetic.lean), [`fiber_spin_bijective`](../Formalization/WeeksManifold/Arithmetic.lean), [`spin_injection_injective`](../Formalization/WeeksManifold/Arithmetic.lean).
+
+### 3.3.1 Representation Scheme Theory, Character Variety Rigidity & Scheme-Theoretic Nuances
+
+To provide a precise foundational bridge between algebraic group theory and the scheme-theoretic character varieties of 3-manifold topology, we delineate the exact relationship between the mechanized candidate trace polynomial arithmetic and the full Geometric Invariant Theory (GIT) representation schemes.
+
+#### Free Group Coordinates vs. Relator Ideal Imposition
+
+For the free group on two generators $F_2 = \langle a, b \rangle$, the Fricke–Vogt theorem establishes that the affine representation variety $\mathrm{Hom}(F_2, \mathrm{SL}(2, \mathbb{C}))$ has coordinate ring generated by the traces of words. The categorical GIT quotient by the conjugation action of $\mathrm{PGL}(2, \mathbb{C}) = \mathrm{PSL}(2, \mathbb{C})$:
+
+```math
+\mathcal{X}(F_2) = \mathrm{Hom}(F_2, \mathrm{SL}(2, \mathbb{C})) // \mathrm{PGL}(2, \mathbb{C}) \cong \mathbb{C}^3
+```
+
+is an affine 3-space parameterized globally by the three fundamental trace coordinates:
+
+```math
+x = \mathrm{tr}(\rho(a)), \quad y = \mathrm{tr}(\rho(b)), \quad z = \mathrm{tr}(\rho(ab))
+```
+
+For a finitely presented 3-manifold group $\Gamma = \pi_1(M) = \langle a, b \mid w_1 = 1, w_2 = 1 \rangle$, the representation scheme $\mathcal{R}(\Gamma, \mathrm{SL}(2, \mathbb{C})) = \mathrm{Spec}(A_M)$ and its character scheme $\mathcal{X}(\Gamma, \mathrm{SL}(2, \mathbb{C})) = \mathrm{Spec}(B_M)$ are subschemes cut out by imposing the relator conditions.
+
+Specifically, the relator ideal $\mathcal{I}_{\mathrm{rel}} \subset \mathbb{C}[x, y, z]$ is generated by the polynomial relations enforcing that the relators evaluate to the identity matrix:
+
+```math
+\rho(w_1) = I_2, \quad \rho(w_2) = I_2 \implies \mathrm{tr}(\rho(w_1)) - 2 = 0, \quad \mathrm{tr}(\rho(w_2)) - 2 = 0
+```
+
+along with corresponding trace conditions for all cyclic words generated by the relations.
+
+#### Rigidity, Irreducibility & Non-Abelian Representations
+
+A critical distinction in character variety analysis is separating candidate roots of individual trace polynomials from certified irreducible, non-abelian group representations. In general, an $\mathrm{SL}(2, \mathbb{C})$ representation is reducible (conjugate to upper-triangular matrices) if and only if the commutator trace satisfies $\mathrm{tr}([\rho(a), \rho(b)]) = 2$, which occurs precisely on the abelian/reducible locus where the Fricke discriminant vanishes:
+
+```math
+\Delta(x, y, z) = x^2 + y^2 + z^2 - x y z - 4 = 0
+```
+
+For the Weeks manifold $\mathcal{W}$, our machine-checked commutator trace identity establishes:
+
+```math
+\mathrm{tr}([\rho(a), \rho(b)]) = 2\vartheta^2 - 1 \pmod{\vartheta^3 - \vartheta^2 + 1}
+```
+
+Evaluating $2\vartheta^2 - 1$ across the roots of $P_2(\vartheta) = \vartheta^3 - \vartheta^2 + 1 = 0$:
+- For the real Galois branch $\vartheta_0 \approx -0.75488$, $\mathrm{tr}([\rho(a), \rho(b)]) \approx 0.1396 \ne 2$.
+- For the complex geometric branches $\vartheta_{1,2} \approx 0.8774 \pm 0.7449 i$, $\mathrm{tr}([\rho(a), \rho(b)]) \approx -0.5698 \pm 2.6143 i \ne 2$.
+
+Since $\mathrm{tr}([\rho(a), \rho(b)]) \ne 2$ across all three branches, every representation corresponding to these roots is guaranteed to be **strictly irreducible and non-abelian**. Furthermore, by the Calabi–Weil–Mostow Rigidity Theorem, the Zariski tangent space to $\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}_2(\mathbb{C}))$ at each irreducible representation is isomorphic to the parabolic group cohomology $H^1(\pi_1(\mathcal{W}), \mathfrak{sl}_2(\mathbb{C})_{\mathrm{Ad} \rho}) = 0$, confirming that all character points are infinitesimally rigid isolated points.
+
+#### Scheme Structure, Smoothness & Reducedness
+
+A delicate question in modern arithmetic topology concerns the scheme structure of $\mathcal{X}(\pi_1(\mathcal{W}), \mathrm{SL}_2(\mathbb{C}))$: is the 0-dimensional coordinate ring $B_\Gamma = \mathbb{C}[x, y, z] / \mathcal{I}_{\mathrm{rel}}$ **reduced** (isomorphic to the direct sum of 12 fields $\mathbb{C}^{12}$), or does it possess non-zero nilpotent elements corresponding to infinitesimal scheme-theoretic thickening?
+
+Because the polynomial discriminant $\mathrm{Disc}(P_2) = -23 \ne 0$ is square-free and non-vanishing over $\mathbb{Q}$, the trace polynomial $P_2(\vartheta)$ has three distinct simple roots over $\mathbb{C}$. The Jacobian matrix of the relator trace conditions has full rank 3 at each character point, which guarantees that the local rings $\mathcal{O}_{\mathcal{X}, [\rho]}$ are isomorphic to $\mathbb{C}$ with zero nilradical:
+
+```math
+\mathcal{N}(B_\Gamma) = \sqrt{(0)} = (0) \implies \mathcal{X}(\pi_1(\mathcal{W}), \mathrm{SL}_2(\mathbb{C})) \cong \bigsqcup_{i=1}^{12} \mathrm{Spec}(\mathbb{C})
+```
+
+Thus, the character variety of the Weeks manifold is a strictly smooth, reduced 0-dimensional affine scheme of degree 12.
+
+#### Epistemic Boundary of Formalization
+
+To ensure complete formal transparency:
+- **Mechanized in Lean 4 (`Formalization/WeeksManifold/Arithmetic.lean`)**: The explicit candidate polynomial ring $\mathbb{Q}[\vartheta] / (\vartheta^3 - \vartheta^2 + 1)$, the polynomial discriminant $\mathrm{Disc} = -23$, the commutator trace evaluation $2\vartheta^2 - 1$, the algebraic coordinate transformations to $P_1(T)$ and $P_3(x)$, the $(\mathbb{Z}/2\mathbb{Z})^2$ central spin-lift cohomology module $H^1(\mathcal{W}_{\mathrm{rel}}, \mathbb{Z}/2\mathbb{Z})$, and the constructive bijection $\mathrm{GaloisBranch} \times \mathrm{SpinLift} \cong \mathrm{LiftedCharacterPoint}$ establishing the 12-point cardinality.
+- **Surveyed Literature / Roadmap Milestone**: The full categorical GIT quotient scheme $\mathrm{Spec}(A)^{\mathrm{GIT}} // \mathrm{PGL}_2(\mathbb{C})$, the universal representation scheme functor in scheme-theoretic algebraic geometry, and the general Weil cohomology vanishing $H^1(\pi_1(\mathcal{W}), \mathfrak{sl}_2(\mathbb{C})_{\mathrm{Ad}\rho}) = 0$ represent Milestone 3 in our roadmap (Section 12.2).
 
 ### 3.4 Laplace Spectrum, Provenance & Conditional Cosmic Horizon Containment
 
@@ -802,7 +868,103 @@ To provide an honest and transparent account of the 350+ machine-checked formal 
 
 ---
 
-## 12. References
+## 12. Formalization Spectrum & Roadmap to Full Formalization
+
+To provide an honest, precise, and epistemically calibrated map of modern formalized 3-manifold geometry, we articulate the boundary between what is currently machine-checked in Lean 4 and the deep analytical and topological theories that constitute future milestones.
+
+### 12.1 Formalization Spectrum of Completeness Matrix
+
+Table 12 systematically delineates the formalization status across fifteen mathematical domains of closed 3-manifold theory. We distinguish between properties that are **Fully Formalized & Machine-Checked** (with 0 axioms, 0 `sorry`s in the Lean 4 kernel) and properties that are **Surveyed Literature Foundations** (serving as analytical context or roadmap targets).
+
+### Table 12: Formalization Spectrum & Epistemic Verification Matrix
+
+| # | Theoretical Domain | Mathematical Object / Theorem | Epistemic Status in Lean 4 (`Formalization/`) | Mathematical Foundation / Literature Source | Axiomatic & Formal Machinery |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| 1 | Discrete Presentations | Fundamental groups $\pi_1(M)$, relators, syllable lengths, abelianizations $H_1(M, \mathbb{Z})$ | **Fully Machine-Checked** | Combinatorial Group Theory (Tietze, Nielsen, Magnus) | Free groups, quotient groups, matrix abelianization, Smith normal forms |
+| 2 | Lie Algebra Structure | $\mathfrak{h}_3, \mathfrak{sol}_3, \mathfrak{sl}_2(\mathbb{R})$ brackets, Jacobi identities, Killing forms | **Fully Machine-Checked** | Lie Theory (Milnor 1976) | Real Lie algebras, structure constants, bilinear forms |
+| 3 | Curvature Tensors | Levi-Civita connections, Riemann tensors, Ricci tensors, scalar curvatures $R$ | **Fully Machine-Checked** | Riemannian Geometry (Scott 1983, Thurston 1997) | Orthonormal frame calculus, connection 1-forms, curvature algebra |
+| 4 | Seifert GCD Solvability | $k$-point cofactor condition $\gcd(A_1, \dots, A_k) = 1 \iff$ homology 3-sphere | **Fully Machine-Checked** | 3-Manifold Topology (Seifert 1933, Brieskorn 1966) | Bézout identity, Diophantine linear systems, integer matrices |
+| 5 | Exact Chern–Simons Values | Rational invariants $\mathrm{CS}(\Sigma(p,q,r); a,b,c) \pmod 1$, stationary phase sums | **Fully Machine-Checked** | Gauge Theory (Fintushel–Stern 1990, Kirk–Klassen 1990) | Modular arithmetic, quadratic residues, Dedekind-type sums |
+| 6 | False Theta Characters | Lawrence–Zagier modular forms $\chi_{120}(n)$, rational shift $-\Delta(n) - 1/120$ | **Fully Machine-Checked** | Quantum Invariants (Lawrence–Zagier 1999, Hikami 2003) | Periodic Dirichlet characters, rational polynomial arithmetic |
+| 7 | Invariant Trace Field | Minimal cubic polynomials $P_1, P_2, P_3$, $\mathrm{Disc} = -23$, isomorphisms | **Fully Machine-Checked** | Arithmetic Hyperbolic Topology (Chinburg et al. 2007) | Univariate polynomial rings, field extensions, resultant/discriminant |
+| 8 | Character Variety Ideal | Commutator trace $2\vartheta^2 - 1$, $(\mathbb{Z}/2\mathbb{Z})^2$ spin-lifts, $\lvert\mathcal{X}^{\mathrm{irr}}\rvert = 12$ | **Fully Machine-Checked** | Representation Theory (Fricke–Vogt, Culler–Shalen 1983) | Polynomial ideal quotienting, finite group cohomology bijections |
+| 9 | Discrete Fourier Parity | Affine screw destructive interference, didicosm gap $\lambda_1(G_6) = 2\lambda_1(T^3)$ | **Fully Machine-Checked** | Bieberbach Groups & Harmonic Analysis (Hantzsche–Wendt 1935) | Group representations on lattice Fourier modes, parity selection |
+| 10 | Continuous Laplacian Spectrum | Discrete spectrum $0 = \lambda_0 < \lambda_1 \le \dots$, Sobolev spaces $H^s(M)$, $L^2(M)$ | **Surveyed Literature** | Elliptic PDE Theory (Berger–Gauduchon–Mazet 1971, Chavel 1984) | Weak derivatives, Sobolev embedding, compact self-adjoint operators |
+| 11 | Ramanujan–Selberg Bound | $\lambda_1(\mathcal{W}) \approx 27.80195 > 1$ (no eigenvalues in $(0, 1)$) | **Surveyed Literature** (Structural property formalized) | Numerical PDE & Selberg Trace (Cornish–Spergel 1999, Inoue 2001) | Boundary element collocation, Selberg trace formula on $\mathbb{H}^3/\Gamma$ |
+| 12 | Selberg 3/16 Bound | Universal eigenvalue lower bound $\lambda_1(\Sigma) \ge 3/16$ on congruence surfaces | **Surveyed Literature** | Automorphic Forms & Spectral Theory (Selberg 1956, 1965) | Unitary representation theory of $\mathrm{SL}_2(\mathbb{R})$, Eisenstein series |
+| 13 | Minimal Hyperbolic Volume | $\mathcal{W}$ minimality $\mathrm{Vol}(\mathcal{W}) \approx 0.942707$ among all closed 3-manifolds | **Surveyed Literature** | Geometric Topology (Gabai–Meyerhoff–Milley 2009) | Mom-3 technology, Dehn filling, rigorous interval arithmetic |
+| 14 | Borel Volume Integration | Dedekind zeta volume formula $\mathrm{Vol}(\mathcal{W}) = \frac{23^{3/2}}{4\pi^2}\zeta_k(2)$ | **Surveyed Literature** | Algebraic Number Theory (Borel 1978, Zagier 1986) | Analytic class number formula, dilogarithm relations, Bloch groups |
+| 15 | Gauge Instanton Moduli | Smooth $\mathrm{SU}(2)$ instantons, Floer homology, flat connection moduli $\mathcal{M}(M)$ | **Surveyed Literature** | Gauge Theory & Global Analysis (Floer 1988, Donaldson 2002) | Infinite-dimensional Morse theory, Uhlenbeck compactness |
+
+---
+
+### 12.2 Five-Milestone Roadmap to Full Formalization
+
+Mechanizing the full continuous geometry and global analysis of 3-manifolds represents one of the grand challenges of interactive theorem proving. Below, we articulate a concrete five-milestone research program for implementing these foundations in Lean 4.
+
+```mermaid
+graph LR
+   M1["Milestone 1:<br/>Sobolev Spaces &<br/>Elliptic Regularity"] --> M2["Milestone 2:<br/>Heat Kernels &<br/>Selberg Trace Formula"]
+   M1 --> M5["Milestone 5:<br/>Gauge Theory &<br/>Instanton Moduli"]
+   M3["Milestone 3:<br/>Representation Schemes<br/>& GIT Character Varieties"] --> M4["Milestone 4:<br/>Mom Technology &<br/>Minimal Volume"]
+   M2 --> M4
+```
+
+#### Milestone 1: Elliptic Regularity, Sobolev Spaces & Manifold Spectral Theory
+- **Mathematical Goal**: Construct the intrinsic Hilbert Sobolev spaces $H^s(M)$ on compact smooth Riemannian manifolds $(M, g)$, prove the Rellich–Kondrachov compactness theorem ($H^1(M) \hookrightarrow L^2(M)$), and establish the Spectral Theorem for compact self-adjoint operators.
+- **Formal Target**: Formalize the Laplace–Beltrami operator $\Delta_g : H^2(M) \to L^2(M)$, its self-adjoint Friedrichs extension, and prove that the spectrum is purely discrete, non-negative, and diverges:
+
+```math
+0 = \lambda_0 < \lambda_1 \le \lambda_2 \le \dots \to \infty
+```
+
+- **Mathlib Dependencies**: Smooth manifold partitions of unity, Bochner integrals of vector bundles, unbounded self-adjoint operators in Hilbert spaces.
+
+#### Milestone 2: Heat Kernels, Selberg Trace Formula & Continuous Spectral Bounds
+- **Mathematical Goal**: Construct the fundamental heat kernel $K_t(x, y) \in C^\infty((0, \infty) \times M \times M)$, prove the Seeley–Gilkey–DeWitt asymptotic trace expansion:
+
+```math
+\mathrm{Tr}(e^{-t\Delta_g}) = \sum_{n=0}^\infty e^{-t\lambda_n} \sim \frac{1}{(4\pi t)^{3/2}} \sum_{k=0}^\infty a_k t^k \quad (t \to 0^+)
+```
+
+and mechanize the Selberg trace formula for compact hyperbolic 3-manifolds $\mathbb{H}^3/\Gamma$.
+- **Formal Target**: Certify the analytic Ramanujan–Selberg spectral gap $\lambda_1(\mathcal{W}) > 1$ and Selberg's $3/16$ bound for congruence hyperbolic surfaces without relying on unverified numerical floating-point bounds.
+- **Mathlib Dependencies**: Schwartz distributions, oscillatory integrals, Harish-Chandra spherical functions on $\mathrm{SL}_2(\mathbb{C})$.
+
+#### Milestone 3: Representation Scheme Theory & GIT Character Varieties
+- **Mathematical Goal**: Formalize the universal representation functor $\underline{\mathrm{Hom}}(\Gamma, G)$ as an affine scheme over $\mathbb{Z}$ for finitely presented groups $\Gamma$, and construct the categorical Geometric Invariant Theory (GIT) quotient:
+
+```math
+\mathcal{X}(\Gamma, G) = \mathrm{Spec}(\mathcal{O}(\mathrm{Hom}(\Gamma, G))^G)
+```
+
+- **Formal Target**: Prove that the coordinate ring of $\mathcal{X}(\pi_1(\mathcal{W}), \mathrm{SL}_2(\mathbb{C}))$ is a reduced 0-dimensional $\mathbb{Q}$-scheme of degree 12, establish Weil rigidity $H^1(\Gamma, \mathfrak{sl}_2(\mathbb{C})_{\mathrm{Ad}\rho}) = 0$, and prove the exact spin-lift bijection directly at the scheme level.
+- **Mathlib Dependencies**: Scheme-theoretic affine morphisms in `Mathlib.AlgebraicGeometry`, reductive group invariant theory, and group cohomology modules.
+
+#### Milestone 4: Mom-Technology & Minimal Hyperbolic Volume
+- **Mathematical Goal**: Formalize the combinatorial topology of hyperbolic triangulations, Mom-technology (Gabai, Meyerhoff & Milley 2009), and Thurston's hyperbolic Dehn surgery theorem.
+- **Formal Target**: Machine-check the volume minimization theorem:
+
+```math
+\forall M \in \mathrm{ClosedHyp3Manifolds}, \quad \mathrm{Vol}(M) \ge \mathrm{Vol}(\mathcal{W}) \approx 0.942707
+```
+
+via certified interval arithmetic linear programming over simplicial deformation spaces.
+- **Mathlib Dependencies**: Exact polyhedral geometry, verified interval arithmetic solvers, simplicial homology of cusped manifolds.
+
+#### Milestone 5: Gauge-Theoretic Instantons & Chern–Simons Functional
+- **Mathematical Goal**: Formalize the infinite-dimensional affine space of connections $\mathcal{A}(P)$ on principal $\mathrm{SU}(2)$-bundles over 3-manifolds, the gauge transformation group $\mathcal{G}$, and the Chern–Simons action functional:
+
+```math
+\mathrm{CS}(A) = \frac{1}{8\pi^2} \int_M \mathrm{tr}\left( A \wedge dA + \frac{2}{3} A \wedge A \wedge A \right) \in \mathbb{R}/\mathbb{Z}
+```
+
+- **Formal Target**: Prove that the critical points of $\mathrm{CS}$ modulo gauge transformations coincide with flat connections $\mathcal{M}_{\mathrm{flat}}(M) \cong \mathcal{R}^\ast(M)$, and machine-check the Fintushel–Stern instanton homology computation for all Seifert spheres $\Sigma(p,q,r)$.
+- **Mathlib Dependencies**: Differential forms on smooth manifolds, de Rham cohomology, Sobolev completions of bundle sections, infinite-dimensional Morse theory.
+
+---
+
+## 13. References
 
 1. Aurich, R., Jancke, H. S., Lustig, S., & Steiner, F. (2008). *Do cosmic microwave background temperature fluctuations exclude the Didicosm?* Classical and Quantum Gravity, 25(12), 125010.
 2. Aurich, R., & Steiner, F. (1993). *Statistical properties of the spectrum of compact hyperbolic 3-manifolds*. Physica D: Nonlinear Phenomena, 64(1-3), 185–214.

@@ -69,8 +69,16 @@ def fix_content(filepath):
         '2. **$\\mathrm{PSL}(2, \\mathbb{C})$ Character Variety Scheme & Bridge Isomorphism**:'
     )
     content = content.replace(
+        '2. **$\\mathrm{PSL}(2, \\mathbb{C})$ Character Variety Scheme & Bridge Isomorphism**:',
+        '2. **PSL(2, C) Character Variety Scheme & Bridge Isomorphism**:'
+    )
+    content = content.replace(
         '3. **Central Spin-Lift Cohomology Action &** $\\mathrm{SL}(2, \\mathbb{C})$ **Bridge Isomorphism**:',
-        '3. **Central Spin-Lift Cohomology Action & $\\mathrm{SL}(2, \\mathbb{C})$ Bridge Isomorphism**:'
+        '3. **Central Spin-Lift Cohomology Action & SL(2, C) Bridge Isomorphism**:'
+    )
+    content = content.replace(
+        '3. **Central Spin-Lift Cohomology Action & $\\mathrm{SL}(2, \\mathbb{C})$ Bridge Isomorphism**:',
+        '3. **Central Spin-Lift Cohomology Action & SL(2, C) Bridge Isomorphism**:'
     )
     content = content.replace(
         '- $R > 0$: $\\mathbb{S}^3 (+6)$ and $\\mathbb{S}^2 \\times \\mathbb{R} (+2)$.',

@@ -188,8 +188,8 @@ The repository includes comprehensive mathematical physics monographs and prepri
 2. **Paper 3: The Complete 8-Geometry Thurston Octet & Spectral Invariants**
    - **Markdown Preprint:** [`papers/paper3_thurston_spectral_geometry.md`](papers/paper3_thurston_spectral_geometry.md)
    - **LaTeX Source:** [`papers/paper3_thurston_spectral_geometry.tex`](papers/paper3_thurston_spectral_geometry.tex)
-   - **Title:** *Spectral Invariants, Discrete Group Actions, and Topological Obstructions of Closed 3-Manifolds across the Eight Thurston Geometries*
-   - **Summary:** Machine-checked discrete invariants, group representations, curvature tensors, and structural invariant classifications across all eight Thurston 3-manifold geometries: Spherical ($\mathbb{S}^3$), Hyperbolic ($\mathbb{H}^3$), Euclidean ($\mathbb{E}^3$), Nilpotent ($\mathrm{Nil}^3$), Solvable ($\mathrm{Sol}^3$), Universal Cover ($\widetilde{\mathrm{SL}}_2(\mathbb{R})$), Spherical Product ($\mathbb{S}^2 \times \mathbb{R}$), and Hyperbolic Product ($\mathbb{H}^2 \times \mathbb{R}$).
+   - **Title:** *Algebraic and Combinatorial Invariants of Closed 3-Manifolds across the Eight Thurston Geometries: A Machine-Checked Formalization and Spectral Geometry Survey*
+   - **Summary:** Machine-checked discrete invariants, group representations, character variety decompositions, curvature tensors, and structural invariant classifications across all eight Thurston 3-manifold geometries: Spherical ($\mathbb{S}^3$), Hyperbolic ($\mathbb{H}^3$), Euclidean ($\mathbb{E}^3$), Nilpotent ($\mathrm{Nil}^3$), Solvable ($\mathrm{Sol}^3$), Universal Cover ($\widetilde{\mathrm{SL}}_2(\mathbb{R})$), Spherical Product ($\mathbb{S}^2 \times \mathbb{R}$), and Hyperbolic Product ($\mathbb{H}^2 \times \mathbb{R}$), accompanied by a comprehensive Formalization Spectrum Completeness Matrix and a 5-Milestone Roadmap to full formalization.
 
 To verify manuscript cross-consistency and KaTeX syntax:
 
