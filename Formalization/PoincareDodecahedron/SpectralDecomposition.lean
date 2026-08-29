@@ -269,5 +269,27 @@ lemma heatTraceTerm_twelve (t : ℝ) :
   simp only [heatTraceTerm, m_twelve, laplacianEigenvalue_twelve]
   ring_nf
 
+/-! ### 5. Weyl-Molien High-Degree Asymptotics -/
+
+/-- The leading Weyl-Molien quadratic growth term for invariant harmonic multiplicities on $S^3 / I^*$:
+$$\overline{m}_\ell = \frac{\ell^2}{120}$$ -/
+def weyl_molien_leading (l : ℕ) : ℝ :=
+  (l : ℝ) ^ 2 / 120
+
+/-- Non-negativity of the leading Weyl-Molien asymptotic term. -/
+lemma weyl_molien_leading_nonneg (l : ℕ) : weyl_molien_leading l ≥ 0 := by
+  unfold weyl_molien_leading
+  positivity
+
+/-- Explicit values of the Weyl-Molien mean growth at landmark degrees $\ell = 12, 60, 120$. -/
+theorem weyl_molien_landmark_values :
+    weyl_molien_leading 12 = 6 / 5 ∧
+    weyl_molien_leading 60 = 30 ∧
+    weyl_molien_leading 120 = 120 := by
+  unfold weyl_molien_leading
+  refine ⟨by norm_num, by norm_num, by norm_num⟩
+
 end PoincareDodecahedron
+
+
 

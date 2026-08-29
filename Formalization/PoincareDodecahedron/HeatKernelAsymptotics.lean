@@ -275,4 +275,44 @@ theorem spectral_ratio_eq_inv_cosmologicalConstant (f4 f2 Λ : ℝ)
   have hΛ2_ne : Λ ^ 2 ≠ 0 := pow_ne_zero 2 hΛ_ne
   field_simp
 
+/-! ### 5. Fourth Seeley-DeWitt Coefficient $a_4$ on $S^3 / I^*$ -/
+
+/-- The Gilkey integrand for the fourth Seeley-DeWitt coefficient $a_4$ on a Riemannian 3-manifold:
+$$\mathcal{G}(R, |\mathrm{Ric}|^2, |\mathrm{Riem}|^2) = \frac{1}{360} (5 R^2 - 2 |\mathrm{Ric}|^2 + 2 |\mathrm{Riem}|^2)$$ -/
+def gilkey_integrand_a4 (R ric_sq riem_sq : ℝ) : ℝ :=
+  (5 * R ^ 2 - 2 * ric_sq + 2 * riem_sq) / 360
+
+/-- For the standard round unit 3-sphere metric, $R = 6$, $|\mathrm{Ric}|^2 = 12$, and $|\mathrm{Riem}|^2 = 12$.
+The Gilkey curvature integrand evaluates identically to $1/2$. -/
+theorem gilkey_integrand_a4_S3 : gilkey_integrand_a4 6 12 12 = 1 / 2 := by
+  unfold gilkey_integrand_a4
+  ring
+
+/-- The fourth Seeley-DeWitt heat kernel coefficient $a_4(S^3 / I^*)$ on the Poincaré Dodecahedral Space:
+$$a_4(S^3 / I^*) = \frac{a_0(S^3 / I^*)}{2} = \frac{\sqrt{\pi}}{960}$$ -/
+def a4_PDS : ℝ := a0 / 2
+
+/-- The $a_4$ coefficient equals the Gilkey curvature factor times $a_0$. -/
+theorem a4_PDS_from_gilkey : a4_PDS = gilkey_integrand_a4 6 12 12 * a0 := by
+  rw [gilkey_integrand_a4_S3]
+  unfold a4_PDS
+  ring
+
+/-- Positivity of the fourth Seeley-DeWitt coefficient $a_4(S^3 / I^*)$. -/
+lemma a4_PDS_pos : a4_PDS > 0 := by
+  unfold a4_PDS
+  have ha0 : a0 > 0 := a0_pos
+  linarith
+
+/-- Higher-order Chamseddine-Connes spectral action expansion including the $a_4$ Gauss-Bonnet / curvature-squared term:
+$$S_{\mathrm{spectral}}^{(4)} = 2 f_4 \Lambda^4 a_0 + 2 f_2 \Lambda^2 a_2 + 2 f_0 a_4$$ -/
+def spectralAction4 (f4 f2 f0 Λ : ℝ) : ℝ :=
+  spectralAction f4 f2 Λ + 2 * f0 * a4_PDS
+
+/-- Exact leading asymptotic expansion of the 4-term spectral action. -/
+theorem spectralAction4_expansion (f4 f2 f0 Λ : ℝ) :
+    spectralAction4 f4 f2 f0 Λ = 2 * f4 * Λ ^ 4 * a0 + 2 * f2 * Λ ^ 2 * a0 + 2 * f0 * a4_PDS := by
+  unfold spectralAction4 spectralAction a2 scalarCurvature_PDS
+  ring
+
 end PoincareDodecahedron
