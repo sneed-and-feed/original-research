@@ -95,7 +95,7 @@ $$
 
 Because $I^\ast$ acts freely (without fixed points) and isometrically via left-multiplication on $S^3$, the quotient space $S^3 / I^\ast$ is a smooth, closed, compact, orientable 3-dimensional Riemannian manifold.
 
-> **Theorem 1.2 (Topological Invariants of the Poincaré Homology Sphere).**  
+> **Theorem 1.2:** Topological Invariants of the Poincaré Homology Sphere.  
 > Let $M = S^3 / I^\ast$. Then:
 > 1. **Fundamental Group**: $\pi_1(M) \cong I^\ast$, which is non-trivial, non-abelian, and of order 120.
 > 2. **First Integral Homology**: By the Hurewicz isomorphism theorem, the first integral homology group is the abelianization of $\pi_1(M)$:
@@ -116,7 +116,7 @@ Because $I^\ast$ acts freely (without fixed points) and isometrically via left-m
 
 Let $S^3(R_c)$ denote the round 3-sphere of physical curvature radius $R_c > 0$, endowed with the standard metric $g_{S^3}$. The quotient Riemannian metric on $S^3 / I^\ast$ inherits constant positive sectional curvature $K = +1/R_c^2$.
 
-> **Theorem 1.3 (Metric Invariants of $S^3 / I^\ast$).**  
+> Theorem 1.3 (Metric Invariants of $S^3 / I^\ast$).  
 > For $S^3 / I^\ast$ equipped with the quotient metric induced from $S^3(R_c)$:
 > 1. **Riemannian Volume**:
 >
@@ -203,10 +203,10 @@ $$
 m_L^{\mathrm{SO}(3)} = m_{2L}^{\mathrm{SU}(2)}.
 $$
 
-> **Theorem 2.1 (Low-Multipole Invariant Vanishing & Emergence at $L=6$).**  
+> Theorem 2.1 (Low-Multipole Invariant Vanishing & Emergence at $L=6$).  
 > Let $m_L^{\mathrm{SO}(3)}$ denote the invariant multiplicity of physical spherical harmonics on $S^3 / I^\ast$. Then:
 > 1. **Monopole**: $m_0^{\mathrm{SO}(3)} = 1$ (the homogeneous constant mode).
-> 2. **$\text{Low-}L$ Vanishing Theorem**:
+> 2. $\text{Low-}L$ Vanishing Theorem:
 >
 > $$
 > m_1^{\mathrm{SO}(3)} = 0, \quad m_2^{\mathrm{SO}(3)} = 0, \quad m_3^{\mathrm{SO}(3)} = 0, \quad m_4^{\mathrm{SO}(3)} = 0, \quad m_5^{\mathrm{SO}(3)} = 0.
@@ -219,12 +219,12 @@ $$
 > $$
 
 *Proof.* We evaluate $m_{2L}^{\mathrm{SU}(2)}$ directly from the Molien projection sum:
-- **For $L = 0$ ($\ell = 0$):** $\chi_0(a) = 1$ for all $a$. Thus $m_0 = \frac{1}{120} (120 \times 1) = 1$.
-- **For $L = 1$ ($\ell = 2$):** $a_1=1 \implies \chi_2(1)=3$; $a_2=-1 \implies \chi_2(-1)=3$; $a_3=0 \implies \chi_2(0) = \frac{\sin(3\pi/2)}{\sin(\pi/2)} = -1$; $a_4=1/2 \implies \chi_2(1/2) = \frac{\sin(\pi)}{\sin(\pi/3)} = 0$; $a_5=-1/2 \implies \chi_2(-1/2) = 0$; $a_6=\phi/2 \implies \theta=\pi/5, \chi_2 = \frac{\sin(3\pi/5)}{\sin(\pi/5)} = 1+2\cos(2\pi/5) = \phi$; $a_7=-\phi/2 \implies \theta=4\pi/5, \chi_2 = \phi$; $a_8=\phi^{-1}/2 \implies \theta=3\pi/5, \chi_2 = -\phi^{-1}$; $a_9=-\phi^{-1}/2 \implies \chi_2 = -\phi^{-1}$.  
+- For $L = 0$ ($\ell = 0$): $\chi_0(a) = 1$ for all $a$. Thus $m_0 = \frac{1}{120} (120 \times 1) = 1$.
+- For $L = 1$ ($\ell = 2$): $a_1=1 \implies \chi_2(1)=3$; $a_2=-1 \implies \chi_2(-1)=3$; $a_3=0 \implies \chi_2(0) = \frac{\sin(3\pi/2)}{\sin(\pi/2)} = -1$; $a_4=1/2 \implies \chi_2(1/2) = \frac{\sin(\pi)}{\sin(\pi/3)} = 0$; $a_5=-1/2 \implies \chi_2(-1/2) = 0$; $a_6=\phi/2 \implies \theta=\pi/5, \chi_2 = \frac{\sin(3\pi/5)}{\sin(\pi/5)} = 1+2\cos(2\pi/5) = \phi$; $a_7=-\phi/2 \implies \theta=4\pi/5, \chi_2 = \phi$; $a_8=\phi^{-1}/2 \implies \theta=3\pi/5, \chi_2 = -\phi^{-1}$; $a_9=-\phi^{-1}/2 \implies \chi_2 = -\phi^{-1}$.  
   Summing: $3 + 3 + 30(-1) + 20(0) + 20(0) + 12(\phi + \phi) + 12(-\phi^{-1} - \phi^{-1}) = 6 - 30 + 24(\phi - \phi^{-1})$.  
   Since $\phi - \phi^{-1} = 1$, this equals $-24 + 24(1) = 0$. Thus $m_1^{\mathrm{SO}(3)} = 0$.
-- **For $L = 2, 3, 4, 5$ ($\ell = 4, 6, 8, 10$):** Direct substitution of character values into the Molien projection sum yields identically $m_2 = m_3 = m_4 = m_5 = 0$.
-- **For $L = 6$ ($\ell = 12$):** The character sum evaluates to $\sum_{g \in I^\ast} \chi_{12}(g) = 120$, giving $m_6^{\mathrm{SO}(3)} = 1$.  
+- For $L = 2, 3, 4, 5$ ($\ell = 4, 6, 8, 10$): Direct substitution of character values into the Molien projection sum yields identically $m_2 = m_3 = m_4 = m_5 = 0$.
+- For $L = 6$ ($\ell = 12$): The character sum evaluates to $\sum_{g \in I^\ast} \chi_{12}(g) = 120$, giving $m_6^{\mathrm{SO}(3)} = 1$.  
 This completes the proof. $\blacksquare$
 
 ### 2.4 Complete Invariant Ring Structure and Molien Generating Series
@@ -259,7 +259,7 @@ $$
 M_{\mathrm{SO}(3)}(t) = \sum_{L=0}^\infty m_L^{\mathrm{SO}(3)} t^L = \frac{1 + t^{15}}{(1 - t^6)(1 - t^{10})} = 1 + t^6 + t^{10} + t^{12} + t^{15} + t^{16} + t^{18} + 2 t^{20} + t^{21} + t^{22} + \dots
 $$
 
-> **Theorem 2.2 (Weyl--Molien High-Degree Asymptotics & Quasi-Periodic Fluctuations).**  
+> **Theorem 2.2:** Weyl--Molien High-Degree Asymptotics & Quasi-Periodic Fluctuations.  
 > As the representation degree $\ell \to \infty$:
 > 1. **Linear Growth of Representation Invariants**: The representation-theoretic invariant multiplicity obeys the linear asymptotic law:
 >
@@ -340,7 +340,7 @@ $$
 a_0 = \frac{\mathrm{Vol}(M)}{(4 \pi)^{3/2}}, \quad a_2 = \frac{1}{(4 \pi)^{3/2}} \int_M \frac{\mathcal{R}}{6} d\mathrm{vol} = \frac{\mathcal{R}}{6} a_0.
 $$
 
-> **Theorem 3.1 (Exact Seeley--DeWitt Coefficients on $S^3 / I^\ast$).**  
+> Theorem 3.1 (Exact Seeley--DeWitt Coefficients on $S^3 / I^\ast$).  
 > For the Poincaré Homology 3-Sphere $S^3 / I^\ast$ equipped with the round metric of unit radius ($R_c = 1$):
 > 1. **Leading Volume Coefficient**:
 >
@@ -389,7 +389,7 @@ $$
 a_4(M) = \frac{1}{(4\pi)^{3/2}} \frac{1}{360} \int_M \left( 5 \mathcal{R}^2 - 2 \lvert \mathrm{Ric} \rvert^2 + 2 \lvert \mathrm{Riem} \rvert^2 \right) d\mathrm{vol}.
 $$
 
-> **Theorem 3.2 (Exact Fourth Seeley--DeWitt Coefficient $a_4$ on $S^3 / I^\ast$).**  
+> Theorem 3.2 (Exact Fourth Seeley--DeWitt Coefficient $a_4$ on $S^3 / I^\ast$).  
 > For the Poincaré Homology 3-Sphere $S^3 / I^\ast$ equipped with the unit round metric ($R_c = 1$):
 > 1. **Gilkey Integrand Evaluation**: With $\mathcal{R} = 6$, $\lvert \mathrm{Ric} \rvert^2 = 12$, and $\lvert \mathrm{Riem} \rvert^2 = 12$:
 >
@@ -422,13 +422,13 @@ $$
 where:
 1. **Finite Algebra**: $\mathcal{A}_F = \mathbb{C} \oplus \mathbb{H} \oplus M_3(\mathbb{C})$, whose unitary subgroup $\mathcal{U}(\mathcal{A}_F)$ modulo phases generates the Standard Model gauge group $\mathrm{SU}(3)_c \times \mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$.
 2. **Fermion Hilbert Space**:
-   - **Complex Chiral Weyl Representation ($\dim_{\mathbb{C}} \mathcal{H}_F = 48$)**: 3 generations of 16 Weyl fermions:
+   - Complex Chiral Weyl Representation ($\dim_{\mathbb{C}} \mathcal{H}_F = 48$): 3 generations of 16 Weyl fermions:
 
 $$
 3 \times \left( 4 \text{ leptons } (\nu_L, e_L, \nu_R, e_R) + 12 \text{ quarks } (u_L, d_L, u_R, d_R) \times 3 \text{ colors} \right) = 48.
 $$
 
-   - **Real Particle-Antiparticle Degrees of Freedom ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$)**: Accounting for antiparticles via the antilinear charge conjugation real structure $J_F$ ($J_F^2 = 1, J_F \mathcal{D}_F = \mathcal{D}_F J_F$), yielding $48 \times 2 = 96$ real degrees of freedom.
+   - Real Particle-Antiparticle Degrees of Freedom ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$): Accounting for antiparticles via the antilinear charge conjugation real structure $J_F$ ($J_F^2 = 1, J_F \mathcal{D}_F = \mathcal{D}_F J_F$), yielding $48 \times 2 = 96$ real degrees of freedom.
 3. **Finite Dirac Operator**:
 
 $$
@@ -460,7 +460,7 @@ $$
 S_{\mathrm{spectral}} = 2 f_4 \Lambda^4 a_0(\mathcal{D}_A^2) + 2 f_2 \Lambda^2 a_2(\mathcal{D}_A^2) + f_0 a_4(\mathcal{D}_A^2) + \mathcal{O}\left(\Lambda^{-2}\right).
 $$
 
-> **Theorem 4.1 (Einstein--Hilbert Gravity & Positive Newton Constant).**  
+> **Theorem 4.1:** Einstein--Hilbert Gravity & Positive Newton Constant.  
 > The gravitational sector of the spectral action on $M = \mathbb{R} \times (S^3 / I^\ast)$ recovers the 4-dimensional Einstein--Hilbert action:
 >
 > $$
@@ -579,8 +579,8 @@ $$
 $$
 
 where:
-1. **The Archimedean Fiber ($\mathcal{M}_\infty = \mathbb{R} \times S^3 / I^\ast$)**: The continuous, smooth, macroscopic 4D spacetime manifold where Seeley--DeWitt asymptotics, Riemannian geometry, and classical General Relativity reside.
-2. **The Non-Archimedean Fibers ($\mathcal{T}_p$)**: Discrete, ultrametric $p$-adic spaces (such as the Bruhat--Tits tree for $\mathrm{PGL}(2, \mathbb{Q}_p)$), modeling quantum Planckian micro-structure.
+1. The Archimedean Fiber ($\mathcal{M}_\infty = \mathbb{R} \times S^3 / I^\ast$): The continuous, smooth, macroscopic 4D spacetime manifold where Seeley--DeWitt asymptotics, Riemannian geometry, and classical General Relativity reside.
+2. The Non-Archimedean Fibers ($\mathcal{T}_p$): Discrete, ultrametric $p$-adic spaces (such as the Bruhat--Tits tree for $\mathrm{PGL}(2, \mathbb{Q}_p)$), modeling quantum Planckian micro-structure.
 
 ### 5.3 Concrete $p$-Adic Spectral Triples: The Vladimirov Operator on $\mathbb{Z}_p$
 
@@ -610,7 +610,7 @@ $$
 \dim L_0^2(p^{-k} \mathbb{Z}_p^\times) = (p - 1) p^{k-1}, \quad \lambda_k = p^{\alpha k}.
 $$
 
-> **Theorem 5.1 (Exact Local $p$-Adic Heat Trace and Absolute Convergence).**  
+> Theorem 5.1 (Exact Local $p$-Adic Heat Trace and Absolute Convergence).  
 > For every prime $p$ and $t > 0$, the local non-Archimedean heat kernel trace on $\mathbb{Z}_p$ evaluates to the absolutely convergent series:
 >
 > $$
