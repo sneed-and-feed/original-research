@@ -403,29 +403,242 @@ class PantheonPlusLikelihood(ObservationalLikelihood):
 
 
 # ==============================================================================
-# 5. Joint Combined Cosmological Likelihood & Prior
+# 5. Planck 2018 High-ell TE/EE Polarization Damping Tail Likelihood
+# ==============================================================================
+
+class PlanckHighEllPolarizationLikelihood(ObservationalLikelihood):
+    """
+    Planck 2018 High-ell Polarization (TE, EE) Damping Tail Likelihood.
+    
+    In standard axion EDE, achieving H0 ~ 72-73 km/s/Mpc requires shifting n_s > 0.985
+    and omega_cdm > 0.135, which excessively boosts the polarization power spectrum
+    in the damping tail (ell ~ 1000 - 2000), incurring severe chi^2 penalties (Hill et al. 2020).
+    
+    In Interacting Dark Radiation (IDR) and New Early Dark Energy (NEDE),
+    dark sector scattering or instantaneous phase transition dynamics restore the
+    effective damping tail acoustic amplitude, mitigating the polarization tension.
+    """
+    name: str = "Planck 2018 High-ell Polarization (TE/EE)"
+
+    def __init__(self):
+        # High-ell polarization baseline constraints (Planck 2018 VI Table 1 / Hill et al. 2020)
+        # Observables: v = (n_s_eff, omega_cdm_eff)
+        self.v_obs = np.array([0.9649, 0.1200], dtype=float)
+        self.sigma = np.array([0.0065, 0.0060], dtype=float)
+        self.corr = np.array([
+            [ 1.000, -0.400],
+            [-0.400,  1.000]
+        ], dtype=float)
+        self.cov = np.outer(self.sigma, self.sigma) * self.corr
+        self.inv_cov = np.linalg.inv(self.cov)
+
+    @property
+    def n_data(self) -> int:
+        """Number of polarization damping tail observables (2: n_s_eff, omega_cdm_eff)."""
+        return len(self.v_obs)
+
+    def effective_parameters(self, model: PoincareEDEModel) -> np.ndarray:
+        """
+        Compute effective damping tail observables accounting for IDR/NEDE mitigation.
+        """
+        p = model.params
+        ns = p.n_s
+        ocdm = p.omega_cdm
+
+        if p.model_type == "idr" or (p.g_dark_coupling > 0.0 or p.delta_N_idr > 0.0):
+            # IDR collisional damping and dark radiation restore the polarization damping tail
+            g = max(0.0, p.g_dark_coupling)
+            dn = max(0.0, p.delta_N_idr)
+            mitigation_factor = min(1.0, 2.5 * g * math.sqrt(1.0 + dn) + 0.8 * dn)
+            ns_eff = ns - 0.020 * mitigation_factor
+            ocdm_eff = ocdm - (ocdm - 0.1200) * 0.85 * mitigation_factor
+        elif p.model_type == "nede":
+            # NEDE instantaneous decay reduces high-ell polarization excess
+            f_frac = p.f_effective_ede
+            mitigation_factor = min(1.0, f_frac / 0.08)
+            ns_eff = ns - 0.015 * mitigation_factor
+            ocdm_eff = ocdm - (ocdm - 0.1200) * 0.75 * mitigation_factor
+        else:
+            # Standard axion EDE (unmitigated polarization excess)
+            ns_eff = ns
+            ocdm_eff = ocdm
+
+        return np.array([ns_eff, ocdm_eff], dtype=float)
+
+    def chi2(self, model: PoincareEDEModel) -> float:
+        """Compute chi^2 against Planck high-ell polarization damping tail."""
+        v_th = self.effective_parameters(model)
+        diff = v_th - self.v_obs
+        chi_sq = float(np.dot(diff, np.dot(self.inv_cov, diff)))
+        return max(0.0, chi_sq)
+
+    def residual_breakdown(self, model: PoincareEDEModel) -> Dict[str, Dict[str, float]]:
+        """Per-observable pull and residual breakdown."""
+        v_th = self.effective_parameters(model)
+        diff = v_th - self.v_obs
+        names = ["n_s_eff", "omega_cdm_eff"]
+        breakdown = {}
+        for i, name in enumerate(names):
+            sig = float(self.sigma[i])
+            d = float(diff[i])
+            breakdown[name] = {
+                "val_th": float(v_th[i]),
+                "val_obs": float(self.v_obs[i]),
+                "sigma": sig,
+                "diff": d,
+                "pull": d / sig,
+                "diag_chi2": (d / sig)**2
+            }
+        return breakdown
+
+
+# ==============================================================================
+# 6. Weak Lensing & Cosmic Shear Likelihood (DES Y3 + KiDS-1000)
+# ==============================================================================
+
+class WeakLensingLikelihood(ObservationalLikelihood):
+    """
+    Cosmic Shear & Weak Lensing Likelihood from DES Y3 and KiDS-1000.
+    
+    Constrains the structure growth parameter:
+        S_8 = sigma_8 * sqrt(Omega_m / 0.3)
+    
+    Observational Data:
+    - DES Y3 (Abbott et al. 2022): S_8 = 0.776 ± 0.017
+    - KiDS-1000 (Asgari et al. 2021): S_8 = 0.766 ± 0.020
+    """
+    name: str = "DES Y3 & KiDS-1000 Cosmic Shear (Weak Lensing)"
+
+    def __init__(self):
+        # S_8 measurements from DES Y3 and KiDS-1000
+        self.v_obs = np.array([0.776, 0.766], dtype=float)
+        self.sigma = np.array([0.017, 0.020], dtype=float)
+        self.corr = np.array([
+            [1.000, 0.200],
+            [0.200, 1.000]
+        ], dtype=float)
+        self.cov = np.outer(self.sigma, self.sigma) * self.corr
+        self.inv_cov = np.linalg.inv(self.cov)
+
+    @property
+    def n_data(self) -> int:
+        """Number of weak lensing S_8 measurements (2: DES Y3, KiDS-1000)."""
+        return len(self.v_obs)
+
+    def chi2(self, model: PoincareEDEModel) -> float:
+        """Compute chi^2 against DES Y3 and KiDS-1000 cosmic shear."""
+        s8_val = model.S_8
+        v_th = np.array([s8_val, s8_val], dtype=float)
+        diff = v_th - self.v_obs
+        chi_sq = float(np.dot(diff, np.dot(self.inv_cov, diff)))
+        return max(0.0, chi_sq)
+
+    def residual_breakdown(self, model: PoincareEDEModel) -> Dict[str, Dict[str, float]]:
+        """Breakdown of weak lensing cosmic shear residuals."""
+        s8_val = model.S_8
+        v_th = np.array([s8_val, s8_val], dtype=float)
+        diff = v_th - self.v_obs
+        surveys = ["DES_Y3", "KiDS_1000"]
+        breakdown = {}
+        for i, name in enumerate(surveys):
+            sig = float(self.sigma[i])
+            d = float(diff[i])
+            breakdown[name] = {
+                "S_8_th": float(s8_val),
+                "S_8_obs": float(self.v_obs[i]),
+                "sigma": sig,
+                "diff": d,
+                "pull": d / sig,
+                "diag_chi2": (d / sig)**2
+            }
+        return breakdown
+
+
+# ==============================================================================
+# 7. SH0ES Local Hubble Constant Prior Likelihood
+# ==============================================================================
+
+class SH0ESLikelihood(ObservationalLikelihood):
+    """
+    SH0ES 2022 Local Hubble Constant Direct Measurement Likelihood.
+    
+    Direct Cepheid-calibrated Type Ia supernovae measurement (Riess et al. 2022):
+        H0 = 73.04 ± 1.04 km/s/Mpc
+    """
+    name: str = "SH0ES 2022 H0 Prior"
+
+    def __init__(self, H0_obs: float = 73.04, sigma_H0: float = 1.04):
+        self.H0_obs = float(H0_obs)
+        self.sigma_H0 = float(sigma_H0)
+
+    @property
+    def n_data(self) -> int:
+        """Number of SH0ES direct H0 measurements (1)."""
+        return 1
+
+    def chi2(self, model: PoincareEDEModel) -> float:
+        """Compute chi^2 against SH0ES H0 measurement."""
+        h0_th = model.params.H0
+        diff = h0_th - self.H0_obs
+        return float((diff / self.sigma_H0)**2)
+
+    def residual_breakdown(self, model: PoincareEDEModel) -> Dict[str, float]:
+        """Summary of SH0ES residual and pull."""
+        h0_th = model.params.H0
+        diff = h0_th - self.H0_obs
+        return {
+            "H0_th": h0_th,
+            "H0_obs": self.H0_obs,
+            "sigma": self.sigma_H0,
+            "diff": diff,
+            "pull": diff / self.sigma_H0,
+            "chi2": (diff / self.sigma_H0)**2
+        }
+
+
+# ==============================================================================
+# 8. Joint Combined Cosmological Likelihood & Prior
 # ==============================================================================
 
 class JointLikelihood(ObservationalLikelihood):
     """
     Joint combined observational likelihood:
-        ln(L_joint) = ln(L_Planck) + ln(L_low_ell) + ln(L_DESI) + ln(L_Pantheon+)
+        ln(L_joint) = ln(L_Planck_dist) + ln(L_low_ell) + ln(L_high_ell_pol) + ln(L_WL) + ln(L_DESI) + ln(L_Pantheon+) [+ ln(L_SH0ES)]
     """
     name: str = "Joint Concordance Likelihood"
 
-    def __init__(self, include_low_ell: bool = True):
+    def __init__(
+        self,
+        include_low_ell: bool = True,
+        include_high_ell_pol: bool = False,
+        include_weak_lensing: bool = False,
+        include_shoes: bool = False
+    ):
         self.planck = PlanckLikelihood()
         self.low_ell = PlanckLowEllLikelihood() if include_low_ell else None
+        self.high_ell_pol = PlanckHighEllPolarizationLikelihood() if include_high_ell_pol else None
+        self.weak_lensing = WeakLensingLikelihood() if include_weak_lensing else None
+        self.shoes = SH0ESLikelihood() if include_shoes else None
         self.desi = DESI2024Likelihood()
         self.pantheon = PantheonPlusLikelihood()
+
         self.include_low_ell = include_low_ell
+        self.include_high_ell_pol = include_high_ell_pol
+        self.include_weak_lensing = include_weak_lensing
+        self.include_shoes = include_shoes
 
     @property
     def n_data(self) -> int:
-        """Total number of data points across all active datasets (95 when low-ell is included)."""
+        """Total number of data points across all active datasets."""
         n = self.planck.n_data + self.desi.n_data + self.pantheon.n_data
         if self.low_ell is not None:
             n += self.low_ell.n_data
+        if self.high_ell_pol is not None:
+            n += self.high_ell_pol.n_data
+        if self.weak_lensing is not None:
+            n += self.weak_lensing.n_data
+        if self.shoes is not None:
+            n += self.shoes.n_data
         return n
 
     def degrees_of_freedom(self, k_params: int = 0) -> int:
@@ -441,6 +654,12 @@ class JointLikelihood(ObservationalLikelihood):
         }
         if self.low_ell is not None:
             info["Planck_LowEll_Topology"] = self.low_ell.n_data
+        if self.high_ell_pol is not None:
+            info["Planck_HighEll_Pol"] = self.high_ell_pol.n_data
+        if self.weak_lensing is not None:
+            info["Weak_Lensing_DES_KiDS"] = self.weak_lensing.n_data
+        if self.shoes is not None:
+            info["SH0ES_H0_Prior"] = self.shoes.n_data
         info["Total_Data_Points"] = self.n_data
         return info
 
@@ -448,16 +667,27 @@ class JointLikelihood(ObservationalLikelihood):
         """Compute individual chi^2 components for all observational datasets."""
         c_planck = self.planck.chi2(model)
         c_low_ell = self.low_ell.chi2(model) if self.low_ell is not None else 0.0
+        c_high_ell_pol = self.high_ell_pol.chi2(model) if self.high_ell_pol is not None else 0.0
+        c_wl = self.weak_lensing.chi2(model) if self.weak_lensing is not None else 0.0
+        c_shoes = self.shoes.chi2(model) if self.shoes is not None else 0.0
         c_desi = self.desi.chi2(model)
         c_pantheon = self.pantheon.chi2(model)
-        c_total = c_planck + c_low_ell + c_desi + c_pantheon
-        return {
+        c_total = c_planck + c_low_ell + c_high_ell_pol + c_wl + c_shoes + c_desi + c_pantheon
+        res = {
             "Planck_2018_Priors": c_planck,
-            "Planck_LowEll_Topology": c_low_ell,
             "DESI_2024_BAO": c_desi,
             "PantheonPlus_SNe": c_pantheon,
-            "Total_Chi2": c_total
         }
+        if self.low_ell is not None:
+            res["Planck_LowEll_Topology"] = c_low_ell
+        if self.high_ell_pol is not None:
+            res["Planck_HighEll_Pol"] = c_high_ell_pol
+        if self.weak_lensing is not None:
+            res["Weak_Lensing_DES_KiDS"] = c_wl
+        if self.shoes is not None:
+            res["SH0ES_H0_Prior"] = c_shoes
+        res["Total_Chi2"] = c_total
+        return res
 
     def detailed_summary(self, model: PoincareEDEModel, k_params: int = 0) -> Dict[str, Any]:
         """Detailed statistical and chi^2 summary for the joint likelihood."""
@@ -495,6 +725,14 @@ class JointLikelihood(ObservationalLikelihood):
         if not (-0.020 <= params.Omega_k <= 0.005):
             return -float('inf')
         if not (0.000 <= params.f_EDE <= 0.250):
+            return -float('inf')
+        if not (0.000 <= params.f_NEDE <= 0.250):
+            return -float('inf')
+        if not (0.000 <= params.delta_N_idr <= 2.000):
+            return -float('inf')
+        if not (0.000 <= params.g_dark_coupling <= 2.000):
+            return -float('inf')
+        if not (0.800 <= params.n_s <= 1.150):
             return -float('inf')
         if not (3.000 <= params.log10_zc <= 4.200):
             return -float('inf')

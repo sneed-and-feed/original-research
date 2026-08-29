@@ -43,10 +43,9 @@ lemma chebyshevU_neg (l : ℕ) (x : ℝ) : chebyshevU l (-x) = (-1 : ℝ) ^ l * 
   rcases n with _ | _ | n
   · simp [chebyshevU]
   · simp [chebyshevU]
-  · rw [chebyshevU_add_two, chebyshevU_add_two, ih (n + 1) (by omega), ih n (by omega)]
-    have h1 : (-1 : ℝ) ^ (n + 1) = -(-1 : ℝ) ^ n := by rw [pow_succ]; ring
-    have h2 : (-1 : ℝ) ^ (n + 2) = (-1 : ℝ) ^ n := by rw [pow_succ, pow_succ]; ring
-    rw [h1, h2]; ring
+  · rw [chebyshevU_add_two, chebyshevU_add_two, ih (n + 1) (by omega), ih n (by omega),
+      pow_succ (-1 : ℝ) (n + 1), pow_succ (-1 : ℝ) n]
+    ring
 
 lemma chi_re_neg (l : ℕ) (x : ℝ) : chi_re l (-x) = (-1 : ℝ) ^ l * chi_re l x :=
   chebyshevU_neg l x
@@ -62,15 +61,11 @@ lemma chebyshevU_one_val (l : ℕ) : chebyshevU l 1 = (l + 1 : ℝ) := by
 lemma chebyshevU_neg_one_val (l : ℕ) : chebyshevU l (-1) = (-1 : ℝ) ^ l * (l + 1 : ℝ) := by
   rw [chebyshevU_neg, chebyshevU_one_val]
 
-lemma chi_one (l : ℕ) : chi l 1 = (l + 1 : ℝ) := by
-  simp only [chi, chi_re]
-  have : ((1 : ℍ[ℝ]ˣ) : ℍ[ℝ]).re = 1 := rfl
-  rw [this, chebyshevU_one_val]
+lemma chi_one (l : ℕ) : chi l 1 = (l + 1 : ℝ) :=
+  chebyshevU_one_val l
 
-lemma chi_centralInv (l : ℕ) : chi l centralInv = (-1 : ℝ) ^ l * (l + 1 : ℝ) := by
-  simp only [chi, chi_re]
-  have : (centralInv : ℍ[ℝ]).re = -1 := rfl
-  rw [this, chebyshevU_neg_one_val]
+lemma chi_centralInv (l : ℕ) : chi l centralInv = (-1 : ℝ) ^ l * (l + 1 : ℝ) :=
+  chebyshevU_neg_one_val l
 
 /-- The decomposition of the character sum over the binary icosahedral group into its 9 conjugacy classes. -/
 def sum_chi_binaryIcosahedral (l : ℕ) : ℝ :=
@@ -92,7 +87,7 @@ def m (l : ℕ) : ℝ :=
 
 /-- Golden ratio fundamental identity: $\phi - \phi^{-1} = 1$. -/
 lemma phi_sub_phi_inv : phi - phi⁻¹ = 1 := by
-  have h_inv : phi⁻¹ = phi - 1 := phi_inv
+  have : phi⁻¹ = phi - 1 := phi_inv
   linarith
 
 /-! ### Character Evaluations at Conjugacy Classes for Degrees 0 to 12 -/
@@ -384,8 +379,7 @@ lemma laplacianEigenvalue_zero : laplacianEigenvalue 0 = 0 := by
   simp [laplacianEigenvalue]
 
 lemma laplacianEigenvalue_twelve : laplacianEigenvalue 12 = 168 := by
-  simp [laplacianEigenvalue]
-  norm_num
+  norm_num [laplacianEigenvalue]
 
 /-- Heat trace summand for degree $\ell$: $m_\ell (\ell + 1) e^{-t \ell(\ell + 2)}$. -/
 def heatTraceTerm (t : ℝ) (l : ℕ) : ℝ :=
@@ -413,8 +407,11 @@ lemma heatTraceTerm_eleven (t : ℝ) : heatTraceTerm t 11 = 0 := by simp [heatTr
 
 lemma heatTraceTerm_twelve (t : ℝ) :
     heatTraceTerm t 12 = 13 * Real.exp (-168 * t) := by
-  simp only [heatTraceTerm, m_twelve, laplacianEigenvalue_twelve]
-  ring_nf
+  unfold heatTraceTerm
+  rw [m_twelve, laplacianEigenvalue_twelve]
+  have : -t * 168 = -168 * t := by ring
+  rw [this]
+  norm_num
 
 /-! ### 5. Weyl-Molien High-Degree Asymptotics & Spectral Multiplicity Density -/
 
@@ -442,16 +439,317 @@ lemma laplacian_spectral_density_leading_nonneg (l : ℕ) : laplacian_spectral_d
 theorem weyl_molien_landmark_values :
     weyl_molien_invariant_density 12 = 1 / 10 ∧
     weyl_molien_invariant_density 60 = 1 / 2 ∧
-    weyl_molien_invariant_density 120 = 1 := by
-  unfold weyl_molien_invariant_density
-  refine ⟨by norm_num, by norm_num, by norm_num⟩
+    weyl_molien_invariant_density 120 = 1 :=
+  ⟨by norm_num [weyl_molien_invariant_density],
+   by norm_num [weyl_molien_invariant_density],
+   by norm_num [weyl_molien_invariant_density]⟩
 
 /-- Explicit values of the quadratic Laplacian spectral density at landmark degrees $\ell = 12, 60, 120$. -/
 theorem laplacian_spectral_density_landmark_values :
     laplacian_spectral_density_leading 12 = 6 / 5 ∧
     laplacian_spectral_density_leading 60 = 30 ∧
-    laplacian_spectral_density_leading 120 = 120 := by
-  unfold laplacian_spectral_density_leading
-  refine ⟨by norm_num, by norm_num, by norm_num⟩
+    laplacian_spectral_density_leading 120 = 120 :=
+  ⟨by norm_num [laplacian_spectral_density_leading],
+   by norm_num [laplacian_spectral_density_leading],
+   by norm_num [laplacian_spectral_density_leading]⟩
+
+/-! ### 6. Off-Diagonal Mode Couplings and Parity Selection Rules on $S^3 / I^*$ -/
+
+/-- The decomposition of the character product sum $\sum_{g \in I^*} \chi_{l_1}(g) \chi_{l_2}(g)$
+over the 9 conjugacy classes of the binary icosahedral group $I^*$. -/
+def sum_chi_product_binaryIcosahedral (l₁ l₂ : ℕ) : ℝ :=
+  chi l₁ 1 * chi l₂ 1 +
+  chi l₁ centralInv * chi l₂ centralInv +
+  30 * (chi_re l₁ 0 * chi_re l₂ 0) +
+  20 * (chi_re l₁ (1 / 2) * chi_re l₂ (1 / 2)) +
+  20 * (chi_re l₁ (-1 / 2) * chi_re l₂ (-1 / 2)) +
+  12 * (chi_re l₁ (phi / 2) * chi_re l₂ (phi / 2)) +
+  12 * (chi_re l₁ (-phi / 2) * chi_re l₂ (-phi / 2)) +
+  12 * (chi_re l₁ (phi⁻¹ / 2) * chi_re l₂ (phi⁻¹ / 2)) +
+  12 * (chi_re l₁ (-phi⁻¹ / 2) * chi_re l₂ (-phi⁻¹ / 2))
+
+/-- Mode coupling / projection overlap between $\mathrm{SU}(2)$ representations of degrees $\ell_1$ and $\ell_2$
+under the icosahedral projection on $S^3 / I^*$:
+$$C(\ell_1, \ell_2) = \frac{1}{120} \sum_{g \in I^*} \chi_{\ell_1}(g) \chi_{\ell_2}(g)$$ -/
+def mode_coupling (l₁ l₂ : ℕ) : ℝ :=
+  (1 / 120 : ℝ) * sum_chi_product_binaryIcosahedral l₁ l₂
+
+/-- Off-diagonal mode coupling between representations of degrees $\ell_1$ and $\ell_2$ on $S^3 / I^*$. -/
+def off_diagonal_coupling (l₁ l₂ : ℕ) : ℝ :=
+  mode_coupling l₁ l₂
+
+/-- Off-diagonal mode coupling for $\mathrm{SO}(3)$ multipoles $L_1$ and $L_2$ on $S^3 / I^*$,
+corresponding to $\mathrm{SU}(2)$ representations of degrees $2 L_1$ and $2 L_2$. -/
+def off_diagonal_coupling_SO3 (L₁ L₂ : ℕ) : ℝ :=
+  off_diagonal_coupling (2 * L₁) (2 * L₂)
+
+/-- Commutativity / symmetry of the mode coupling matrix: $C(\ell_1, \ell_2) = C(\ell_2, \ell_1)$. -/
+theorem mode_coupling_comm (l₁ l₂ : ℕ) : mode_coupling l₁ l₂ = mode_coupling l₂ l₁ := by
+  unfold mode_coupling sum_chi_product_binaryIcosahedral
+  ring
+
+/-- Commutativity of off-diagonal couplings. -/
+theorem off_diagonal_coupling_comm (l₁ l₂ : ℕ) :
+    off_diagonal_coupling l₁ l₂ = off_diagonal_coupling l₂ l₁ :=
+  mode_coupling_comm l₁ l₂
+
+/-- Sign of $(-1)^n$ for odd $n$. -/
+lemma neg_one_pow_odd {n : ℕ} (h : n % 2 = 1) : (-1 : ℝ) ^ n = -1 :=
+  (Nat.odd_iff.2 h).neg_one_pow
+
+/-- Sign of $(-1)^n$ for even $n$. -/
+lemma neg_one_pow_even {n : ℕ} (h : n % 2 = 0) : (-1 : ℝ) ^ n = 1 :=
+  (Nat.even_iff.2 h).neg_one_pow
+
+/-- Sign of $(-1)^{L + L'}$ when $L$ and $L'$ have opposite parities ($L \not\equiv L' \pmod 2$). -/
+lemma neg_one_pow_of_ne_mod {L L' : ℕ} (h : L % 2 ≠ L' % 2) : (-1 : ℝ) ^ (L + L') = -1 :=
+  neg_one_pow_odd (by omega)
+
+/-- The character evaluated at real part $0$ vanishes for all odd degrees $\ell$. -/
+lemma chi_re_zero_of_odd (l : ℕ) (h : l % 2 = 1) : chi_re l 0 = 0 := by
+  have := chi_re_neg l 0
+  rw [neg_zero, neg_one_pow_odd h] at this
+  linarith
+
+/-- The product of characters at real part $0$ vanishes whenever degrees have opposite parity. -/
+lemma chi_re_zero_mul_of_ne_mod {L L' : ℕ} (h : L % 2 ≠ L' % 2) :
+    chi_re L 0 * chi_re L' 0 = 0 := by
+  rcases show L % 2 = 1 ∨ L' % 2 = 1 by omega with hL | hL <;> simp [chi_re_zero_of_odd _ hL]
+
+/-- Pairwise cancellation of conjugate character evaluations on $x$ and $-x$ under opposite parity. -/
+lemma chi_re_neg_pair_cancel (L L' : ℕ) (x : ℝ) (h : L % 2 ≠ L' % 2) :
+    chi_re L x * chi_re L' x + chi_re L (-x) * chi_re L' (-x) = 0 := by
+  rw [chi_re_neg, chi_re_neg]
+  have : ((-1 : ℝ) ^ L * chi_re L x) * ((-1 : ℝ) ^ L' * chi_re L' x) =
+      (-1 : ℝ) ^ (L + L') * (chi_re L x * chi_re L' x) := by
+    rw [pow_add]; ring
+  rw [this, neg_one_pow_of_ne_mod h]
+  ring
+
+/-- Cancellation of identity and central inversion character product contributions under opposite parity. -/
+lemma chi_centralInv_pair_cancel (L L' : ℕ) (h : L % 2 ≠ L' % 2) :
+    chi L 1 * chi L' 1 + chi L centralInv * chi L' centralInv = 0 := by
+  rw [chi_one, chi_one, chi_centralInv, chi_centralInv]
+  have : (((-1 : ℝ) ^ L * (L + 1 : ℝ)) * ((-1 : ℝ) ^ L' * (L' + 1 : ℝ))) =
+      (-1 : ℝ) ^ (L + L') * ((L + 1 : ℝ) * (L' + 1 : ℝ)) := by
+    rw [pow_add]; ring
+  rw [this, neg_one_pow_of_ne_mod h]
+  ring
+
+/-- **Character Product Vanishing Theorem**:
+The character product sum over the binary icosahedral group $I^*$ vanishes identically
+whenever $L \not\equiv L' \pmod 2$. -/
+theorem sum_chi_product_binaryIcosahedral_odd_sum (L L' : ℕ) (h : L % 2 ≠ L' % 2) :
+    sum_chi_product_binaryIcosahedral L L' = 0 := by
+  unfold sum_chi_product_binaryIcosahedral
+  have h1 := chi_centralInv_pair_cancel L L' h
+  have h0 := chi_re_zero_mul_of_ne_mod h
+  have h_half := chi_re_neg_pair_cancel L L' (1 / 2) h
+  have h_phi := chi_re_neg_pair_cancel L L' (phi / 2) h
+  have h_phi_inv := chi_re_neg_pair_cancel L L' (phi⁻¹ / 2) h
+  have h_neg_half : - (1 / 2 : ℝ) = -1 / 2 := by ring
+  have h_neg_phi : - (phi / 2) = -phi / 2 := by ring
+  have h_neg_phi_inv : - (phi⁻¹ / 2) = -phi⁻¹ / 2 := by ring
+  rw [← h_neg_half, ← h_neg_phi, ← h_neg_phi_inv]
+  linear_combination h1 + 30 * h0 + 20 * h_half + 12 * h_phi + 12 * h_phi_inv
+
+/-- **Parity Selection Rule for Off-Diagonal Mode Couplings on $S^3 / I^*$**:
+Two representations $L$ and $L'$ have zero coupling under the icosahedral projection
+whenever they have opposite parity ($L \not\equiv L' \pmod 2$). -/
+theorem parity_selection_rule (L L' : ℕ) (h : L % 2 ≠ L' % 2) :
+    off_diagonal_coupling L L' = 0 := by
+  unfold off_diagonal_coupling mode_coupling
+  rw [sum_chi_product_binaryIcosahedral_odd_sum L L' h]
+  ring
+
+/-- Quadratic golden ratio identity: $\phi^2 + (\phi^{-1})^2 = 3$. -/
+lemma phi_sq_add_phi_inv_sq : phi ^ 2 + (phi⁻¹)^2 = 3 := by
+  rw [phi_inv]
+  linear_combination 2 * phi_sq
+
+/-- Coupling with the trivial representation $\ell = 0$ reduces to the invariant multiplicity $m_\ell$. -/
+theorem off_diagonal_coupling_zero_left (l : ℕ) :
+    off_diagonal_coupling 0 l = m l := by
+  unfold off_diagonal_coupling mode_coupling m sum_chi_product_binaryIcosahedral sum_chi_binaryIcosahedral
+  simp only [chi_one, Nat.cast_zero, zero_add, mul_one, chi_centralInv, pow_zero,
+    chi_re_zero_0, one_mul, chi_re_zero_half, chi_re_zero_neg_half,
+    chi_re_zero_phi_half, chi_re_zero_neg_phi_half, chi_re_zero_phi_inv_half, chi_re_zero_neg_phi_inv_half]
+
+/-- Coupling with the trivial representation on the right reduces to the invariant multiplicity $m_\ell$. -/
+theorem off_diagonal_coupling_zero_right (l : ℕ) :
+    off_diagonal_coupling l 0 = m l := by
+  rw [off_diagonal_coupling_comm, off_diagonal_coupling_zero_left]
+
+/-! ### Explicit Orthogonality for Low Multipole Cross-Terms -/
+
+/-- Explicit parity orthogonality: $C(1, 2) = 0$. -/
+theorem coupling_one_two : off_diagonal_coupling 1 2 = 0 :=
+  parity_selection_rule 1 2 (by decide)
+
+/-- Explicit parity orthogonality: $C(2, 3) = 0$. -/
+theorem coupling_two_three : off_diagonal_coupling 2 3 = 0 :=
+  parity_selection_rule 2 3 (by decide)
+
+/-- Explicit parity orthogonality: $C(0, 1) = 0$. -/
+theorem coupling_zero_one : off_diagonal_coupling 0 1 = 0 :=
+  parity_selection_rule 0 1 (by decide)
+
+/-- Explicit parity orthogonality: $C(0, 3) = 0$. -/
+theorem coupling_zero_three : off_diagonal_coupling 0 3 = 0 :=
+  parity_selection_rule 0 3 (by decide)
+
+/-- Explicit parity orthogonality: $C(1, 4) = 0$. -/
+theorem coupling_one_four : off_diagonal_coupling 1 4 = 0 :=
+  parity_selection_rule 1 4 (by decide)
+
+/-- Explicit parity orthogonality: $C(3, 4) = 0$. -/
+theorem coupling_three_four : off_diagonal_coupling 3 4 = 0 :=
+  parity_selection_rule 3 4 (by decide)
+
+/-- Explicit parity orthogonality: $C(2, 5) = 0$. -/
+theorem coupling_two_five : off_diagonal_coupling 2 5 = 0 :=
+  parity_selection_rule 2 5 (by decide)
+
+/-- Explicit parity orthogonality: $C(4, 5) = 0$. -/
+theorem coupling_four_five : off_diagonal_coupling 4 5 = 0 :=
+  parity_selection_rule 4 5 (by decide)
+
+/-- Explicit parity orthogonality: $C(5, 6) = 0$. -/
+theorem coupling_five_six : off_diagonal_coupling 5 6 = 0 :=
+  parity_selection_rule 5 6 (by decide)
+
+/-- Orthogonality of even cross-term $C(0, 2) = 0$. -/
+theorem coupling_zero_two : off_diagonal_coupling 0 2 = 0 :=
+  (off_diagonal_coupling_zero_left 2).trans m_two
+
+/-- Orthogonality of even cross-term $C(0, 4) = 0$. -/
+theorem coupling_zero_four : off_diagonal_coupling 0 4 = 0 :=
+  (off_diagonal_coupling_zero_left 4).trans m_four
+
+/-- Orthogonality of even cross-term $C(0, 6) = 0$. -/
+theorem coupling_zero_six : off_diagonal_coupling 0 6 = 0 :=
+  (off_diagonal_coupling_zero_left 6).trans m_six
+
+/-- Orthogonality of even cross-term $C(0, 8) = 0$. -/
+theorem coupling_zero_eight : off_diagonal_coupling 0 8 = 0 :=
+  (off_diagonal_coupling_zero_left 8).trans m_eight
+
+/-- Orthogonality of even cross-term $C(0, 10) = 0$. -/
+theorem coupling_zero_ten : off_diagonal_coupling 0 10 = 0 :=
+  (off_diagonal_coupling_zero_left 10).trans m_ten
+
+/-- Orthogonality of even cross-term $C(1, 3) = 0$. -/
+theorem coupling_one_three : off_diagonal_coupling 1 3 = 0 := by
+  unfold off_diagonal_coupling mode_coupling sum_chi_product_binaryIcosahedral
+  rw [chi_one 1, chi_one 3, chi_centralInv 1, chi_centralInv 3,
+    chi_re_one_0, chi_re_three_0,
+    chi_re_one_half, chi_re_three_half,
+    chi_re_one_neg_half, chi_re_three_neg_half,
+    chi_re_one_phi_half, chi_re_three_phi_half,
+    chi_re_one_neg_phi_half, chi_re_three_neg_phi_half,
+    chi_re_one_phi_inv_half, chi_re_three_phi_inv_half,
+    chi_re_one_neg_phi_inv_half, chi_re_three_neg_phi_inv_half]
+  linear_combination (24 / 120 : ℝ) * phi_sub_phi_inv
+
+/-- Orthogonality of even cross-term $C(2, 4) = 0$. -/
+theorem coupling_two_four : off_diagonal_coupling 2 4 = 0 := by
+  unfold off_diagonal_coupling mode_coupling sum_chi_product_binaryIcosahedral
+  rw [chi_one 2, chi_one 4, chi_centralInv 2, chi_centralInv 4,
+    chi_re_two_0, chi_re_four_0,
+    chi_re_two_half, chi_re_four_half,
+    chi_re_two_neg_half, chi_re_four_neg_half,
+    chi_re_two_phi_half, chi_re_four_phi_half,
+    chi_re_two_neg_phi_half, chi_re_four_neg_phi_half,
+    chi_re_two_phi_inv_half, chi_re_four_phi_inv_half,
+    chi_re_two_neg_phi_inv_half, chi_re_four_neg_phi_inv_half]
+  ring
+
+/-- Orthogonality of even cross-term $C(2, 6) = 0$. -/
+theorem coupling_two_six : off_diagonal_coupling 2 6 = 0 := by
+  unfold off_diagonal_coupling mode_coupling sum_chi_product_binaryIcosahedral
+  rw [chi_one 2, chi_one 6, chi_centralInv 2, chi_centralInv 6,
+    chi_re_two_0, chi_re_six_0,
+    chi_re_two_half, chi_re_six_half,
+    chi_re_two_neg_half, chi_re_six_neg_half,
+    chi_re_two_phi_half, chi_re_six_phi_half,
+    chi_re_two_neg_phi_half, chi_re_six_neg_phi_half,
+    chi_re_two_phi_inv_half, chi_re_six_phi_inv_half,
+    chi_re_two_neg_phi_inv_half, chi_re_six_neg_phi_inv_half]
+  linear_combination (-24 / 120 : ℝ) * phi_sq_add_phi_inv_sq
+
+/-- Orthogonality of even cross-term $C(4, 6) = 0$. -/
+theorem coupling_four_six : off_diagonal_coupling 4 6 = 0 := by
+  unfold off_diagonal_coupling mode_coupling sum_chi_product_binaryIcosahedral
+  rw [chi_one 4, chi_one 6, chi_centralInv 4, chi_centralInv 6,
+    chi_re_four_0, chi_re_six_0,
+    chi_re_four_half, chi_re_six_half,
+    chi_re_four_neg_half, chi_re_six_neg_half,
+    chi_re_four_phi_half, chi_re_six_phi_half,
+    chi_re_four_neg_phi_half, chi_re_six_neg_phi_half,
+    chi_re_four_phi_inv_half, chi_re_six_phi_inv_half,
+    chi_re_four_neg_phi_inv_half, chi_re_six_neg_phi_inv_half]
+  ring
+
+/-- Diagonal normalization: $C(0, 0) = 1$. -/
+theorem coupling_zero_zero : off_diagonal_coupling 0 0 = 1 :=
+  (off_diagonal_coupling_zero_left 0).trans m_zero
+
+/-- Diagonal normalization: $C(1, 1) = 1$ (2D spinor representation of $I^*$ is irreducible). -/
+theorem coupling_one_one : off_diagonal_coupling 1 1 = 1 := by
+  unfold off_diagonal_coupling mode_coupling sum_chi_product_binaryIcosahedral
+  rw [chi_one 1, chi_centralInv 1,
+    chi_re_one_0, chi_re_one_half, chi_re_one_neg_half,
+    chi_re_one_phi_half, chi_re_one_neg_phi_half,
+    chi_re_one_phi_inv_half, chi_re_one_neg_phi_inv_half]
+  linear_combination (24 / 120 : ℝ) * phi_sq_add_phi_inv_sq
+
+/-- Diagonal normalization: $C(2, 2) = 1$ (3D vector representation of $I^*$ is irreducible). -/
+theorem coupling_two_two : off_diagonal_coupling 2 2 = 1 := by
+  unfold off_diagonal_coupling mode_coupling sum_chi_product_binaryIcosahedral
+  rw [chi_one 2, chi_centralInv 2,
+    chi_re_two_0, chi_re_two_half, chi_re_two_neg_half,
+    chi_re_two_phi_half, chi_re_two_neg_phi_half,
+    chi_re_two_phi_inv_half, chi_re_two_neg_phi_inv_half]
+  linear_combination (24 / 120 : ℝ) * phi_sq_add_phi_inv_sq
+
+/-- Diagonal normalization: $C(4, 4) = 1$ (5D representation of $I^*$ is irreducible). -/
+theorem coupling_four_four : off_diagonal_coupling 4 4 = 1 := by
+  unfold off_diagonal_coupling mode_coupling sum_chi_product_binaryIcosahedral
+  rw [chi_one 4, chi_centralInv 4,
+    chi_re_four_0, chi_re_four_half, chi_re_four_neg_half,
+    chi_re_four_phi_half, chi_re_four_neg_phi_half,
+    chi_re_four_phi_inv_half, chi_re_four_neg_phi_inv_half]
+  ring
+
+/-- Non-trivial invariant pairing at degree 12: $C(0, 12) = 1$. -/
+theorem coupling_zero_twelve : off_diagonal_coupling 0 12 = 1 :=
+  (off_diagonal_coupling_zero_left 12).trans m_twelve
+
+/-- $\mathrm{SO}(3)$ multipole orthogonality: $C^{\mathrm{SO}(3)}(0, 1) = 0$. -/
+theorem coupling_SO3_zero_one : off_diagonal_coupling_SO3 0 1 = 0 := coupling_zero_two
+
+/-- $\mathrm{SO}(3)$ multipole orthogonality: $C^{\mathrm{SO}(3)}(0, 2) = 0$. -/
+theorem coupling_SO3_zero_two : off_diagonal_coupling_SO3 0 2 = 0 := coupling_zero_four
+
+/-- $\mathrm{SO}(3)$ multipole orthogonality: $C^{\mathrm{SO}(3)}(0, 3) = 0$. -/
+theorem coupling_SO3_zero_three : off_diagonal_coupling_SO3 0 3 = 0 := coupling_zero_six
+
+/-- $\mathrm{SO}(3)$ multipole orthogonality: $C^{\mathrm{SO}(3)}(0, 4) = 0$. -/
+theorem coupling_SO3_zero_four : off_diagonal_coupling_SO3 0 4 = 0 := coupling_zero_eight
+
+/-- $\mathrm{SO}(3)$ multipole orthogonality: $C^{\mathrm{SO}(3)}(0, 5) = 0$. -/
+theorem coupling_SO3_zero_five : off_diagonal_coupling_SO3 0 5 = 0 := coupling_zero_ten
+
+/-- $\mathrm{SO}(3)$ multipole orthogonality: $C^{\mathrm{SO}(3)}(1, 2) = 0$. -/
+theorem coupling_SO3_one_two : off_diagonal_coupling_SO3 1 2 = 0 := coupling_two_four
+
+/-- $\mathrm{SO}(3)$ multipole orthogonality: $C^{\mathrm{SO}(3)}(1, 3) = 0$. -/
+theorem coupling_SO3_one_three : off_diagonal_coupling_SO3 1 3 = 0 := coupling_two_six
+
+/-- $\mathrm{SO}(3)$ multipole orthogonality: $C^{\mathrm{SO}(3)}(2, 3) = 0$. -/
+theorem coupling_SO3_two_three : off_diagonal_coupling_SO3 2 3 = 0 := coupling_four_six
+
+/-- First non-trivial $\mathrm{SO}(3)$ icosahedral mode coupling: $C^{\mathrm{SO}(3)}(0, 6) = 1$. -/
+theorem coupling_SO3_zero_six : off_diagonal_coupling_SO3 0 6 = 1 := coupling_zero_twelve
 
 end PoincareDodecahedron

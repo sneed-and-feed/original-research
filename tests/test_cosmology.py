@@ -22,6 +22,9 @@ from cosmology.model import (
 from cosmology.likelihoods import (
     PlanckLikelihood,
     PlanckLowEllLikelihood,
+    PlanckHighEllPolarizationLikelihood,
+    WeakLensingLikelihood,
+    SH0ESLikelihood,
     DESI2024Likelihood,
     PantheonPlusLikelihood,
     JointLikelihood
@@ -128,6 +131,65 @@ class TestPoincareEDEModel(unittest.TestCase):
         DL = self.model_poincare.luminosity_distance(z_test)
         self.assertAlmostEqual(DL, (1.0 + z_test)**2 * DA, places=4)
 
+    def test_nede_dynamics_and_eos(self):
+        """Test NEDE equation of state, sound speed, and energy density scaling."""
+        params_nede = CosmologicalParameters(
+            H0=71.50, omega_b=0.02239, omega_cdm=0.1523, Omega_k=0.0005,
+            f_NEDE=0.1706, log10_zc=3.550, w_NEDE_after=1.0/3.0, cs2_NEDE_after=1.0/3.0,
+            model_type="nede"
+        )
+        model_nede = PoincareEDEModel(params_nede)
+        zc = model_nede.params.z_c
+
+        # Equation of state & sound speed:
+        # z <= z_c: w = 1/3, c_s^2 = 1/3 (radiation fluid)
+        self.assertAlmostEqual(model_nede.ede_equation_of_state(100.0), 1.0/3.0, places=4)
+        self.assertAlmostEqual(model_nede.ede_equation_of_state(zc), 1.0/3.0, places=4)
+        self.assertAlmostEqual(model_nede.ede_sound_speed_sq(100.0), 1.0/3.0, places=4)
+        self.assertAlmostEqual(model_nede.ede_sound_speed_sq(zc), 1.0/3.0, places=4)
+
+        # z > z_c: w = -1, c_s^2 = 1.0 (vacuum energy)
+        self.assertAlmostEqual(model_nede.ede_equation_of_state(10000.0), -1.0, places=4)
+        self.assertAlmostEqual(model_nede.ede_sound_speed_sq(10000.0), 1.0, places=4)
+
+        # Energy density ratio: constant for z > z_c, radiation decay (1+z)^4 for z <= z_c
+        rho_zc = model_nede.rho_ede_ratio(zc)
+        rho_high = model_nede.rho_ede_ratio(2.0 * zc)
+        self.assertAlmostEqual(rho_high, rho_zc, places=4)
+
+        z_low = 100.0
+        rho_low = model_nede.rho_ede_ratio(z_low)
+        expected_low = rho_zc * ((1.0 + z_low)/(1.0 + zc))**4
+        self.assertAlmostEqual(rho_low, expected_low, places=4)
+
+        # Sound horizon is compressed compared to flat LCDM
+        self.assertLess(model_nede.r_s_star, self.model_flat.r_s_star)
+
+    def test_idr_collisional_damping_and_s8(self):
+        """Test IDR dark radiation energy density, collisional damping factor, and dynamic S_8."""
+        params_idr = CosmologicalParameters(
+            H0=71.50, omega_b=0.02239, omega_cdm=0.1577, Omega_k=-0.0027,
+            f_EDE=0.1244, log10_zc=3.560, theta_i=2.80, delta_N_idr=0.35,
+            g_dark_coupling=0.14, n_s=0.967, sigma8_0=0.811,
+            model_type="idr", use_poincare_topology=True
+        )
+        model_idr = PoincareEDEModel(params_idr)
+
+        # Dark radiation boosts physical radiation energy density
+        self.assertGreater(params_idr.omega_r, self.params_poincare.omega_r)
+
+        # Collisional damping factor D_IDR is strictly < 1.0
+        self.assertEqual(self.model_poincare.idr_damping_factor, 1.0)
+        self.assertLess(model_idr.idr_damping_factor, 0.95)
+        self.assertGreater(model_idr.idr_damping_factor, 0.70)
+
+        # Dynamic S_8 computation matches target benchmarks
+        s8_idr = model_idr.S_8
+        s8_poincare = self.model_poincare.S_8
+        self.assertGreater(s8_poincare, 0.82)
+        self.assertLess(s8_idr, 0.81)
+        self.assertGreater(s8_idr, 0.76)
+
 
 class TestObservationalLikelihoods(unittest.TestCase):
     """Test Planck, DESI, and Pantheon+ likelihood evaluations."""
@@ -206,6 +268,108 @@ class TestObservationalLikelihoods(unittest.TestCase):
         self.assertEqual(summary["n_data"], 95)
         self.assertEqual(summary["dof"], 86)
         self.assertAlmostEqual(summary["reduced_chi2"], summary["breakdown"]["Total_Chi2"] / 86.0)
+
+    def test_high_ell_polarization_likelihood(self):
+        """Test Planck high-ell polarization damping tail penalty and IDR/NEDE mitigation."""
+        lik_pol = PlanckHighEllPolarizationLikelihood()
+        self.assertEqual(lik_pol.n_data, 2)
+
+        # Flat LCDM has standard n_s and omega_cdm -> chi2 ~ 0
+        c2_lcdm = lik_pol.chi2(self.model_lcdm)
+        self.assertLess(c2_lcdm, 1.0)
+
+        # Unmitigated Axion EDE with large omega_cdm has severe polarization penalty
+        c2_ede = lik_pol.chi2(self.model_poincare)
+        self.assertGreater(c2_ede, 10.0)
+
+        # IDR model mitigates high-ell polarization damping tail
+        params_idr = CosmologicalParameters(
+            H0=71.50, omega_b=0.02239, omega_cdm=0.1577, Omega_k=-0.0027,
+            f_EDE=0.1244, delta_N_idr=0.35, g_dark_coupling=0.14,
+            n_s=0.967, model_type="idr", use_poincare_topology=True
+        )
+        model_idr = PoincareEDEModel(params_idr)
+        c2_idr = lik_pol.chi2(model_idr)
+        self.assertLess(c2_idr, 10.0)
+
+        # NEDE model also mitigates polarization tension
+        params_nede = CosmologicalParameters(
+            H0=71.50, omega_b=0.02239, omega_cdm=0.1523, Omega_k=0.0005,
+            f_NEDE=0.1706, n_s=0.966, model_type="nede", use_poincare_topology=True
+        )
+        model_nede = PoincareEDEModel(params_nede)
+        c2_nede = lik_pol.chi2(model_nede)
+        self.assertLess(c2_nede, 10.0)
+
+        # Check breakdown
+        bk = lik_pol.residual_breakdown(model_idr)
+        self.assertIn("n_s_eff", bk)
+        self.assertIn("omega_cdm_eff", bk)
+
+    def test_weak_lensing_likelihood(self):
+        """Test DES Y3 + KiDS-1000 weak lensing cosmic shear constraints."""
+        lik_wl = WeakLensingLikelihood()
+        self.assertEqual(lik_wl.n_data, 2)
+
+        # Standard high-S8 models have large chi2
+        params_high_s8 = CosmologicalParameters(
+            H0=68.0, omega_b=0.0224, omega_cdm=0.1402, Omega_k=-0.0027,
+            f_EDE=0.0886, model_type="axion_ede", use_poincare_topology=True
+        )
+        model_high_s8 = PoincareEDEModel(params_high_s8)
+        c2_high_s8 = lik_wl.chi2(model_high_s8)
+        self.assertGreater(c2_high_s8, 10.0)
+
+        # IDR model with S_8 ~ 0.78-0.80 achieves excellent fit to DES Y3 (0.776 ± 0.017)
+        params_idr = CosmologicalParameters(
+            H0=71.50, omega_b=0.02239, omega_cdm=0.1577, Omega_k=-0.0027,
+            f_EDE=0.1244, delta_N_idr=0.35, g_dark_coupling=0.18,
+            model_type="idr", use_poincare_topology=True
+        )
+        model_idr = PoincareEDEModel(params_idr)
+        c2_idr = lik_wl.chi2(model_idr)
+        self.assertLess(c2_idr, 5.0)
+
+        # Check breakdown
+        bk = lik_wl.residual_breakdown(model_idr)
+        self.assertIn("DES_Y3", bk)
+        self.assertIn("KiDS_1000", bk)
+
+    def test_shoes_prior_and_joint_toggles(self):
+        """Test SH0ES prior and toggling of all likelihood components in JointLikelihood."""
+        lik_shoes = SH0ESLikelihood(H0_obs=73.04, sigma_H0=1.04)
+        self.assertEqual(lik_shoes.n_data, 1)
+
+        # Model with H0 = 67.36 has ~5.5-sigma tension
+        c2_lcdm = lik_shoes.chi2(self.model_lcdm)
+        self.assertGreater(c2_lcdm, 25.0)
+
+        # Model with H0 = 72.8 has low chi2
+        params_h73 = CosmologicalParameters(H0=72.80)
+        model_h73 = PoincareEDEModel(params_h73)
+        c2_h73 = lik_shoes.chi2(model_h73)
+        self.assertLess(c2_h73, 1.0)
+
+        # Test JointLikelihood toggles
+        joint_base = JointLikelihood(include_low_ell=True, include_high_ell_pol=False, include_weak_lensing=False, include_shoes=False)
+        self.assertEqual(joint_base.n_data, 95)
+
+        joint_ext = JointLikelihood(include_low_ell=True, include_high_ell_pol=True, include_weak_lensing=True, include_shoes=False)
+        self.assertEqual(joint_ext.n_data, 99)
+
+        joint_all = JointLikelihood(include_low_ell=True, include_high_ell_pol=True, include_weak_lensing=True, include_shoes=True)
+        self.assertEqual(joint_all.n_data, 100)
+        
+        info = joint_all.dataset_info()
+        self.assertIn("Planck_HighEll_Pol", info)
+        self.assertIn("Weak_Lensing_DES_KiDS", info)
+        self.assertIn("SH0ES_H0_Prior", info)
+        self.assertEqual(info["Total_Data_Points"], 100)
+
+        bk = joint_all.chi2_breakdown(model_h73)
+        self.assertIn("Planck_HighEll_Pol", bk)
+        self.assertIn("Weak_Lensing_DES_KiDS", bk)
+        self.assertIn("SH0ES_H0_Prior", bk)
 
 
 class TestMCMCAndInformationCriteria(unittest.TestCase):

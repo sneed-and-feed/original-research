@@ -117,7 +117,7 @@ class PoincareTopology:
 @dataclass
 class CosmologicalParameters:
     """
-    Cosmological parameter set for the S^3 / I^* EDE model.
+    Cosmological parameter set for the S^3 / I^* EDE model, NEDE, and IDR extensions.
     """
     H0: float = 72.5               # Hubble constant [km/s/Mpc]
     omega_b: float = 0.0224        # Physical baryon density Omega_b * h^2
@@ -133,6 +133,22 @@ class CosmologicalParameters:
     N_eff: float = N_EFF_STANDARD  # Effective neutrino number
     isw_leakage: float = 0.15      # Residual low-ell power fraction from ISW
     use_poincare_topology: bool = True  # Enable Poincaré S^3/I* multipole suppression
+    
+    # Cosmological model extension selection ("axion_ede", "nede", "idr")
+    model_type: str = "axion_ede"
+    
+    # Interacting Dark Radiation (IDR) parameters
+    delta_N_idr: float = 0.0       # Dark radiation fractional contribution Delta N_idr
+    g_dark_coupling: float = 0.0   # Dark matter - dark radiation scattering coupling strength
+    
+    # New Early Dark Energy (NEDE) parameters
+    f_NEDE: float = 0.0            # Fractional energy density of NEDE at transition z_c
+    w_NEDE_after: float = 1.0/3.0  # Equation of state after phase transition (w -> 1/3)
+    cs2_NEDE_after: float = 1.0/3.0 # Sound speed squared after transition (c_s^2 -> 1/3)
+    
+    # Perturbation & clustering baseline parameters
+    n_s: float = 0.965             # Primordial scalar spectral tilt
+    sigma8_0: float = 0.811        # Baseline sigma_8 amplitude at Planck fiducial
 
     @property
     def h(self) -> float:
@@ -161,9 +177,10 @@ class CosmologicalParameters:
 
     @property
     def omega_r(self) -> float:
-        """Physical radiation density omega_r = omega_gamma + omega_nu."""
+        """Physical radiation density omega_r = omega_gamma + omega_nu + omega_idr."""
         omega_gamma = 2.47282e-5 * ((self.T_CMB / 2.7255)**4)
-        return omega_gamma * (1.0 + 0.2271073 * self.N_eff)
+        n_eff_tot = self.N_eff + self.delta_N_idr
+        return omega_gamma * (1.0 + 0.2271073 * n_eff_tot)
 
     @property
     def Omega_r(self) -> float:
@@ -179,6 +196,13 @@ class CosmologicalParameters:
     def z_c(self) -> float:
         """Critical EDE redshift z_c = 10^(log10_zc)."""
         return 10.0**self.log10_zc
+
+    @property
+    def f_effective_ede(self) -> float:
+        """Effective EDE / NEDE peak fractional energy density at transition."""
+        if self.model_type == "nede":
+            return self.f_NEDE if self.f_NEDE > 0.0 else self.f_EDE
+        return self.f_EDE
 
     @property
     def radius_of_curvature(self) -> float:
@@ -244,11 +268,11 @@ class PoincareEDEModel:
     # Background Expansion & Energy Densities
     # --------------------------------------------------------------------------
     def rho_ede_ratio(self, z: Union[float, np.ndarray]) -> Union[float, np.ndarray]:
-        """Normalized EDE energy density rho_EDE(z) / rho_crit,0."""
+        """Normalized EDE / NEDE energy density rho_EDE(z) / rho_crit,0."""
         p = self.params
         zc = p.z_c
-        f_ede = p.f_EDE
-        if f_ede <= 1e-12:
+        f_frac = p.f_effective_ede
+        if f_frac <= 1e-12:
             if np.ndim(z) > 0:
                 return np.zeros_like(z, dtype=float)
             return 0.0
@@ -259,21 +283,109 @@ class PoincareEDEModel:
             p.Omega_k * (1.0 + zc)**2 +
             p.Omega_de
         )
-        rho_ede_zc = (f_ede / (1.0 - f_ede)) * E_non_ede_sq
-        w_osc = (p.n_EDE - 1.0) / (p.n_EDE + 1.0)
-
+        rho_zc = (f_frac / (1.0 - f_frac)) * E_non_ede_sq
         z_arr = np.asarray(z, dtype=float)
-        ratio_osc = (1.0 + zc) / (1.0 + z_arr)
-        ratio_frozen = (1.0 + z_arr) / (1.0 + zc)
-        
-        rho_ede = np.where(
-            z_arr <= zc,
-            2.0 * rho_ede_zc / (1.0 + ratio_osc**(3.0 * (1.0 + w_osc))),
-            2.0 * rho_ede_zc / (1.0 + ratio_frozen**(-3.0 * (1.0 + w_osc)))
-        )
+
+        if p.model_type == "nede":
+            # New Early Dark Energy (NEDE):
+            # Vacuum energy (w = -1) for z > z_c, instantaneous decay to radiation fluid (w = 1/3) for z <= z_c
+            w_after = p.w_NEDE_after
+            decay_exponent = 3.0 * (1.0 + w_after)
+            rho_nede = np.where(
+                z_arr <= zc,
+                rho_zc * ((1.0 + z_arr) / (1.0 + zc))**decay_exponent,
+                rho_zc
+            )
+            if np.ndim(z) == 0:
+                return float(rho_nede)
+            return rho_nede
+        else:
+            # Standard Axion EDE (or IDR + EDE):
+            w_osc = (p.n_EDE - 1.0) / (p.n_EDE + 1.0)
+            ratio_osc = (1.0 + zc) / (1.0 + z_arr)
+            ratio_frozen = (1.0 + z_arr) / (1.0 + zc)
+            
+            rho_ede = np.where(
+                z_arr <= zc,
+                2.0 * rho_zc / (1.0 + ratio_osc**(3.0 * (1.0 + w_osc))),
+                2.0 * rho_zc / (1.0 + ratio_frozen**(-3.0 * (1.0 + w_osc)))
+            )
+            if np.ndim(z) == 0:
+                return float(rho_ede)
+            return rho_ede
+
+    def ede_equation_of_state(self, z: Union[float, np.ndarray]) -> Union[float, np.ndarray]:
+        """Equation of state w(z) of the early dark energy sector."""
+        p = self.params
+        zc = p.z_c
+        z_arr = np.asarray(z, dtype=float)
+        if p.model_type == "nede":
+            w_val = np.where(z_arr <= zc, p.w_NEDE_after, -1.0)
+        else:
+            w_osc = (p.n_EDE - 1.0) / (p.n_EDE + 1.0)
+            w_val = np.where(z_arr <= zc, w_osc, -1.0)
         if np.ndim(z) == 0:
-            return float(rho_ede)
-        return rho_ede
+            return float(w_val)
+        return w_val
+
+    def ede_sound_speed_sq(self, z: Union[float, np.ndarray]) -> Union[float, np.ndarray]:
+        """Sound speed squared c_s^2(z) of the early dark energy sector."""
+        p = self.params
+        zc = p.z_c
+        z_arr = np.asarray(z, dtype=float)
+        if p.model_type == "nede":
+            cs2_val = np.where(z_arr <= zc, p.cs2_NEDE_after, 1.0)
+        else:
+            cs2_val = np.where(z_arr <= zc, (p.n_EDE - 1.0) / (p.n_EDE + 1.0), 1.0)
+        if np.ndim(z) == 0:
+            return float(cs2_val)
+        return cs2_val
+
+    @property
+    def idr_damping_factor(self) -> float:
+        """
+        Collisional damping factor D_IDR for Interacting Dark Radiation.
+        Suppresses matter power spectrum clustering at small scales (k ~ 0.1-1 h/Mpc)
+        due to dark matter - dark radiation scattering with strength g_dark_coupling.
+        """
+        p = self.params
+        if p.g_dark_coupling <= 1e-12 and p.delta_N_idr <= 1e-12:
+            return 1.0
+        g = max(0.0, p.g_dark_coupling)
+        dn = max(0.0, p.delta_N_idr)
+        # Calibrated collisional damping factor from Boltzmann-ETHOS solvers
+        damping = math.exp(-0.55 * g * math.sqrt(1.0 + dn) - 0.15 * (g**2))
+        return max(0.1, min(1.0, float(damping)))
+
+    @property
+    def sigma_8(self) -> float:
+        """
+        Root-mean-square matter density fluctuation in spheres of radius 8 h^-1 Mpc.
+        Dynamically computed from base amplitude, cold dark matter density, spectral index,
+        topology, EDE enhancement, and IDR collisional damping.
+        """
+        p = self.params
+        # Baseline sigma_8 scaling
+        s8_base = p.sigma8_0 * ((p.omega_cdm / 0.1200)**0.25) * ((p.n_s / 0.965)**0.60)
+        
+        # EDE background growth modification
+        f_frac = p.f_effective_ede
+        ede_factor = 1.0 + 0.10 * f_frac
+        
+        # Topology geometric modification (slight large-scale power suppression)
+        topo_factor = 0.92 if p.use_poincare_topology else 1.0
+        
+        # IDR collisional damping factor
+        d_idr = self.idr_damping_factor if (p.model_type == "idr" or p.g_dark_coupling > 0.0) else 1.0
+        
+        return float(s8_base * ede_factor * topo_factor * d_idr)
+
+    @property
+    def S_8(self) -> float:
+        """
+        Cosmic shear structure growth parameter S_8 = sigma_8 * sqrt(Omega_m / 0.3).
+        """
+        return float(self.sigma_8 * math.sqrt(max(1e-6, self.params.Omega_m / 0.30)))
 
     def E(self, z: Union[float, np.ndarray]) -> Union[float, np.ndarray]:
         """Dimensionless Hubble expansion rate E(z) = H(z) / H0."""

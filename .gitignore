@@ -1,2 +1,5 @@
 /.lake/
 PALOMAR_CHECKLIST.md
+__pycache__/
+*.pyc
+scratch/

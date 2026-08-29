@@ -20,6 +20,9 @@ from .likelihoods import (
     ObservationalLikelihood,
     PlanckLikelihood,
     PlanckLowEllLikelihood,
+    PlanckHighEllPolarizationLikelihood,
+    WeakLensingLikelihood,
+    SH0ESLikelihood,
     DESI2024Likelihood,
     PantheonPlusLikelihood,
     JointLikelihood
@@ -43,6 +46,9 @@ __all__ = [
     "ObservationalLikelihood",
     "PlanckLikelihood",
     "PlanckLowEllLikelihood",
+    "PlanckHighEllPolarizationLikelihood",
+    "WeakLensingLikelihood",
+    "SH0ESLikelihood",
     "DESI2024Likelihood",
     "PantheonPlusLikelihood",
     "JointLikelihood",
@@ -53,4 +59,4 @@ __all__ = [
     "compute_information_criteria"
 ]
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"

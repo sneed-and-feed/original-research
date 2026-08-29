@@ -3,15 +3,21 @@
 Local Quick Evaluation Runner for Poincaré Dodecahedral Adèlic Cosmology ($S^3/I^*$).
 
 Executes lightweight observational likelihood evaluations and fast MCMC exploration (< 30s)
-for both the standard Flat Lambda-CDM baseline and the Poincaré S^3/I* EDE model.
-Outputs structured concordance scorecards, AIC/BIC model comparison, parameter covariances,
-and Gelman-Rubin convergence diagnostics.
+for:
+1. Standard Flat Lambda-CDM baseline
+2. Standard S^3/I* Axion EDE
+3. S^3/I* + Interacting Dark Radiation (IDR)
+4. S^3/I* + New Early Dark Energy (NEDE)
+
+Outputs structured concordance scorecards, AIC/BIC model comparisons with and without SH0ES,
+derived acoustic horizons, S_8 clustering parameters, and Gelman-Rubin convergence diagnostics.
 """
 
 from __future__ import annotations
 import os
 import sys
 import time
+from typing import Dict, List, Tuple
 import numpy as np
 
 # Ensure local cosmology package is imported
@@ -24,24 +30,25 @@ from cosmology.mcmc import MCMCSampler, compute_information_criteria, gelman_rub
 
 def print_banner(title: str) -> None:
     """Print formatted terminal section banner."""
-    print("=" * 80, flush=True)
-    print(f" {title}".center(80), flush=True)
-    print("=" * 80, flush=True)
+    print("=" * 100, flush=True)
+    print(f" {title}".center(100), flush=True)
+    print("=" * 100, flush=True)
 
 
 def print_subbanner(title: str) -> None:
     """Print formatted subsection banner."""
-    print("-" * 80, flush=True)
+    print("-" * 100, flush=True)
     print(f"  {title}", flush=True)
-    print("-" * 80, flush=True)
+    print("-" * 100, flush=True)
 
 
 def run_quick_evaluation() -> None:
     """Run end-to-end fast local cosmological likelihood & MCMC evaluation."""
     t_start = time.perf_counter()
 
-    print_banner("POINCARÉ DODECAHEDRAL ADÈLIC COSMOLOGY (S^3/I*) - FAST EVALUATION")
-    print("  Milestone R2 Likelihood & MCMC Suite")
+    print_banner("POINCARÉ DODECAHEDRAL ADÈLIC COSMOLOGY (S^3/I*) - MULTI-MODEL EVALUATION")
+    print("  Milestone R2 Likelihood & Model Extension Suite")
+    print("  Models: Flat Lambda-CDM | Standard S^3/I* EDE | S^3/I* + IDR | S^3/I* + NEDE")
     print("  Execution Mode: High-Performance Vectorized Local Runner\n", flush=True)
 
     # ==========================================================================
@@ -49,7 +56,7 @@ def run_quick_evaluation() -> None:
     # ==========================================================================
     print_subbanner("1. S^3/I* Topological Harmonic Multiplicities & Selection Rules")
     print(f"{'Multipole L':<14} | {'SU(2) Degree (2L)':<18} | {'I*-Multiplicity m_L':<22} | {'Topology Status'}", flush=True)
-    print("-" * 80, flush=True)
+    print("-" * 100, flush=True)
     for L in range(13):
         m_so3 = PoincareTopology.molien_multiplicity_so3(L)
         status = "Forbidden (Suppressed)" if m_so3 == 0 else "Allowed (Active Mode)"
@@ -61,13 +68,9 @@ def run_quick_evaluation() -> None:
     print(flush=True)
 
     # ==========================================================================
-    # 2. Fiducial Models Definition & Observational Likelihood Evaluation
+    # 2. Fiducial Models Definition
     # ==========================================================================
-    print_subbanner("2. Observational Likelihood Evaluation: Lambda-CDM vs S^3/I* EDE")
-
-    joint_lik = JointLikelihood(include_low_ell=True)
-
-    # Model 1: Flat Lambda-CDM Baseline (Planck 2018 parameters)
+    # Model 1: Flat Lambda-CDM Baseline
     params_lcdm = CosmologicalParameters(
         H0=67.36,
         omega_b=0.02237,
@@ -75,14 +78,18 @@ def run_quick_evaluation() -> None:
         Omega_k=0.0,
         f_EDE=0.0,
         log10_zc=3.55,
+        n_s=0.9649,
+        sigma8_0=0.811,
         w0=-1.0,
         wa=0.0,
-        use_poincare_topology=False
+        use_poincare_topology=False,
+        model_type="axion_ede"
     )
     model_lcdm = PoincareEDEModel(params_lcdm)
+    k_lcdm = 6
 
-    # Model 2: Poincaré Dodecahedral Space S^3/I* EDE (Best-Fit Concordance Model)
-    params_poincare = CosmologicalParameters(
+    # Model 2: Poincaré Dodecahedral Space S^3/I* Axion EDE
+    params_ede = CosmologicalParameters(
         H0=68.00,
         omega_b=0.02239,
         omega_cdm=0.1402,
@@ -90,69 +97,212 @@ def run_quick_evaluation() -> None:
         f_EDE=0.0886,
         log10_zc=3.560,
         theta_i=2.80,
+        n_s=0.968,
+        sigma8_0=0.811,
         w0=-0.800,
         wa=-0.500,
         isw_leakage=0.18,
-        use_poincare_topology=True
+        use_poincare_topology=True,
+        model_type="axion_ede"
     )
-    model_poincare = PoincareEDEModel(params_poincare)
+    model_ede = PoincareEDEModel(params_ede)
+    k_ede = 9
 
-    bk_lcdm = joint_lik.chi2_breakdown(model_lcdm)
-    bk_poincare = joint_lik.chi2_breakdown(model_poincare)
-
-    N_DATA = joint_lik.n_data  # 95 data points (3 Planck + 5 low-ell + 13 DESI + 74 Pantheon+)
-    K_LCDM = 6                 # Standard Flat Lambda-CDM baseline: H0, omega_b, omega_cdm, As, ns, tau (k=6)
-    K_POINCARE = 9             # Poincare S^3/I* EDE model: base 6 + Omega_k, f_EDE, log10_zc (k=9)
-
-    dof_lcdm = joint_lik.degrees_of_freedom(K_LCDM)        # 95 - 6 = 89
-    dof_poincare = joint_lik.degrees_of_freedom(K_POINCARE)  # 95 - 9 = 86
-
-    stats_lcdm = compute_information_criteria(bk_lcdm["Total_Chi2"], K_LCDM, N_DATA)
-    stats_poincare = compute_information_criteria(
-        bk_poincare["Total_Chi2"], K_POINCARE, N_DATA,
-        chi2_ref=bk_lcdm["Total_Chi2"], k_ref=K_LCDM
+    # Model 3: Poincaré S^3/I* + IDR (Interacting Dark Radiation)
+    params_idr = CosmologicalParameters(
+        H0=71.50,
+        omega_b=0.02239,
+        omega_cdm=0.1577,
+        Omega_k=-0.0027,
+        f_EDE=0.1244,
+        log10_zc=3.560,
+        theta_i=2.80,
+        delta_N_idr=0.35,
+        g_dark_coupling=0.14,
+        n_s=0.967,
+        sigma8_0=0.811,
+        w0=-0.800,
+        wa=-0.500,
+        isw_leakage=0.18,
+        use_poincare_topology=True,
+        model_type="idr"
     )
+    model_idr = PoincareEDEModel(params_idr)
+    k_idr = 11
 
-    print(f"{'Observational Dataset':<28} | {'Flat Lambda-CDM':<18} | {'Poincare S^3/I* EDE':<20} | {'Delta Chi2'}", flush=True)
-    print("-" * 80, flush=True)
-    for key in ["Planck_2018_Priors", "Planck_LowEll_Topology", "DESI_2024_BAO", "PantheonPlus_SNe", "Total_Chi2"]:
-        c_lcdm = bk_lcdm[key]
-        c_poinc = bk_poincare[key]
-        d_chi2 = c_poinc - c_lcdm
-        name_clean = key.replace("_", " ")
-        print(f"{name_clean:<28} | {c_lcdm:<18.3f} | {c_poinc:<20.3f} | {d_chi2:<+10.3f}", flush=True)
+    # Model 4: Poincaré S^3/I* + NEDE (New Early Dark Energy)
+    params_nede = CosmologicalParameters(
+        H0=71.50,
+        omega_b=0.02239,
+        omega_cdm=0.1523,
+        Omega_k=0.0005,
+        f_NEDE=0.1706,
+        log10_zc=3.550,
+        w_NEDE_after=1.0/3.0,
+        cs2_NEDE_after=1.0/3.0,
+        n_s=0.966,
+        sigma8_0=0.811,
+        w0=-0.800,
+        wa=-0.500,
+        isw_leakage=0.18,
+        use_poincare_topology=True,
+        model_type="nede"
+    )
+    model_nede = PoincareEDEModel(params_nede)
+    k_nede = 9
 
-    print("-" * 80, flush=True)
-    print(f"{'Parameters k':<28} | {K_LCDM:<18d} | {K_POINCARE:<20d} | {K_POINCARE - K_LCDM:<+10d}", flush=True)
-    print(f"{'Degrees of Freedom (dof)':<28} | {dof_lcdm:<18d} | {dof_poincare:<20d} | {dof_poincare - dof_lcdm:<+10d}", flush=True)
-    print(f"{'Reduced Chi2 (chi2/dof)':<28} | {bk_lcdm['Total_Chi2']/dof_lcdm:<18.3f} | {bk_poincare['Total_Chi2']/dof_poincare:<20.3f} | {bk_poincare['Total_Chi2']/dof_poincare - bk_lcdm['Total_Chi2']/dof_lcdm:<+10.3f}", flush=True)
-    print(f"{'Akaike Info Criterion (AIC)':<28} | {stats_lcdm['AIC']:<18.3f} | {stats_poincare['AIC']:<20.3f} | {stats_poincare['Delta_AIC']:<+10.3f}", flush=True)
-    print(f"{'Bayesian Info Criterion (BIC)':<28} | {stats_lcdm['BIC']:<18.3f} | {stats_poincare['BIC']:<20.3f} | {stats_poincare['Delta_BIC']:<+10.3f}", flush=True)
-    print(flush=True)
+    models = [
+        ("Flat Lambda-CDM", model_lcdm, k_lcdm),
+        ("S^3/I* Axion EDE", model_ede, k_ede),
+        ("S^3/I* + IDR", model_idr, k_idr),
+        ("S^3/I* + NEDE", model_nede, k_nede),
+    ]
 
-    # Physical derived scales comparison
-    print_subbanner("3. Derived Physical Scales & Acoustic Horizons")
-    print(f"{'Quantity':<34} | {'Flat Lambda-CDM':<18} | {'Poincare S^3/I* EDE':<20} | {'Physical Impact'}", flush=True)
-    print("-" * 80, flush=True)
-    print(f"{'Hubble Constant H0 [km/s/Mpc]':<34} | {model_lcdm.params.H0:<18.2f} | {model_poincare.params.H0:<20.2f} | {'Dynamical EDE Extension'}", flush=True)
-    print(f"{'Sound Horizon r_s(z_*) [Mpc]':<34} | {model_lcdm.r_s_star:<18.2f} | {model_poincare.r_s_star:<20.2f} | {'EDE Horizon Reduction'}", flush=True)
-    print(f"{'Drag Horizon r_d [Mpc]':<34} | {model_lcdm.r_drag:<18.2f} | {model_poincare.r_drag:<20.2f} | {'DESI BAO Calibration'}", flush=True)
-    print(f"{'CMB Acoustic Scale ell_a':<34} | {model_lcdm.acoustic_scale_ell_a:<18.3f} | {model_poincare.acoustic_scale_ell_a:<20.3f} | {'Planck Invariant'}", flush=True)
-    print(f"{'Curvature Radius R_c [Gpc]':<34} | {'Infinity (Flat)':<18} | {model_poincare.params.radius_of_curvature/1000.0:<20.2f} | {'Compact S^3 Topology'}", flush=True)
+    # ==========================================================================
+    # 3. Observational Likelihood Evaluation WITHOUT SH0ES Prior
+    # ==========================================================================
+    print_subbanner("2. Observational Likelihood Concordance (WITHOUT SH0ES Prior)")
+
+    joint_no_shoes = JointLikelihood(
+        include_low_ell=True,
+        include_high_ell_pol=True,
+        include_weak_lensing=True,
+        include_shoes=False
+    )
+    n_data_no_shoes = joint_no_shoes.n_data
+
+    breakdowns_no_shoes = {}
+    stats_no_shoes = {}
+    ref_chi2_no_shoes = joint_no_shoes.chi2(model_lcdm)
+
+    for name, m, k in models:
+        bk = joint_no_shoes.chi2_breakdown(m)
+        breakdowns_no_shoes[name] = bk
+        st = compute_information_criteria(
+            chi2_min=bk["Total_Chi2"],
+            k_params=k,
+            n_data=n_data_no_shoes,
+            chi2_ref=ref_chi2_no_shoes,
+            k_ref=k_lcdm
+        )
+        stats_no_shoes[name] = st
+
+    # Print Table 1: Breakdown without SH0ES
+    dataset_keys = [
+        ("Planck_2018_Priors", "Planck 2018 Distance"),
+        ("Planck_LowEll_Topology", "Planck Low-ell Topology"),
+        ("Planck_HighEll_Pol", "Planck High-ell Pol (TE/EE)"),
+        ("Weak_Lensing_DES_KiDS", "Weak Lensing (DES/KiDS)"),
+        ("DESI_2024_BAO", "DESI 2024 BAO"),
+        ("PantheonPlus_SNe", "Pantheon+ SNe Ia"),
+        ("Total_Chi2", "Total Chi2"),
+    ]
+
+    col_w = 17
+    header = f"{'Observational Dataset':<26} | " + " | ".join([f"{name:^{col_w}}" for name, _, _ in models])
+    print(header, flush=True)
+    print("-" * len(header), flush=True)
+
+    for key, label in dataset_keys:
+        row_str = f"{label:<26} | "
+        vals = [f"{breakdowns_no_shoes[name][key]:^{col_w}.3f}" for name, _, _ in models]
+        row_str += " | ".join(vals)
+        print(row_str, flush=True)
+
+    print("-" * len(header), flush=True)
+    print(f"{'Parameters k':<26} | " + " | ".join([f"{k:^{col_w}d}" for _, _, k in models]), flush=True)
+    print(f"{'Degrees of Freedom (dof)':<26} | " + " | ".join([f"{joint_no_shoes.degrees_of_freedom(k):^{col_w}d}" for _, _, k in models]), flush=True)
+    print(f"{'Reduced Chi2 (chi2/dof)':<26} | " + " | ".join([f"{breakdowns_no_shoes[name]['Total_Chi2']/joint_no_shoes.degrees_of_freedom(k):^{col_w}.3f}" for name, _, k in models]), flush=True)
+    print(f"{'Akaike Info Crit (AIC)':<26} | " + " | ".join([f"{stats_no_shoes[name]['AIC']:^{col_w}.2f}" for name, _, _ in models]), flush=True)
+    d_chi2_str = [f"{stats_no_shoes[name]['Delta_chi2']:+.2f}" for name, _, _ in models]
+    d_aic_str = [f"{stats_no_shoes[name]['Delta_AIC']:+.2f}" for name, _, _ in models]
+    d_bic_str = [f"{stats_no_shoes[name]['Delta_BIC']:+.2f}" for name, _, _ in models]
+    print(f"{'Delta Chi2 (vs LCDM)':<26} | " + " | ".join([f"{s:^{col_w}}" for s in d_chi2_str]), flush=True)
+    print(f"{'Delta AIC (vs LCDM)':<26} | " + " | ".join([f"{s:^{col_w}}" for s in d_aic_str]), flush=True)
+    print(f"{'Delta BIC (vs LCDM)':<26} | " + " | ".join([f"{s:^{col_w}}" for s in d_bic_str]), flush=True)
     print(flush=True)
 
     # ==========================================================================
-    # 3. Fast MCMC Posterior Exploration
+    # 4. Observational Likelihood Evaluation WITH SH0ES Prior
     # ==========================================================================
-    print_subbanner("4. Fast Multi-Chain MCMC Posterior Sampling (4 Chains x 200 Steps)")
-    active_params = ["H0", "omega_b", "omega_cdm", "Omega_k", "f_EDE", "w0", "wa"]
-    sampler = MCMCSampler(joint_likelihood=joint_lik, active_params=active_params, use_poincare_topology=True)
+    print_subbanner("3. Concordance Comparison WITH SH0ES Hubble Prior (H0 = 73.04 ± 1.04 km/s/Mpc)")
 
-    x0_poincare = np.array([68.00, 0.02239, 0.1402, -0.0027, 0.0886, -0.800, -0.500])
+    joint_with_shoes = JointLikelihood(
+        include_low_ell=True,
+        include_high_ell_pol=True,
+        include_weak_lensing=True,
+        include_shoes=True
+    )
+    n_data_with_shoes = joint_with_shoes.n_data
+    ref_chi2_with_shoes = joint_with_shoes.chi2(model_lcdm)
+
+    stats_with_shoes = {}
+    breakdowns_with_shoes = {}
+    for name, m, k in models:
+        bk = joint_with_shoes.chi2_breakdown(m)
+        breakdowns_with_shoes[name] = bk
+        st = compute_information_criteria(
+            chi2_min=bk["Total_Chi2"],
+            k_params=k,
+            n_data=n_data_with_shoes,
+            chi2_ref=ref_chi2_with_shoes,
+            k_ref=k_lcdm
+        )
+        stats_with_shoes[name] = st
+
+    print(f"{'Model':<20} | {'H0 [km/s/Mpc]':<13} | {'S_8':<8} | {'Chi2(Base)':<11} | {'Chi2(SH0ES)':<11} | {'Chi2(Tot)':<10} | {'Delta Chi2':<11} | {'Delta AIC':<10} | {'Delta BIC'}", flush=True)
+    print("-" * 115, flush=True)
+    for name, m, k in models:
+        h0_val = m.params.H0
+        s8_val = m.S_8
+        c_base = breakdowns_no_shoes[name]["Total_Chi2"]
+        c_shoes = breakdowns_with_shoes[name]["SH0ES_H0_Prior"]
+        c_tot = breakdowns_with_shoes[name]["Total_Chi2"]
+        d_chi2 = stats_with_shoes[name]["Delta_chi2"]
+        d_aic = stats_with_shoes[name]["Delta_AIC"]
+        d_bic = stats_with_shoes[name]["Delta_BIC"]
+        print(f"{name:<20} | {h0_val:>10.2f}    | {s8_val:>6.4f} | {c_base:>9.2f}   | {c_shoes:>9.2f}   | {c_tot:>8.2f}   | {d_chi2:>+9.2f}   | {d_aic:>+8.2f}   | {d_bic:>+8.2f}", flush=True)
+    print("-" * 115, flush=True)
+    print(flush=True)
+
+    # ==========================================================================
+    # 5. Derived Physical Scales & Acoustic Horizons
+    # ==========================================================================
+    print_subbanner("4. Derived Physical Scales, Horizon Compression & Clustering Parameters")
+    header_scales = f"{'Physical Quantity':<30} | " + " | ".join([f"{name:^{col_w}}" for name, _, _ in models])
+    print(header_scales, flush=True)
+    print("-" * len(header_scales), flush=True)
+
+    scale_rows = [
+        ("Hubble Constant H0 [km/s/Mpc]", [f"{m.params.H0:^{col_w}.2f}" for _, m, _ in models]),
+        ("Cosmic Shear Growth S_8", [f"{m.S_8:^{col_w}.4f}" for _, m, _ in models]),
+        ("RMS Density Fluctuation sigma_8", [f"{m.sigma_8:^{col_w}.4f}" for _, m, _ in models]),
+        ("Sound Horizon r_s(z_*) [Mpc]", [f"{m.r_s_star:^{col_w}.2f}" for _, m, _ in models]),
+        ("Drag Horizon r_d [Mpc]", [f"{m.r_drag:^{col_w}.2f}" for _, m, _ in models]),
+        ("CMB Acoustic Scale ell_a", [f"{m.acoustic_scale_ell_a:^{col_w}.3f}" for _, m, _ in models]),
+        ("Shift Parameter R", [f"{m.cmb_shift_parameter_R:^{col_w}.4f}" for _, m, _ in models]),
+        ("100 * theta_*", [f"{m.acoustic_angular_scale_theta_star:^{col_w}.4f}" for _, m, _ in models]),
+        ("IDR Damping Factor D_IDR", [f"{m.idr_damping_factor:^{col_w}.4f}" for _, m, _ in models]),
+        ("Curvature Radius R_c [Gpc]", [f"{m.params.radius_of_curvature/1000.0:^{col_w}.2f}" if abs(m.params.Omega_k) > 1e-6 else f"{'Infinity':^{col_w}}" for _, m, _ in models]),
+    ]
+
+    for label, vals in scale_rows:
+        print(f"{label:<30} | " + " | ".join(vals), flush=True)
+    print("-" * len(header_scales), flush=True)
+    print(flush=True)
+
+    # ==========================================================================
+    # 6. Fast Multi-Chain MCMC Posterior Sampling on S^3/I* + IDR Model
+    # ==========================================================================
+    print_subbanner("5. Fast Multi-Chain MCMC Exploration (S^3/I* + IDR Concordance Model)")
+    active_params = ["H0", "omega_b", "omega_cdm", "Omega_k", "f_EDE", "delta_N_idr", "g_dark_coupling", "w0", "wa"]
+    sampler = MCMCSampler(joint_likelihood=joint_no_shoes, active_params=active_params, use_poincare_topology=True)
+
+    x0_idr = np.array([71.50, 0.02239, 0.1577, -0.0027, 0.1244, 0.35, 0.14, -0.800, -0.500])
 
     t_mcmc_start = time.perf_counter()
     chains, summary = sampler.run_multi_chain(
-        x0=x0_poincare,
+        x0=x0_idr,
         n_chains=4,
         n_samples=200,
         burn_in=60,
@@ -161,11 +311,11 @@ def run_quick_evaluation() -> None:
     t_mcmc_end = time.perf_counter()
     mcmc_duration = t_mcmc_end - t_mcmc_start
 
-    print(f"  MCMC completed in {mcmc_duration:.2f} seconds ({len(chains)*200} posterior samples)", flush=True)
+    print(f"  MCMC completed in {mcmc_duration:.2f} seconds ({len(chains)*200} posterior samples across 4 chains)", flush=True)
     print(f"  Mean Chain Acceptance Fraction: {np.mean([c.acceptance_fraction for c in chains])*100:.1f}%\n", flush=True)
 
-    print(f"{'Parameter':<12} | {'Mean ± 1sigma':<18} | {'Median (68% CI)':<26} | {'95% Credible Interval':<24} | {'R_hat'}", flush=True)
-    print("-" * 95, flush=True)
+    print(f"{'Parameter':<16} | {'Mean ± 1sigma':<18} | {'Median (68% CI)':<26} | {'95% Credible Interval':<24} | {'R_hat'}", flush=True)
+    print("-" * 100, flush=True)
     for p in active_params:
         mean_val = summary.means[p]
         std_val = summary.stds[p]
@@ -175,28 +325,16 @@ def run_quick_evaluation() -> None:
         r_hat = summary.gelman_rubin_r_hat[p] if summary.gelman_rubin_r_hat else 1.0
         
         print(
-            f"{p:<12} | {mean_val:>7.4f} ± {std_val:<7.4f} | "
+            f"{p:<16} | {mean_val:>7.4f} ± {std_val:<7.4f} | "
             f"{med_val:>7.4f} [{ci68[0]:>7.4f}, {ci68[1]:<7.4f}] | "
             f"[{ci95[0]:>7.4f}, {ci95[1]:<7.4f}]   | {r_hat:<5.3f}",
             flush=True
         )
-    print("-" * 95, flush=True)
+    print("-" * 100, flush=True)
     print(flush=True)
 
     # ==========================================================================
-    # 4. Parameter Covariance & Correlation Matrix
-    # ==========================================================================
-    print_subbanner("5. MCMC Parameter Correlation Matrix")
-    header_str = f"{'':<12} | " + " | ".join([f"{p:>8}" for p in active_params])
-    print(header_str, flush=True)
-    print("-" * len(header_str), flush=True)
-    for i, p1 in enumerate(active_params):
-        row_str = f"{p1:<12} | " + " | ".join([f"{summary.corr_matrix[i, j]:>8.3f}" for j in range(len(active_params))])
-        print(row_str, flush=True)
-    print(flush=True)
-
-    # ==========================================================================
-    # 5. Concordance Scorecard & Summary
+    # 7. Concordance Scorecard & Statistical Verdict
     # ==========================================================================
     print_banner("CONCORDANCE SCORECARD & STATISTICAL VERDICT")
     tot_time = time.perf_counter() - t_start
@@ -204,13 +342,13 @@ def run_quick_evaluation() -> None:
     print(f"  • Total Runtime: {tot_time:.2f} seconds (Target: < 30.0s) [{'PASSED' if tot_time < 30.0 else 'FAILED'}]", flush=True)
     conv_status = "< 1.15 [CONVERGED]" if max_r_hat < 1.15 else f"[R_hat={max_r_hat:.2f}, FAST PROBE]"
     print(f"  • Gelman-Rubin Diagnostic: Max R_hat = {max_r_hat:.3f} {conv_status}", flush=True)
-    print(f"  • Parameters & DOF:             Flat Lambda-CDM (k={K_LCDM}, dof={dof_lcdm}) | Poincare EDE (k={K_POINCARE}, dof={dof_poincare})", flush=True)
-    print(f"  • Reduced Chi2 (chi2/dof):      Flat Lambda-CDM = {bk_lcdm['Total_Chi2']/dof_lcdm:.3f} | Poincare EDE = {bk_poincare['Total_Chi2']/dof_poincare:.3f}", flush=True)
-    print(f"  • Delta Chi2 vs Flat Lambda-CDM: {stats_poincare['Delta_chi2']:<+8.2f} (Decisive preference for S^3/I* EDE)", flush=True)
-    print(f"  • Delta AIC vs Flat Lambda-CDM:  {stats_poincare['Delta_AIC']:<+8.2f} (Delta_AIC < -10 indicates strong empirical support)", flush=True)
-    print(f"  • Delta BIC vs Flat Lambda-CDM:  {stats_poincare['Delta_BIC']:<+8.2f} (Delta_BIC < -10 confirms Bayesian evidence)", flush=True)
-    print(f"  • CMB Low-ell Anomaly Fit:      Delta Chi2_low_ell = {bk_poincare['Planck_LowEll_Topology'] - bk_lcdm['Planck_LowEll_Topology']:.2f}", flush=True)
-    print("=" * 80, flush=True)
+    print(f"  • Baseline (No SH0ES) Delta Chi2 vs LCDM:  S^3/I* EDE: {stats_no_shoes['S^3/I* Axion EDE']['Delta_chi2']:+.2f} | IDR: {stats_no_shoes['S^3/I* + IDR']['Delta_chi2']:+.2f} | NEDE: {stats_no_shoes['S^3/I* + NEDE']['Delta_chi2']:+.2f}", flush=True)
+    print(f"  • Baseline (No SH0ES) Delta AIC vs LCDM:   S^3/I* EDE: {stats_no_shoes['S^3/I* Axion EDE']['Delta_AIC']:+.2f} | IDR: {stats_no_shoes['S^3/I* + IDR']['Delta_AIC']:+.2f} | NEDE: {stats_no_shoes['S^3/I* + NEDE']['Delta_AIC']:+.2f}", flush=True)
+    print(f"  • With SH0ES Prior Delta Chi2 vs LCDM:     S^3/I* EDE: {stats_with_shoes['S^3/I* Axion EDE']['Delta_chi2']:+.2f} | IDR: {stats_with_shoes['S^3/I* + IDR']['Delta_chi2']:+.2f} | NEDE: {stats_with_shoes['S^3/I* + NEDE']['Delta_chi2']:+.2f}", flush=True)
+    print(f"  • With SH0ES Prior Delta AIC vs LCDM:      S^3/I* EDE: {stats_with_shoes['S^3/I* Axion EDE']['Delta_AIC']:+.2f} | IDR: {stats_with_shoes['S^3/I* + IDR']['Delta_AIC']:+.2f} | NEDE: {stats_with_shoes['S^3/I* + NEDE']['Delta_AIC']:+.2f}", flush=True)
+    print(f"  • Structure Growth S_8 Concordance:        Flat LCDM: {model_lcdm.S_8:.4f} | S^3/I* EDE: {model_ede.S_8:.4f} | IDR: {model_idr.S_8:.4f} (DES Y3: 0.776 ± 0.017)", flush=True)
+    print(f"  • Hubble Constant H0 Concordance:          Flat LCDM: {model_lcdm.params.H0:.2f} | S^3/I* EDE: {model_ede.params.H0:.2f} | IDR: {model_idr.params.H0:.2f} (SH0ES: 73.04 ± 1.04)", flush=True)
+    print("=" * 100, flush=True)
 
 
 if __name__ == '__main__':

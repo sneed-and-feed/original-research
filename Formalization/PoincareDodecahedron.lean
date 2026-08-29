@@ -15,7 +15,7 @@ This master module aggregates the complete Lean 4 formalization suite for the Po
 Dodecahedral Space $S^3 / I^*$ (spherical space form of the binary icosahedral group $I^* \subset \mathrm{SU}(2)$):
 
 1. `Formalization.PoincareDodecahedron.BinaryIcosahedral`: Exact 120 algebraic units in $\mathbb{H}[\mathbb{R}]^\times$, group closure, center $Z(I^*) = \{\pm 1\}$.
-2. `Formalization.PoincareDodecahedron.SpectralDecomposition`: Character theory, 9 conjugacy class sum, Molien projection formula ($m_0=1, m_1..m_5=0, m_6=1$), heat trace on $S^3/I^*$.
+2. `Formalization.PoincareDodecahedron.SpectralDecomposition`: Character theory, 9 conjugacy class sum, Molien projection formula ($m_0=1, m_1..m_5=0, m_6=1$), heat trace on $S^3/I^*$, off-diagonal mode coupling and parity selection rules.
 3. `Formalization.PoincareDodecahedron.HeatKernelAsymptotics`: Small-$t$ Seeley-DeWitt asymptotic expansion, volume $\pi^2/60$, curvature $R=6$, Einstein-Hilbert action recovery.
 4. `Formalization.PoincareDodecahedron.StandardModel`: Almost-commutative spectral triple, 96 fermion states, unified gauge couplings, Higgs potential minimum.
 
