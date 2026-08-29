@@ -42,6 +42,39 @@ def fix_content(filepath):
     content = content.replace(r'\operatorname{FLT}', r'\mathrm{FLT}')
     content = re.sub(r'\\operatorname\{([^{}]+)\}', r'\\mathrm{\1}', content)
 
+    # 3b. Fix Lie group underscore subscripts to parameter syntax to prevent CommonMark emphasis collisions
+    lie_replacements = [
+        (r'\\widetilde\{\\mathrm\{SL\}\}_2\(\\mathbb\{R\}\)', r'\\widetilde{\\mathrm{SL}}(2, \\mathbb{R})'),
+        (r'\\widetilde\{\\mathrm\{SL\}\}_\{2\}\(\\mathbb\{R\}\)', r'\\widetilde{\\mathrm{SL}}(2, \\mathbb{R})'),
+        (r'\\widetilde\{\\mathrm\{SL\}\}_2', r'\\widetilde{\\mathrm{SL}}(2, \\mathbb{R})'),
+        (r'\\widetilde\{\\mathrm\{SL\}\}_\{2\}', r'\\widetilde{\\mathrm{SL}}(2, \\mathbb{R})'),
+        (r'\\mathfrak\{sl\}_2\(\\mathbb\{R\}\)', r'\\mathfrak{sl}(2, \\mathbb{R})'),
+        (r'\\mathfrak\{sl\}_\{2\}\(\\mathbb\{R\}\)', r'\\mathfrak{sl}(2, \\mathbb{R})'),
+        (r'\\mathfrak\{sl\}_2\(\\mathbb\{C\}\)', r'\\mathfrak{sl}(2, \\mathbb{C})'),
+        (r'\\mathfrak\{sl\}_2', r'\\mathfrak{sl}(2, \\mathbb{R})'),
+        (r'\\mathrm\{SL\}_([0-9a-zA-Z]+)\(([^)]+)\)', r'\\mathrm{SL}(\1, \2)'),
+        (r'\\mathrm\{PSL\}_([0-9a-zA-Z]+)\(([^)]+)\)', r'\\mathrm{PSL}(\1, \2)'),
+        (r'\\mathrm\{GL\}_([0-9a-zA-Z]+)\(([^)]+)\)', r'\\mathrm{GL}(\1, \2)'),
+        (r'\\mathrm\{SO\}_([0-9a-zA-Z]+)\(([^)]+)\)', r'\\mathrm{SO}(\1, \2)'),
+        (r'\\mathrm\{SU\}_([0-9a-zA-Z]+)\(([^)]+)\)', r'\\mathrm{SU}(\1, \2)'),
+        (r'\\mathrm\{SL\}_\{([0-9a-zA-Z]+)\}\(([^)]+)\)', r'\\mathrm{SL}(\1, \2)'),
+        (r'\\mathrm\{PSL\}_\{([0-9a-zA-Z]+)\}\(([^)]+)\)', r'\\mathrm{PSL}(\1, \2)'),
+        (r'\\mathrm\{GL\}_\{([0-9a-zA-Z]+)\}\(([^)]+)\)', r'\\mathrm{GL}(\1, \2)'),
+        (r'\\mathrm\{SO\}_\{([0-9a-zA-Z]+)\}\(([^)]+)\)', r'\\mathrm{SO}(\1, \2)'),
+        (r'\\mathrm\{SU\}_\{([0-9a-zA-Z]+)\}\(([^)]+)\)', r'\\mathrm{SU}(\1, \2)'),
+        (r'\\mathrm\{SL\}_2', r'\\mathrm{SL}(2, \\mathbb{R})'),
+        (r'\\mathrm\{PSL\}_2', r'\\mathrm{PSL}(2, \\mathbb{R})'),
+        (r'\\mathrm\{GL\}_2', r'\\mathrm{GL}(2, \\mathbb{R})'),
+        (r'\\mathrm\{SO\}_3', r'\\mathrm{SO}(3)'),
+        (r'\\mathrm\{SU\}_2', r'\\mathrm{SU}(2)'),
+        (r'\\mathrm\{SL\}_3', r'\\mathrm{SL}(3, \\mathbb{Z})'),
+        (r'\\mathrm\{GL\}_3', r'\\mathrm{GL}(3, \\mathbb{R})'),
+        (r'\\mathrm\{GL\}_4', r'\\mathrm{GL}(4, \\mathbb{Z})'),
+        (r'\\mathfrak\{sol\}_3', r'\\mathfrak{sol}^3'),
+    ]
+    for pat, rep in lie_replacements:
+        content = re.sub(pat, rep, content)
+
     # 4. Fix backtick math in table cells:
     content = content.replace(r'`m_SO3_one` $\dots$ `m_SO3_five`', r'`m_SO3_one` .. `m_SO3_five`')
     content = content.replace(r'`m_zero` $\dots$ `m_twelve`', r'`m_zero` .. `m_twelve`')
@@ -423,6 +456,15 @@ def run_strict_linter(fpath):
                     'line': line_num,
                     'rule': 'Rule 7: Math Asterisk Escapes',
                     'detail': f"Raw '*' in inline math: '{full_match}'"
+                })
+
+            # Rule 13: Lie Group & Matrix Group Underscore Subscripts
+            if re.search(r'\\(?:widetilde\{\\mathrm\{SL\}\}|mathrm\{SL\}|mathrm\{PSL\}|mathfrak\{sl\}|mathrm\{GL\}|mathrm\{SO\}|mathrm\{SU\})_\{?[0-9a-zA-Z]+\}?', math_content):
+                violations.append({
+                    'file': fpath,
+                    'line': line_num,
+                    'rule': 'Rule 13: Lie Group Underscore Subscript',
+                    'detail': f"Lie group with underscore subscript (causes CommonMark emphasis collision, use parameter syntax like '\\mathrm{{SL}}(2, \\mathbb{{R}})' or '\\mathrm{{SU}}(2)'): '{full_match}'"
                 })
 
     return violations
