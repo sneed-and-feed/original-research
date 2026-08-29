@@ -4,8 +4,9 @@ import typst
 import pymupdf
 
 def main():
-    pdf_path = "papers/paper1_spectral_geometry.pdf"
-    typ_path = "papers/paper1_spectral_geometry.typ"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    typ_path = os.path.join(script_dir, "paper1_spectral_geometry.typ")
+    pdf_path = os.path.join(script_dir, "paper1_spectral_geometry.pdf")
     
     print(f"Compiling {typ_path} -> {pdf_path}...")
     typst.compile(typ_path, output=pdf_path)

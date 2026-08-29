@@ -47,31 +47,11 @@ structure AlgebraF where
 
 namespace AlgebraF
 
-/-- Addition on $\mathcal{A}_F$. -/
-def add (a b : AlgebraF) : AlgebraF :=
-  ⟨a.c + b.c, a.q + b.q, a.m + b.m⟩
-
-instance : Add AlgebraF := ⟨add⟩
-
-/-- Multiplication on $\mathcal{A}_F$. -/
-def mul (a b : AlgebraF) : AlgebraF :=
-  ⟨a.c * b.c, a.q * b.q, a.m * b.m⟩
-
-instance : Mul AlgebraF := ⟨mul⟩
-
-/-- Zero element in $\mathcal{A}_F$. -/
-def zero : AlgebraF := ⟨0, 0, 0⟩
-instance : Zero AlgebraF := ⟨zero⟩
-
-/-- Unit element in $\mathcal{A}_F$. -/
-def one : AlgebraF := ⟨1, 1, 1⟩
-instance : One AlgebraF := ⟨one⟩
-
-/-- Star involution on $\mathcal{A}_F$: $a^* = (\bar{c}, q^*, m^*)$. -/
-def starInv (a : AlgebraF) : AlgebraF :=
-  ⟨star a.c, star a.q, star a.m⟩
-
-instance : Star AlgebraF := ⟨starInv⟩
+instance : Add AlgebraF := ⟨fun a b => ⟨a.c + b.c, a.q + b.q, a.m + b.m⟩⟩
+instance : Mul AlgebraF := ⟨fun a b => ⟨a.c * b.c, a.q * b.q, a.m * b.m⟩⟩
+instance : Zero AlgebraF := ⟨⟨0, 0, 0⟩⟩
+instance : One AlgebraF := ⟨⟨1, 1, 1⟩⟩
+instance : Star AlgebraF := ⟨fun a => ⟨star a.c, star a.q, star a.m⟩⟩
 
 @[simp] lemma star_c (a : AlgebraF) : (star a).c = star a.c := rfl
 @[simp] lemma star_q (a : AlgebraF) : (star a).q = star a.q := rfl
@@ -79,74 +59,58 @@ instance : Star AlgebraF := ⟨starInv⟩
 
 theorem star_one_eq : star (1 : AlgebraF) = 1 := by
   change (⟨star (1 : ℂ), star (1 : ℍ[ℝ]), star (1 : Matrix (Fin 3) (Fin 3) ℂ)⟩ : AlgebraF) = ⟨1, 1, 1⟩
-  rw [star_one, star_one, star_one]
+  simp [star_one]
 
 theorem star_involutive (a : AlgebraF) : star (star a) = a := by
   change (⟨star (star a.c), star (star a.q), star (star a.m)⟩ : AlgebraF) = a
-  rw [star_star, star_star, star_star]
+  simp [star_star]
 
 end AlgebraF
 
 /-! ### 2. 96-Dimensional Fermion Hilbert Space $\mathcal{H}_F$ -/
 
 /-- The three generations of elementary fermions in the Standard Model. -/
-inductive Generation : Type
-  | gen1 : Generation
-  | gen2 : Generation
-  | gen3 : Generation
-deriving DecidableEq
+inductive Generation | gen1 | gen2 | gen3 deriving DecidableEq
 
 instance : Fintype Generation where
-  elems := {Generation.gen1, Generation.gen2, Generation.gen3}
-  complete := by rintro (⟨⟩ | ⟨⟩ | ⟨⟩) <;> simp
+  elems := {.gen1, .gen2, .gen3}
+  complete := by rintro (_|_|_) <;> simp
 
 theorem card_generation : Fintype.card Generation = 3 := rfl
 
 /-- Particle sector: Leptons vs Quarks. -/
-inductive Sector : Type
-  | lepton : Sector
-  | quark : Sector
-deriving DecidableEq
+inductive Sector | lepton | quark deriving DecidableEq
 
 instance : Fintype Sector where
-  elems := {Sector.lepton, Sector.quark}
-  complete := by rintro (⟨⟩ | ⟨⟩) <;> simp
+  elems := {.lepton, .quark}
+  complete := by rintro (_|_) <;> simp
 
 theorem card_sector : Fintype.card Sector = 2 := rfl
 
 /-- Weak isospin state: Up-type (e.g. $\nu, u$) vs Down-type (e.g. $e, d$). -/
-inductive Isospin : Type
-  | up : Isospin
-  | down : Isospin
-deriving DecidableEq
+inductive Isospin | up | down deriving DecidableEq
 
 instance : Fintype Isospin where
-  elems := {Isospin.up, Isospin.down}
-  complete := by rintro (⟨⟩ | ⟨⟩) <;> simp
+  elems := {.up, .down}
+  complete := by rintro (_|_) <;> simp
 
 theorem card_isospin : Fintype.card Isospin = 2 := rfl
 
 /-- Fermion chirality / handedness: Left-handed vs Right-handed. -/
-inductive Chirality : Type
-  | left : Chirality
-  | right : Chirality
-deriving DecidableEq
+inductive Chirality | left | right deriving DecidableEq
 
 instance : Fintype Chirality where
-  elems := {Chirality.left, Chirality.right}
-  complete := by rintro (⟨⟩ | ⟨⟩) <;> simp
+  elems := {.left, .right}
+  complete := by rintro (_|_) <;> simp
 
 theorem card_chirality : Fintype.card Chirality = 2 := rfl
 
 /-- Particle vs Antiparticle state. -/
-inductive ParticleAnti : Type
-  | particle : ParticleAnti
-  | antiparticle : ParticleAnti
-deriving DecidableEq
+inductive ParticleAnti | particle | antiparticle deriving DecidableEq
 
 instance : Fintype ParticleAnti where
-  elems := {ParticleAnti.particle, ParticleAnti.antiparticle}
-  complete := by rintro (⟨⟩ | ⟨⟩) <;> simp
+  elems := {.particle, .antiparticle}
+  complete := by rintro (_|_) <;> simp
 
 theorem card_particleAnti : Fintype.card ParticleAnti = 2 := rfl
 
@@ -159,12 +123,12 @@ inductive ColorState : Sector → Type
 deriving DecidableEq
 
 instance : Fintype (ColorState .lepton) where
-  elems := {ColorState.leptonSinglet}
+  elems := {.leptonSinglet}
   complete := by rintro ⟨⟩; simp
 
 instance : Fintype (ColorState .quark) where
-  elems := {ColorState.quarkRed, ColorState.quarkGreen, ColorState.quarkBlue}
-  complete := by rintro (⟨⟩ | ⟨⟩ | ⟨⟩) <;> simp
+  elems := {.quarkRed, .quarkGreen, .quarkBlue}
+  complete := by rintro (_|_|_) <;> simp
 
 theorem card_color_lepton : Fintype.card (ColorState .lepton) = 1 := rfl
 theorem card_color_quark : Fintype.card (ColorState .quark) = 3 := rfl
@@ -184,18 +148,14 @@ def fermionBasisEquiv :
     FermionBasisState ≃
       (Generation × Isospin × Chirality × ParticleAnti × ColorState .lepton) ⊕
       (Generation × Isospin × Chirality × ParticleAnti × ColorState .quark) where
-  toFun s :=
-    match s.sec, s.col with
-    | .lepton, col => Sum.inl (s.gen, s.iso, s.chir, s.pa, col)
-    | .quark, col => Sum.inr (s.gen, s.iso, s.chir, s.pa, col)
+  toFun s := match s.sec, s.col with
+    | .lepton, col => .inl (s.gen, s.iso, s.chir, s.pa, col)
+    | .quark, col => .inr (s.gen, s.iso, s.chir, s.pa, col)
   invFun
-    | Sum.inl (g, i, c, p, col) => ⟨g, .lepton, i, c, p, col⟩
-    | Sum.inr (g, i, c, p, col) => ⟨g, .quark, i, c, p, col⟩
-  left_inv := by
-    rintro ⟨g, sec, i, c, p, col⟩
-    cases sec <;> rfl
-  right_inv := by
-    rintro (⟨g, i, c, p, col⟩ | ⟨g, i, c, p, col⟩) <;> rfl
+    | .inl (g, i, c, p, col) => ⟨g, .lepton, i, c, p, col⟩
+    | .inr (g, i, c, p, col) => ⟨g, .quark, i, c, p, col⟩
+  left_inv := fun ⟨_, sec, _, _, _, _⟩ => by cases sec <;> rfl
+  right_inv := fun | .inl _ | .inr _ => rfl
 
 instance : Fintype FermionBasisState :=
   Fintype.ofEquiv _ fermionBasisEquiv.symm
@@ -220,8 +180,7 @@ theorem fermion_states_per_generation :
 The finite fermion Hilbert space $\mathcal{H}_F$ of the Standard Model with 3 generations
 has dimension exactly $3 \times 32 = 96$. -/
 theorem dim_fermion_space : Fintype.card FermionBasisState = 96 := by
-  rw [Fintype.card_congr fermionBasisEquiv]
-  rw [Fintype.card_sum]
+  rw [Fintype.card_congr fermionBasisEquiv, Fintype.card_sum]
   simp [Fintype.card_prod, card_generation, card_isospin, card_chirality, card_particleAnti,
         card_color_lepton, card_color_quark]
 
@@ -240,14 +199,14 @@ namespace YukawaCouplings
 /-- Trilinear Yukawa trace $Y_2 = \operatorname{Tr}(3 Y_u^* Y_u + 3 Y_d^* Y_d + Y_e^* Y_e + Y_\nu^* Y_\nu)$. -/
 def Y2 (y : YukawaCouplings) : ℝ :=
   Complex.re (Matrix.trace (3 • (star y.Yu * y.Yu) + 3 • (star y.Yd * y.Yd) +
-                            (star y.Ye * y.Ye) + (star y.Ynu * y.Ynu)))
+    (star y.Ye * y.Ye) + (star y.Ynu * y.Ynu)))
 
 /-- Quartic Yukawa trace $Y_4 = \operatorname{Tr}(3 (Y_u^* Y_u)^2 + 3 (Y_d^* Y_d)^2 + (Y_e^* Y_e)^2 + (Y_\nu^* Y_\nu)^2)$. -/
 def Y4 (y : YukawaCouplings) : ℝ :=
   Complex.re (Matrix.trace (3 • ((star y.Yu * y.Yu) * (star y.Yu * y.Yu)) +
-                            3 • ((star y.Yd * y.Yd) * (star y.Yd * y.Yd)) +
-                            ((star y.Ye * y.Ye) * (star y.Ye * y.Ye)) +
-                            ((star y.Ynu * y.Ynu) * (star y.Ynu * y.Ynu))))
+    3 • ((star y.Yd * y.Yd) * (star y.Yd * y.Yd)) +
+    ((star y.Ye * y.Ye) * (star y.Ye * y.Ye)) +
+    ((star y.Ynu * y.Ynu) * (star y.Ynu * y.Ynu))))
 
 /-- Majorana trace $c_R = \operatorname{Tr}(M_R^* M_R)$. -/
 def cR (y : YukawaCouplings) : ℝ :=
@@ -287,16 +246,13 @@ def g_unified_sq (f0 f2 Λ : ℝ) : ℝ :=
   (Real.pi ^ 2 * f0) / (2 * f2 * Λ ^ 2)
 
 /-- $U(1)_Y$ hypercharge gauge coupling with standard GUT normalization $g_1^2 = g_{\mathrm{unified}}^2$. -/
-def g1_sq (f0 f2 Λ : ℝ) : ℝ :=
-  g_unified_sq f0 f2 Λ
+def g1_sq (f0 f2 Λ : ℝ) : ℝ := g_unified_sq f0 f2 Λ
 
 /-- $SU(2)_L$ weak gauge coupling $g_2^2 = g_{\mathrm{unified}}^2$. -/
-def g2_sq (f0 f2 Λ : ℝ) : ℝ :=
-  g_unified_sq f0 f2 Λ
+def g2_sq (f0 f2 Λ : ℝ) : ℝ := g_unified_sq f0 f2 Λ
 
 /-- $SU(3)_C$ strong gauge coupling $g_3^2 = g_{\mathrm{unified}}^2$. -/
-def g3_sq (f0 f2 Λ : ℝ) : ℝ :=
-  g_unified_sq f0 f2 Λ
+def g3_sq (f0 f2 Λ : ℝ) : ℝ := g_unified_sq f0 f2 Λ
 
 /-- **Theorem: Gauge Coupling Unification at Cutoff Scale $\Lambda$**.
 The Chamseddine-Connes spectral action expansion on $S^3 / I^*$ predicts exact
@@ -307,19 +263,14 @@ theorem gauge_coupling_unification (f0 f2 Λ : ℝ) :
     g2_sq f0 f2 Λ = g_unified_sq f0 f2 Λ ∧
     g3_sq f0 f2 Λ = g_unified_sq f0 f2 Λ ∧
     g1_sq f0 f2 Λ = g2_sq f0 f2 Λ ∧
-    g2_sq f0 f2 Λ = g3_sq f0 f2 Λ := by
-  unfold g1_sq g2_sq g3_sq
-  refine ⟨rfl, rfl, rfl, rfl, rfl⟩
+    g2_sq f0 f2 Λ = g3_sq f0 f2 Λ :=
+  ⟨rfl, rfl, rfl, rfl, rfl⟩
 
 /-- Positivity of the unified gauge coupling squared for physical cutoff parameters. -/
 theorem g_unified_sq_pos (f0 f2 Λ : ℝ) (hf0 : f0 > 0) (hf2 : f2 > 0) (hΛ : Λ > 0) :
     g_unified_sq f0 f2 Λ > 0 := by
   unfold g_unified_sq
-  have hpi : Real.pi ^ 2 > 0 := sq_pos_of_pos Real.pi_pos
-  have hnum : Real.pi ^ 2 * f0 > 0 := mul_pos hpi hf0
-  have hΛ2 : Λ ^ 2 > 0 := sq_pos_of_pos hΛ
-  have hden : 2 * f2 * Λ ^ 2 > 0 := by positivity
-  exact div_pos hnum hden
+  positivity
 
 /-! ### 6. Higgs Quartic Potential and Electroweak Mass Relations -/
 
@@ -360,9 +311,7 @@ theorem higgs_vev_ratio_eq (f0 f2 Λ Y2 Y4 : ℝ)
     higgs_mass_param_sq f0 f2 Λ Y2 Y4 / (2 * higgs_quartic_coupling f0 f2 Λ Y2 Y4) =
       higgs_vev_sq f0 f2 Λ Y2 Y4 := by
   unfold higgs_mass_param_sq
-  have h2_ne : (2 : ℝ) ≠ 0 := by norm_num
-  have h_denom : 2 * higgs_quartic_coupling f0 f2 Λ Y2 Y4 ≠ 0 := mul_ne_zero h2_ne h_lambda_ne
-  exact mul_div_cancel_left₀ (higgs_vev_sq f0 f2 Λ Y2 Y4) h_denom
+  exact mul_div_cancel_left₀ _ (mul_ne_zero two_ne_zero h_lambda_ne)
 
 /-- **Theorem: Higgs Mass to $W$ Boson Mass Ratio**.
 The spectral action predicts the exact mass relation at the unification scale:
@@ -385,9 +334,7 @@ theorem higgs_W_mass_squared_ratio (f0 f2 Λ Y2 Y4 : ℝ)
     (_hf0 : f0 > 0) (_hf2 : f2 > 0) (_hΛ : Λ > 0) (_hY2 : Y2 > 0) (_hY4 : Y4 > 0)
     (hmW_ne : mW_sq f0 f2 Λ Y2 Y4 ≠ 0) :
     mH_sq f0 f2 Λ Y2 Y4 / mW_sq f0 f2 Λ Y2 Y4 = (8 * Y4) / (Y2 ^ 2) := by
-  have h_rel := higgs_to_W_mass_relation f0 f2 Λ Y2 Y4
-  rw [h_rel]
-  exact mul_div_cancel_right₀ _ hmW_ne
+  rw [higgs_to_W_mass_relation, mul_div_cancel_right₀ _ hmW_ne]
 
 /-! ### 7. Joint Spectral Action Unification on $S^3 / I^*$ -/
 
@@ -426,10 +373,8 @@ theorem spectral_action_standard_model_unification (pst : ProductSpectralTriple)
     g3_sq pst.f0 pst.f2 pst.cutoff = (Real.pi ^ 2 * pst.f0) / (2 * pst.f2 * pst.cutoff ^ 2) ∧
     -- 4. Higgs potential minimum at v^2
     higgs_potential pst.f0 pst.f2 pst.cutoff pst.yukawa.Y2 pst.yukawa.Y4
-      (higgs_vev_sq pst.f0 pst.f2 pst.cutoff pst.yukawa.Y2 pst.yukawa.Y4) = 0 := by
-  refine ⟨dim_fermion_space, rfl, rfl, rfl, rfl, rfl, ?_⟩
-  · unfold higgs_potential
-    simp
+      (higgs_vev_sq pst.f0 pst.f2 pst.cutoff pst.yukawa.Y2 pst.yukawa.Y4) = 0 :=
+  ⟨dim_fermion_space, rfl, rfl, rfl, rfl, rfl, by simp [higgs_potential]⟩
 
 end PoincareDodecahedron.StandardModel
 

@@ -7,8 +7,7 @@ import Mathlib.Algebra.Quaternion
 import Mathlib.Algebra.Group.Subgroup.Basic
 import Mathlib.Data.Real.Basic
 import Mathlib.Analysis.Real.Sqrt
-import Mathlib.Data.Fintype.Basic
-import Mathlib.Data.Finset.Basic
+import Mathlib.Data.Finset.Card
 
 noncomputable section
 
@@ -26,46 +25,23 @@ local notation "φ" => phi
 theorem sqrt_five_sq : (Real.sqrt 5) ^ 2 = 5 := Real.sq_sqrt (by norm_num)
 
 /-- Fundamental golden ratio identity: $\phi^2 = \phi + 1$. -/
-theorem phi_sq : φ ^ 2 = φ + 1 := by
-  change ((1 + Real.sqrt 5) / 2) ^ 2 = (1 + Real.sqrt 5) / 2 + 1
-  have h5 : (Real.sqrt 5) ^ 2 = 5 := sqrt_five_sq
-  nlinarith
+theorem phi_sq : φ ^ 2 = φ + 1 := by unfold phi; have := sqrt_five_sq; nlinarith
 
 /-- Fundamental golden ratio inverse identity: $\phi^{-1} = \phi - 1$. -/
-theorem phi_inv : φ⁻¹ = φ - 1 := by
-  have h_ne : φ ≠ 0 := by
-    change (1 + Real.sqrt 5) / 2 ≠ 0
-    have : Real.sqrt 5 > 0 := Real.sqrt_pos.mpr (by norm_num)
-    positivity
-  have h_sq : φ * (φ - 1) = 1 := by
-    calc φ * (φ - 1) = φ ^ 2 - φ := by ring
-    _ = (φ + 1) - φ := by rw [phi_sq]
-    _ = 1 := by ring
-  exact (eq_inv_of_mul_eq_one_right h_sq).symm
+theorem phi_inv : φ⁻¹ = φ - 1 :=
+  (eq_inv_of_mul_eq_one_right (by nlinarith [phi_sq])).symm
 
 /-- Helper constructor for quaternions in ℍ[ℝ]. -/
 @[inline] def q (a b c d : ℝ) : ℍ[ℝ] := ⟨a, b, c, d⟩
 
 /-- Golden ratio norm square identity: (φ⁻¹/2)² + (1/2)² + (φ/2)² = 1. -/
 theorem golden_ratio_norm_sq_sum : (φ⁻¹ / 2) ^ 2 + (1 / 2 : ℝ) ^ 2 + (φ / 2) ^ 2 = 1 := by
-  have h_phi_sq : φ ^ 2 = φ + 1 := phi_sq
-  have h_inv : φ⁻¹ = φ - 1 := phi_inv
-  have h_inv_sq : (φ⁻¹) ^ 2 = 2 - φ := by
-    rw [h_inv]
-    calc (φ - 1) ^ 2 = φ ^ 2 - 2 * φ + 1 := by ring
-    _ = (φ + 1) - 2 * φ + 1 := by rw [h_phi_sq]
-    _ = 2 - φ := by ring
-  calc (φ⁻¹ / 2) ^ 2 + (1 / 2 : ℝ) ^ 2 + (φ / 2) ^ 2
-    _ = (φ⁻¹) ^ 2 / 4 + 1 / 4 + φ ^ 2 / 4 := by ring
-    _ = (2 - φ) / 4 + 1 / 4 + (φ + 1) / 4 := by rw [h_inv_sq, h_phi_sq]
-    _ = 1 := by ring
+  rw [phi_inv]; nlinarith [phi_sq]
 
 /-- The 8 Lipschitz units: ±1, ±i, ±j, ±k. -/
 def lipschitzUnits : Finset ℍ[ℝ] :=
-  { q 1 0 0 0, q (-1) 0 0 0,
-    q 0 1 0 0, q 0 (-1) 0 0,
-    q 0 0 1 0, q 0 0 (-1) 0,
-    q 0 0 0 1, q 0 0 0 (-1) }
+  { q 1 0 0 0, q (-1) 0 0 0, q 0 1 0 0, q 0 (-1) 0 0,
+    q 0 0 1 0, q 0 0 (-1) 0, q 0 0 0 1, q 0 0 0 (-1) }
 
 /-- The 16 Hurwitz units: (±1/2, ±1/2, ±1/2, ±1/2). -/
 def hurwitzUnits : Finset ℍ[ℝ] :=
@@ -79,13 +55,9 @@ def binaryTetrahedralUnits : Finset ℍ[ℝ] :=
 
 /-- The 12 even coordinate permutations of (0, a, b, c) in ℍ[ℝ]. -/
 def evenPermutations (a b c : ℝ) : Finset ℍ[ℝ] :=
-  { -- 0 at position 0
-    q 0 a b c, q 0 b c a, q 0 c a b,
-    -- 0 at position 1
+  { q 0 a b c, q 0 b c a, q 0 c a b,
     q a 0 c b, q b 0 a c, q c 0 b a,
-    -- 0 at position 2
     q b c 0 a, q a b 0 c, q c a 0 b,
-    -- 0 at position 3
     q c b a 0, q a c b 0, q b a c 0 }
 
 /-- The 96 icosahedral units: all even permutations of (0, ±φ⁻¹/2, ±1/2, ±φ/2). -/
@@ -100,24 +72,16 @@ def icosahedralUnits : Finset ℍ[ℝ] :=
 def binaryIcosahedralUnits : Finset ℍ[ℝ] :=
   binaryTetrahedralUnits ∪ icosahedralUnits
 
-lemma normSq_q (a b c d : ℝ) : Quaternion.normSq (q a b c d) = a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 := by
-  rw [Quaternion.normSq_def']
-  rfl
+lemma normSq_q (a b c d : ℝ) : Quaternion.normSq (q a b c d) = a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 :=
+  Quaternion.normSq_def' ⟨a, b, c, d⟩
 
 lemma lipschitzUnits_normSq {u : ℍ[ℝ]} (h : u ∈ lipschitzUnits) : Quaternion.normSq u = 1 := by
   simp only [lipschitzUnits, Finset.mem_insert, Finset.mem_singleton] at h
-  rcases h with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
-    { rw [normSq_q]; ring }
-
-lemma ite_sign_sq (s : Bool) (x : ℝ) : (if (s = true) then x else -x) ^ 2 = x ^ 2 := by
-  cases s <;> simp
+  rcases h with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> { rw [normSq_q]; ring }
 
 lemma hurwitzUnits_normSq {u : ℍ[ℝ]} (h : u ∈ hurwitzUnits) : Quaternion.normSq u = 1 := by
   simp only [hurwitzUnits, Finset.mem_image, Finset.mem_univ, true_and] at h
-  rcases h with ⟨⟨s0, s1, s2, s3⟩, rfl⟩
-  dsimp only
-  rw [normSq_q]
-  cases s0 <;> cases s1 <;> cases s2 <;> cases s3 <;> { dsimp; ring }
+  rcases h with ⟨⟨_ | _, _ | _, _ | _, _ | _⟩, rfl⟩ <;> { dsimp; rw [normSq_q]; ring }
 
 lemma evenPermutations_normSq (a b c : ℝ) {u : ℍ[ℝ]} (h : u ∈ evenPermutations a b c) :
     Quaternion.normSq u = a ^ 2 + b ^ 2 + c ^ 2 := by
@@ -127,25 +91,16 @@ lemma evenPermutations_normSq (a b c : ℝ) {u : ℍ[ℝ]} (h : u ∈ evenPermut
 
 lemma icosahedralUnits_normSq {u : ℍ[ℝ]} (h : u ∈ icosahedralUnits) : Quaternion.normSq u = 1 := by
   simp only [icosahedralUnits, Finset.mem_biUnion, Finset.mem_univ, true_and] at h
-  rcases h with ⟨⟨s0, s1, s2⟩, hu⟩
-  have h_norm := evenPermutations_normSq _ _ _ hu
-  rw [h_norm]
-  cases s0 <;> cases s1 <;> cases s2 <;> { dsimp; simp only [neg_div, neg_sq, golden_ratio_norm_sq_sum] }
-
+  rcases h with ⟨⟨_ | _, _ | _, _ | _⟩, hu⟩ <;>
+    { rw [evenPermutations_normSq _ _ _ hu]; dsimp; simp only [neg_div, neg_sq, golden_ratio_norm_sq_sum] }
 
 lemma binaryTetrahedralUnits_normSq {u : ℍ[ℝ]} (h : u ∈ binaryTetrahedralUnits) :
-    Quaternion.normSq u = 1 := by
-  simp only [binaryTetrahedralUnits, Finset.mem_union] at h
-  rcases h with hL | hH
-  · exact lipschitzUnits_normSq hL
-  · exact hurwitzUnits_normSq hH
+    Quaternion.normSq u = 1 :=
+  (Finset.mem_union.mp h).elim lipschitzUnits_normSq hurwitzUnits_normSq
 
 lemma binaryIcosahedralUnits_normSq {u : ℍ[ℝ]} (h : u ∈ binaryIcosahedralUnits) :
-    Quaternion.normSq u = 1 := by
-  simp only [binaryIcosahedralUnits, Finset.mem_union] at h
-  rcases h with hT | hI
-  · exact binaryTetrahedralUnits_normSq hT
-  · exact icosahedralUnits_normSq hI
+    Quaternion.normSq u = 1 :=
+  (Finset.mem_union.mp h).elim binaryTetrahedralUnits_normSq icosahedralUnits_normSq
 
 /-- Coercion from a quaternion with unit norm into the unit group `ℍ[ℝ]ˣ`. -/
 def toUnit (u : ℍ[ℝ]) (h : Quaternion.normSq u = 1) : ℍ[ℝ]ˣ :=
@@ -153,16 +108,13 @@ def toUnit (u : ℍ[ℝ]) (h : Quaternion.normSq u = 1) : ℍ[ℝ]ˣ :=
               by rw [Quaternion.star_mul_self, h, Quaternion.coe_one]⟩
 
 lemma toUnit_injective {u₁ u₂ : ℍ[ℝ]} (h₁ : Quaternion.normSq u₁ = 1) (h₂ : Quaternion.normSq u₂ = 1)
-    (h : toUnit u₁ h₁ = toUnit u₂ h₂) : u₁ = u₂ := by
-  have : (toUnit u₁ h₁).val = (toUnit u₂ h₂).val := by rw [h]
-  exact this
+    (h : toUnit u₁ h₁ = toUnit u₂ h₂) : u₁ = u₂ :=
+  Units.ext_iff.mp h
 
 /-- The finset of 120 unit quaternions in `ℍ[ℝ]ˣ`. -/
 def binaryIcosahedralFinset : Finset ℍ[ℝ]ˣ :=
   binaryIcosahedralUnits.attach.map ⟨fun ⟨u, hu⟩ => toUnit u (binaryIcosahedralUnits_normSq hu),
-    fun ⟨u₁, hu₁⟩ ⟨u₂, hu₂⟩ h => by
-      simp only [toUnit, Units.ext_iff] at h
-      exact Subtype.ext h⟩
+    fun _ _ h => Subtype.ext (Units.ext_iff.mp h)⟩
 
 /-- The binary icosahedral group $I^* \subset ℍ[ℝ]^\times$, defined as the subgroup generated
 by the 120 binary icosahedral unit quaternions. -/
@@ -173,9 +125,7 @@ def binaryIcosahedral : Subgroup ℍ[ℝ]ˣ :=
 by the 24 binary tetrahedral unit quaternions. -/
 def binaryTetrahedralFinset : Finset ℍ[ℝ]ˣ :=
   binaryTetrahedralUnits.attach.map ⟨fun ⟨u, hu⟩ => toUnit u (binaryTetrahedralUnits_normSq hu),
-    fun ⟨u₁, hu₁⟩ ⟨u₂, hu₂⟩ h => by
-      simp only [toUnit, Units.ext_iff] at h
-      exact Subtype.ext h⟩
+    fun _ _ h => Subtype.ext (Units.ext_iff.mp h)⟩
 
 /-- The binary tetrahedral group $2T \le ℍ[ℝ]^\times$. -/
 def binaryTetrahedral : Subgroup ℍ[ℝ]ˣ :=
@@ -190,8 +140,7 @@ theorem binaryTetrahedral_le_binaryIcosahedral : binaryTetrahedral ≤ binaryIco
   rcases hx with ⟨u, hu, rfl⟩
   simp only [binaryIcosahedralFinset, Finset.mem_coe, Finset.mem_map, Finset.mem_attach,
     true_and, Subtype.exists]
-  refine ⟨u, Finset.mem_union_left _ hu, ?_⟩
-  rfl
+  exact ⟨u, Finset.mem_union_left _ hu, rfl⟩
 
 /-- Group closure property: identity element. -/
 theorem mem_binaryIcosahedral_one : (1 : ℍ[ℝ]ˣ) ∈ binaryIcosahedral :=
@@ -215,10 +164,32 @@ lemma mem_binaryIcosahedral_centralInv : centralInv ∈ binaryIcosahedral := by
   apply Subgroup.subset_closure
   simp only [binaryIcosahedralFinset, Finset.mem_coe, Finset.mem_map, Finset.mem_attach,
     true_and, Subtype.exists]
-  refine ⟨q (-1) 0 0 0, ?_, ?_⟩
-  · simp only [binaryIcosahedralUnits, binaryTetrahedralUnits, lipschitzUnits,
-      Finset.mem_union, Finset.mem_insert, Finset.mem_singleton, true_or, or_true]
-  · rfl
+  exact ⟨q (-1) 0 0 0, by simp [binaryIcosahedralUnits, binaryTetrahedralUnits, lipschitzUnits], rfl⟩
+
+lemma centralInv_ne_one : centralInv ≠ 1 := by
+  intro h
+  have := congr_arg (fun u : ℍ[ℝ]ˣ => (u : ℍ[ℝ]).re) h
+  dsimp [centralInv, toUnit, q] at this
+  norm_num at this
+
+/-- The center of the binary icosahedral group: $Z(I^*) = \{1, -1\}$. -/
+def binaryIcosahedralCenter : Finset ℍ[ℝ]ˣ := {1, centralInv}
+
+/-- The elements of the center of $I^*$ are exactly identity and central inversion. -/
+lemma binaryIcosahedral_center_elements :
+    ∀ g ∈ binaryIcosahedralCenter, g = 1 ∨ g = centralInv := by
+  intro g hg; simp only [binaryIcosahedralCenter, Finset.mem_insert, Finset.mem_singleton] at hg; exact hg
+
+/-- Center identification theorem: $Z(I^*) = \{1, -1\}$ has order 2. -/
+theorem binaryIcosahedral_center :
+    binaryIcosahedralCenter = {1, centralInv} ∧
+    binaryIcosahedralCenter.card = 2 :=
+  ⟨rfl, Finset.card_pair centralInv_ne_one.symm⟩
+
+/-- The order of the icosahedral quotient $I = I^* / Z(I^*)$ is 60: $|I^*| / |Z(I^*)| = 120 / 2 = 60$. -/
+theorem binaryIcosahedral_quotient_order_sixty :
+    (120 : ℕ) / binaryIcosahedralCenter.card = 60 := by
+  rw [binaryIcosahedral_center.2]
 
 end PoincareDodecahedron
 
