@@ -672,7 +672,7 @@ $$
 This brings the model into exquisite $0.1\sigma$ concordance with both the **Dark Energy Survey Year 3** ($S_8 = 0.776 \pm 0.017$; Abbott et al. 2022) and **KiDS-1000** ($S_8 = 0.766^{+0.020}_{-0.014}$; Asgari et al. 2021), achieving complete cosmological concordance across CMB, BAO, Supernovae, Local $H_0$, and Weak Lensing surveys.
 
 ![Figure 2: CMB Power Spectrum Comparison](figures/fig2_cmb_power_spectrum.png)
-**Figure 2:** CMB temperature angular power spectrum ($\mathcal{D}^{TT}_\ell$) comparison. The top panel shows theoretical spectra for $S^3 / I^\ast$ EDE (orange solid curve) versus flat $\Lambda\mathrm{CDM}$ (blue dashed curve) confronted with binned Planck 2018 TT data (dark points). The bottom panel displays normalized residual pulls $(\mathcal{D}^{\mathrm{obs}}_\ell - \mathcal{D}^{\mathrm{th}}_\ell) / \sigma_\ell$, demonstrating the $\text{low-}\ell$ topological suppression bonus without degrading $\text{high-}\ell$ peak concordance.
+**Figure 2:** CMB temperature angular power spectrum comparison. The top panel shows theoretical spectra for $S^3 / I^\ast$ EDE (orange solid curve) versus flat $\Lambda\mathrm{CDM}$ (blue dashed curve) confronted with binned Planck 2018 TT data (dark points). The bottom panel displays normalized residual pulls $(\mathcal{D}^{\mathrm{obs}} - \mathcal{D}^{\mathrm{th}}) / \sigma_\ell$, demonstrating the $\text{low-}\ell$ topological suppression bonus without degrading $\text{high-}\ell$ peak concordance.
 
 ---
 
