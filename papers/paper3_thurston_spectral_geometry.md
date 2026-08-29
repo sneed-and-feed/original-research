@@ -302,15 +302,16 @@ where $\lambda_0(\mathbb{H}^3) = 1$ is the continuous spectral baseline of the u
 
 #### Numerical PDE Certificate vs. Structural Ramanujan–Selberg Property
 
-1. **Numerical PDE Result** ($\lambda_1 \approx 27.80195, k_1 \approx 5.17706$):
-   The precise numerical value of the first non-trivial Laplace eigenvalue on the Weeks manifold:
-   ```math
-   \lambda_1(\mathcal{W}) \approx 27.80195, \quad k_1 \approx 5.17706, \quad \Delta\lambda = \lambda_1 - 1 \approx 26.80195 > 0
-   ```
-   is a certified high-precision numerical PDE result computed via the Direct Boundary Element Method (DBEM) and Trefftz boundary collocation:
-   - **Inoue, K. (1999)**, *"Computation of eigenvalues on small compact hyperbolic 3-manifolds"*, Class. Quantum Grav. 16, 3071–3082 (arXiv:math-ph/0011012).
-   - **Aurich, R. & Steiner, F. (1993)**, *"Statistical properties of the spectrum of compact hyperbolic 3-manifolds"*, Physica D 64, 185–214; and **Aurich & Steiner (1999)**, *"Numerical computation of the Laplace-Beltrami spectrum on compact hyperbolic 3-manifolds by the direct boundary element method"*, J. Phys. A: Math. Gen. 32, 2673.
-   - **Cornish, N. J. & Spergel, D. N. (1999)**, *"On the eigenmodes of compact hyperbolic 3-manifolds"*, arXiv:math/9906017.
+1. **Numerical PDE Result** ($\lambda_1 \approx 27.8$ / $27.80195$):
+   The lowest non-trivial Laplace eigenvalue on the Weeks manifold $m003(-3,1)$ was computed via Trefftz boundary collocation by:
+   - **Cornish, N. J. & Spergel, D. N. (1999)**, *"On the eigenmodes of compact hyperbolic 3-manifolds"*, Phys. Rev. D 60, 083501 (arXiv:math/9906017), Table III: $\lambda_1 \approx 27.8$ (multiplicity 1).
+   and subsequently refined via periodic orbit sum (Selberg trace formula) expansions by:
+   - **Inoue, K. T. (2001)**, *"Numerical study of length spectra and low-lying eigenvalue spectra of compact hyperbolic 3-manifolds"*, Class. Quantum Grav. 18, 629–644 (arXiv:math-ph/0011012):
+     ```math
+     \lambda_1(\mathcal{W}) \approx 27.80195, \quad k_1 \approx 5.17706, \quad \Delta\lambda = \lambda_1 - 1 \approx 26.80195 > 0
+     ```
+   alongside the Direct Boundary Element Method (DBEM) developed by:
+   - **Aurich, R. & Steiner, F. (1993, 1999)**, *"Numerical computation of the Laplace-Beltrami spectrum on compact hyperbolic 3-manifolds by the direct boundary element method"*, J. Phys. A: Math. Gen. 32, 2673; Physica D 64, 185.
 
 2. **Structural Ramanujan–Selberg Property** ($\lambda_1 > 1$):
    Crucially, we maintain the rigorous logical distinction between the specific numerical bracketing ($\lambda_1 \approx 27.80$) and the universal structural property. The qualitative geometric theorem formalized in Lean 4:

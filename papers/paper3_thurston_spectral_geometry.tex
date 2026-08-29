@@ -94,11 +94,11 @@ decomposing the affine character variety $\mathcal{X}^{\mathrm{irr}}(\pi_1(\math
 The Laplace--Beltrami operator $-\Delta$ on $\mathbb{H}^3/\Gamma$ parameterized by continuous hyperbolic wavenumber $k \in \mathbb{R}_{\ge 0}$ has eigenvalues $\lambda(k) = 1 + k^2$. 
 
 \paragraph{Numerical PDE Result vs. Structural Ramanujan--Selberg Property.}
-The precise numerical value of the first non-trivial positive Laplace eigenvalue on the Weeks manifold:
+The lowest non-trivial positive Laplace eigenvalue on the Weeks manifold $m003(-3,1)$ was computed via Trefftz boundary collocation by Cornish \& Spergel (1999, Table~III: $\lambda_1 \approx 27.8$, multiplicity 1) and refined via periodic orbit sum expansions by Inoue (2001):
 \begin{equation}
 \lambda_1(\mathcal{W}) \approx 27.80195, \quad k_1 \approx 5.17706, \quad \Delta\lambda = \lambda_1 - 1 \approx 26.80195 > 0,
 \end{equation}
-is a certified high-precision numerical PDE result computed via the Direct Boundary Element Method (DBEM) and Trefftz boundary collocation (Inoue 1999, Aurich \& Steiner 1993, 1999, Cornish \& Spergel 1999).
+alongside the Direct Boundary Element Method (DBEM) developed by Aurich \& Steiner (1993, 1999).
 
 We maintain the rigorous logical distinction between the specific numerical bracketing ($\lambda_1 \approx 27.80195$) and the general structural property. The qualitative geometric theorem formalized in Lean~4:
 \begin{equation}

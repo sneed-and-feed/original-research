@@ -29,17 +29,17 @@ This module formalizes the spectral geometry of the Laplace-Beltrami operator on
    zero-mode is $\lambda_0(\mathcal{W}) = 0$.
 
 2. **Numerical PDE Certificate vs. Structural Ramanujan-Selberg Property**:
-   - **Numerical PDE Result**: The precise value $\lambda_1 \approx 27.80195$ ($k_1 \approx 5.17706$)
-     is a certified high-precision numerical PDE result computed via boundary element and Trefftz
-     collocation methods:
-     * **Inoue, K. (1999)**, "Computation of eigenvalues on small compact hyperbolic 3-manifolds",
-       *Class. Quantum Grav.* 16, 3071–3082; arXiv:math-ph/0011012.
-     * **Aurich, R. & Steiner, F. (1993)**, "Statistical properties of the spectrum of compact
-       hyperbolic 3-manifolds", *Physica D* 64, 185–214; and **Aurich & Steiner (1999)**, "Numerical
-       computation of the Laplace-Beltrami spectrum on compact hyperbolic 3-manifolds by the direct
-       boundary element method (DBEM)", *J. Phys. A: Math. Gen.* 32, 2673.
+   - **Numerical PDE Result**:
      * **Cornish, N. J. & Spergel, D. N. (1999)**, "On the eigenmodes of compact hyperbolic
-       3-manifolds", arXiv:math/9906017.
+       3-manifolds", *Phys. Rev. D* 60, 083501 (arXiv:math/9906017), Table III computed the lowest
+       eigenvalue on the Weeks space $m003(-3,1)$ to be $\lambda_1 \approx 27.8$ (multiplicity 1).
+     * **Inoue, K. T. (2001)**, "Numerical study of length spectra and low-lying eigenvalue spectra of
+       compact hyperbolic 3-manifolds", *Class. Quantum Grav.* 18, 629–644 (arXiv:math-ph/0011012),
+       refined the eigenvalue calculation via periodic orbit sum (Selberg trace formula) expansions to
+       $\lambda_1 \approx 27.80195$ ($k_1 \approx 5.17706$).
+     * **Aurich, R. & Steiner, F. (1993, 1999)**, "Numerical computation of the Laplace-Beltrami
+       spectrum on compact hyperbolic 3-manifolds by the direct boundary element method (DBEM)",
+       *J. Phys. A: Math. Gen.* 32, 2673; *Physica D* 64, 185.
    - **Structural Ramanujan-Selberg Property**: The qualitative geometric theorem $\lambda_1 > 1$
      establishes the complete absence of small eigenvalues in the complementary series $(0, 1)$,
      confirming that $\mathcal{W}$ behaves as a generalized Ramanujan space form.
