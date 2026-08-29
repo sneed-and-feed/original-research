@@ -1,9 +1,9 @@
 # Spectral Geometry and Invariant Theory on the Poincaré Homology 3-Sphere: Character Projections, Heat Kernel Asymptotics, and Machine-Checked Verification
 
-**The Poincaré Spectral Geometry Collaboration**  
-*Division of Mathematical Physics and Theoretical Cosmology*  
-*Institute for Advanced Study & Department of Physics, Proud Pythagoras Research Initiative*  
-*Pre-Print Research Monograph | August 2026*
+**Anonymous Author(s)**  
+*Under Blind Peer Review*  
+*(LLM-Assisted Formalization and Computational Exploration)*  
+*August 2026*
 
 ---
 

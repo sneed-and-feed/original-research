@@ -1,9 +1,9 @@
 # Cosmic Topology and Early Dark Energy: Harmonic Selection Rules and Joint Likelihood Constraints on Poincaré Dodecahedral Space
 
-**The Poincaré Spectral Cosmology Collaboration**  
-*Division of Mathematical Physics and Observational Cosmology*  
-*Institute for Advanced Study & Department of Physics, Proud Pythagoras Research Initiative*  
-*(Publication-Grade Research Monograph — August 2026)*
+**Anonymous Author(s)**  
+*Under Blind Peer Review*  
+*(LLM-Assisted Formalization and Computational Exploration)*  
+*August 2026*
 
 ---
 
