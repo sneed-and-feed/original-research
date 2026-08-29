@@ -25,71 +25,73 @@ def fix_content(filepath):
     content = content.replace(r'\chi_*', r'\chi_\ast')
 
     # 3. Fix backtick math in table cells:
-    # `m_SO3_one` $\dots$ `m_SO3_five` -> `m_SO3_one` .. `m_SO3_five`
     content = content.replace(r'`m_SO3_one` $\dots$ `m_SO3_five`', r'`m_SO3_one` .. `m_SO3_five`')
     content = content.replace(r'`m_zero` $\dots$ `m_twelve`', r'`m_zero` .. `m_twelve`')
     content = content.replace(r'`heatTrace`, `heatTraceTerm_zero` $\dots$ `heatTraceTerm_twelve`', r'`heatTrace`, `heatTraceTerm_zero` .. `heatTraceTerm_twelve`')
 
-    # 4. Fix specific display math blocks in paper2_cosmology.md
-    if 'paper2_cosmology.md' in filepath:
-        # Fix indented $$ in list items 1 & 2
-        # Target block around Eisenstein & Hu (1998)
-        content = content.replace(
-            "1. **Eisenstein & Hu (1998) Transfer Function $T_{\\mathrm{EH98}}(k)$**:\n"
-            "   Incorporates the exact baryon fraction $f_b = \\omega_b / \\omega_m$, CDM fraction $f_c = \\omega_{\\mathrm{cdm}} / \\omega_m$, sound horizon at drag epoch $s = r_d$, Silk damping wavenumber $k_{\\mathrm{Silk}}$, and scale-dependent suppression:\n"
-            "   \n"
-            "   $$\n"
-            "   T_{\\mathrm{EH98}}(k) = f_b T_b(k) + f_c T_c(k)\n"
-            "   $$\n",
-            "1. **Eisenstein & Hu (1998) Transfer Function $T_{\\mathrm{EH98}}(k)$**:\n"
-            "   Incorporates the exact baryon fraction $f_b = \\omega_b / \\omega_m$, CDM fraction $f_c = \\omega_{\\mathrm{cdm}} / \\omega_m$, sound horizon at drag epoch $s = r_d$, Silk damping wavenumber $k_{\\mathrm{Silk}}$, and scale-dependent suppression:\n"
-            "\n"
-            "$$\n"
-            "T_{\\mathrm{EH98}}(k) = f_b T_b(k) + f_c T_c(k)\n"
-            "$$\n"
-        )
-        # Target block around ETHOS / IDR DAO
-        content = content.replace(
-            "2. **ETHOS / IDR Dark Acoustic Oscillation (DAO) Damping Envelope $T_{\\mathrm{IDR}}(k)$**:\n"
-            "   Scattering between dark matter and dark radiation introduces collisional drag, creating a characteristic sub-horizon damping envelope:\n"
-            "   \n"
-            "   $$\n"
-            "   T_{\\mathrm{IDR}}(k) = \\left[ 1 + \\left( \\alpha_{\\mathrm{idr}}\\,k \\right)^{2\\beta_{\\mathrm{idr}}} \\right]^{-\\gamma_{\\mathrm{idr}}}\n"
-            "   $$\n"
-            "   \n"
-            "   parameterized by the dark sector coupling strength $g_{\\mathrm{dark}}$ and relativistic contribution $\\Delta N_{\\mathrm{idr}}$:\n"
-            "   \n"
-            "   $$\n"
-            "   \\alpha_{\\mathrm{idr}} = 5.70\\,\\frac{\\sqrt{g_{\\mathrm{dark}}}\\,\\sqrt{1 + \\Delta N_{\\mathrm{idr}}}}{h}\\text{ Mpc}, \\quad \\beta_{\\mathrm{idr}} = 1.0, \\quad \\gamma_{\\mathrm{idr}} = 1.5\n"
-            "   $$\n",
-            "2. **ETHOS / IDR Dark Acoustic Oscillation (DAO) Damping Envelope $T_{\\mathrm{IDR}}(k)$**:\n"
-            "   Scattering between dark matter and dark radiation introduces collisional drag, creating a characteristic sub-horizon damping envelope:\n"
-            "\n"
-            "$$\n"
-            "T_{\\mathrm{IDR}}(k) = \\left[ 1 + \\left( \\alpha_{\\mathrm{idr}}\\,k \\right)^{2\\beta_{\\mathrm{idr}}} \\right]^{-\\gamma_{\\mathrm{idr}}}\n"
-            "$$\n"
-            "\n"
-            "   parameterized by the dark sector coupling strength $g_{\\mathrm{dark}}$ and relativistic contribution $\\Delta N_{\\mathrm{idr}}$:\n"
-            "\n"
-            "$$\n"
-            "\\alpha_{\\mathrm{idr}} = 5.70\\,\\frac{\\sqrt{g_{\\mathrm{dark}}}\\,\\sqrt{1 + \\Delta N_{\\mathrm{idr}}}}{h}\\text{ Mpc}, \\quad \\beta_{\\mathrm{idr}} = 1.0, \\quad \\gamma_{\\mathrm{idr}} = 1.5\n"
-            "$$\n"
-        )
-        # Target blank lines around C_norm equation
-        content = content.replace(
-            "and full relativistic Boltzmann solvers (CAMB / CLASS, which yield $\\sigma_8^{\\mathrm{CAMB}} = 0.811$):\n"
-            "$$\n"
-            "\\mathcal{C}_{\\mathrm{norm}} = \\left( \\frac{\\sigma_8^{\\mathrm{CAMB}}}{\\sigma_8^{\\mathrm{EH98}}} \\right)^2 = \\left( \\frac{0.811}{0.752} \\right)^2 = 1.162.\n"
-            "$$\n"
-            "Physically,",
-            "and full relativistic Boltzmann solvers (CAMB / CLASS, which yield $\\sigma_8^{\\mathrm{CAMB}} = 0.811$):\n"
-            "\n"
-            "$$\n"
-            "\\mathcal{C}_{\\mathrm{norm}} = \\left( \\frac{\\sigma_8^{\\mathrm{CAMB}}}{\\sigma_8^{\\mathrm{EH98}}} \\right)^2 = \\left( \\frac{0.811}{0.752} \\right)^2 = 1.162.\n"
-            "$$\n"
-            "\n"
-            "Physically,"
-        )
+    # 4. Fix leading math in list prefixes
+    content = content.replace(
+        '6. $\\widetilde{\\mathrm{SL}}_2(\\mathbb{R})$ **Geometry**:',
+        '6. **Universal Cover Geometry** ($\\widetilde{\\mathrm{SL}}_2(\\mathbb{R})$):'
+    )
+    content = content.replace(
+        '7. $\\mathbb{S}^2 \\times \\mathbb{R}$ **Product Geometry**:',
+        '7. **Spherical Cylinder Geometry** ($\\mathbb{S}^2 \\times \\mathbb{R}$):'
+    )
+    content = content.replace(
+        '8. $\\mathbb{H}^2 \\times \\mathbb{R}$ **Product Geometry**:',
+        '8. **Hyperbolic Cylinder Geometry** ($\\mathbb{H}^2 \\times \\mathbb{R}$):'
+    )
+    content = content.replace(
+        '2. $\\mathrm{PSL}(2, \\mathbb{C})$ **Character Variety Scheme & Bridge Isomorphism**:',
+        '2. **$\\mathrm{PSL}(2, \\mathbb{C})$ Character Variety Scheme & Bridge Isomorphism**:'
+    )
+    content = content.replace(
+        '3. **Central Spin-Lift Cohomology Action &** $\\mathrm{SL}(2, \\mathbb{C})$ **Bridge Isomorphism**:',
+        '3. **Central Spin-Lift Cohomology Action & $\\mathrm{SL}(2, \\mathbb{C})$ Bridge Isomorphism**:'
+    )
+    content = content.replace(
+        '- $R > 0$: $\\mathbb{S}^3 (+6)$ and $\\mathbb{S}^2 \\times \\mathbb{R} (+2)$.',
+        '   - **Positive Scalar Curvature** ($R > 0$): $\\mathbb{S}^3 (+6)$ and $\\mathbb{S}^2 \\times \\mathbb{R} (+2)$.'
+    )
+    content = content.replace(
+        '- $R = 0$: $\\mathbb{E}^3 (0)$.',
+        '   - **Zero Scalar Curvature** ($R = 0$): $\\mathbb{E}^3 (0)$.'
+    )
+    content = content.replace(
+        '- $R < 0$: $\\mathbb{H}^3 (-6)',
+        '   - **Negative Scalar Curvature** ($R < 0$): $\\mathbb{H}^3 (-6)'
+    )
+
+    # 5. Flatten indented ```math blocks to Column 0 with blank lines
+    lines = content.splitlines(keepends=False)
+    new_lines = []
+    in_math_block = False
+
+    for idx, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped == '```math':
+            in_math_block = True
+            if new_lines and new_lines[-1].strip() != '':
+                new_lines.append('')
+            new_lines.append('```math')
+            continue
+
+        if in_math_block:
+            if stripped == '```':
+                in_math_block = False
+                new_lines.append('```')
+                continue
+            else:
+                new_lines.append(line.strip())
+                continue
+
+        if len(new_lines) > 0 and new_lines[-1] == '```' and stripped != '':
+            new_lines.append('')
+
+        new_lines.append(line)
+
+    content = '\n'.join(new_lines) + '\n'
 
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(content)
@@ -104,14 +106,88 @@ def run_strict_linter(fpath):
     violations = []
 
     in_code_block = False
-    in_display_math = False
+    in_display_math_code = False
+    in_display_math_dollars = False
 
     for idx, raw_line in enumerate(lines):
         line_num = idx + 1
         line = raw_line.rstrip('\r\n')
         stripped = line.strip()
 
-        # 1. Code block tracking
+        # 1. Display math via ```math
+        if stripped == '```math':
+            if not in_display_math_code and not in_code_block:
+                in_display_math_code = True
+                # Rule 8: Column 0 check
+                if not line.startswith('```math'):
+                    violations.append({
+                        'file': fpath,
+                        'line': line_num,
+                        'rule': 'Rule 8: Display Math Block Alignment',
+                        'detail': f"Opening '```math' is indented (not at Column 0): '{line}'"
+                    })
+                # Blank line before
+                if idx > 0:
+                    prev_line = lines[idx-1].rstrip('\r\n').strip()
+                    if prev_line != '' and not prev_line.startswith('>'):
+                        violations.append({
+                            'file': fpath,
+                            'line': line_num,
+                            'rule': 'Rule 8: Display Math Blank Line Before',
+                            'detail': f"No blank line before '```math'. Previous line: '{prev_line}'"
+                        })
+                continue
+
+        if in_display_math_code:
+            if stripped == '```':
+                in_display_math_code = False
+                # Rule 8: Closing ``` at column 0
+                if not line.startswith('```'):
+                    violations.append({
+                        'file': fpath,
+                        'line': line_num,
+                        'rule': 'Rule 8: Display Math Block Alignment',
+                        'detail': f"Closing '```' is indented (not at Column 0): '{line}'"
+                    })
+                # Blank line after
+                if idx + 1 < len(lines):
+                    next_line = lines[idx+1].rstrip('\r\n').strip()
+                    if next_line != '' and not next_line.startswith('>'):
+                        violations.append({
+                            'file': fpath,
+                            'line': line_num,
+                            'rule': 'Rule 8: Display Math Blank Line After',
+                            'detail': f"No blank line after '```'. Next line: '{next_line}'"
+                        })
+                continue
+
+            # Inside display math ```math block
+            if re.search(r'\\text(?:rm|bf|normal|it)?\{--\}', line):
+                violations.append({
+                    'file': fpath,
+                    'line': line_num,
+                    'rule': 'Rule 4: KaTeX Ligatures',
+                    'detail': f"Found '\\text{{--}}' in display math: '{line.strip()}'"
+                })
+            mb_matches = re.findall(r'\\mathbf\{([^{}]*)\}', line)
+            for inner in mb_matches:
+                if re.search(r'=|\+|-|\\pm|\\times|\\le|\\ge|\\approx|\\neq|\\sim|\\to|\\equiv', inner):
+                    violations.append({
+                        'file': fpath,
+                        'line': line_num,
+                        'rule': 'Rule 5: KaTeX \\mathbf with Operators',
+                        'detail': f"Operator inside \\mathbf: '\\mathbf{{{inner}}}'"
+                    })
+            if re.search(r'(?<!\\)\*', line):
+                violations.append({
+                    'file': fpath,
+                    'line': line_num,
+                    'rule': 'Rule 7: Math Asterisk Escapes',
+                    'detail': f"Raw '*' in display math: '{line.strip()}'"
+                })
+            continue
+
+        # Standard code blocks (not ```math)
         if stripped.startswith('```'):
             in_code_block = not in_code_block
             continue
@@ -119,12 +195,11 @@ def run_strict_linter(fpath):
         if in_code_block:
             continue
 
-        # 2. Display math tracking
+        # 2. Display math via $$
         if stripped.startswith('$$'):
             is_blockquote = stripped.startswith('>') or line.lstrip().startswith('>')
-            if not in_display_math:
-                in_display_math = True
-                # Rule 8: Opening $$ at column 0
+            if not in_display_math_dollars:
+                in_display_math_dollars = True
                 if not is_blockquote and not line.startswith('$$'):
                     violations.append({
                         'file': fpath,
@@ -132,7 +207,6 @@ def run_strict_linter(fpath):
                         'rule': 'Rule 8: Display Math Block Alignment',
                         'detail': f"Opening '$$' is indented (not at Column 0): '{line}'"
                     })
-                # Rule 8: Blank line before opening $$
                 if idx > 0:
                     prev_line = lines[idx-1].rstrip('\r\n').strip()
                     if prev_line != '' and not prev_line.startswith('>'):
@@ -143,8 +217,7 @@ def run_strict_linter(fpath):
                             'detail': f"No blank line before '$$'. Previous line: '{prev_line}'"
                         })
             else:
-                in_display_math = False
-                # Rule 8: Closing $$ at column 0
+                in_display_math_dollars = False
                 if not is_blockquote and not line.startswith('$$'):
                     violations.append({
                         'file': fpath,
@@ -152,7 +225,6 @@ def run_strict_linter(fpath):
                         'rule': 'Rule 8: Display Math Block Alignment',
                         'detail': f"Closing '$$' is indented (not at Column 0): '{line}'"
                     })
-                # Rule 8: Blank line after closing $$
                 if idx + 1 < len(lines):
                     next_line = lines[idx+1].rstrip('\r\n').strip()
                     if next_line != '' and not next_line.startswith('>'):
@@ -164,9 +236,7 @@ def run_strict_linter(fpath):
                         })
             continue
 
-        if in_display_math:
-            # Inside display math block
-            # Rule 4: KaTeX ligatures in display math
+        if in_display_math_dollars:
             if re.search(r'\\text(?:rm|bf|normal|it)?\{--\}', line):
                 violations.append({
                     'file': fpath,
@@ -174,7 +244,6 @@ def run_strict_linter(fpath):
                     'rule': 'Rule 4: KaTeX Ligatures',
                     'detail': f"Found '\\text{{--}}' in display math: '{line.strip()}'"
                 })
-            # Rule 5: \mathbf with operators in display math
             mb_matches = re.findall(r'\\mathbf\{([^{}]*)\}', line)
             for inner in mb_matches:
                 if re.search(r'=|\+|-|\\pm|\\times|\\le|\\ge|\\approx|\\neq|\\sim|\\to|\\equiv', inner):
@@ -184,7 +253,6 @@ def run_strict_linter(fpath):
                         'rule': 'Rule 5: KaTeX \\mathbf with Operators',
                         'detail': f"Operator inside \\mathbf: '\\mathbf{{{inner}}}'"
                     })
-            # Rule 7: Asterisk escapes in display math
             if re.search(r'(?<!\\)\*', line):
                 violations.append({
                     'file': fpath,
@@ -214,6 +282,15 @@ def run_strict_linter(fpath):
                 'detail': f"Hyphen outside math: '{hm.group(0)}' in '{line.strip()}'"
             })
 
+        # Rule 10: Leading math in list item prefix (e.g. "6. $math$ **Label**:")
+        if re.match(r'^\s*(\d+\.|[-*+])\s+\$', line):
+            violations.append({
+                'file': fpath,
+                'line': line_num,
+                'rule': 'Rule 10: Leading Math in List Prefix',
+                'detail': f"List item starts with inline math before label: '{line.strip()}'"
+            })
+
         # Rule 3: Delimiter balance on line (strip inline code first)
         line_no_code = re.sub(r'`[^`]+`', '', line)
         dollars = re.findall(r'(?<!\\)\$', line_no_code)
@@ -227,7 +304,7 @@ def run_strict_linter(fpath):
 
         # Tokenize inline math
         inline_spans = list(re.finditer(r'(?<!\\)\$(?!\$)(.*?)(?<!\\)\$', line_no_code))
-        is_table = '|' in line
+        is_table = line.strip().startswith('|') and line.strip().endswith('|')
 
         for m in inline_spans:
             math_content = m.group(1)

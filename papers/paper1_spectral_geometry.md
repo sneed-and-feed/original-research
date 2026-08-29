@@ -560,9 +560,9 @@ $$
 $$
 
 where:
-- $\mathbb{R} \equiv \mathbb{Q}_\infty$ is the Archimedean completion under the standard Euclidean absolute value $\lvert x \rvert_\infty$.
-- $\mathbb{Q}_p$ is the non-Archimedean completion at prime $p$ under the $p$-adic absolute value $\lvert x \rvert_p = p^{-v_p(x)}$.
-- $\mathbb{Z}_p = \{x \in \mathbb{Q}_p \mid \lvert x \rvert_p \le 1\}$ is the compact open subring of $p$-adic integers.
+- **Archimedean completion**: $\mathbb{R} \equiv \mathbb{Q}_\infty$ under the standard Euclidean absolute value $\lvert x \rvert_\infty$.
+- **Non-Archimedean completion**: $\mathbb{Q}_p$ at prime $p$ under the $p$-adic absolute value $\lvert x \rvert_p = p^{-v_p(x)}$.
+- **Ring of integers**: $\mathbb{Z}_p = \{x \in \mathbb{Q}_p \mid \lvert x \rvert_p \le 1\}$ is the compact open subring of $p$-adic integers.
 
 By the Artin product formula, every non-zero rational number $x \in \mathbb{Q}^\times$ satisfies:
 

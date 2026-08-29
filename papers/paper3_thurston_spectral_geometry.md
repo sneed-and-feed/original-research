@@ -16,9 +16,9 @@ We present a unified mathematical treatise and machine-checked formalization in 
 3. **Euclidean Geometry** ($\mathbb{E}^3$): We formalize the Hantzsche–Wendt didicosm $G_6$ (the unique closed orientable flat 3-manifold with first Betti number $b_1 = 0$), establishing the Spectral Gap Doubling Theorem $\lambda_1(G_6) = 2\lambda_1(T^3) = 8\pi^2/L^2$ via destructive Fourier parity interference under affine screw-motions.
 4. **Nilpotent Geometry** ($\mathrm{Nil}^3$): We formalize the Heisenberg nilmanifold $N_3$ as a principal circle bundle over $T^2$ with Euler class $e = 1$, deriving the discrete Landau harmonic oscillator spectral towers with exact spectral gap $\Delta\lambda_{\mathrm{HO}} = 2\pi > 0$, ground state $\lambda_1 = 4\pi^2$, and scalar curvature $R = -1/2$.
 5. **Solvable Geometry** ($\mathrm{Sol}^3$): We formalize the Fibonacci Anosov solvmanifold $M_A = T^2 \rtimes_A S^1$, its unimodular matrix representation, golden ratio spectrum $\lambda_1 = \varphi^2$, Lyapunov exponent $\mu = 2\ln\varphi > 0$, mixed sectional curvatures $K \in \{-1, +1\}$, scalar curvature $R = -2$, and fundamental fiber spectral gap $\lambda_{0,1} = (2\pi / (2\ln\varphi))^2 > 0$.
-6. $\widetilde{\mathrm{SL}}_2(\mathbb{R})$ **Geometry**: We formalize the Lie algebra $\mathfrak{sl}_2(\mathbb{R})$, universal cover central extension by $\mathbb{Z}$, unit tangent bundles $T^1(\Sigma_g)$ ($g \ge 2$) with Euler class $e = 2 - 2g$, mixed sectional curvatures $K \in \{-3/4, +1/4\}$, scalar curvature $R = -1/2$, Casimir eigenvalue decomposition $\lambda_{j,m} = \lambda_j(\Sigma_g) + m^2/4$, and positive spectral gap $\lambda_1 = \min(\lambda_1(\Sigma_g), 1/4) > 0$.
-7. $\mathbb{S}^2 \times \mathbb{R}$ **Product Geometry**: We formalize the direct product manifold $S^2 \times S^1_L$ ($L > 0$), Künneth homology, non-negative sectional curvatures $K \in \{0, 1\}$, scalar curvature $R = 2$, joint Laplace–Beltrami eigenvalues $\lambda_{\ell, n} = \ell(\ell+1) + (2\pi n/L)^2$, and ground state spectral gap $\lambda_1(L) = \min(2, 4\pi^2/L^2) > 0$ with critical length $L_c = \pi\sqrt{2}$.
-8. $\mathbb{H}^2 \times \mathbb{R}$ **Product Geometry**: We formalize the direct product manifold $\Sigma_g \times S^1_L$ ($g \ge 2, L > 0$), Künneth Betti numbers $b_1 = b_2 = 2g+1$, non-positive sectional curvatures $K \le 0$, scalar curvature $R = -2$, Selberg $3/16$ spectral gap $\lambda_1 \ge \min(3/16, 4\pi^2/L^2) > 0$, critical length $L_{\mathrm{crit}} = 8\pi/\sqrt{3}$, and Seeley–DeWitt heat kernel coefficients $a_0 > 0, a_1 < 0$.
+6. **Universal Cover Geometry** ($\widetilde{\mathrm{SL}}_2(\mathbb{R})$): We formalize the Lie algebra $\mathfrak{sl}_2(\mathbb{R})$, universal cover central extension by $\mathbb{Z}$, unit tangent bundles $T^1(\Sigma_g)$ ($g \ge 2$) with Euler class $e = 2 - 2g$, mixed sectional curvatures $K \in \{-3/4, +1/4\}$, scalar curvature $R = -1/2$, Casimir eigenvalue decomposition $\lambda_{j,m} = \lambda_j(\Sigma_g) + m^2/4$, and positive spectral gap $\lambda_1 = \min(\lambda_1(\Sigma_g), 1/4) > 0$.
+7. **Spherical Cylinder Geometry** ($\mathbb{S}^2 \times \mathbb{R}$): We formalize the direct product manifold $S^2 \times S^1_L$ ($L > 0$), Künneth homology, non-negative sectional curvatures $K \in \{0, 1\}$, scalar curvature $R = 2$, joint Laplace–Beltrami eigenvalues $\lambda_{\ell, n} = \ell(\ell+1) + (2\pi n/L)^2$, and ground state spectral gap $\lambda_1(L) = \min(2, 4\pi^2/L^2) > 0$ with critical length $L_c = \pi\sqrt{2}$.
+8. **Hyperbolic Cylinder Geometry** ($\mathbb{H}^2 \times \mathbb{R}$): We formalize the direct product manifold $\Sigma_g \times S^1_L$ ($g \ge 2, L > 0$), Künneth Betti numbers $b_1 = b_2 = 2g+1$, non-positive sectional curvatures $K \le 0$, scalar curvature $R = -2$, Selberg $3/16$ spectral gap $\lambda_1 \ge \min(3/16, 4\pi^2/L^2) > 0$, critical length $L_{\mathrm{crit}} = 8\pi/\sqrt{3}$, and Seeley–DeWitt heat kernel coefficients $a_0 > 0, a_1 < 0$.
 
 All definitions, theorems, classifications, and structural identifications are machine-checked with zero `sorry` stubs, zero custom axioms, and full kernel closure in Lean 4.
 
@@ -156,26 +156,34 @@ The Weeks manifold $\mathcal{W}$ is the unique closed orientable hyperbolic 3-ma
    $\mathcal{W}$ is obtained by performing $(5/1, 5/2)$ or $(5/2, 5/1)$ Dehn surgery on the two cusps of the Whitehead link $W = 5_1^2 = L7a4$ in $S^3$.
 4. **Canonical 2-Generator 2-Relator Presentation**:
    The fundamental group $\pi_1(\mathcal{W})$ admits the symmetric 2-generator presentation (Chinburg–Friedman–Jones–Reid 2001, Gabai–Meyerhoff–Milley 2009, SnapPy `m003(-3,1)`):
-   ```math
-   \pi_1(\mathcal{W}) = \langle a, b \mid a b a b a^{-1} b^2 a^{-1} b = 1, \; a b a b^{-1} a^2 b^{-1} a b = 1 \rangle
-   ```
+
+```math
+\pi_1(\mathcal{W}) = \langle a, b \mid a b a b a^{-1} b^2 a^{-1} b = 1, \; a b a b^{-1} a^2 b^{-1} a b = 1 \rangle
+```
+
    with relators $w_1 = a b a b a^{-1} b^2 a^{-1} b$ and $w_2 = a b a b^{-1} a^2 b^{-1} a b$.
 
 In `Formalization.WeeksManifold.Basic`, we verify:
 - Syllable lengths: $\lvert w_1 \rvert = 8$, $\lvert w_2 \rvert = 8$.
 - Exponent sums: $\vec{w}_1 = (0, 5)^T, \vec{w}_2 = (5, 0)^T$.
 - Abelian presentation matrix:
-  ```math
-  M_{\mathrm{ab}} = \begin{pmatrix} 0 & 5 \\ 5 & 0 \end{pmatrix}, \quad \det(M_{\mathrm{ab}}) = -25, \quad |\det(M_{\mathrm{ab}})| = 25
-  ```
+
+```math
+M_{\mathrm{ab}} = \begin{pmatrix} 0 & 5 \\ 5 & 0 \end{pmatrix}, \quad \det(M_{\mathrm{ab}}) = -25, \quad |\det(M_{\mathrm{ab}})| = 25
+```
+
 - Smith normal form invariant factors: $[5, 5]$ yielding:
-  ```math
-  H_1(\mathcal{W}, \mathbb{Z}) = \mathbb{Z}^2 / \mathrm{Im}(M_{\mathrm{ab}}) \cong \mathbb{Z}/5\mathbb{Z} \oplus \mathbb{Z}/5\mathbb{Z}, \quad |H_1(\mathcal{W}, \mathbb{Z})| = 25, \quad b_1(\mathcal{W}) = 0
-  ```
+
+```math
+H_1(\mathcal{W}, \mathbb{Z}) = \mathbb{Z}^2 / \mathrm{Im}(M_{\mathrm{ab}}) \cong \mathbb{Z}/5\mathbb{Z} \oplus \mathbb{Z}/5\mathbb{Z}, \quad |H_1(\mathcal{W}, \mathbb{Z})| = 25, \quad b_1(\mathcal{W}) = 0
+```
+
 - Gabai–Meyerhoff–Milley (2009) volume minimality:
-  ```math
-  \mathrm{Vol}(\mathcal{W}) = 0.9427073627769... < \mathrm{Vol}(\mathcal{M}) \approx 0.9813688 < \mathrm{Vol}(\mathcal{G}) \approx 1.0149416
-  ```
+
+```math
+\mathrm{Vol}(\mathcal{W}) = 0.9427073627769... < \mathrm{Vol}(\mathcal{M}) \approx 0.9813688 < \mathrm{Vol}(\mathcal{G}) \approx 1.0149416
+```
+
 - Systole: $l_{\min} \approx 0.58463354$. Injectivity radius: $r_{\mathrm{inj}} \approx 0.29231677$.
 - Exact rational Chern–Simons invariant: $\mathrm{CS}(\mathcal{W}) = -1/18 \equiv 17/18 \pmod 1$.
 
@@ -192,19 +200,25 @@ d_k = -23, \quad |d_k| = 23
 In the literature, three different defining monic cubic polynomials are standardly employed to represent the cubic field $k$:
 
 1. **Plastic / Minimal Pisot Cubic** ($P_1(T)$):
-   ```math
-   P_1(T) = T^3 - T - 1 = 0
-   ```
+
+```math
+P_1(T) = T^3 - T - 1 = 0
+```
+
    with discriminant $\mathrm{Disc}(P_1) = -4(0)^3 - 27(-1)^2 - 4(-1)^3 = 4 - 27 = -23$. The unique real root $T_0 \approx 1.324717957...$ is the *plastic number* (the smallest Pisot–Vijayaraghavan number).
 2. **Weeks / SnapPea Trace Polynomial** ($P_2(\vartheta)$):
-   ```math
-   P_2(\vartheta) = \vartheta^3 - \vartheta^2 + 1 = 0
-   ```
+
+```math
+P_2(\vartheta) = \vartheta^3 - \vartheta^2 + 1 = 0
+```
+
    with discriminant $\mathrm{Disc}(P_2) = (-1)^2(0)^2 - 4(1)(0)^3 - 4(-1)^3(1) - 27(1)^2(1)^2 + 18(1)(-1)(0)(1) = 4 - 27 = -23$. The unique real root is $\vartheta_0 \approx -0.754877666... \in (-1, 0)$, and the two complex conjugate roots are $\vartheta_1, \vartheta_2 \approx 0.877439 \pm 0.744862 i$.
 3. **Neumann Trace Polynomial** ($P_3(x)$):
-   ```math
-   P_3(x) = x^3 - x + 1 = 0
-   ```
+
+```math
+P_3(x) = x^3 - x + 1 = 0
+```
+
    with discriminant $\mathrm{Disc}(P_3) = 4 - 27 = -23$ and unique real root $x_0 = -T_0 \approx -1.324717957...$
 
 #### Canonical Algebraic Change-of-Variables & Isomorphisms
@@ -220,22 +234,28 @@ We establish exact algebraic inversion roundtrips modulo the defining ideals:
 ```math
 (1 - T^2)^2 - (1 - T^2) \equiv T \pmod{T^3 - T - 1}
 ```
+
 ```math
 1 - (\vartheta^2 - \vartheta)^2 \equiv \vartheta \pmod{\vartheta^3 - \vartheta^2 + 1}
 ```
+
 ```math
 1 - (\vartheta - \vartheta^2)^2 \equiv \vartheta \pmod{\vartheta^3 - \vartheta^2 + 1}
 ```
 
 - **Signature & Root Distribution**: Since $\mathrm{Disc} = -23 < 0$, the signature is $(r_1, r_2) = (1, 1)$, with degree $[k : \mathbb{Q}] = r_1 + 2r_2 = 3$.
 - **Chinburg–Hamilton–Long–Reid (2007) Arithmetic Minimality**: The invariant quaternion algebra $A$ over $k$ is ramified at exactly two places: the real archimedean place and the unique dyadic prime ideal $\mathfrak{p}_2 \subset \mathcal{O}_k$ of norm 2, satisfying:
-  ```math
-  \lvert\mathrm{Ram}(A)\rvert = 2 \equiv 0 \pmod 2
-  ```
+
+```math
+\lvert\mathrm{Ram}(A)\rvert = 2 \equiv 0 \pmod 2
+```
+
 - **Borel Volume Formula**:
-  ```math
-  \mathrm{Vol}(\mathcal{W}) = \frac{23^{3/2}}{4\pi^2} \zeta_k(2) \approx 0.94270736...
-  ```
+
+```math
+\mathrm{Vol}(\mathcal{W}) = \frac{23^{3/2}}{4\pi^2} \zeta_k(2) \approx 0.94270736...
+```
+
   where $\zeta_k(s)$ is the Dedekind zeta function of the cubic field $k = \mathbb{Q}(\theta)$.
 
 - Lean Theorems: [`WeeksManifold.Arithmetic.plasticCubic_discriminant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`weeksCubic_discriminant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`neumannCubic_discriminant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`cubic_discriminant_triplet_eq`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`plastic_to_weeks`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`weeks_to_plastic`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`neumann_to_weeks`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`weeks_to_neumann`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`plastic_weeks_roundtrip`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`weeks_plastic_roundtrip`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`totalRamifiedPlaces_eq_two`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`borel_volume_consistency`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean).
@@ -250,44 +270,60 @@ The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety $\mathcal{X}^{\m
 
 1. **Fricke–Vogt Coordinate Ring & Master Commutator Trace Theorem**:
    For any representation $\rho : \langle a, b \rangle \to \mathrm{SL}(2, \mathbb{C})$, the trace coordinates $(x, y, z) = (\mathrm{tr}(\rho(a)), \mathrm{tr}(\rho(b)), \mathrm{tr}(\rho(ab)))$ determine the representation up to conjugation. For the symmetric generators of $\mathcal{W}$, we set:
-   ```math
-   \mathrm{tr}(\rho(a)) = \vartheta, \quad \mathrm{tr}(\rho(b)) = \vartheta, \quad \mathrm{tr}(\rho(ab)) = \vartheta^2 - \vartheta
-   ```
+
+```math
+\mathrm{tr}(\rho(a)) = \vartheta, \quad \mathrm{tr}(\rho(b)) = \vartheta, \quad \mathrm{tr}(\rho(ab)) = \vartheta^2 - \vartheta
+```
+
    Applying the universal Fricke–Vogt formula $\mathrm{tr}([a, b]) = x^2 + y^2 + z^2 - x y z - 2$, we prove:
-   ```math
-   \mathrm{tr}([\rho(a), \rho(b)]) = \vartheta^2 + \vartheta^2 + (\vartheta^2 - \vartheta)^2 - \vartheta^2(\vartheta^2 - \vartheta) - 2 = 2\vartheta^2 - 1
-   ```
+
+```math
+\mathrm{tr}([\rho(a), \rho(b)]) = \vartheta^2 + \vartheta^2 + (\vartheta^2 - \vartheta)^2 - \vartheta^2(\vartheta^2 - \vartheta) - 2 = 2\vartheta^2 - 1
+```
+
    identically modulo $\vartheta^3 - \vartheta^2 + 1 = 0$.
-2. $\mathrm{PSL}(2, \mathbb{C})$ **Character Variety Scheme & Bridge Isomorphism**:
+2. **$\mathrm{PSL}(2, \mathbb{C})$ Character Variety Scheme & Bridge Isomorphism**:
    The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety:
-   ```math
-   \mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}(2, \mathbb{C})) = \mathrm{Hom}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}(2, \mathbb{C})) // \mathrm{PGL}(2, \mathbb{C})
-   ```
+
+```math
+\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}(2, \mathbb{C})) = \mathrm{Hom}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}(2, \mathbb{C})) // \mathrm{PGL}(2, \mathbb{C})
+```
+
    is a 0-dimensional scheme cut out by the Fricke trace polynomial system. In Lean 4, we establish the canonical scheme-theoretic bridge isomorphism:
-   ```math
-   \mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}(2, \mathbb{C})) \cong \mathrm{FrickeTracePoint} \cong \mathrm{GaloisBranch}
-   ```
+
+```math
+\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}(2, \mathbb{C})) \cong \mathrm{FrickeTracePoint} \cong \mathrm{GaloisBranch}
+```
+
    consisting of exactly **3 isolated Galois-conjugate points** over $\mathbb{C}$:
    - **Real Non-Discrete Point**: $\vartheta_0 \approx -0.75488$, with $\mathrm{tr}([\rho(a), \rho(b)]) \approx 0.1396 \in (-2, 2)$ (elliptic/non-discrete).
    - **Discrete Faithful Geometric Holonomies**: The complex conjugate roots satisfy:
-     ```math
-     \vartheta_1, \vartheta_2 \approx 0.877439 \pm 0.744862 i, \quad \mathrm{tr}([\rho(a), \rho(b)]) \approx -0.5698 \pm 2.6143 i \notin [-2, 2]
-     ```
+
+```math
+\vartheta_1, \vartheta_2 \approx 0.877439 \pm 0.744862 i, \quad \mathrm{tr}([\rho(a), \rho(b)]) \approx -0.5698 \pm 2.6143 i \notin [-2, 2]
+```
+
      defining the unique conjugate pair of hyperbolic holonomy representations $(\rho_{\mathrm{geom}}, \overline{\rho}_{\mathrm{geom}})$.
-3. **Central Spin-Lift Cohomology Action &** $\mathrm{SL}(2, \mathbb{C})$ **Bridge Isomorphism**:
+3. **Central Spin-Lift Cohomology Action & $\mathrm{SL}(2, \mathbb{C})$ Bridge Isomorphism**:
    Lifting a representation from $\mathrm{PSL}(2, \mathbb{C})$ to $\mathrm{SL}(2, \mathbb{C})$ allows independent sign choices on the two relators $\rho(w_1) = \epsilon_1 I, \rho(w_2) = \epsilon_2 I$ with $(\epsilon_1, \epsilon_2) \in \{\pm 1\}^2$.
    The central spin-lift cohomology group:
-   ```math
-   H^1(\mathcal{W}_{\mathrm{rel}}, \mathbb{Z}/2\mathbb{Z}) \cong (\mathbb{Z}/2\mathbb{Z})^2, \quad \lvert H^1 \rvert = 4
-   ```
+
+```math
+H^1(\mathcal{W}_{\mathrm{rel}}, \mathbb{Z}/2\mathbb{Z}) \cong (\mathbb{Z}/2\mathbb{Z})^2, \quad \lvert H^1 \rvert = 4
+```
+
    acts freely and transitively on the 4 lifts over each Galois point. In Lean 4, we establish the canonical product bridge isomorphism:
-   ```math
-   \mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C})) \cong \mathrm{LiftedCharacterPoint} \cong \mathrm{GaloisBranch} \times \mathrm{SpinLift}
-   ```
+
+```math
+\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C})) \cong \mathrm{LiftedCharacterPoint} \cong \mathrm{GaloisBranch} \times \mathrm{SpinLift}
+```
+
    proving that the affine character variety $\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C}))$ decomposes into exactly **12 isolated points**:
-   ```math
-   \lvert\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C}))\rvert = 3 \times 4 = 12
-   ```
+
+```math
+\lvert\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C}))\rvert = 3 \times 4 = 12
+```
+
    with uniform fiberwise cardinality $\lvert\mathrm{fiber}(g)\rvert = 4$ for all $g \in \mathrm{GaloisBranch}$, and exactly one true $\mathrm{SL}(2, \mathbb{C})$ representation ($(\epsilon_1, \epsilon_2) = (+1, +1)$) per Galois branch.
 
 - Lean Theorems: [`WeeksManifold.Arithmetic.weeks_commutator_trace`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_card_eq_three`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`spin_lifts_per_representation_eq_four`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_card_eq_twelve`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_iso`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_iso`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_iso_card`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_iso_card`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`fiber_card_eq_four`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`fiber_spin_bijective`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`spin_injection_injective`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean).
@@ -295,9 +331,11 @@ The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety $\mathcal{X}^{\m
 ### 3.4 Laplace Spectrum, Provenance & Conditional Cosmic Horizon Containment
 
 The Laplace–Beltrami operator $-\Delta$ on $\mathbb{H}^3/\Gamma$ parameterized by continuous hyperbolic wavenumber $k \in \mathbb{R}_{\ge 0}$ has eigenvalues:
+
 ```math
 \lambda(k) = 1 + k^2
 ```
+
 where $\lambda_0(\mathbb{H}^3) = 1$ is the continuous spectral baseline of the universal cover and $\lambda_0(\mathcal{W}) = 0$ is the constant zero-mode.
 
 #### Numerical PDE Certificate vs. Structural Ramanujan–Selberg Property
@@ -307,17 +345,21 @@ where $\lambda_0(\mathbb{H}^3) = 1$ is the continuous spectral baseline of the u
    - **Cornish, N. J. & Spergel, D. N. (1999)**, *"On the eigenmodes of compact hyperbolic 3-manifolds"*, Phys. Rev. D 60, 083501 (arXiv:math/9906017), Table III: $\lambda_1 \approx 27.8$ (multiplicity 1).
    and subsequently refined via periodic orbit sum (Selberg trace formula) expansions by:
    - **Inoue, K. T. (2001)**, *"Numerical study of length spectra and low-lying eigenvalue spectra of compact hyperbolic 3-manifolds"*, Class. Quantum Grav. 18, 629–644 (arXiv:math-ph/0011012):
-     ```math
-     \lambda_1(\mathcal{W}) \approx 27.80195, \quad k_1 \approx 5.17706, \quad \Delta\lambda = \lambda_1 - 1 \approx 26.80195 > 0
-     ```
+
+```math
+\lambda_1(\mathcal{W}) \approx 27.80195, \quad k_1 \approx 5.17706, \quad \Delta\lambda = \lambda_1 - 1 \approx 26.80195 > 0
+```
+
    alongside the Direct Boundary Element Method (DBEM) developed by:
    - **Aurich, R. & Steiner, F. (1993, 1999)**, *"Numerical computation of the Laplace-Beltrami spectrum on compact hyperbolic 3-manifolds by the direct boundary element method"*, J. Phys. A: Math. Gen. 32, 2673; Physica D 64, 185.
 
 2. **Structural Ramanujan–Selberg Property** ($\lambda_1 > 1$):
    Crucially, we maintain the rigorous logical distinction between the specific numerical bracketing ($\lambda_1 \approx 27.80$) and the universal structural property. The qualitative geometric theorem formalized in Lean 4:
-   ```math
-   \lambda_1(\mathcal{W}) > 1 \implies \mathcal{W} \text{ has no eigenvalues in } (0, 1)
-   ```
+
+```math
+\lambda_1(\mathcal{W}) > 1 \implies \mathcal{W} \text{ has no eigenvalues in } (0, 1)
+```
+
    certifies the Generalized Ramanujan–Selberg property for $\mathcal{W}$—namely, the complete absence of small eigenvalues in the complementary series $(0, 1)$.
 
 #### Conditional Cosmic Horizon Containment Bound
@@ -325,13 +367,17 @@ where $\lambda_0(\mathbb{H}^3) = 1$ is the continuous spectral baseline of the u
 In FLRW cosmic topology (Cornish, Spergel & Starkman 1998, Aurich et al. 2008, Luminet 2008), the primary signature of a multi-connected universe is the presence of matched circles of temperature fluctuations on the Surface of Last Scattering (SLS). A compact topology is geometrically detectable via CMB matched circles if and only if the SLS radius exceeds the injectivity radius: $\chi_\ast / R_c > r_{\mathrm{inj}}$.
 
 For the Weeks manifold, the Dirichlet injectivity radius is:
+
 ```math
 r_{\mathrm{inj}}(\mathcal{W}) = \frac{1}{2} l_{\min} \approx 0.29231677
 ```
+
 Under the observational hypothesis $\lvert\Omega_K\rvert \le 0.005$ from Planck 2018/2020 data, the cosmic spatial curvature radius is bounded below by $R_c = 1/\sqrt{\lvert\Omega_K\rvert} \ge 14.14$. With comoving SLS depth $\chi_\ast \approx 3.14$, the normalized horizon depth satisfies the *conditional geometric inequality*:
+
 ```math
 \frac{\chi_\ast}{R_c} \le 0.222 < r_{\mathrm{inj}}(\mathcal{W}) \approx 0.29231677
 ```
+
 with safety margin $\Delta r = r_{\mathrm{inj}} - \chi_\ast/R_c \approx 0.0703 > 0.07$. This proves that under current observational curvature constraints, the observable CMB sphere is strictly contained within a single Dirichlet fundamental domain of $\mathcal{W}$, establishing that topological identifications lie outside the observable horizon (precluding any matched circles in the sky).
 
 - Lean Theorems: [`WeeksManifold.SpectralGap.lambda1_gt_one`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/SpectralGap.lean), [`no_small_first_eigenvalue`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/SpectralGap.lean), [`sls_strictly_contained_in_fundamental_domain`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/SpectralGap.lean), [`no_matched_circles_in_sky`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/SpectralGap.lean).
@@ -384,9 +430,10 @@ In `Formalization.HantzscheWendt.SpectralSelection`, we formalize this parity ca
 1. All single-axis odd modes undergo destructive interference: `torusModeX_destructive_cancellation`.
 2. Any mode with energy $E(\vec{n}) = 1$ is single-axis odd: `energy_eq_one_implies_singleAxisOdd`.
 3. The minimal admissible $G_6$-invariant modes require at least two non-zero wavenumbers with matching parity, such as $\vec{n} = (1, 1, 0), (1, 0, 1), (0, 1, 1)$ with energy:
-   ```math
-   E_{\min}(G_6) = 1^2 + 1^2 + 0^2 = 2
-   ```
+
+```math
+E_{\min}(G_6) = 1^2 + 1^2 + 0^2 = 2
+```
 
 **Theorem (Spectral Gap Doubling):**
 
@@ -432,19 +479,25 @@ The Laplace–Beltrami operator $\Delta = -(X^2 + Y^2 + Z^2)$ decomposes under F
 
 1. Central Invariant Subspace ($k = 0$):
    Eigenfunctions are constant along the fiber, reducing to the standard 2-torus Laplacian on $T^2$:
-   ```math
-   \lambda_{0, m, n} = 4\pi^2 (m^2 + n^2), \quad (m, n) \in \mathbb{Z}^2
-   ```
+
+```math
+\lambda_{0, m, n} = 4\pi^2 (m^2 + n^2), \quad (m, n) \in \mathbb{Z}^2
+```
+
    with ground state $\lambda_1(N_3) = \lambda_{0, 1, 0} = 4\pi^2 \approx 39.4784$.
 2. Central Excited Subspaces ($k \in \mathbb{Z} \setminus \{0\}$):
    For $f(x, y, z) = \phi(x, y) e^{2\pi i k z}$, the sub-Laplacian $-(X^2 + Y^2)$ transforms into a 1D quantum harmonic oscillator Hamiltonian with frequency $\omega = 4\pi \lvert k \rvert$:
-   ```math
-   \mathcal{H}_k = -\partial_x^2 + 4\pi^2 k^2 \left(x - \frac{y_0}{2\pi k}\right)^2
-   ```
+
+```math
+\mathcal{H}_k = -\partial_x^2 + 4\pi^2 k^2 \left(x - \frac{y_0}{2\pi k}\right)^2
+```
+
    yielding discrete Landau-level harmonic oscillator eigenvalue towers:
-   ```math
-   \lambda_{k, n} = 4\pi^2 k^2 + 2\pi \lvert k \rvert (2n + 1), \quad n \in \mathbb{N}, \; k \in \mathbb{Z} \setminus \{0\}
-   ```
+
+```math
+\lambda_{k, n} = 4\pi^2 k^2 + 2\pi \lvert k \rvert (2n + 1), \quad n \in \mathbb{N}, \; k \in \mathbb{Z} \setminus \{0\}
+```
+
    with exact $\lvert k \rvert$-fold geometric degeneracy.
 
 **Harmonic Oscillator Gap Theorem:**
@@ -467,9 +520,11 @@ yielding a strictly positive harmonic oscillator gap above the torus ground stat
 In `Formalization.HeisenbergNilmanifold.Geometry`, we formalize the Riemannian curvature tensor of the left-invariant metric:
 - Sectional curvatures: $K(X, Y) = -3/4, K(X, Z) = 1/4, K(Y, Z) = 1/4$.
 - Ricci curvature tensor:
-  ```math
-  \mathrm{Ric}(X, X) = -\frac{1}{2}, \quad \mathrm{Ric}(Y, Y) = -\frac{1}{2}, \quad \mathrm{Ric}(Z, Z) = +\frac{1}{2}
-  ```
+
+```math
+\mathrm{Ric}(X, X) = -\frac{1}{2}, \quad \mathrm{Ric}(Y, Y) = -\frac{1}{2}, \quad \mathrm{Ric}(Z, Z) = +\frac{1}{2}
+```
+
 - Scalar curvature: $R = \mathrm{Ric}(X,X) + \mathrm{Ric}(Y,Y) + \mathrm{Ric}(Z,Z) = -1/2 - 1/2 + 1/2 = -1/2$.
 - Ricci anisotropy ratio: $\mathrm{Ric}(Z,Z) / \mathrm{Ric}(X,X) = (1/2) / (-1/2) = -1$.
 
@@ -521,9 +576,11 @@ In `Formalization.Solvmanifold.SpectralGeometry`, the foliated Laplace–Beltram
 - Anosov Lyapunov exponent: $\mu = \ln(\lambda_1) = 2\ln\varphi > 0$, equal to the topological entropy $h_{\mathrm{top}} = \mu$.
 - Fiber Fourier spectrum ($p_x = p_y = 0$): $\lambda_{0, n} = \left(\frac{2\pi n}{\ln(\varphi^2)}\right)^2$.
 - Fundamental fiber eigenvalue ($n = 1$):
-  ```math
-  \lambda_{0, 1} = \left(\frac{2\pi}{2\ln\varphi}\right)^2 = \left(\frac{\pi}{\ln\varphi}\right)^2 > 0
-  ```
+
+```math
+\lambda_{0, 1} = \left(\frac{2\pi}{2\ln\varphi}\right)^2 = \left(\frac{\pi}{\ln\varphi}\right)^2 > 0
+```
+
 - Fiber spectral gap: $\Delta\lambda_{\mathrm{fiber}} = \lambda_{0,1} - \lambda_{0,0} = \lambda_{0,1} > 0$.
 
 - Lean Theorems: [`Solvmanifold.lyapunovExponent_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/SpectralGeometry.lean), [`fiberEigenvalue_zero`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/SpectralGeometry.lean), [`fiberGroundState_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/SpectralGeometry.lean), [`fiberSpectralGap_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/SpectralGeometry.lean).
@@ -554,9 +611,10 @@ In `Formalization.SL2RGeometry.Geometry` and `SpectralDecomposition`:
 - Vertical Fourier decomposition on $S^1$ fibers: $L^2(T^1(\Sigma_g)) = \bigoplus_{m \in \mathbb{Z}} \mathcal{H}_m$.
 - Casimir eigenvalues: $\lambda_{j, m} = \lambda_j(\Sigma_g) + \frac{m^2}{4}$.
 - Positive spectral gap:
-  ```math
-  \lambda_1(T^1(\Sigma_g)) = \min\left(\lambda_1(\Sigma_g), \, \frac{1}{4}\right) > 0
-  ```
+
+```math
+\lambda_1(T^1(\Sigma_g)) = \min\left(\lambda_1(\Sigma_g), \, \frac{1}{4}\right) > 0
+```
 
 - Lean Theorems: [`SL2RGeometry.secE1E2_eq_neg_three_fourths`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/Geometry.lean), [`scalarCurvature_eq`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/Geometry.lean), [`casimirEigenvalue_fiber_invariant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/SpectralDecomposition.lean), [`totalSpectralGap_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/SpectralDecomposition.lean).
 
@@ -581,9 +639,11 @@ In `Formalization.S2xRGeometry.Geometry` and `SpectralDecomposition`:
 - Sectional curvatures: $K(\partial_\theta, \partial_\varphi) = 1 > 0$, $K(\partial_\theta, \partial_z) = 0$, $K(\partial_\varphi, \partial_z) = 0$ ($K \ge 0$).
 - Ricci tensor: $\operatorname{Ric} = \operatorname{diag}(1, 1, 0)$. Scalar curvature: $R = 2 > 0$.
 - Joint Laplace–Beltrami eigenvalues:
-  ```math
-  \lambda_{\ell, n}(L) = \ell(\ell + 1) + \left(\frac{2\pi n}{L}\right)^2, \quad \ell \in \mathbb{N}, \; n \in \mathbb{Z}
-  ```
+
+```math
+\lambda_{\ell, n}(L) = \ell(\ell + 1) + \left(\frac{2\pi n}{L}\right)^2, \quad \ell \in \mathbb{N}, \; n \in \mathbb{Z}
+```
+
 - Degeneracies: $d(\ell, n) = (2\ell + 1)(2 - \delta_{n, 0})$.
 - Spectral gap: $\lambda_1(L) = \min(2, 4\pi^2/L^2) > 0$.
 - Critical circle length: $L_c = \pi\sqrt{2}$ where sphere and circle gaps match at $\lambda_1(L_c) = 2$ with 5-fold degeneracy.
@@ -615,9 +675,11 @@ In `Formalization.H2xRGeometry.Geometry` and `SpectralDecomposition`:
 - Joint eigenvalues: $\lambda_{j, n} = \lambda_j(\Sigma_g) + 4\pi^2 n^2 / L^2$.
 - Selberg $3/16$ Bound: $\lambda_1(\Sigma_g) \ge 3/16 = 0.1875$.
 - Certified spectral gap:
-  ```math
-  \lambda_1(M) = \min\left(\lambda_1(\Sigma_g), \, \frac{4\pi^2}{L^2}\right) \ge \min\left(\frac{3}{16}, \, \frac{4\pi^2}{L^2}\right) > 0
-  ```
+
+```math
+\lambda_1(M) = \min\left(\lambda_1(\Sigma_g), \, \frac{4\pi^2}{L^2}\right) \ge \min\left(\frac{3}{16}, \, \frac{4\pi^2}{L^2}\right) > 0
+```
+
 - Critical circle length: $L_{\mathrm{crit}} = \frac{8\pi}{\sqrt{3}} \approx 14.51$.
 - Seeley–DeWitt coefficients: $a_0 = 4\pi(g-1)L > 0$ and $a_1 = -\frac{4\pi(g-1)L}{3} < 0$.
 
@@ -636,21 +698,25 @@ In `Formalization.ThurstonOctet`, we integrate all eight model geometries into a
 ### 10.1 Master Classification Theorems
 
 1. **Dimension Invariance**: Every Thurston geometry is a 3-dimensional Riemannian manifold:
-   ```math
-   \forall g \in \text{ThurstonGeometry}, \quad \dim(g) = 3
-   ```
+
+```math
+\forall g \in \text{ThurstonGeometry}, \quad \dim(g) = 3
+```
+
 2. **Isotropy & Isometry Dimension Spectrum**:
    - Isotropic ($\dim H = 3, \dim \mathrm{Isom} = 6$): $\mathbb{S}^3, \mathbb{H}^3, \mathbb{E}^3$.
    - 1D Stabilizer ($\dim H = 1, \dim \mathrm{Isom} = 4$): $\mathrm{Nil}^3, \widetilde{\mathrm{SL}}_2(\mathbb{R}), \mathbb{S}^2 \times \mathbb{R}, \mathbb{H}^2 \times \mathbb{R}$.
    - Rigid ($\dim H = 0, \dim \mathrm{Isom} = 3$): $\mathrm{Sol}^3$.
 3. **Einstein Classification**:
-   ```math
-   \operatorname{IsEinstein}(g) \iff g \in \{\mathbb{S}^3, \mathbb{H}^3, \mathbb{E}^3\}
-   ```
+
+```math
+\operatorname{IsEinstein}(g) \iff g \in \{\mathbb{S}^3, \mathbb{H}^3, \mathbb{E}^3\}
+```
+
 4. **Scalar Curvature Sign Trichotomy**:
-   - $R > 0$: $\mathbb{S}^3 (+6)$ and $\mathbb{S}^2 \times \mathbb{R} (+2)$.
-   - $R = 0$: $\mathbb{E}^3 (0)$.
-   - $R < 0$: $\mathbb{H}^3 (-6), \mathrm{Nil}^3 (-1/2), \mathrm{Sol}^3 (-2), \widetilde{\mathrm{SL}}_2(\mathbb{R}) (-1/2), \mathbb{H}^2 \times \mathbb{R} (-2)$.
+      - **Positive Scalar Curvature** ($R > 0$): $\mathbb{S}^3 (+6)$ and $\mathbb{S}^2 \times \mathbb{R} (+2)$.
+      - **Zero Scalar Curvature** ($R = 0$): $\mathbb{E}^3 (0)$.
+      - **Negative Scalar Curvature** ($R < 0$): $\mathbb{H}^3 (-6), \mathrm{Nil}^3 (-1/2), \mathrm{Sol}^3 (-2), \widetilde{\mathrm{SL}}_2(\mathbb{R}) (-1/2), \mathbb{H}^2 \times \mathbb{R} (-2)$.
 5. **Seifert Fibration Compatibility**:
    Exactly 6 of the 8 geometries fiber over 2-orbifolds ($\mathbb{S}^3, \mathbb{E}^3, \mathrm{Nil}^3, \widetilde{\mathrm{SL}}_2(\mathbb{R}), \mathbb{S}^2 \times \mathbb{R}, \mathbb{H}^2 \times \mathbb{R}$). $\mathrm{Sol}^3$ is uniquely an Anosov mapping torus, and $\mathbb{H}^3$ is non-fibered.
 6. **Universal Spectral Gap Positivity**:
@@ -665,6 +731,7 @@ In `Formalization.ThurstonOctet`, we integrate all eight model geometries into a
 The complete Lean 4 formalization suite consists of 19 integrated modules structured under `Formalization/`:
 
 ```
+
 Formalization/
 ├── TriangleModularGroup/                # Modular group Δ(3,4,∞) representation & Type II cusp
 ├── SeifertSphereFibrations/             # 2-point + cusp Seifert classification & Bézout witnesses
