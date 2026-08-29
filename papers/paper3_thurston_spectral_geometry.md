@@ -20,7 +20,12 @@ We present a unified mathematical treatise and machine-checked formalization in 
 7. **Spherical Cylinder Geometry** ($\mathbb{S}^2 \times \mathbb{R}$): We formalize the direct product manifold $S^2 \times S^1_L$ ($L > 0$), Künneth homology, non-negative sectional curvatures $K \in \{0, 1\}$, scalar curvature $R = 2$, joint Laplace–Beltrami eigenvalues $\lambda_{\ell, n} = \ell(\ell+1) + (2\pi n/L)^2$, and ground state spectral gap $\lambda_1(L) = \min(2, 4\pi^2/L^2) > 0$ with critical length $L_c = \pi\sqrt{2}$.
 8. **Hyperbolic Cylinder Geometry** ($\mathbb{H}^2 \times \mathbb{R}$): We formalize the direct product manifold $\Sigma_g \times S^1_L$ ($g \ge 2, L > 0$), Künneth Betti numbers $b_1 = b_2 = 2g+1$, non-positive sectional curvatures $K \le 0$, scalar curvature $R = -2$, Selberg $3/16$ spectral gap $\lambda_1 \ge \min(3/16, 4\pi^2/L^2) > 0$, critical length $L_{\mathrm{crit}} = 8\pi/\sqrt{3}$, and Seeley–DeWitt heat kernel coefficients $a_0 > 0, a_1 < 0$.
 
-All definitions, theorems, classifications, and structural identifications are machine-checked with zero `sorry` stubs, zero custom axioms, and full kernel closure in Lean 4.
+### Epistemic Scope & Verification Boundaries
+
+To maintain rigorous mathematical and methodological transparency, we distinguish three complementary layers of results presented in this work:
+1. **Machine-Checked Discrete, Algebraic & Topological Invariants in Lean 4 (`Formalization/`)**: Every discrete group presentation, abelianization matrix, Smith normal form, trace coordinate polynomial ring, Galois branch decomposition, quaternion algebra ramification set, Seifert Diophantine cofactor solvability condition, exact rational Chern–Simons partition sum, and discrete Fourier parity selection rule is machine-checked with standard Lean 4 kernel closure (zero custom axioms, zero `sorry` stubs).
+2. **Analytical & Numerical PDE Invariants from Literature**: Continuous Riemannian spectrum calculations (e.g. the Trefftz boundary collocation eigenvalue $\lambda_1(\mathcal{W}) \approx 27.80195$ of Cornish & Spergel 1999 and Inoue 2001), minimal hyperbolic volume proofs (Gabai, Meyerhoff & Milley 2009), and smooth $\mathrm{SU}(2)$ gauge connection Sobolev theory are drawn from the literature and integrated to contextualize the algebraic invariants.
+3. **Synthetic Survey & Classification Atlas**: We provide a unified comparative taxonomy bridging the algebraic, geometric, and spectral properties across all eight Thurston model geometries.
 
 ---
 
@@ -73,9 +78,9 @@ In `Formalization.GeneralSeifertClassification.Cofactors`, we formalize the gene
 
 where $O_k$ is the Seifert homology order determinant.
 
-- Lean Theorem: [`GeneralSeifert.exists_sphere_iff_cofactorGCD_eq_one`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/GeneralSeifertClassification/Solvability.lean)
-- Lean Theorem: [`GeneralSeifert.pairwise_coprime_exists_sphere`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/GeneralSeifertClassification/Solvability.lean)
-- Lean Theorem: [`GeneralSeifert.common_divisor_obstruction`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/GeneralSeifertClassification/Obstructions.lean)
+- Lean Theorem: [`GeneralSeifert.exists_sphere_iff_cofactorGCD_eq_one`](../Formalization/GeneralSeifertClassification/Solvability.lean)
+- Lean Theorem: [`GeneralSeifert.pairwise_coprime_exists_sphere`](../Formalization/GeneralSeifertClassification/Solvability.lean)
+- Lean Theorem: [`GeneralSeifert.common_divisor_obstruction`](../Formalization/GeneralSeifertClassification/Obstructions.lean)
 
 ### 2.2 Exact Rational Chern–Simons Actions on $\mathrm{SU}(2)$ Character Varieties
 
@@ -106,7 +111,7 @@ In `Formalization.BrieskornSU2CharacterVariety.ChernSimons`, we formalize the ex
 4. Brieskorn Sphere $\Sigma(2,5,7)$ ($4pqr = 280$):
    - Four representations with $CS \in \{-81/280, -289/280, -1369/280, -3249/280\}$; sum: $-1247/70$.
 
-- Lean Theorems: [`BrieskornSU2.chernSimons_2_3_5_rep1`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean), [`chernSimons_2_3_5_rep2`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean), [`chernSimonsSumRat_2_3_5`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean).
+- Lean Theorems: [`BrieskornSU2.chernSimons_2_3_5_rep1`](../Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean), [`chernSimons_2_3_5_rep2`](../Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean), [`chernSimonsSumRat_2_3_5`](../Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean).
 
 ### 2.3 Lawrence–Zagier False Theta Character Matching
 
@@ -138,7 +143,7 @@ Evaluating at $n = 1$ and $n = 13$ yields the exact Chern–Simons invariants of
 -\Delta(13) - \frac{1}{120} = -\frac{7}{5} - \frac{1}{120} = -\frac{169}{120} = CS(\Sigma(2,3,5); 1, 1, 3)
 ```
 
-- Lean Theorems: [`BrieskornSU2.chi120_periodic_60`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean), [`BrieskornSU2.chi120_neg`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean), [`BrieskornSU2.cs_2_3_5_rep1_falseTheta_match`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean), [`BrieskornSU2.cs_2_3_5_rep2_falseTheta_match`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean).
+- Lean Theorems: [`BrieskornSU2.chi120_periodic_60`](../Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean), [`BrieskornSU2.chi120_neg`](../Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean), [`BrieskornSU2.cs_2_3_5_rep1_falseTheta_match`](../Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean), [`BrieskornSU2.cs_2_3_5_rep2_falseTheta_match`](../Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean).
 
 ---
 
@@ -187,7 +192,7 @@ H_1(\mathcal{W}, \mathbb{Z}) = \mathbb{Z}^2 / \mathrm{Im}(M_{\mathrm{ab}}) \cong
 - Systole: $l_{\min} \approx 0.58463354$. Injectivity radius: $r_{\mathrm{inj}} \approx 0.29231677$.
 - Exact rational Chern–Simons invariant: $\mathrm{CS}(\mathcal{W}) = -1/18 \equiv 17/18 \pmod 1$.
 
-- Lean Theorems: [`WeeksManifold.w1_length`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`presentationMatrixAbelian_det`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`presentationMatrixAbelian_abs_det`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`weeksHomology_order`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`volume_lt_Meyerhoff`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`chernSimons_mul_eighteen`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean).
+- Lean Theorems: [`WeeksManifold.w1_length`](../Formalization/WeeksManifold/Basic.lean), [`presentationMatrixAbelian_det`](../Formalization/WeeksManifold/Basic.lean), [`presentationMatrixAbelian_abs_det`](../Formalization/WeeksManifold/Basic.lean), [`weeksHomology_order`](../Formalization/WeeksManifold/Basic.lean), [`volume_lt_Meyerhoff`](../Formalization/WeeksManifold/Basic.lean), [`chernSimons_mul_eighteen`](../Formalization/WeeksManifold/Basic.lean).
 
 ### 3.2 Invariant Trace Field Polynomial Disambiguation & Change of Primitive Generator
 
@@ -258,7 +263,7 @@ We establish exact algebraic inversion roundtrips modulo the defining ideals:
 
   where $\zeta_k(s)$ is the Dedekind zeta function of the cubic field $k = \mathbb{Q}(\theta)$.
 
-- Lean Theorems: [`WeeksManifold.Arithmetic.plasticCubic_discriminant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`weeksCubic_discriminant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`neumannCubic_discriminant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`cubic_discriminant_triplet_eq`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`plastic_to_weeks`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`weeks_to_plastic`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`neumann_to_weeks`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`weeks_to_neumann`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`plastic_weeks_roundtrip`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`weeks_plastic_roundtrip`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`totalRamifiedPlaces_eq_two`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`borel_volume_consistency`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean).
+- Lean Theorems: [`WeeksManifold.Arithmetic.plasticCubic_discriminant`](../Formalization/WeeksManifold/Arithmetic.lean), [`weeksCubic_discriminant`](../Formalization/WeeksManifold/Arithmetic.lean), [`neumannCubic_discriminant`](../Formalization/WeeksManifold/Arithmetic.lean), [`cubic_discriminant_triplet_eq`](../Formalization/WeeksManifold/Arithmetic.lean), [`plastic_to_weeks`](../Formalization/WeeksManifold/Arithmetic.lean), [`weeks_to_plastic`](../Formalization/WeeksManifold/Arithmetic.lean), [`neumann_to_weeks`](../Formalization/WeeksManifold/Arithmetic.lean), [`weeks_to_neumann`](../Formalization/WeeksManifold/Arithmetic.lean), [`plastic_weeks_roundtrip`](../Formalization/WeeksManifold/Arithmetic.lean), [`weeks_plastic_roundtrip`](../Formalization/WeeksManifold/Arithmetic.lean), [`totalRamifiedPlaces_eq_two`](../Formalization/WeeksManifold/Arithmetic.lean), [`borel_volume_consistency`](../Formalization/WeeksManifold/Arithmetic.lean).
 
 ### 3.3 Rigorous Character Variety Cardinality & Character Scheme Formalization
 
@@ -268,7 +273,7 @@ The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety $\mathcal{X}^{\m
 \pi_1(\mathcal{W}) = \langle a, b \mid w_1 = 1, \; w_2 = 1 \rangle
 ```
 
-1. **Fricke–Vogt Coordinate Ring & Master Commutator Trace Theorem**:
+1. **Fricke–Vogt Coordinate Ring & Commutator Trace Identity**:
    For any representation $\rho : \langle a, b \rangle \to \mathrm{SL}(2, \mathbb{C})$, the trace coordinates $(x, y, z) = (\mathrm{tr}(\rho(a)), \mathrm{tr}(\rho(b)), \mathrm{tr}(\rho(ab)))$ determine the representation up to conjugation. For the symmetric generators of $\mathcal{W}$, we set:
 
 ```math
@@ -326,7 +331,7 @@ H^1(\mathcal{W}_{\mathrm{rel}}, \mathbb{Z}/2\mathbb{Z}) \cong (\mathbb{Z}/2\math
 
    with uniform fiberwise cardinality $\lvert\mathrm{fiber}(g)\rvert = 4$ for all $g \in \mathrm{GaloisBranch}$, and exactly one true $\mathrm{SL}(2, \mathbb{C})$ representation ($(\epsilon_1, \epsilon_2) = (+1, +1)$) per Galois branch.
 
-- Lean Theorems: [`WeeksManifold.Arithmetic.weeks_commutator_trace`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_card_eq_three`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`spin_lifts_per_representation_eq_four`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_card_eq_twelve`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_iso`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_iso`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_iso_card`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_iso_card`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`fiber_card_eq_four`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`fiber_spin_bijective`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`spin_injection_injective`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean).
+- Lean Theorems: [`WeeksManifold.Arithmetic.weeks_commutator_trace`](../Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_card_eq_three`](../Formalization/WeeksManifold/Arithmetic.lean), [`spin_lifts_per_representation_eq_four`](../Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_card_eq_twelve`](../Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_iso`](../Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_iso`](../Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_iso_card`](../Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_iso_card`](../Formalization/WeeksManifold/Arithmetic.lean), [`fiber_card_eq_four`](../Formalization/WeeksManifold/Arithmetic.lean), [`fiber_spin_bijective`](../Formalization/WeeksManifold/Arithmetic.lean), [`spin_injection_injective`](../Formalization/WeeksManifold/Arithmetic.lean).
 
 ### 3.4 Laplace Spectrum, Provenance & Conditional Cosmic Horizon Containment
 
@@ -380,7 +385,7 @@ Under the observational hypothesis $\lvert\Omega_K\rvert \le 0.005$ from Planck 
 
 with safety margin $\Delta r = r_{\mathrm{inj}} - \chi_\ast/R_c \approx 0.0703 > 0.07$. This proves that under current observational curvature constraints, the observable CMB sphere is strictly contained within a single Dirichlet fundamental domain of $\mathcal{W}$, establishing that topological identifications lie outside the observable horizon (precluding any matched circles in the sky).
 
-- Lean Theorems: [`WeeksManifold.SpectralGap.lambda1_gt_one`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/SpectralGap.lean), [`no_small_first_eigenvalue`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/SpectralGap.lean), [`sls_strictly_contained_in_fundamental_domain`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/SpectralGap.lean), [`no_matched_circles_in_sky`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/SpectralGap.lean).
+- Lean Theorems: [`WeeksManifold.SpectralGap.lambda1_gt_one`](../Formalization/WeeksManifold/SpectralGap.lean), [`no_small_first_eigenvalue`](../Formalization/WeeksManifold/SpectralGap.lean), [`sls_strictly_contained_in_fundamental_domain`](../Formalization/WeeksManifold/SpectralGap.lean), [`no_matched_circles_in_sky`](../Formalization/WeeksManifold/SpectralGap.lean).
 
 
 ---
@@ -402,9 +407,9 @@ In `Formalization.HantzscheWendt.Basic`, we verify:
 - Holonomy quotient: $H = G_6 / \mathbb{Z}^3 \cong \mathbb{Z}_2 \times \mathbb{Z}_2$ (Klein four-group, order 4).
 - First homology: $H_1(G_6, \mathbb{Z}) \cong \mathbb{Z}/4\mathbb{Z} \times \mathbb{Z}/4\mathbb{Z}$ (order 16, $b_1 = 0$).
 
-- Lean Theorems: [`HantzscheWendt.gamma1_sq`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HantzscheWendt/Basic.lean), [`gamma1_fixed_point_free`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HantzscheWendt/Basic.lean), [`det_linGamma1`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HantzscheWendt/Basic.lean), [`holonomy_card`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HantzscheWendt/Basic.lean), [`hantzscheWendtHomology_card`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HantzscheWendt/Basic.lean).
+- Lean Theorems: [`HantzscheWendt.gamma1_sq`](../Formalization/HantzscheWendt/Basic.lean), [`gamma1_fixed_point_free`](../Formalization/HantzscheWendt/Basic.lean), [`det_linGamma1`](../Formalization/HantzscheWendt/Basic.lean), [`holonomy_card`](../Formalization/HantzscheWendt/Basic.lean), [`hantzscheWendtHomology_card`](../Formalization/HantzscheWendt/Basic.lean).
 
-### 4.2 Fourier Parity Cancellation & The Spectral Gap Doubling Theorem
+### 4.2 Fourier Parity Cancellation & Spectral Gap Doubling
 
 On the flat 3-torus $T^3 = \mathbb{R}^3 / (L\mathbb{Z})^3$, Fourier modes have wavevectors $\vec{n} = (n_x, n_y, n_z) \in \mathbb{Z}^3$ with energy $E(\vec{n}) = n_x^2 + n_y^2 + n_z^2$ and Laplacian eigenvalues:
 
@@ -435,13 +440,13 @@ In `Formalization.HantzscheWendt.SpectralSelection`, we formalize this parity ca
 E_{\min}(G_6) = 1^2 + 1^2 + 0^2 = 2
 ```
 
-**Theorem (Spectral Gap Doubling):**
+**Proposition (Spectral Gap Doubling via Parity Selection):**
 
 ```math
 \lambda_1(G_6) = \left(\frac{2\pi}{L}\right)^2 \cdot 2 = \frac{8\pi^2}{L^2} = 2 \cdot \lambda_1(T^3)
 ```
 
-- Lean Theorems: [`HantzscheWendt.torusModeX_destructive_cancellation`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HantzscheWendt/SpectralSelection.lean), [`admissible_energy_ge_two`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HantzscheWendt/SpectralSelection.lean), [`spectral_gap_doubling`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HantzscheWendt/SpectralSelection.lean), [`eigenvalue_doubling`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HantzscheWendt/SpectralSelection.lean).
+- Lean Theorems: [`HantzscheWendt.torusModeX_destructive_cancellation`](../Formalization/HantzscheWendt/SpectralSelection.lean), [`admissible_energy_ge_two`](../Formalization/HantzscheWendt/SpectralSelection.lean), [`spectral_gap_doubling`](../Formalization/HantzscheWendt/SpectralSelection.lean), [`eigenvalue_doubling`](../Formalization/HantzscheWendt/SpectralSelection.lean).
 
 ---
 
@@ -465,7 +470,7 @@ The Heisenberg nilmanifold $N_3 = \mathcal{H}_3(\mathbb{Z}) \backslash \mathcal{
 - Abelianization: $H_1(N_3, \mathbb{Z}) \cong \mathbb{Z} \oplus \mathbb{Z}$, with first Betti number $b_1(N_3) = 2$.
 - Fibration: $\pi : N_3 \to T^2$ is a principal $S^1$-bundle with Euler class $e = 1 \in H^2(T^2, \mathbb{Z})$.
 
-- Lean Theorems: [`HeisenbergNilmanifold.toMatrix_mul`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/Basic.lean), [`commutator_X_Y`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/Basic.lean), [`isCentral_iff`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/Basic.lean), [`betti1_eq_two`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/Basic.lean), [`eulerClass_eq_one`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/Basic.lean).
+- Lean Theorems: [`HeisenbergNilmanifold.toMatrix_mul`](../Formalization/HeisenbergNilmanifold/Basic.lean), [`commutator_X_Y`](../Formalization/HeisenbergNilmanifold/Basic.lean), [`isCentral_iff`](../Formalization/HeisenbergNilmanifold/Basic.lean), [`betti1_eq_two`](../Formalization/HeisenbergNilmanifold/Basic.lean), [`eulerClass_eq_one`](../Formalization/HeisenbergNilmanifold/Basic.lean).
 
 ### 5.2 Spectral Decomposition & Discrete Landau Towers
 
@@ -500,7 +505,7 @@ The Laplace–Beltrami operator $\Delta = -(X^2 + Y^2 + Z^2)$ decomposes under F
 
    with exact $\lvert k \rvert$-fold geometric degeneracy.
 
-**Harmonic Oscillator Gap Theorem:**
+**Proposition (Harmonic Oscillator Gap):**
 The lowest central excited state occurs at $k = \pm 1, n = 0$:
 
 ```math
@@ -513,7 +518,7 @@ yielding a strictly positive harmonic oscillator gap above the torus ground stat
 \Delta\lambda_{\mathrm{HO}} = \lambda_{1, 0} - \lambda_1(N_3) = (4\pi^2 + 2\pi) - 4\pi^2 = 2\pi > 0
 ```
 
-- Lean Theorems: [`HeisenbergNilmanifold.torusGroundState_eq_lambda1`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/SpectralTowers.lean), [`landauEigenvalue_1_0`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/SpectralTowers.lean), [`harmonic_oscillator_gap`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/SpectralTowers.lean), [`landauDegeneracy_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/SpectralTowers.lean), [`landauEigenvalue_ge_ground`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/SpectralTowers.lean).
+- Lean Theorems: [`HeisenbergNilmanifold.torusGroundState_eq_lambda1`](../Formalization/HeisenbergNilmanifold/SpectralTowers.lean), [`landauEigenvalue_1_0`](../Formalization/HeisenbergNilmanifold/SpectralTowers.lean), [`harmonic_oscillator_gap`](../Formalization/HeisenbergNilmanifold/SpectralTowers.lean), [`landauDegeneracy_pos`](../Formalization/HeisenbergNilmanifold/SpectralTowers.lean), [`landauEigenvalue_ge_ground`](../Formalization/HeisenbergNilmanifold/SpectralTowers.lean).
 
 ### 5.3 Curvature Geometry & Anisotropy
 
@@ -528,7 +533,7 @@ In `Formalization.HeisenbergNilmanifold.Geometry`, we formalize the Riemannian c
 - Scalar curvature: $R = \mathrm{Ric}(X,X) + \mathrm{Ric}(Y,Y) + \mathrm{Ric}(Z,Z) = -1/2 - 1/2 + 1/2 = -1/2$.
 - Ricci anisotropy ratio: $\mathrm{Ric}(Z,Z) / \mathrm{Ric}(X,X) = (1/2) / (-1/2) = -1$.
 
-- Lean Theorems: [`HeisenbergNilmanifold.secXY_neg`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/Geometry.lean), [`secXZ_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/Geometry.lean), [`ricciXX_from_sec`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/Geometry.lean), [`scalarCurvature_eq`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/Geometry.lean), [`ricciAnisotropyRatio_eq`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/HeisenbergNilmanifold/Geometry.lean).
+- Lean Theorems: [`HeisenbergNilmanifold.secXY_neg`](../Formalization/HeisenbergNilmanifold/Geometry.lean), [`secXZ_pos`](../Formalization/HeisenbergNilmanifold/Geometry.lean), [`ricciXX_from_sec`](../Formalization/HeisenbergNilmanifold/Geometry.lean), [`scalarCurvature_eq`](../Formalization/HeisenbergNilmanifold/Geometry.lean), [`ricciAnisotropyRatio_eq`](../Formalization/HeisenbergNilmanifold/Geometry.lean).
 
 ---
 
@@ -557,7 +562,7 @@ A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix} \in \mathrm{SL}_2(\mathbb{Z}), 
 - Golden Ratio Spectrum: $\lambda_1 = \varphi^2 = \frac{3+\sqrt{5}}{2} \approx 2.61803$, $\lambda_2 = \varphi^{-2} = \frac{3-\sqrt{5}}{2}$, $\lambda_1 \lambda_2 = 1$.
 - Abelianization & Homology: $A - I = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$ with $\det(A - I) = -1$, yielding $H_1(M_A, \mathbb{Z}) \cong \mathbb{Z}$ ($b_1(M_A) = 1$).
 
-- Lean Theorems: [`Solvmanifold.Basic.matrixRep_mul`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/Basic.lean), [`fibonacciAnosov_det`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/Basic.lean), [`fibonacciAnosov_trace`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/Basic.lean), [`betti1_eq_one`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/Basic.lean).
+- Lean Theorems: [`Solvmanifold.Basic.matrixRep_mul`](../Formalization/Solvmanifold/Basic.lean), [`fibonacciAnosov_det`](../Formalization/Solvmanifold/Basic.lean), [`fibonacciAnosov_trace`](../Formalization/Solvmanifold/Basic.lean), [`betti1_eq_one`](../Formalization/Solvmanifold/Basic.lean).
 
 ### 6.2 Left-Invariant Curvature Geometry & Ricci Anisotropy
 
@@ -568,7 +573,7 @@ Equipped with the standard left-invariant metric $ds^2 = e^{-2z} dx^2 + e^{2z} d
 - Scalar Curvature: $R = 0 + 0 - 2 = -2 < 0$.
 - Mapping Torus Volume: $\mathrm{Vol}(M_A) = L = \ln(\lambda_1) = 2 \ln \varphi > 0$.
 
-- Lean Theorems: [`Solvmanifold.bracket_X_Z`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/Geometry.lean), [`bracket_Y_Z`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/Geometry.lean), [`secXY_neg`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/Geometry.lean), [`scalarCurvature_eq`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/Geometry.lean), [`volumeSol_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/Geometry.lean).
+- Lean Theorems: [`Solvmanifold.bracket_X_Z`](../Formalization/Solvmanifold/Geometry.lean), [`bracket_Y_Z`](../Formalization/Solvmanifold/Geometry.lean), [`secXY_neg`](../Formalization/Solvmanifold/Geometry.lean), [`scalarCurvature_eq`](../Formalization/Solvmanifold/Geometry.lean), [`volumeSol_pos`](../Formalization/Solvmanifold/Geometry.lean).
 
 ### 6.3 Foliated Spectral Geometry & Lyapunov Spectral Gap
 
@@ -583,7 +588,7 @@ In `Formalization.Solvmanifold.SpectralGeometry`, the foliated Laplace–Beltram
 
 - Fiber spectral gap: $\Delta\lambda_{\mathrm{fiber}} = \lambda_{0,1} - \lambda_{0,0} = \lambda_{0,1} > 0$.
 
-- Lean Theorems: [`Solvmanifold.lyapunovExponent_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/SpectralGeometry.lean), [`fiberEigenvalue_zero`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/SpectralGeometry.lean), [`fiberGroundState_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/SpectralGeometry.lean), [`fiberSpectralGap_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/Solvmanifold/SpectralGeometry.lean).
+- Lean Theorems: [`Solvmanifold.lyapunovExponent_pos`](../Formalization/Solvmanifold/SpectralGeometry.lean), [`fiberEigenvalue_zero`](../Formalization/Solvmanifold/SpectralGeometry.lean), [`fiberGroundState_pos`](../Formalization/Solvmanifold/SpectralGeometry.lean), [`fiberSpectralGap_pos`](../Formalization/Solvmanifold/SpectralGeometry.lean).
 
 ---
 
@@ -601,7 +606,7 @@ In `Formalization.SL2RGeometry.Basic`:
 - Volume: $\mathrm{Vol}(T^1(\Sigma_g)) = 4\pi^2(g - 1) > 0$.
 - First homology: $H_1(T^1(\Sigma_g), \mathbb{Z}) \cong \mathbb{Z}^{2g} \oplus \mathbb{Z}/(2g-2)\mathbb{Z}$ ($b_1 = 2g$).
 
-- Lean Theorems: [`SL2RGeometry.bracket_e1_e2`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/Basic.lean), [`eulerClass_eq_eulerChar`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/Basic.lean), [`volume_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/Basic.lean), [`betti1_eq_two_mul_genus`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/Basic.lean).
+- Lean Theorems: [`SL2RGeometry.bracket_e1_e2`](../Formalization/SL2RGeometry/Basic.lean), [`eulerClass_eq_eulerChar`](../Formalization/SL2RGeometry/Basic.lean), [`volume_pos`](../Formalization/SL2RGeometry/Basic.lean), [`betti1_eq_two_mul_genus`](../Formalization/SL2RGeometry/Basic.lean).
 
 ### 7.2 Curvature Invariants & Casimir Spectral Decomposition
 
@@ -616,7 +621,7 @@ In `Formalization.SL2RGeometry.Geometry` and `SpectralDecomposition`:
 \lambda_1(T^1(\Sigma_g)) = \min\left(\lambda_1(\Sigma_g), \, \frac{1}{4}\right) > 0
 ```
 
-- Lean Theorems: [`SL2RGeometry.secE1E2_eq_neg_three_fourths`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/Geometry.lean), [`scalarCurvature_eq`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/Geometry.lean), [`casimirEigenvalue_fiber_invariant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/SpectralDecomposition.lean), [`totalSpectralGap_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/SL2RGeometry/SpectralDecomposition.lean).
+- Lean Theorems: [`SL2RGeometry.secE1E2_eq_neg_three_fourths`](../Formalization/SL2RGeometry/Geometry.lean), [`scalarCurvature_eq`](../Formalization/SL2RGeometry/Geometry.lean), [`casimirEigenvalue_fiber_invariant`](../Formalization/SL2RGeometry/SpectralDecomposition.lean), [`totalSpectralGap_pos`](../Formalization/SL2RGeometry/SpectralDecomposition.lean).
 
 ---
 
@@ -630,7 +635,7 @@ The model geometry $\mathbb{S}^2 \times \mathbb{R}$ produces compact quotients $
 - Künneth Convolution: $b_k(S^2 \times S^1) = \sum_{i=0}^k b_i(S^2) b_{k-i}(S^1)$.
 - Euler characteristic: $\chi(S^2 \times S^1) = \chi(S^2) \cdot \chi(S^1) = 2 \cdot 0 = 0$.
 
-- Lean Theorems: [`S2xRGeometry.betti_eq_one`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/S2xRGeometry/Basic.lean), [`kunneth_betti_eq`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/S2xRGeometry/Basic.lean), [`eulerChar_eq_zero`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/S2xRGeometry/Basic.lean).
+- Lean Theorems: [`S2xRGeometry.betti_eq_one`](../Formalization/S2xRGeometry/Basic.lean), [`kunneth_betti_eq`](../Formalization/S2xRGeometry/Basic.lean), [`eulerChar_eq_zero`](../Formalization/S2xRGeometry/Basic.lean).
 
 ### 8.2 Product Metric, Curvatures & Joint Spectrum
 
@@ -648,7 +653,7 @@ In `Formalization.S2xRGeometry.Geometry` and `SpectralDecomposition`:
 - Spectral gap: $\lambda_1(L) = \min(2, 4\pi^2/L^2) > 0$.
 - Critical circle length: $L_c = \pi\sqrt{2}$ where sphere and circle gaps match at $\lambda_1(L_c) = 2$ with 5-fold degeneracy.
 
-- Lean Theorems: [`S2xRGeometry.secThetaPhi_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/S2xRGeometry/Geometry.lean), [`scalarCurvature_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/S2xRGeometry/Geometry.lean), [`spectralGap_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/S2xRGeometry/SpectralDecomposition.lean), [`circle_gap_at_critical`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/S2xRGeometry/SpectralDecomposition.lean).
+- Lean Theorems: [`S2xRGeometry.secThetaPhi_pos`](../Formalization/S2xRGeometry/Geometry.lean), [`scalarCurvature_pos`](../Formalization/S2xRGeometry/Geometry.lean), [`spectralGap_pos`](../Formalization/S2xRGeometry/SpectralDecomposition.lean), [`circle_gap_at_critical`](../Formalization/S2xRGeometry/SpectralDecomposition.lean).
 
 ---
 
@@ -664,7 +669,7 @@ The model geometry $\mathbb{H}^2 \times \mathbb{R}$ has standard compact quotien
 - Euler characteristic: $\chi(\Sigma_g \times S^1) = (2-2g)\cdot 0 = 0$.
 - Volume: $\mathrm{Vol}(M) = 4\pi(g-1)L > 0$.
 
-- Lean Theorems: [`H2xRGeometry.betti_one_eq`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/H2xRGeometry/Basic.lean), [`poincare_duality_one_two`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/H2xRGeometry/Basic.lean), [`productEulerChar_eq_zero`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/H2xRGeometry/Basic.lean).
+- Lean Theorems: [`H2xRGeometry.betti_one_eq`](../Formalization/H2xRGeometry/Basic.lean), [`poincare_duality_one_two`](../Formalization/H2xRGeometry/Basic.lean), [`productEulerChar_eq_zero`](../Formalization/H2xRGeometry/Basic.lean).
 
 ### 9.2 Product Metric, Non-Positive Curvature & Selberg Spectral Gap
 
@@ -683,19 +688,19 @@ In `Formalization.H2xRGeometry.Geometry` and `SpectralDecomposition`:
 - Critical circle length: $L_{\mathrm{crit}} = \frac{8\pi}{\sqrt{3}} \approx 14.51$.
 - Seeley–DeWitt coefficients: $a_0 = 4\pi(g-1)L > 0$ and $a_1 = -\frac{4\pi(g-1)L}{3} < 0$.
 
-- Lean Theorems: [`H2xRGeometry.sec_xy_neg`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/H2xRGeometry/Geometry.lean), [`scalarCurvature_eq`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/H2xRGeometry/Geometry.lean), [`selbergSpectralGap_pos`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/H2xRGeometry/SpectralDecomposition.lean), [`circleGroundGap_at_criticalLength`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/H2xRGeometry/SpectralDecomposition.lean).
+- Lean Theorems: [`H2xRGeometry.sec_xy_neg`](../Formalization/H2xRGeometry/Geometry.lean), [`scalarCurvature_eq`](../Formalization/H2xRGeometry/Geometry.lean), [`selbergSpectralGap_pos`](../Formalization/H2xRGeometry/SpectralDecomposition.lean), [`circleGroundGap_at_criticalLength`](../Formalization/H2xRGeometry/SpectralDecomposition.lean).
 
 ---
 
-## 10. The Master Thurston Octet Classification Theorem
+## 10. Thurston Octet Structural Invariant Classification
 
-In `Formalization.ThurstonOctet`, we integrate all eight model geometries into a unified inductive enumeration `ThurstonGeometry` and prove the master classification theorems:
+In `Formalization.ThurstonOctet`, we integrate all eight model geometries into a unified inductive enumeration `ThurstonGeometry` and certify the classification theorems:
 
 ```math
 \text{AllGeometries} = \{\mathbb{S}^3, \mathbb{H}^3, \mathbb{E}^3, \mathrm{Nil}^3, \mathrm{Sol}^3, \widetilde{\mathrm{SL}}_2(\mathbb{R}), \mathbb{S}^2 \times \mathbb{R}, \mathbb{H}^2 \times \mathbb{R}\}
 ```
 
-### 10.1 Master Classification Theorems
+### 10.1 Structural Invariant Synthesis
 
 1. **Dimension Invariance**: Every Thurston geometry is a 3-dimensional Riemannian manifold:
 
@@ -722,7 +727,7 @@ In `Formalization.ThurstonOctet`, we integrate all eight model geometries into a
 6. **Universal Spectral Gap Positivity**:
    Every Thurston geometry admits a closed space form $M_g$ with strictly positive Laplace–Beltrami spectral gap $\lambda_1(M_g) > 0$.
 
-- Lean Theorems: [`ThurstonOctet.dimension_eq_three`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/ThurstonOctet.lean), [`isotropic_classification`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/ThurstonOctet.lean), [`einstein_classification`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/ThurstonOctet.lean), [`positive_scalar_curvature_classification`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/ThurstonOctet.lean), [`negative_scalar_curvature_classification`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/ThurstonOctet.lean), [`zero_scalar_curvature_classification`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/ThurstonOctet.lean), [`spectral_gap_positivity`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/ThurstonOctet.lean), [`masterThurstonOctetCertificate`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/ThurstonOctet.lean).
+- Lean Theorems: [`ThurstonOctet.dimension_eq_three`](../Formalization/ThurstonOctet.lean), [`isotropic_classification`](../Formalization/ThurstonOctet.lean), [`einstein_classification`](../Formalization/ThurstonOctet.lean), [`positive_scalar_curvature_classification`](../Formalization/ThurstonOctet.lean), [`negative_scalar_curvature_classification`](../Formalization/ThurstonOctet.lean), [`zero_scalar_curvature_classification`](../Formalization/ThurstonOctet.lean), [`spectral_gap_positivity`](../Formalization/ThurstonOctet.lean), [`masterThurstonOctetCertificate`](../Formalization/ThurstonOctet.lean).
 
 ---
 
@@ -760,7 +765,7 @@ To provide an honest and transparent account of the 350+ machine-checked formal 
 
 1. **Core Structural Theorems**:
    These establish fundamental topological, geometric, arithmetic, and spectral properties of closed 3-manifolds:
-   - Master Commutator Trace Theorem: $\mathrm{tr}([\rho(a), \rho(b)]) = 2\vartheta^2 - 1$ modulo defining trace ideal.
+   - Fricke–Vogt Commutator Trace Identity: $\mathrm{tr}([\rho(a), \rho(b)]) = 2\vartheta^2 - 1$ modulo defining trace ideal.
    - Character Variety Scheme Bijections: $(\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}_2(\mathbb{C})) \cong 3, \; \mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}_2(\mathbb{C})) \cong 12)$ under $(\mathbb{Z}/2\mathbb{Z})^2$ spin-lift action.
    - Ramanujan–Selberg Spectral Gap: Structural absence of small eigenvalues $\lambda_1(\mathcal{W}) > 1$.
    - Spectral Gap Doubling Theorem: $\lambda_1(G_6) = 2\lambda_1(T^3) = 8\pi^2/L^2$ via destructive Fourier parity cancellation under affine screw-motions.
@@ -768,7 +773,7 @@ To provide an honest and transparent account of the 350+ machine-checked formal 
    - Unit Tangent Casimir Decomposition: $\lambda_{j,m} = \lambda_j(\Sigma_g) + m^2/4$ on $T^1(\Sigma_g)$.
    - Product Topology Künneth Dualities: $(b_1(\Sigma_g \times S^1_L) = b_2 = 2g+1, \; b_0 = b_1 = b_2 = b_3 = 1 \text{ on } S^2 \times S^1_L)$.
    - Diophantine Seifert Solvability: Cofactor GCD classification $\gcd(A_1, \dots, A_k) = 1 \iff \exists \text{ homology sphere}$.
-   - Master Thurston Octet Certificate: Bundled 8-geometry dimension, isotropy, Einstein, and curvature classifications.
+   - Thurston Octet Certificate: Bundled 8-geometry dimension, isotropy, Einstein, and curvature classifications.
 
 2. **Algebraic Scaffolding & Numerical Certificates**:
    These supply the rigorous computational substrate, matrix operations, and coordinate transformations:
@@ -791,7 +796,7 @@ To provide an honest and transparent account of the 350+ machine-checked formal 
 | $\widetilde{\mathrm{SL}}_2(\mathbb{R})$ | `Formalization/SL2RGeometry/` | 15 | 23 | 38 | Standard Kernel | 0 errors |
 | $\mathbb{S}^2 \times \mathbb{R}$ | `Formalization/S2xRGeometry/` | 14 | 21 | 35 | Standard Kernel | 0 errors |
 | $\mathbb{H}^2 \times \mathbb{R}$ | `Formalization/H2xRGeometry/` | 16 | 23 | 39 | Standard Kernel | 0 errors |
-| Thurston Octet Master | `Formalization/ThurstonOctet.lean` | 12 | 16 | 28 | Standard Kernel | 0 errors |
+| Thurston Octet Invariants | `Formalization/ThurstonOctet.lean` | 12 | 16 | 28 | Standard Kernel | 0 errors |
 | Extended Geometry Suite | `Formalization/*` (Other 10 Modules) | 45 | 55 | 100+ | Standard Kernel | 0 errors |
 | **Global Formalization** | `Formalization.lean` (All 19 Modules) | **176** | **206** | **382+** | **Standard Kernel** | **0 errors, 3242 jobs** |
 
