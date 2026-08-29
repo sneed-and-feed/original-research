@@ -77,6 +77,15 @@ def fix_content(filepath):
     for pat, rep in lie_replacements:
         content = re.sub(pat, rep, content)
 
+    # 3c. Fix parenthesized math ($...$) containing internal parentheses by moving parentheses inside math
+    def paren_repl(m):
+        math_body = m.group(1)
+        if '(' in math_body or ')' in math_body:
+            return f"$({math_body})$"
+        return m.group(0)
+
+    content = re.sub(r'\(\$([^\$\n]+)\$\)', paren_repl, content)
+
     # 4. Fix backtick math in table cells:
     content = content.replace(r'`m_SO3_one` $\dots$ `m_SO3_five`', r'`m_SO3_one` .. `m_SO3_five`')
     content = content.replace(r'`m_zero` $\dots$ `m_twelve`', r'`m_zero` .. `m_twelve`')
@@ -468,12 +477,14 @@ def run_strict_linter(fpath):
                     'rule': 'Rule 13: Lie Group Underscore Subscript',
                     'detail': f"Lie group with underscore subscript (causes CommonMark emphasis collision, use parameter syntax like '\\mathrm{{SL}}(2, \\mathbb{{R}})' or '\\mathrm{{SU}}(2)'): '{full_match}'"
                 })
-            if r'\widetilde{\mathrm{SL}}' in math_content:
+            # Rule 14: Parenthesis Delimiter Nesting Collision
+            # Flag ($math$) where math contains ( or )
+            if re.search(r'\(\$(?:[^\$\n]*[\(\)][^\$\n]*)\$\)', line):
                 violations.append({
                     'file': fpath,
                     'line': line_num,
-                    'rule': 'Rule 13: Extensible Font Accent \\widetilde{\\mathrm{SL}}',
-                    'detail': f"Multi-letter roman font in extensible accent '\\widetilde{{\\mathrm{{SL}}}}' triggers MathJax font metric crash. Use '\\tilde{{\\mathrm{{SL}}}}' instead: '{full_match}'"
+                    'rule': 'Rule 14: Parenthesis Delimiter Collision',
+                    'detail': f"Outer '($...$)' wrapping math with internal parentheses creates delimiter parser collision. Move parentheses inside math '$ ( ... ) $': '{line.strip()}'"
                 })
 
     return violations

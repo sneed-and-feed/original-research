@@ -655,13 +655,13 @@ The formalization resides in the `Formalization.PoincareDodecahedron` module tre
 | Golden Ratio Norm Identity on $S^3$ | `BinaryIcosahedral.lean` | `golden_ratio_norm_sq_sum` |
 | Unit Norm Equality ($\forall u \in I^\ast, \lvert u \rvert^2 = 1$) | `BinaryIcosahedral.lean` | `binaryIcosahedralUnits_normSq` |
 | Group Closure & Center Subgroup ($Z(I^\ast)=\{\pm 1\}$, $\lvert Z \rvert=2$) | `BinaryIcosahedral.lean` | `mem_binaryIcosahedral_centralInv`, `binaryIcosahedral_center` |
-| Quotient Order Ratio ($\lvert I^\ast \rvert / \lvert Z(I^\ast) \rvert = 120/2 = 60$) | `BinaryIcosahedral.lean` | `binaryIcosahedral_quotient_order_sixty` |
+| Quotient Order Ratio $(\lvert I^\ast \rvert / \lvert Z(I^\ast) \rvert = 120/2 = 60)$ | `BinaryIcosahedral.lean` | `binaryIcosahedral_quotient_order_sixty` |
 | Subgroup Embedding ($2T \le I^\ast$) | `BinaryIcosahedral.lean` | `binaryTetrahedral_le_binaryIcosahedral` |
 | $\mathrm{SU}(2)$ Quaternionic Character Formula $\chi_\ell(u) = U_\ell(a)$ | `SpectralDecomposition.lean` | `chebyshevU`, `chi_re`, `chi` |
 | Molien Invariant Projection Formula $m_\ell = \frac{1}{120} \sum \chi_\ell(g)$ | `SpectralDecomposition.lean` | `sum_chi_binaryIcosahedral`, `m` |
-| Monopole Ground State Multiplicity ($m_0^{\mathrm{SO}(3)} = 1$) | `SpectralDecomposition.lean` | `m_SO3_zero` |
+| Monopole Ground State Multiplicity $(m_0^{\mathrm{SO}(3)} = 1)$ | `SpectralDecomposition.lean` | `m_SO3_zero` |
 | Harmonic Selection Vanishing ($m_1 = \dots = m_5 = 0$) | `SpectralDecomposition.lean` | `m_SO3_one` .. `m_SO3_five` |
-| First Active Mode Multiplicity ($m_6^{\mathrm{SO}(3)} = 1$) | `SpectralDecomposition.lean` | `m_SO3_six` |
+| First Active Mode Multiplicity $(m_6^{\mathrm{SO}(3)} = 1)$ | `SpectralDecomposition.lean` | `m_SO3_six` |
 | Spinor Representation Multiplicities ($m_0=1, m_1..m_{11}=0, m_{12}=1$) | `SpectralDecomposition.lean` | `m_zero` .. `m_twelve` |
 | Weyl--Molien Linear & Quadratic Densities | `SpectralDecomposition.lean` | `weyl_molien_invariant_density`, `laplacian_spectral_density_leading` |
 | Weyl--Molien Landmark Values ($\ell = 12, 60, 120$) | `SpectralDecomposition.lean` | `weyl_molien_landmark_values`, `laplacian_spectral_density_landmark_values` |
@@ -669,7 +669,7 @@ The formalization resides in the `Formalization.PoincareDodecahedron` module tre
 | Volume of $S^3/I^\ast$ Closed-Form ($\mathrm{Vol} = \pi^2/60$) | `HeatKernelAsymptotics.lean` | `vol_PDS_eq` |
 | Constant Scalar Curvature $\mathcal{R}(S^3/I^\ast) = 6$ | `HeatKernelAsymptotics.lean` | `scalarCurvature_PDS_eq` |
 | Seeley--DeWitt Coefficients $a_0 = (\pi^2/60)/(4\pi)^{3/2}$ and $a_2 = a_0$ | `HeatKernelAsymptotics.lean` | `a0`, `a2`, `a2_eq_a0` |
-| Gilkey Curvature Factor ($\mathcal{G}(6,12,12) = 1/2$) | `HeatKernelAsymptotics.lean` | `gilkey_integrand_a4_S3` |
+| Gilkey Curvature Factor $(\mathcal{G}(6,12,12) = 1/2)$ | `HeatKernelAsymptotics.lean` | `gilkey_integrand_a4_S3` |
 | Fourth Seeley--DeWitt Coefficient $a_4 = a_0/2 = \sqrt{\pi}/960$ | `HeatKernelAsymptotics.lean` | `a4_PDS`, `a4_PDS_from_gilkey` |
 | $\text{Small-}t$ Asymptotic Remainder Hypothesis | `HeatKernelAsymptotics.lean` | `heatTrace_asymptotic_remainder_holds` |
 | Spectral Action Einstein--Hilbert Recovery ($G_{\mathrm{eff}} > 0$) | `HeatKernelAsymptotics.lean` | `einstein_hilbert_recovery` |
