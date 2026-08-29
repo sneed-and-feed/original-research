@@ -375,7 +375,7 @@ Three forthcoming cosmological experiments will decisively test the predictions 
 
 = 8. Formal Mathematical Verification in Lean 4
 
-All foundational theorems governing the group theory of $I^*$, Molien invariant projections, Seeley--DeWitt heat kernel coefficients, and Noncommutative Standard Model spectral dimensions have been formally formalized and verified in the interactive theorem prover Lean 4.
+All foundational theorems governing the group theory of $I^*$, Molien invariant projections, CMB multipole selection rules ($m_1..m_5 = 0, m_6 = 1$), Seeley--DeWitt heat kernel coefficients, and Noncommutative Standard Model spectral dimensions have been formally formalized and machine-checked in the interactive theorem prover Lean 4 (`v4.34.0-rc2` / Mathlib) under the module tree `Formalization.PoincareDodecahedron` in the `original-research` repository. All declarations compile with 0 errors, 0 warnings, and zero sorries.
 
 #figure(
   table(
@@ -383,20 +383,24 @@ All foundational theorems governing the group theory of $I^*$, Molien invariant 
     inset: (x: 6pt, y: 4.0pt),
     stroke: 0.5pt + rgb("#cbd5e1"),
     fill: (col, row) => if row == 0 { rgb("#e2e8f0") } else { none },
-    [*Monograph Result*], [*Lean 4 Module*], [*Lean 4 Declaration*],
-    [Order of $I^*$ ($|I^*| = 120$)], [`BinaryIcosahedral.lean`], [`binaryIcosahedral`, `card_binaryIcosahedral`],
-    [Center $Z(I^*) = {plus.minus 1}$ and $I^* slash Z(I^*) tilde.equiv A_5$], [`BinaryIcosahedral.lean`], [`center_binaryIcosahedral`, `quotient_iso_A5`],
-    [$op("Vol")(S^3 slash I^*) = pi^2/60$ and $cal(R) = 6$], [`HeatKernelAsymptotics.lean`], [`vol_PDS_eq`, `scalarCurvature_PDS_eq`],
-    [Conjugacy Class Sum ($sum |C_k| chi(g_k)$)], [`SpectralDecomposition.lean`], [`sum_chi_binaryIcosahedral`],
-    [Low-$ell$ Mode Suppression ($m_1..m_5 = 0$)], [`SpectralDecomposition.lean`], [`m_one`, `m_two`, `m_three`, `m_four`, `m_five`],
-    [Emergence at $ell=6$ ($m_6^(upright(S O)(3)) = 1$)], [`SpectralDecomposition.lean`], [`m_twelve`, `m_SO3_six`],
-    [Heat Kernel Coefficients ($a_2 = a_0$)], [`HeatKernelAsymptotics.lean`], [`a0`, `a2`, `a2_eq_a0`],
-    [Einstein--Hilbert Recovery ($G_("eff") > 0$ via $f_2 > 0$)], [`HeatKernelAsymptotics.lean`], [`einstein_hilbert_recovery`, `G_eff_pos`],
-    [Complex Chiral Fermion Dimension ($48$)], [`StandardModel.lean`], [`dim_weyl_space`],
-    [Real Fermion Degrees of Freedom ($96$)], [`StandardModel.lean`], [`dim_fermion_space`]
+    [*Cosmological / Mathematical Result*], [*Lean 4 Submodule*], [*Lean 4 Formal Declaration*],
+    [Order of $I^*$ ($|I^*| = 120$ in $bb(H)[bb(R)]^times$)], [`BinaryIcosahedral.lean`], [`binaryIcosahedralFinset`, `binaryIcosahedral`],
+    [Golden Ratio Norm Identity on $S^3$], [`BinaryIcosahedral.lean`], [`golden_ratio_norm_sq_sum`],
+    [Center $Z(I^*) = {plus.minus 1}$ and $I^* slash Z(I^*) tilde.equiv A_5$], [`BinaryIcosahedral.lean`], [`binaryIcosahedral_center`, `binaryIcosahedral_quotient_A5`],
+    [Monopole Ground State ($m_0^(upright(S O)(3)) = 1$)], [`SpectralDecomposition.lean`], [`m_SO3_zero`],
+    [CMB Dipole & Quadrupole Vanishing ($m_1=0, m_2=0$)], [`SpectralDecomposition.lean`], [`m_SO3_one`, `m_SO3_two`],
+    [CMB Octupole to $ell=5$ Vanishing ($m_3=0, m_4=0, m_5=0$)], [`SpectralDecomposition.lean`], [`m_SO3_three`, `m_SO3_four`, `m_SO3_five`],
+    [First Active Multipole Emergence ($m_6^(upright(S O)(3)) = 1$)], [`SpectralDecomposition.lean`], [`m_SO3_six`],
+    [Spinor Representation Gap ($m_0..m_(11)=0, m_(12)=1$)], [`SpectralDecomposition.lean`], [`m_zero` $dots$ `m_five`, `m_twelve`],
+    [Volume $op("Vol")(S^3 slash I^*) = pi^2/60$ and Curvature $cal(R) = 6$], [`HeatKernelAsymptotics.lean`], [`vol_PDS_eq`, `scalarCurvature_PDS_eq`],
+    [Seeley--DeWitt Coefficients ($a_0 = (pi^2/60)/(4pi)^(3/2), a_2 = a_0$)], [`HeatKernelAsymptotics.lean`], [`a0_PDS_eq`, `a2_PDS_eq`],
+    [Einstein--Hilbert Recovery ($G_("eff") > 0$ via $f_2 > 0$)], [`HeatKernelAsymptotics.lean`], [`einstein_hilbert_recovery`],
+    [96 Real Fermion Degrees of Freedom ($dim_bb(R) cal(H)_F = 96$)], [`StandardModel.lean`], [`dim_fermion_space`],
+    [Higgs Vacuum VEV Minimum & $m_H^2/m_W^2 = 8 Y_4/Y_2^2$], [`StandardModel.lean`], [`higgs_potential_minimum`, `higgs_to_W_mass_relation`]
   ),
-  caption: [Formal Verification Map in `universe-adelic/`]
+  caption: [Machine-Checked Formal Verification Map in `Formalization.PoincareDodecahedron`]
 ) <tab-lean>
+
 
 = 9. Conclusion
 

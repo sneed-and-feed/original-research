@@ -4,11 +4,11 @@ import typst
 import pymupdf
 
 def main():
-    print("Compiling paper/paper2_cosmology.typ -> paper/paper2_cosmology.pdf...")
-    typst.compile("paper/paper2_cosmology.typ", output="paper/paper2_cosmology.pdf")
+    print("Compiling papers/paper2_cosmology.typ -> papers/paper2_cosmology.pdf...")
+    typst.compile("papers/paper2_cosmology.typ", output="papers/paper2_cosmology.pdf")
     print("[SUCCESS] Compilation completed.")
     
-    doc = pymupdf.open("paper/paper2_cosmology.pdf")
+    doc = pymupdf.open("papers/paper2_cosmology.pdf")
     print(f"Total Pages: {len(doc)}")
     
     full_text = " ".join(page.get_text() for page in doc)
