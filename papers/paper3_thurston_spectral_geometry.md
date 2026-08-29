@@ -9,14 +9,14 @@
 
 ### Abstract
 
-We present a unified mathematical treatise, machine-checked formalization in Lean 4, and comprehensive spectral geometry survey of the algebraic, combinatorial, and spectral invariants characterizing closed 3-manifolds across all eight canonical Thurston model geometries: **Spherical** ($\mathbb{S}^3$), **Hyperbolic** ($\mathbb{H}^3$), **Euclidean** ($\mathbb{E}^3$), **Nilpotent** ($\mathrm{Nil}^3$), **Solvable** ($\mathrm{Sol}^3$), **Universal Cover** ($\widetilde{\mathrm{SL}}(2, \mathbb{R})$), **Spherical Cylinder** ($\mathbb{S}^2 \times \mathbb{R}$), and **Hyperbolic Cylinder** ($\mathbb{H}^2 \times \mathbb{R}$).
+We present a unified mathematical treatise, machine-checked formalization in Lean 4, and comprehensive spectral geometry survey of the algebraic, combinatorial, and spectral invariants characterizing closed 3-manifolds across all eight canonical Thurston model geometries: **Spherical** ($\mathbb{S}^3$), **Hyperbolic** ($\mathbb{H}^3$), **Euclidean** ($\mathbb{E}^3$), **Nilpotent** ($\mathrm{Nil}^3$), **Solvable** ($\mathrm{Sol}^3$), **Universal Cover** ($\tilde{\mathrm{SL}}(2, \mathbb{R})$), **Spherical Cylinder** ($\mathbb{S}^2 \times \mathbb{R}$), and **Hyperbolic Cylinder** ($\mathbb{H}^2 \times \mathbb{R}$).
 
 1. **Spherical Geometry** ($\mathbb{S}^3$): We formalize the Diophantine classification of Seifert homology spheres $\Sigma(p,q,r)$, the Fintushel–Stern and Kirk–Klassen exact rational Chern–Simons actions on isolated irreducible $\mathrm{SU}(2)$ character varieties $\mathcal{R}^\ast(\Sigma(p,q,r))$, the stationary phase partition sums, and their connection to Lawrence–Zagier false theta characters $\chi_{120}$ and rational exponents $-\Delta(n) - 1/120$.
 2. **Hyperbolic Geometry** ($\mathbb{H}^3$): We formalize the Weeks manifold $\mathcal{W}$ fundamental group presentation $\pi_1(\mathcal{W})$, homology $H_1 \cong (\mathbb{Z}/5\mathbb{Z})^2$, invariant cubic trace field $k = \mathbb{Q}(\theta)$ ($\mathrm{Disc} = -23$), the tri-polynomial disambiguation ($P_1, P_2, P_3$), the 12-point character variety decomposition under $(\mathbb{Z}/2\mathbb{Z})^2$ spin-lift action, and quaternion algebra ramification; we survey the Gabai–Meyerhoff–Milley minimal volume classification ($\mathrm{Vol} \approx 0.942707$) and the Ramanujan–Selberg spectral gap $\lambda_1 \approx 27.80195 > 1$.
 3. **Euclidean Geometry** ($\mathbb{E}^3$): We formalize the Hantzsche–Wendt didicosm $G_6$ (the unique closed orientable flat 3-manifold with first Betti number $b_1 = 0$), establishing the Spectral Gap Doubling Theorem $\lambda_1(G_6) = 2\lambda_1(T^3) = 8\pi^2/L^2$ via destructive Fourier parity interference under affine screw-motions.
 4. **Nilpotent Geometry** ($\mathrm{Nil}^3$): We formalize the Heisenberg nilmanifold $N_3$ as a principal circle bundle over $T^2$ with Euler class $e = 1$, deriving the discrete Landau harmonic oscillator spectral towers with exact spectral gap $\Delta\lambda_{\mathrm{HO}} = 2\pi > 0$, ground state $\lambda_1 = 4\pi^2$, and scalar curvature $R = -1/2$.
 5. **Solvable Geometry** ($\mathrm{Sol}^3$): We formalize the Fibonacci Anosov solvmanifold $M_A = T^2 \rtimes_A S^1$, its unimodular matrix representation, golden ratio spectrum $\lambda_1 = \varphi^2$, Lyapunov exponent $\mu = 2\ln\varphi > 0$, mixed sectional curvatures $K \in \{-1, +1\}$, scalar curvature $R = -2$, and fundamental fiber spectral gap $\lambda_{0,1} = (2\pi / (2\ln\varphi))^2 > 0$.
-6. **Universal Cover Geometry** ($\widetilde{\mathrm{SL}}(2, \mathbb{R})$): We formalize the Lie algebra $\mathfrak{sl}(2, \mathbb{R})$, universal cover central extension by $\mathbb{Z}$, unit tangent bundles $T^1(\Sigma_g)$ ($g \ge 2$) with Euler class $e = 2 - 2g$, mixed sectional curvatures $K \in \{-3/4, +1/4\}$, scalar curvature $R = -1/2$, Casimir eigenvalue decomposition $\lambda_{j,m} = \lambda_j(\Sigma_g) + m^2/4$, and positive spectral gap $\lambda_1 = \min(\lambda_1(\Sigma_g), 1/4) > 0$.
+6. **Universal Cover Geometry** ($\tilde{\mathrm{SL}}(2, \mathbb{R})$): We formalize the Lie algebra $\mathfrak{sl}(2, \mathbb{R})$, universal cover central extension by $\mathbb{Z}$, unit tangent bundles $T^1(\Sigma_g)$ ($g \ge 2$) with Euler class $e = 2 - 2g$, mixed sectional curvatures $K \in \{-3/4, +1/4\}$, scalar curvature $R = -1/2$, Casimir eigenvalue decomposition $\lambda_{j,m} = \lambda_j(\Sigma_g) + m^2/4$, and positive spectral gap $\lambda_1 = \min(\lambda_1(\Sigma_g), 1/4) > 0$.
 7. **Spherical Cylinder Geometry** ($\mathbb{S}^2 \times \mathbb{R}$): We formalize the direct product manifold $S^2 \times S^1_L$ ($L > 0$), Künneth homology, non-negative sectional curvatures $K \in \{0, 1\}$, scalar curvature $R = 2$, joint Laplace–Beltrami eigenvalues $\lambda_{\ell, n} = \ell(\ell+1) + (2\pi n/L)^2$, and ground state spectral gap $\lambda_1(L) = \min(2, 4\pi^2/L^2) > 0$ with critical length $L_c = \pi\sqrt{2}$.
 8. **Hyperbolic Cylinder Geometry** ($\mathbb{H}^2 \times \mathbb{R}$): We formalize the direct product manifold $\Sigma_g \times S^1_L$ ($g \ge 2, L > 0$), Künneth Betti numbers $b_1 = b_2 = 2g+1$, non-positive sectional curvatures $K \le 0$, scalar curvature $R = -2$, Selberg $3/16$ spectral gap $\lambda_1 \ge \min(3/16, 4\pi^2/L^2) > 0$, critical length $L_{\mathrm{crit}} = 8\pi/\sqrt{3}$, and Seeley–DeWitt heat kernel coefficients $a_0 > 0, a_1 < 0$.
 
@@ -34,7 +34,7 @@ To maintain rigorous mathematical and methodological transparency, we distinguis
 The Geometrization Theorem (Thurston 1982, 1997; Perelman 2002, 2003) establishes that every closed, orientable 3-manifold can be canonically decomposed along essential spheres and incompressible tori into pieces that each admit one of eight standard homogeneous Riemannian metrics $(X, \mathrm{Isom}(X))$:
 
 ```math
-\mathbb{S}^3, \quad \mathbb{H}^3, \quad \mathbb{E}^3, \quad \mathrm{Nil}^3, \quad \mathrm{Sol}^3, \quad \widetilde{\mathrm{SL}}(2, \mathbb{R}), \quad \mathbb{S}^2 \times \mathbb{R}, \quad \mathbb{H}^2 \times \mathbb{R}
+\mathbb{S}^3, \quad \mathbb{H}^3, \quad \mathbb{E}^3, \quad \mathrm{Nil}^3, \quad \mathrm{Sol}^3, \quad \tilde{\mathrm{SL}}(2, \mathbb{R}), \quad \mathbb{S}^2 \times \mathbb{R}, \quad \mathbb{H}^2 \times \mathbb{R}
 ```
 
 A model geometry $(X, G)$ consists of a simply connected, complete, smooth Riemannian 3-manifold $X$ and a transitive Lie group of isometries $G \subseteq \mathrm{Isom}(X)$ with compact point stabilizer $H \subset G$, such that $G$ is maximal among such isometry groups.
@@ -50,7 +50,7 @@ The complete 8-geometry classification atlas is summarized below:
 | $\mathbb{E}^3$ | $\mathbb{R}^3$ | $\mathrm{O}(3)$ | 3 | 6 | Didicosm $G_6$ | 0 | $0$ | $8\pi^2/L^2 = 2\lambda_1(T^3)$ |
 | $\mathrm{Nil}^3$ | $\mathcal{H}_3(\mathbb{R})$ | $\mathrm{O}(2)$ | 1 | 4 | Heisenberg $N_3$ | 2 | $-1/2$ | $4\pi^2$ (Landau gap $2\pi$) |
 | $\mathrm{Sol}^3$ | $\mathbb{R}^2 \rtimes \mathbb{R}$ | $D_8$ | 0 | 3 | Fibonacci Torus Bundle $M_A$ | 1 | $-2$ | $(2\pi / (2\ln\varphi))^2 > 0$ |
-| $\widetilde{\mathrm{SL}}(2, \mathbb{R})$ | $\widetilde{\mathrm{SL}}(2, \mathbb{R})$ | $\mathrm{O}(2)$ | 1 | 4 | Unit Tangent $T^1(\Sigma_g)$ | $2g$ | $-1/2$ | $\min(\lambda_1(\Sigma_g), 1/4) > 0$ |
+| $\tilde{\mathrm{SL}}(2, \mathbb{R})$ | $\tilde{\mathrm{SL}}(2, \mathbb{R})$ | $\mathrm{O}(2)$ | 1 | 4 | Unit Tangent $T^1(\Sigma_g)$ | $2g$ | $-1/2$ | $\min(\lambda_1(\Sigma_g), 1/4) > 0$ |
 | $\mathbb{S}^2 \times \mathbb{R}$ | $S^2 \times \mathbb{R}$ | $\mathrm{O}(2) \times \mathbb{Z}_2$ | 1 | 4 | Cylinder $S^2 \times S^1_L$ | 1 | $+2$ | $\min(2, 4\pi^2/L^2) > 0$ |
 | $\mathbb{H}^2 \times \mathbb{R}$ | $\mathbb{H}^2 \times \mathbb{R}$ | $\mathrm{O}(2) \times \mathbb{Z}_2$ | 1 | 4 | Cylinder $\Sigma_g \times S^1_L$ | $2g+1$ | $-2$ | $\ge \min(3/16, 4\pi^2/L^2) > 0$ |
 
@@ -662,16 +662,16 @@ In `Formalization.Solvmanifold.SpectralGeometry`, the foliated Laplace–Beltram
 
 ---
 
-## 7. $\widetilde{\mathrm{SL}}(2, \mathbb{R})$ Geometry: Unit Tangent Bundles over Hyperbolic Surfaces
+## 7. $\tilde{\mathrm{SL}}(2, \mathbb{R})$ Geometry: Unit Tangent Bundles over Hyperbolic Surfaces
 
 ### 7.1 Lie Algebra $\mathfrak{sl}(2, \mathbb{R})$ & Central Extension
 
-The universal covering group $\widetilde{\mathrm{SL}}(2, \mathbb{R})$ is a simply connected 3-dimensional Lie group with infinite cyclic center $Z(\widetilde{\mathrm{SL}}(2, \mathbb{R})) \cong \mathbb{Z}$.
+The universal covering group $\tilde{\mathrm{SL}}(2, \mathbb{R})$ is a simply connected 3-dimensional Lie group with infinite cyclic center $Z(\tilde{\mathrm{SL}}(2, \mathbb{R})) \cong \mathbb{Z}$.
 
 In `Formalization.SL2RGeometry.Basic`:
 - Basis of $\mathfrak{sl}(2, \mathbb{R})$: $e_1 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, e_2 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, e_3 = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$.
 - Commutation relations: $[e_1, e_2] = 2e_3, [e_2, e_3] = -2e_1, [e_3, e_1] = -2e_2$.
-- Unit tangent bundle quotient: $T^1(\Sigma_g) \cong \widetilde{\Gamma}_g \backslash \widetilde{\mathrm{SL}}(2, \mathbb{R})$ over closed hyperbolic surfaces $\Sigma_g$ ($g \ge 2$).
+- Unit tangent bundle quotient: $T^1(\Sigma_g) \cong \widetilde{\Gamma}_g \backslash \tilde{\mathrm{SL}}(2, \mathbb{R})$ over closed hyperbolic surfaces $\Sigma_g$ ($g \ge 2$).
 - Euler class: $e(T^1(\Sigma_g)) = \chi(\Sigma_g) = 2 - 2g < 0$.
 - Volume: $\mathrm{Vol}(T^1(\Sigma_g)) = 4\pi^2(g - 1) > 0$.
 - First homology: $H_1(T^1(\Sigma_g), \mathbb{Z}) \cong \mathbb{Z}^{2g} \oplus \mathbb{Z}/(2g-2)\mathbb{Z}$ ($b_1 = 2g$).
@@ -767,7 +767,7 @@ In `Formalization.H2xRGeometry.Geometry` and `SpectralDecomposition`:
 In `Formalization.ThurstonOctet`, we integrate all eight model geometries into a unified inductive enumeration `ThurstonGeometry` and certify the classification theorems:
 
 ```math
-\text{AllGeometries} = \{\mathbb{S}^3, \mathbb{H}^3, \mathbb{E}^3, \mathrm{Nil}^3, \mathrm{Sol}^3, \widetilde{\mathrm{SL}}(2, \mathbb{R}), \mathbb{S}^2 \times \mathbb{R}, \mathbb{H}^2 \times \mathbb{R}\}
+\text{AllGeometries} = \{\mathbb{S}^3, \mathbb{H}^3, \mathbb{E}^3, \mathrm{Nil}^3, \mathrm{Sol}^3, \tilde{\mathrm{SL}}(2, \mathbb{R}), \mathbb{S}^2 \times \mathbb{R}, \mathbb{H}^2 \times \mathbb{R}\}
 ```
 
 ### 10.1 Structural Invariant Synthesis
@@ -780,7 +780,7 @@ In `Formalization.ThurstonOctet`, we integrate all eight model geometries into a
 
 2. **Isotropy & Isometry Dimension Spectrum**:
    - Isotropic ($\dim H = 3, \dim \mathrm{Isom} = 6$): $\mathbb{S}^3, \mathbb{H}^3, \mathbb{E}^3$.
-   - 1D Stabilizer ($\dim H = 1, \dim \mathrm{Isom} = 4$): $\mathrm{Nil}^3, \widetilde{\mathrm{SL}}(2, \mathbb{R}), \mathbb{S}^2 \times \mathbb{R}, \mathbb{H}^2 \times \mathbb{R}$.
+   - 1D Stabilizer ($\dim H = 1, \dim \mathrm{Isom} = 4$): $\mathrm{Nil}^3, \tilde{\mathrm{SL}}(2, \mathbb{R}), \mathbb{S}^2 \times \mathbb{R}, \mathbb{H}^2 \times \mathbb{R}$.
    - Rigid ($\dim H = 0, \dim \mathrm{Isom} = 3$): $\mathrm{Sol}^3$.
 3. **Einstein Classification**:
 
@@ -791,9 +791,9 @@ In `Formalization.ThurstonOctet`, we integrate all eight model geometries into a
 4. **Scalar Curvature Sign Trichotomy**:
       - **Positive Scalar Curvature** ($R > 0$): $\mathbb{S}^3 (+6)$ and $\mathbb{S}^2 \times \mathbb{R} (+2)$.
       - **Zero Scalar Curvature** ($R = 0$): $\mathbb{E}^3 (0)$.
-      - **Negative Scalar Curvature** ($R < 0$): $\mathbb{H}^3 (-6), \mathrm{Nil}^3 (-1/2), \mathrm{Sol}^3 (-2), \widetilde{\mathrm{SL}}(2, \mathbb{R}) (-1/2), \mathbb{H}^2 \times \mathbb{R} (-2)$.
+      - **Negative Scalar Curvature** ($R < 0$): $\mathbb{H}^3 (-6), \mathrm{Nil}^3 (-1/2), \mathrm{Sol}^3 (-2), \tilde{\mathrm{SL}}(2, \mathbb{R}) (-1/2), \mathbb{H}^2 \times \mathbb{R} (-2)$.
 5. **Seifert Fibration Compatibility**:
-   Exactly 6 of the 8 geometries fiber over 2-orbifolds ($\mathbb{S}^3, \mathbb{E}^3, \mathrm{Nil}^3, \widetilde{\mathrm{SL}}(2, \mathbb{R}), \mathbb{S}^2 \times \mathbb{R}, \mathbb{H}^2 \times \mathbb{R}$). $\mathrm{Sol}^3$ is uniquely an Anosov mapping torus, and $\mathbb{H}^3$ is non-fibered.
+   Exactly 6 of the 8 geometries fiber over 2-orbifolds ($\mathbb{S}^3, \mathbb{E}^3, \mathrm{Nil}^3, \tilde{\mathrm{SL}}(2, \mathbb{R}), \mathbb{S}^2 \times \mathbb{R}, \mathbb{H}^2 \times \mathbb{R}$). $\mathrm{Sol}^3$ is uniquely an Anosov mapping torus, and $\mathbb{H}^3$ is non-fibered.
 6. **Universal Spectral Gap Positivity**:
    Every Thurston geometry admits a closed space form $M_g$ with strictly positive Laplace–Beltrami spectral gap $\lambda_1(M_g) > 0$.
 
@@ -863,7 +863,7 @@ To provide an honest and transparent account of the 350+ machine-checked formal 
 | Euclidean ($\mathbb{E}^3$) | `Formalization/HantzscheWendt/` | 15 | 22 | 37 | Standard Kernel | 0 errors |
 | Nilpotent ($\mathrm{Nil}^3$) | `Formalization/HeisenbergNilmanifold/` | 13 | 21 | 34 | Standard Kernel | 0 errors |
 | Solvable ($\mathrm{Sol}^3$) | `Formalization/Solvmanifold/` | 14 | 22 | 36 | Standard Kernel | 0 errors |
-| $\widetilde{\mathrm{SL}}(2, \mathbb{R})$ | `Formalization/SL2RGeometry/` | 15 | 23 | 38 | Standard Kernel | 0 errors |
+| $\tilde{\mathrm{SL}}(2, \mathbb{R})$ | `Formalization/SL2RGeometry/` | 15 | 23 | 38 | Standard Kernel | 0 errors |
 | $\mathbb{S}^2 \times \mathbb{R}$ | `Formalization/S2xRGeometry/` | 14 | 21 | 35 | Standard Kernel | 0 errors |
 | $\mathbb{H}^2 \times \mathbb{R}$ | `Formalization/H2xRGeometry/` | 16 | 23 | 39 | Standard Kernel | 0 errors |
 | Thurston Octet Invariants | `Formalization/ThurstonOctet.lean` | 12 | 16 | 28 | Standard Kernel | 0 errors |

@@ -42,12 +42,14 @@ def fix_content(filepath):
     content = content.replace(r'\operatorname{FLT}', r'\mathrm{FLT}')
     content = re.sub(r'\\operatorname\{([^{}]+)\}', r'\\mathrm{\1}', content)
 
-    # 3b. Fix Lie group underscore subscripts to parameter syntax to prevent CommonMark emphasis collisions
+    # 3b. Fix Lie group underscore subscripts and widetilde multi-letter fonts to prevent MathJax / CommonMark collisions
     lie_replacements = [
-        (r'\\widetilde\{\\mathrm\{SL\}\}_2\(\\mathbb\{R\}\)', r'\\widetilde{\\mathrm{SL}}(2, \\mathbb{R})'),
-        (r'\\widetilde\{\\mathrm\{SL\}\}_\{2\}\(\\mathbb\{R\}\)', r'\\widetilde{\\mathrm{SL}}(2, \\mathbb{R})'),
-        (r'\\widetilde\{\\mathrm\{SL\}\}_2', r'\\widetilde{\\mathrm{SL}}(2, \\mathbb{R})'),
-        (r'\\widetilde\{\\mathrm\{SL\}\}_\{2\}', r'\\widetilde{\\mathrm{SL}}(2, \\mathbb{R})'),
+        (r'\\widetilde\{\\mathrm\{SL\}\}_2\(\\mathbb\{R\}\)', r'\\tilde{\\mathrm{SL}}(2, \\mathbb{R})'),
+        (r'\\widetilde\{\\mathrm\{SL\}\}_\{2\}\(\\mathbb\{R\}\)', r'\\tilde{\\mathrm{SL}}(2, \\mathbb{R})'),
+        (r'\\widetilde\{\\mathrm\{SL\}\}_2', r'\\tilde{\\mathrm{SL}}(2, \\mathbb{R})'),
+        (r'\\widetilde\{\\mathrm\{SL\}\}_\{2\}', r'\\tilde{\\mathrm{SL}}(2, \\mathbb{R})'),
+        (r'\\widetilde\{\\mathrm\{SL\}\}\(2,\s*\\mathbb\{R\}\)', r'\\tilde{\\mathrm{SL}}(2, \\mathbb{R})'),
+        (r'\\widetilde\{\\mathrm\{SL\}\}', r'\\tilde{\\mathrm{SL}}'),
         (r'\\mathfrak\{sl\}_2\(\\mathbb\{R\}\)', r'\\mathfrak{sl}(2, \\mathbb{R})'),
         (r'\\mathfrak\{sl\}_\{2\}\(\\mathbb\{R\}\)', r'\\mathfrak{sl}(2, \\mathbb{R})'),
         (r'\\mathfrak\{sl\}_2\(\\mathbb\{C\}\)', r'\\mathfrak{sl}(2, \\mathbb{C})'),
@@ -458,13 +460,20 @@ def run_strict_linter(fpath):
                     'detail': f"Raw '*' in inline math: '{full_match}'"
                 })
 
-            # Rule 13: Lie Group & Matrix Group Underscore Subscripts
-            if re.search(r'\\(?:widetilde\{\\mathrm\{SL\}\}|mathrm\{SL\}|mathrm\{PSL\}|mathfrak\{sl\}|mathrm\{GL\}|mathrm\{SO\}|mathrm\{SU\})_\{?[0-9a-zA-Z]+\}?', math_content):
+            # Rule 13: Lie Group & Matrix Group Underscore Subscripts & Extensible Font Accents
+            if re.search(r'\\(?:widetilde\{\\mathrm\{SL\}\}|tilde\{\\mathrm\{SL\}\}|mathrm\{SL\}|mathrm\{PSL\}|mathfrak\{sl\}|mathrm\{GL\}|mathrm\{SO\}|mathrm\{SU\})_\{?[0-9a-zA-Z]+\}?', math_content):
                 violations.append({
                     'file': fpath,
                     'line': line_num,
                     'rule': 'Rule 13: Lie Group Underscore Subscript',
                     'detail': f"Lie group with underscore subscript (causes CommonMark emphasis collision, use parameter syntax like '\\mathrm{{SL}}(2, \\mathbb{{R}})' or '\\mathrm{{SU}}(2)'): '{full_match}'"
+                })
+            if r'\widetilde{\mathrm{SL}}' in math_content:
+                violations.append({
+                    'file': fpath,
+                    'line': line_num,
+                    'rule': 'Rule 13: Extensible Font Accent \\widetilde{\\mathrm{SL}}',
+                    'detail': f"Multi-letter roman font in extensible accent '\\widetilde{{\\mathrm{{SL}}}}' triggers MathJax font metric crash. Use '\\tilde{{\\mathrm{{SL}}}}' instead: '{full_match}'"
                 })
 
     return violations
