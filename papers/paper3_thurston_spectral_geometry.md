@@ -12,9 +12,9 @@
 We present a unified mathematical treatise and machine-checked formalization in Lean 4 of the spectral invariants, discrete group representations, and topological obstructions characterizing closed 3-manifolds across four canonical Thurston geometries: **Spherical** ($\mathbb{S}^3$), **Hyperbolic** ($\mathbb{H}^3$), **Euclidean** ($\mathbb{E}^3$), and **Nilpotent** ($\mathrm{Nil}^3$). 
 
 - **Spherical Pillar** ($\mathbb{S}^3$): We formalize the Diophantine classification of Seifert homology spheres $\Sigma(p,q,r)$, the Fintushel–Stern and Kirk–Klassen exact rational Chern–Simons actions on isolated irreducible $\mathrm{SU}(2)$ character varieties $\mathcal{R}^\ast(\Sigma(p,q,r))$, the stationary phase partition sums, and their connection to Lawrence–Zagier false theta characters $\chi_{120}$ and rational exponents.
-- **Hyperbolic Pillar** ($\mathbb{H}^3$): We formalize the Weeks manifold $\mathcal{W}$—the unique closed orientable hyperbolic 3-manifold of minimal volume $\mathrm{Vol}(\mathcal{W}) \approx 0.942707$—its fundamental group $\pi_1(\mathcal{W})$, first homology $H_1(\mathcal{W}, \mathbb{Z}) \cong \mathbb{Z}_5 \oplus \mathbb{Z}_5$, the invariant cubic trace field $k = \mathbb{Q}(\theta)$ with minimal complex discriminant $\mathrm{Disc} = -23$, Chinburg–Hamilton–Long–Reid quaternion ramification, the Ramanujan–Selberg spectral gap $\lambda_1 \approx 27.80195 > 1$, and geometric horizon containment.
+- **Hyperbolic Pillar** ($\mathbb{H}^3$): We formalize the Weeks manifold $\mathcal{W}$ (minimal volume $\mathrm{Vol}(\mathcal{W}) \approx 0.942707$), its fundamental group $\pi_1(\mathcal{W})$, homology $H_1(\mathcal{W}, \mathbb{Z}) \cong \mathbb{Z}_5 \oplus \mathbb{Z}_5$, invariant cubic trace field $k = \mathbb{Q}(\theta)$ with discriminant $\mathrm{Disc} = -23$, quaternion ramification, and the Ramanujan–Selberg spectral gap $\lambda_1(\mathcal{W}) \approx 27.80 > 1$.
 - **Euclidean Pillar** ($\mathbb{E}^3$): We formalize the Hantzsche–Wendt didicosm $G_6$ (the unique closed orientable flat 3-manifold with first Betti number $b_1 = 0$), establishing the Spectral Gap Doubling Theorem $\lambda_1(G_6) = 2\lambda_1(T^3)$ via destructive Fourier parity interference under affine screw-motions.
-- **Nilpotent Pillar** ($\mathrm{Nil}^3$): We formalize the Heisenberg nilmanifold $N_3 = \mathrm{Nil}^3/\mathcal{H}_3(\mathbb{Z})$ as a principal circle bundle over $T^2$ with Euler class $e = 1$, deriving the discrete Landau-level harmonic oscillator spectral towers $\lambda_{k,n} = 4\pi^2 k^2 + 2\pi \lvert k \rvert (2n+1)$ with exact spectral gap $\Delta\lambda = 2\pi > 0$ and mixed Ricci curvatures ($R = -1/2$).
+- **Nilpotent Pillar** ($\mathrm{Nil}^3$): We formalize the Heisenberg nilmanifold $N_3$ as a principal circle bundle over $T^2$ with Euler class $e = 1$, deriving the discrete Landau harmonic oscillator spectral towers with exact spectral gap $\Delta\lambda = 2\pi > 0$ and scalar curvature $R = -1/2$.
 
 All definitions, theorems, and structural identifications are machine-checked with zero `sorry` stubs, zero custom axioms, and full kernel closure in Lean 4.
 
@@ -142,7 +142,7 @@ The Weeks manifold $\mathcal{W}$ (also denoted $M003(-3,1)$ or `vol3`) is obtain
 \pi_1(\mathcal{W}) = \langle a, b \mid a^2 b^2 a b^2 a^2 b a b = 1, \; a b^2 a b a b^2 a b^2 = 1 \rangle
 ```
 
-with relator words $w_1$ (syllable length 12) and $w_2$ (syllable length 11).
+with relator words $w_1, w_2$ (having syllable lengths 12 and 11, respectively).
 
 In `Formalization.WeeksManifold.Basic`, we verify:
 - Exponent sums: $\vec{w}_1 = (6, 6)^T, \vec{w}_2 = (4, 7)^T$.
@@ -211,7 +211,7 @@ The Hantzsche–Wendt manifold $M_0 = \mathbb{R}^3 / G_6$ (1935) is the unique c
 ```
 
 In `Formalization.HantzscheWendt.Basic`, we verify:
-- Translation lattice generation: $\gamma_1^2 = t_{(1,0,0)}$, $\gamma_2^2 = t_{(0,1,0)}$, $\gamma_z^2 = t_{(0,0,1)}$ spanning $\mathbb{Z}^3$.
+- Translation lattice generation: $\gamma_1^2 = t_{(1,0,0)}, \; \gamma_2^2 = t_{(0,1,0)}, \; \gamma_3^2 = t_{(0,0,1)}$ spanning $\mathbb{Z}^3$.
 - Fixed-point freeness: $\gamma_i(p) \ne p$ for all $p \in \mathbb{R}^3$.
 - Orientation preservation: $\det(\mathrm{Lin}(\gamma_i)) = +1$.
 - Holonomy quotient: $H = G_6 / \mathbb{Z}^3 \cong \mathbb{Z}_2 \times \mathbb{Z}_2$ (Klein four-group, order 4).
