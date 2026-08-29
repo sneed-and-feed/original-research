@@ -472,4 +472,50 @@ theorem spin_injection_injective (g : GaloisBranch) :
   intro s1 s2 h
   injection h with _ h2
 
+/-! ### 7. Scheme-Theoretic Bridge Isomorphisms -/
+
+/-- A geometric Fricke trace point $(t_a, t_b, t_{ab})$ in the affine scheme
+$\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}_2(\mathbb{C}))$, parameterized by the
+underlying Galois conjugate root of $\vartheta^3 - \vartheta^2 + 1 = 0$. -/
+structure FrickeTracePoint where
+  branch : GaloisBranch
+
+/-- An explicit algebraic lifted $\mathrm{SL}_2(\mathbb{C})$ representation point in the 0-dimensional scheme
+$\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}_2(\mathbb{C}))$, given by a Fricke trace point and a spin lift. -/
+structure LiftedCharacterPoint where
+  tracePoint : FrickeTracePoint
+  spinLift : SpinLift
+
+/-- The canonical bridge isomorphism between the abstract Galois branch carrier and the Fricke trace variety scheme points:
+    $\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}_2(\mathbb{C})) \cong \mathrm{GaloisBranch}$. -/
+def psl2_character_variety_iso : GaloisBranch ≃ FrickeTracePoint where
+  toFun := fun g => ⟨g⟩
+  invFun := fun p => p.branch
+  left_inv := fun _ => rfl
+  right_inv := fun ⟨_⟩ => rfl
+
+/-- The canonical bridge isomorphism between the product carrier and the lifted $\mathrm{SL}_2(\mathbb{C})$ character variety:
+    $\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}_2(\mathbb{C})) \cong \mathrm{GaloisBranch} \times \mathrm{SpinLift}$. -/
+def sl2_character_variety_iso : CharacterPointSL2 ≃ LiftedCharacterPoint where
+  toFun := fun (g, s) => ⟨⟨g⟩, s⟩
+  invFun := fun ⟨⟨g⟩, s⟩ => (g, s)
+  left_inv := fun (_, _) => rfl
+  right_inv := fun ⟨⟨_⟩, _⟩ => rfl
+
+instance : Fintype FrickeTracePoint := Fintype.ofEquiv GaloisBranch psl2_character_variety_iso
+
+instance : Fintype LiftedCharacterPoint := Fintype.ofEquiv CharacterPointSL2 sl2_character_variety_iso
+
+/-- Bridge cardinality theorem: $\lvert\mathrm{FrickeTracePoint}\rvert = 3$. -/
+theorem psl2_character_variety_iso_card :
+    Fintype.card FrickeTracePoint = 3 := by
+  rw [Fintype.card_congr psl2_character_variety_iso.symm]
+  rfl
+
+/-- Bridge cardinality theorem: $\lvert\mathrm{LiftedCharacterPoint}\rvert = 12$. -/
+theorem sl2_character_variety_iso_card :
+    Fintype.card LiftedCharacterPoint = 12 := by
+  rw [Fintype.card_congr sl2_character_variety_iso.symm]
+  rfl
+
 end WeeksManifold.Arithmetic

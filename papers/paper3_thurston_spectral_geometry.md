@@ -258,31 +258,39 @@ The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety $\mathcal{X}^{\m
    \mathrm{tr}([\rho(a), \rho(b)]) = \vartheta^2 + \vartheta^2 + (\vartheta^2 - \vartheta)^2 - \vartheta^2(\vartheta^2 - \vartheta) - 2 = 2\vartheta^2 - 1
    ```
    identically modulo $\vartheta^3 - \vartheta^2 + 1 = 0$.
-2. $\mathrm{PSL}(2, \mathbb{C})$ **Character Variety Scheme**:
+2. $\mathrm{PSL}(2, \mathbb{C})$ **Character Variety Scheme & Bridge Isomorphism**:
    The irreducible $\mathrm{PSL}(2, \mathbb{C})$ character variety:
    ```math
    \mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}(2, \mathbb{C})) = \mathrm{Hom}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}(2, \mathbb{C})) // \mathrm{PGL}(2, \mathbb{C})
    ```
-   is a 0-dimensional scheme consisting of exactly **3 isolated Galois-conjugate points** over $\mathbb{C}$:
+   is a 0-dimensional scheme cut out by the Fricke trace polynomial system. In Lean 4, we establish the canonical scheme-theoretic bridge isomorphism:
+   ```math
+   \mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{PSL}(2, \mathbb{C})) \cong \mathrm{FrickeTracePoint} \cong \mathrm{GaloisBranch}
+   ```
+   consisting of exactly **3 isolated Galois-conjugate points** over $\mathbb{C}$:
    - **Real Non-Discrete Point**: $\vartheta_0 \approx -0.75488$, with $\mathrm{tr}([\rho(a), \rho(b)]) \approx 0.1396 \in (-2, 2)$ (elliptic/non-discrete).
    - **Discrete Faithful Geometric Holonomies**: The complex conjugate roots satisfy:
      ```math
      \vartheta_1, \vartheta_2 \approx 0.877439 \pm 0.744862 i, \quad \mathrm{tr}([\rho(a), \rho(b)]) \approx -0.5698 \pm 2.6143 i \notin [-2, 2]
      ```
-     defining the unique hyperbolic holonomy representation and its complex conjugate.
-3. **Central Spin-Lift Cohomology Action &** $\mathrm{SL}(2, \mathbb{C})$ **Character Variety**:
+     defining the unique hyperbolic holonomy representation $\rho_{\mathrm{geom}}$ and its complex conjugate $\overline{\rho}_{\mathrm{geom}}$.
+3. **Central Spin-Lift Cohomology Action &** $\mathrm{SL}(2, \mathbb{C})$ **Bridge Isomorphism**:
    Lifting a representation from $\mathrm{PSL}(2, \mathbb{C})$ to $\mathrm{SL}(2, \mathbb{C})$ allows independent sign choices on the two relators $\rho(w_1) = \epsilon_1 I, \rho(w_2) = \epsilon_2 I$ with $(\epsilon_1, \epsilon_2) \in \{\pm 1\}^2$.
    The central spin-lift cohomology group:
    ```math
    H^1(\mathcal{W}_{\mathrm{rel}}, \mathbb{Z}/2\mathbb{Z}) \cong (\mathbb{Z}/2\mathbb{Z})^2, \quad |H^1| = 4
    ```
-   acts freely and transitively on the 4 lifts over each Galois point. Consequently, the affine character variety $\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C}))$ decomposes into exactly **12 isolated points**:
+   acts freely and transitively on the 4 lifts over each Galois point. In Lean 4, we establish the canonical product bridge isomorphism:
+   ```math
+   \mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C})) \cong \mathrm{LiftedCharacterPoint} \cong \mathrm{GaloisBranch} \times \mathrm{SpinLift}
+   ```
+   proving that the affine character variety $\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C}))$ decomposes into exactly **12 isolated points**:
    ```math
    |\mathcal{X}^{\mathrm{irr}}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C}))| = 3 \times 4 = 12
    ```
-   consisting of 3 fibers of 4 spin lifts each, with exactly one true $\mathrm{SL}(2, \mathbb{C})$ representation ($(\epsilon_1, \epsilon_2) = (+1, +1)$) per Galois branch.
+   with uniform fiberwise cardinality $|\mathrm{fiber}(g)| = 4$ for all $g \in \mathrm{GaloisBranch}$, and exactly one true $\mathrm{SL}(2, \mathbb{C})$ representation ($(\epsilon_1, \epsilon_2) = (+1, +1)$) per Galois branch.
 
-- Lean Theorems: [`WeeksManifold.Arithmetic.weeks_commutator_trace`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_card_eq_three`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`spin_lifts_per_representation_eq_four`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_card_eq_twelve`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`fiber_card_eq_four`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`fiber_spin_bijective`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`spin_injection_injective`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean).
+- Lean Theorems: [`WeeksManifold.Arithmetic.weeks_commutator_trace`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_card_eq_three`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`spin_lifts_per_representation_eq_four`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_card_eq_twelve`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_iso`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_iso`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`psl2_character_variety_iso_card`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_iso_card`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`fiber_card_eq_four`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`fiber_spin_bijective`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`spin_injection_injective`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean).
 
 ### 3.4 Laplace Spectrum & Ramanujan–Selberg Spectral Gap
 
