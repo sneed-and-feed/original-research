@@ -3,7 +3,7 @@ import sys
 import re
 
 FILES = [
-    r'c:\Users\x\Documents\antigravity\original-research\papers\paper2_cosmology.md',
+    r'c:\Users\x\Documents\antigravity\original-research\papers\paper3_thurston_spectral_geometry.md',
     r'c:\Users\x\Documents\antigravity\original-research\papers\paper1_spectral_geometry.md',
     r'c:\Users\x\Documents\antigravity\original-research\README.md',
 ]

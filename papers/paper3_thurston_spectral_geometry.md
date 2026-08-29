@@ -190,7 +190,7 @@ In `Formalization.WeeksManifold.SpectralGap`, we formalize:
    ```
    This certifies the Generalized Ramanujan–Selberg property: $\mathcal{W}$ possesses zero small eigenvalues in the complementary series $(0, 1)$.
 2. Cosmic Horizon Containment:
-   For comoving surface-of-last-scattering radius $\chi_\ast \approx 3.14$ and curvature radius $R_c = 1/\sqrt{|\Omega_K|} \ge 1/\sqrt{0.005} \approx 14.14$, the comoving depth satisfies:
+   For comoving surface-of-last-scattering radius $\chi_\ast \approx 3.14$ and curvature radius $R_c = 1/\sqrt{\lvert\Omega_K\rvert} \ge 1/\sqrt{0.005} \approx 14.14$, the comoving depth satisfies:
    ```math
    \frac{\chi_\ast}{R_c} \le 0.222 < r_{\mathrm{inj}}(\mathcal{W}) \approx 0.29231677
    ```

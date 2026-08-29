@@ -268,14 +268,21 @@ graph TD
 
 ---
 
-## Academic Monograph & Research Preprint (`papers/`)
+## Academic Monograph & Research Preprints (`papers/`)
 
-The repository includes a comprehensive mathematical physics monograph formatted in both GitHub Flavored Markdown and standard publication LaTeX (`.tex`):
+The repository includes comprehensive mathematical physics monographs and preprints formatted in both GitHub Flavored Markdown and standard publication LaTeX (`.tex`):
 
-- **Markdown Preprint:** [`papers/paper1_spectral_geometry.md`](papers/paper1_spectral_geometry.md)
-- **LaTeX Source:** [`papers/paper1_spectral_geometry.tex`](papers/paper1_spectral_geometry.tex)
-- **Title:** *Spectral Geometry and Invariant Theory on the Poincaré Homology 3-Sphere: Character Projections, Heat Kernel Asymptotics, and Machine-Checked Verification*
-- **Summary:** Rigorous mathematical foundations of $S^3/I^\ast$: $\mathrm{SU}(2)$ character Chebyshev recurrence over 9 conjugacy classes, Molien invariant projection selection rules ($m_0=1, m_1=\dots=m_5=0, m_6=1$ on $\mathrm{SO}(3)$ and 11-mode spinor gap on $\mathrm{SU}(2)$), Seeley--DeWitt heat kernel coefficients ($a_0 = \sqrt{\pi}/480, a_2 = a_0, a_4 = \sqrt{\pi}/960$), 4D Einstein--Hilbert action recovery ($G_{\mathrm{eff}} > 0$), and the almost-commutative Noncommutative Standard Model spectral triple ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$).
+1. **Paper 1: Poincaré Dodecahedral Space & Spectral Geometry**
+   - **Markdown Preprint:** [`papers/paper1_spectral_geometry.md`](papers/paper1_spectral_geometry.md)
+   - **LaTeX Source:** [`papers/paper1_spectral_geometry.tex`](papers/paper1_spectral_geometry.tex)
+   - **Title:** *Spectral Geometry and Invariant Theory on the Poincaré Homology 3-Sphere: Character Projections, Heat Kernel Asymptotics, and Machine-Checked Verification*
+   - **Summary:** Rigorous mathematical foundations of $S^3/I^\ast$: $\mathrm{SU}(2)$ character Chebyshev recurrence over 9 conjugacy classes, Molien invariant projection selection rules ($m_0=1, m_1=\dots=m_5=0, m_6=1$ on $\mathrm{SO}(3)$ and 11-mode spinor gap on $\mathrm{SU}(2)$), Seeley--DeWitt heat kernel coefficients ($a_0 = \sqrt{\pi}/480, a_2 = a_0, a_4 = \sqrt{\pi}/960$), 4D Einstein--Hilbert action recovery ($G_{\mathrm{eff}} > 0$), and the almost-commutative Noncommutative Standard Model spectral triple ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$).
+
+2. **Paper 3: The 4-Pillar Thurston 3-Manifold Atlas & Spectral Invariants**
+   - **Markdown Preprint:** [`papers/paper3_thurston_spectral_geometry.md`](papers/paper3_thurston_spectral_geometry.md)
+   - **LaTeX Source:** [`papers/paper3_thurston_spectral_geometry.tex`](papers/paper3_thurston_spectral_geometry.tex)
+   - **Title:** *Spectral Invariants, Discrete Group Actions, and Topological Obstructions of Closed 3-Manifolds across Thurston Geometries*
+   - **Summary:** Machine-checked spectral invariants and quantum actions across four canonical Thurston 3-manifold geometries: Spherical ($\mathbb{S}^3$), Hyperbolic ($\mathbb{H}^3$), Euclidean ($\mathbb{E}^3$), and Nilpotent ($\mathrm{Nil}^3$).
 
 To verify manuscript cross-consistency and KaTeX syntax:
 
@@ -285,6 +292,7 @@ python papers/verify_paper1.py
 
 # Audit Markdown and KaTeX compliance for GitHub rendering
 python papers/verify_markdown_katex.py
+python papers/audit_gfm_math.py
 ```
 
 ---
@@ -300,7 +308,7 @@ The repository includes the complete machine-checked formalization and accompany
 3. **Euclidean Pillar** $\mathbb{E}^3$: The Hantzsche–Wendt Didicosm $G_6$ ([`Formalization/HantzscheWendt/`](Formalization/HantzscheWendt.lean))
    - Bieberbach affine screw motions in $\mathrm{Isom}(\mathbb{R}^3)$, holonomy $H \cong \mathbb{Z}_2 \times \mathbb{Z}_2$, $H_1 \cong \mathbb{Z}_4 \oplus \mathbb{Z}_4$ ($b_1 = 0$), destructive Fourier parity interference, and the **Spectral Gap Doubling Theorem** $\lambda_1(G_6) = 2\lambda_1(T^3)$.
 4. **Nilpotent Pillar** $\mathrm{Nil}^3$: The Heisenberg Nilmanifold $N_3$ ([`Formalization/HeisenbergNilmanifold/`](Formalization/HeisenbergNilmanifold.lean))
-   - Upper unitriangular Heisenberg group $\mathcal{H}_3(\mathbb{Z})$ in $\mathrm{SL}_3(\mathbb{Z})$, center $Z \cong \mathbb{Z}$, circle bundle Euler class $e = 1$, continuous 2D torus base spectrum, discrete **Landau-level harmonic oscillator towers** $\lambda_{k,n} = 4\pi^2 k^2 + 2\pi |k|(2n+1)$, harmonic gap $\Delta\lambda = 2\pi > 0$, and mixed Ricci curvatures ($R = -1/2$).
+   - Upper unitriangular Heisenberg group $\mathcal{H}_3(\mathbb{Z})$ in $\mathrm{SL}_3(\mathbb{Z})$, center $Z \cong \mathbb{Z}$, circle bundle Euler class $e = 1$, continuous 2D torus base spectrum, discrete **Landau-level harmonic oscillator towers** $\lambda_{k,n} = 4\pi^2 k^2 + 2\pi \lvert k \rvert(2n+1)$, harmonic gap $\Delta\lambda = 2\pi > 0$, and mixed Ricci curvatures ($R = -1/2$).
 
 ---
 
@@ -323,11 +331,11 @@ lake build Formalization
 2. **Luminet, J.-P., Weeks, J. R., Riazuelo, A., Lehoucq, R., & Uzan, J.-P.** (2003). *Dodecahedral space topology as an explanation for weak wide-angle temperature correlations in the cosmic microwave background*. Nature, 425(6958), 593–595.
 3. **Weeks, J. R., Luminet, J.-P., Riazuelo, A., & Lehoucq, R.** (2004). *The cosmic microwave background anisotropy in a spherical space*. Classical and Quantum Gravity, 21(14), 3427–3438.
 4. **Chamseddine, A. H., Connes, A., & Marcolli, M.** (2007). *Gravity and the standard model with neutrino mixing*. Advances in Theoretical and Mathematical Physics, 11(6), 991–1089.
-5. **Poulin, V., Smith, T. L., Karwal, T., & Kamionkowski, M.** (2019). *Early Dark Energy Can Resolve the Hubble Tension*. Physical Review Letters, 122(22), 221301.
-6. **Planck Collaboration** (2020). *Planck 2018 results. VI. Cosmological parameters*. Astronomy & Astrophysics, 641, A6.
-7. **DESI Collaboration** (2024). *DESI 2024 VI: Cosmological Constraints from the Measurements of Baryon Acoustic Oscillations*. arXiv:2404.03002.
-8. **Brout, D., et al.** (2022). *The Pantheon+ Analysis: Cosmological Constraints*. The Astrophysical Journal, 938(2), 110.
-9. **Riess, A. G., et al. (SH0ES Collaboration)** (2022). *A Comprehensive Measurement of the Local Value of the Hubble Constant with 1 km/s/Mpc Uncertainty*. The Astrophysical Journal Letters, 934(1), L7.
+5. **Aurich, R., Jancke, H. S., Lustig, S., & Steiner, F.** (2008). *Do cosmic microwave background temperature fluctuations exclude the Didicosm?* Classical and Quantum Gravity, 25(12), 125010.
+6. **Gabai, D., Meyerhoff, R., & Milley, P.** (2009). *Minimum volume cusped hyperbolic three-manifolds*. Journal of the American Mathematical Society, 22(4), 1157–1215.
+7. **Gordon, C. S., & Wilson, E. N.** (1984). *Isospectral deformations of compact solvmanifolds*. Journal of Differential Geometry, 19(1), 241–256.
+8. **Hantzsche, W., & Wendt, H.** (1935). *Dreidimensionale euklidische Raumformen*. Mathematische Annalen, 110(1), 593–611.
+9. **Lawrence, R., & Zagier, D.** (1999). *Modular forms and quantum invariants of 3-manifolds*. Asian Journal of Mathematics, 3(1), 93–108.
 10. **Seifert, H.** (1933). *Topologie dreidimensionaler gefaserter Räume*. Acta Mathematica, 60(1), 147–238.
 11. **Brieskorn, E.** (1966). *Beispiele zur Differentialtopologie von Singularitäten*. Inventiones Mathematicae, 2(1), 1–14.
 12. **Kervaire, M. A., & Milnor, J. W.** (1963). *Groups of homotopy spheres: I*. Annals of Mathematics, 77(3), 504–537.
