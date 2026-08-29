@@ -9,7 +9,7 @@
 
 ### Abstract
 
-We present a unified cosmological, topological, and field-theoretic framework based on the **Poincaré Dodecahedral Space** $\mathcal{M}^3 = S^3 / I^\ast$, the compact spherical 3-manifold obtained as the isometric quotient of the round 3-sphere $S^3$ by the binary icosahedral group $I^\ast \subset \mathrm{SU}(2)$ of order 120, coupled to an Early Dark Energy (EDE) scalar field in a positively curved background ($\Omega_K < 0$). Using Molien's invariant theory and character projection over the 9 conjugacy classes of $I^\ast$, we rigorously establish the spatial harmonic selection rules on $S^3 / I^\ast$, proving the exact vanishing of primordial scalar multipole multiplicities for all physical spherical harmonics $\ell = 1, 2, 3, 4, 5$ on $\mathrm{SO}(3)$ ($m_L^{\mathrm{SO}(3)} = 0$), with the first non-trivial spatial harmonic emerging at $\ell = 6$ ($m_6^{\mathrm{SO}(3)} = 1$). We resolve the long-standing question regarding the CMB dipole by demonstrating that the observed temperature dipole ($\Delta T \approx 3.36\text{ mK}$) is purely kinematic in origin ($v \approx 369.8\text{ km s}^{-1}$ observer Doppler boost), whereas the topological selection rule $m_1^{\mathrm{SO}(3)} = 0$ acts as an essential theoretical consistency condition forbidding unphysical primordial dipole gradients. Residual power at the quadrupole ($\ell = 2$) and octupole ($\ell = 3$) is generated dynamically via late-time Integrated Sachs--Wolfe (ISW) decay during dark energy acceleration, substantially reducing the flat $\Lambda\mathrm{CDM}$ quadrupole tension from $+9.70\sigma$ ($\chi^2 = 94.0$) down to $+1.48\sigma$ ($\chi_2^2 = 2.19$, total $\text{low-}\ell$ $\chi^2 = 9.05$, $\Delta\chi^2 = -91.90$) with a $+155\ \mu\mathrm{K}^2$ residual relative to the Planck Commander central value ($224.0 \pm 105.0\ \mu\text{K}^2$), and providing a deterministic geometric explanation for large-angle power suppression, planar alignment, and parity asymmetry anomalies.
+We present a unified cosmological, topological, and field-theoretic framework based on the **Poincaré Dodecahedral Space** $\mathcal{M}^3 = S^3 / I^\ast$, the compact spherical 3-manifold obtained as the isometric quotient of the round 3-sphere $S^3$ by the binary icosahedral group $I^\ast \subset \mathrm{SU}(2)$ of order 120, coupled to an Early Dark Energy (EDE) scalar field in a positively curved background ($\Omega_K < 0$). Using Molien's invariant theory and character projection over the 9 conjugacy classes of $I^\ast$, we rigorously establish the spatial harmonic selection rules on $S^3 / I^\ast$, proving the exact vanishing of primordial scalar multipole multiplicities for all physical spherical harmonics $\ell = 1, 2, 3, 4, 5$ on $\mathrm{SO}(3)$ ($m_L^{\mathrm{SO}(3)} = 0$), with the first non-trivial spatial harmonic emerging at $\ell = 6$ ($m_6^{\mathrm{SO}(3)} = 1$). We resolve the long-standing question regarding the CMB dipole by demonstrating that the observed temperature dipole ($\Delta T \approx 3.36\ \mathrm{mK}$) is purely kinematic in origin ($v \approx 369.8\text{ km s}^{-1}$ observer Doppler boost), whereas the topological selection rule $m_1^{\mathrm{SO}(3)} = 0$ acts as an essential theoretical consistency condition forbidding unphysical primordial dipole gradients. Residual power at the quadrupole ($\ell = 2$) and octupole ($\ell = 3$) is generated dynamically via late-time Integrated Sachs--Wolfe (ISW) decay during dark energy acceleration, substantially reducing the flat $\Lambda\mathrm{CDM}$ quadrupole tension from $+9.70\sigma$ ($\chi^2 = 94.0$) down to $+1.48\sigma$ ($\chi_2^2 = 2.19$, total $\text{low-}\ell$ $\chi^2 = 9.05$, $\Delta\chi^2 = -91.90$) with a $+155\ \mu\mathrm{K}^2$ residual relative to the Planck Commander central value ($224.0 \pm 105.0\ \mu\mathrm{K}^2$), and providing a deterministic geometric explanation for large-angle power suppression, planar alignment, and parity asymmetry anomalies.
 
 We directly confront the Cornish et al. (2004) and Planck 2015/2018 topological "circles-in-the-sky" constraints: with the corrected curvature radius $R_c = \frac{c}{H_0 \sqrt{\lvert \Omega_K \rvert}} \approx 63.7\text{-}144.7\text{ Gpc}$ (corresponding to $\Omega_K \in [-0.0044, -0.0008]$), the injectivity diameter is $2 r_{\mathrm{inj}} = \frac{\pi R_c}{5} \approx 40.0\text{-}90.9\text{ Gpc}$, which strictly exceeds the diameter of the Last Scattering Surface $2 \chi_\ast \approx 28.0\text{ Gpc}$ ($z_\ast \approx 1090$). Because $2 r_{\mathrm{inj}} > 2 \chi_\ast$, the last scattering sphere does not self-intersect, naturally explaining the null detection of matched circle pairs in Planck and WMAP data while still providing the required global infrared cutoff that excises large-angle modes. The previous "8% near-miss" claim in early literature was an artifact of an arithmetic error (confusing diameter and radius), whereas the physical topology possesses a generous $43\%\text{-}225\%$ safety margin preventing matched circles.
 
@@ -82,12 +82,12 @@ On large angular scales ($\theta > 60^\circ$, multipoles $\ell = 2, 3$), the ful
 1. **Quadrupole Suppression**: The observed quadrupole temperature power is severely suppressed:
 
 $$
-\mathcal{D}_2^{TT} \equiv \frac{2(3)}{2\pi} C_2 \approx 224\text{ }\mu\text{K}^2 \quad \left(\text{expected: } \sim 1100\text{-}1256\text{ }\mu\text{K}^2\text{ in flat }\Lambda\mathrm{CDM}\right)
+\mathcal{D}_2^{TT} \equiv \frac{2(3)}{2\pi} C_2 \approx 224\ \mu\mathrm{K}^2 \quad \left(\text{expected: } \sim 1100\text{-}1256\ \mu\mathrm{K}^2\text{ in flat }\Lambda\mathrm{CDM}\right)
 $$
 
-   leaving flat $\Lambda\mathrm{CDM}$ in a $+9.70\sigma$ tension ($\chi_2^2 = 94.00$) with Planck Commander measurements ($224.0 \pm 105.0\ \mu\text{K}^2$).
+leaving flat $\Lambda\mathrm{CDM}$ in a $+9.70\sigma$ tension ($\chi_2^2 = 94.00$) with Planck Commander measurements ($224.0 \pm 105.0\ \mu\mathrm{K}^2$).
 
-2. **Octupole Suppression and Alignment**: The octupole power ($\mathcal{D}_3^{TT} \approx 562\text{ }\mu\text{K}^2$) is likewise depressed, and the quadrupole and octupole eigenvectors exhibit a mutually aligned planar configuration oriented toward the ecliptic poles ("Axis of Evil").
+2. **Octupole Suppression and Alignment**: The octupole power ($\mathcal{D}_3^{TT} \approx 562\ \mu\mathrm{K}^2$) is likewise depressed, and the quadrupole and octupole eigenvectors exhibit a mutually aligned planar configuration oriented toward the ecliptic poles ("Axis of Evil").
 
 3. **Vanishing Two-Point Angular Correlation**: The real-space two-point temperature correlation function:
 
@@ -95,7 +95,7 @@ $$
 C(\theta) \equiv \langle \Delta T(\hat{n}) \Delta T(\hat{n}') \rangle_{\hat{n} \cdot \hat{n}' = \cos\theta}
 $$
 
-   vanishes almost identically for separation angles $\theta \in [60^\circ, 170^\circ]$, a feature occurring in less than $0.1\%$ of standard Monte Carlo realizations.
+vanishes almost identically for separation angles $\theta \in [60^\circ, 170^\circ]$, a feature occurring in less than $0.1\%$ of standard Monte Carlo realizations.
 
 4. **Parity Asymmetry**: Odd-multipole modes systematically dominate even-multipole modes at $\ell \le 20$.
 
@@ -152,7 +152,7 @@ Because $I^\ast$ acts freely, transitively, and isometrically on $S^3$, the quot
 
 ### 2.2 Global Geometric Invariants
 
-> **Theorem 2.1 (Global Geometric Invariants of $S^3 / I^\ast$).**  
+> **Theorem 2.1 (Global Geometric Invariants of** $S^3 / I^\ast$**).**  
 > Let $S^3 / I^\ast$ be equipped with the Riemannian quotient metric induced from the round 3-sphere of radius $R_c$. Then:
 > 1. **Spatial Volume**:
 >
@@ -213,7 +213,7 @@ $$
 R_c = \frac{c}{H_0 \sqrt{\lvert \Omega_K \rvert}} \approx 63.7\text{-}144.7\text{ Gpc}
 $$
 
-   (with $R_c = 63.7\text{ Gpc}$ at the converged MCMC posterior mean $\Omega_K = -0.0044, H_0 = 70.93$, and $R_c = 144.7\text{ Gpc}$ at the fiducial boundary $\Omega_K = -0.0008, H_0 = 73.24$).
+(with $R_c = 63.7\text{ Gpc}$ at the converged MCMC posterior mean $\Omega_K = -0.0044, H_0 = 70.93$, and $R_c = 144.7\text{ Gpc}$ at the fiducial boundary $\Omega_K = -0.0008, H_0 = 73.24$).
 
 2. The injectivity radius and fundamental domain diameter are:
 
@@ -227,7 +227,7 @@ $$
 \chi_\ast = \frac{c}{H_0} \int_0^{z_\ast} \frac{dz'}{E(z')} \approx 13.5\text{-}14.0\text{ Gpc}
 $$
 
-   giving a total LSS diameter of:
+giving a total LSS diameter of:
 
 $$
 2 \chi_\ast \approx 27.0\text{-}28.0\text{ Gpc}
@@ -241,7 +241,7 @@ $$
 
 the surface of last scattering does **not** intersect its topological copies under any element of $I^\ast$. Consequently, the angular radius of matched circles is geometrically absent (no self-intersection of the last scattering sphere occurs).
 
-This geometric fact completely resolves the apparent tension with Cornish et al. (2004) and Planck 2015/2018 topology constraints: **the null detection of matched circle pairs in CMB data is a direct, deterministic consequence of $2 r_{\mathrm{inj}} > 2 \chi_\ast$**. We explicitly note that the old "8% near-miss" claim in preliminary drafts was an artifact of an arithmetic error (which inadvertently confused diameter and radius); in reality, the topology possesses a generous $43\%\text{-}225\%$ safety margin preventing matched circles, while still providing the required compact volume cutoff that excises unobserved large-angle modes $\ell = 1, 2, 3, 4, 5$.
+This geometric fact completely resolves the apparent tension with Cornish et al. (2004) and Planck 2015/2018 topology constraints: **the null detection of matched circle pairs in CMB data is a direct, deterministic consequence of** $2 r_{\mathrm{inj}} > 2 \chi_\ast$. We explicitly note that the old "8% near-miss" claim in preliminary drafts was an artifact of an arithmetic error (which inadvertently confused diameter and radius); in reality, the topology possesses a generous $43\%\text{-}225\%$ safety margin preventing matched circles, while still providing the required compact volume cutoff that excises unobserved large-angle modes $\ell = 1, 2, 3, 4, 5$.
 
 ---
 
@@ -288,7 +288,7 @@ $$
 m_L^{\mathrm{SO}(3)} = m_{2L}^{\mathrm{SU}(2)}
 $$
 
-> **Theorem 3.1 (CMB Multipole Selection Rules on $S^3 / I^\ast$).**  
+> **Theorem 3.1 (CMB Multipole Selection Rules on** $S^3 / I^\ast$**).**  
 > The invariant subspace multiplicities for physical spherical harmonics on $\mathrm{SO}(3)$ satisfy:
 > - $m_0^{\mathrm{SO}(3)} = 1$ (Monopole ground state)
 > - $m_1^{\mathrm{SO}(3)} = 0$ (Primordial Dipole Selection Rule)
@@ -317,7 +317,7 @@ $$
 **Figure 1:** $\mathrm{SO}(3)$ and $\mathrm{SU}(2)$ multipole invariant suppression spectra on $S^3 / I^\ast$. Panel (a) illustrates the complete topological suppression of physical CMB multipoles for $L = 1..5$ and the emergence of the first Klein icosahedral invariant at $L = 6$. Panel (b) shows the corresponding $\mathrm{SU}(2)$ spinor multiplicity gap spanning $\ell = 1..11$.
 
 ### 3.3 The Kinematic Dipole vs. Primordial Dipole Selection Rule
-A crucial conceptual question in cosmic topology is the relationship between the observed CMB dipole ($\Delta T \approx 3.3621 \pm 0.0010\text{ mK}$) and the selection rule $m_1^{\mathrm{SO}(3)} = 0$.
+A crucial conceptual question in cosmic topology is the relationship between the observed CMB dipole ($\Delta T \approx 3.3621 \pm 0.0010\ \mathrm{mK}$) and the selection rule $m_1^{\mathrm{SO}(3)} = 0$.
 
 The observed CMB dipole is **strictly kinematic**, arising from the relativistic Doppler boost of the observer relative to the cosmic rest frame:
 
@@ -367,8 +367,8 @@ $$
 where $\mathcal{H}(a) \equiv a H(a)$ is the conformal Hubble rate, and $f(a) \equiv \frac{d\ln \delta}{d\ln a}$ is the dimensionless linear growth rate.
 
 We observe two distinct cosmological regimes:
-1. **Matter Domination ($z > 1$)**: $\Omega_m(a) \to 1 \implies f(a) \to 1 \implies \dot{\Phi} \approx 0$. Gravitational potentials remain constant, and the ISW integrand vanishes identically.
-2. **Dark Energy Domination ($z < 1$)**: Dark energy cosmic acceleration causes $\Omega_m(a) < 1 \implies f(a) < 1 \implies \dot{\Phi} < 0$. Gravitational potential wells decay as CMB photons traverse them, imparting a net energy boost to the photons.
+1. **Matter Domination** ($z > 1$): $\Omega_m(a) \to 1 \implies f(a) \to 1 \implies \dot{\Phi} \approx 0$. Gravitational potentials remain constant, and the ISW integrand vanishes identically.
+2. **Dark Energy Domination** ($z < 1$): Dark energy cosmic acceleration causes $\Omega_m(a) < 1 \implies f(a) < 1 \implies \dot{\Phi} < 0$. Gravitational potential wells decay as CMB photons traverse them, imparting a net energy boost to the photons.
 
 The line-of-sight late-time ISW angular power spectrum is given by the exact numerical radial quadrature:
 
@@ -395,7 +395,7 @@ $$
 
 where $\mathcal{D}_\ell^{\mathrm{proj}} = (\mathcal{D}_\ell^{\mathrm{flat}} - \mathcal{D}_\ell^{\mathrm{ISW}}) \cdot \left(\frac{\ell}{6}\right)^{\gamma_{\mathrm{proj}}} \times A_{\mathrm{proj}}$, explicitly parameterized by the sub-horizon mode projection parameters $\gamma_{\mathrm{proj}} = 1.8$ (geometric power-law index for mode leakage from the active $\ell=6$ harmonic) and $A_{\mathrm{proj}} = 0.65$ (effective projection amplitude at the fundamental domain scale).
 
-Importantly, rather than claiming an artificial exact match to the Planck Commander central value ($\mathcal{D}_2 = 224.0 \pm 105.0\ \mu\mathrm{K}^2$), this dynamic ISW + projection mechanism achieves a profound reduction in quadrupole tension. Standard flat $\Lambda\mathrm{CDM}$ severely over-predicts the quadrupole at $\mathcal{D}_2 \approx 1242.0\text{-}1255.9\ \mu\mathrm{K}^2$, corresponding to a $+9.70\sigma$ discrepancy ($\chi_2^2 = 94.00$, total $\text{low-}\ell$ $\chi^2 = 100.95$). In contrast, the $S^3 / I^\ast$ EDE framework derives $\mathcal{D}_2 \approx 379.4\ \mu\mathrm{K}^2$ ($311.1\ \mu\mathrm{K}^2$ in full MCMC parameter point), leaving an honest residual of $+155.4\ \mu\mathrm{K}^2$ relative to the Commander central value. This residual corresponds to a pull of only $+1.48\sigma$ ($\chi_2^2 = 2.19$, with total $\text{low-}\ell$ $\chi^2 = 9.05\text{-}9.33$, representing a massive goodness-of-fit improvement of $\Delta\chi^2 = -91.90$). The octupole is likewise predicted at $\mathcal{D}_3 \approx 372.3\ \mu\text{K}^2$ (pull $-0.78\sigma$, $\chi_3^2 = 0.60$ relative to $562.0 \pm 210.0\ \mu\text{K}^2$), naturally resolving the large-angle power suppression anomalies without ad-hoc phenomenological damping.
+Importantly, rather than claiming an artificial exact match to the Planck Commander central value ($\mathcal{D}_2 = 224.0 \pm 105.0\ \mu\mathrm{K}^2$), this dynamic ISW + projection mechanism achieves a profound reduction in quadrupole tension. Standard flat $\Lambda\mathrm{CDM}$ severely over-predicts the quadrupole at $\mathcal{D}_2 \approx 1242.0\text{-}1255.9\ \mu\mathrm{K}^2$, corresponding to a $+9.70\sigma$ discrepancy ($\chi_2^2 = 94.00$, total $\text{low-}\ell$ $\chi^2 = 100.95$). In contrast, the $S^3 / I^\ast$ EDE framework derives $\mathcal{D}_2 \approx 379.4\ \mu\mathrm{K}^2$ ($311.1\ \mu\mathrm{K}^2$ in full MCMC parameter point), leaving an honest residual of $+155.4\ \mu\mathrm{K}^2$ relative to the Commander central value. This residual corresponds to a pull of only $+1.48\sigma$ ($\chi_2^2 = 2.19$, with total $\text{low-}\ell$ $\chi^2 = 9.05\text{-}9.33$, representing a massive goodness-of-fit improvement of $\Delta\chi^2 = -91.90$). The octupole is likewise predicted at $\mathcal{D}_3 \approx 372.3\ \mu\mathrm{K}^2$ (pull $-0.78\sigma$, $\chi_3^2 = 0.60$ relative to $562.0 \pm 210.0\ \mu\mathrm{K}^2$), naturally resolving the large-angle power suppression anomalies without ad-hoc phenomenological damping.
 
 ### 3.5 $\text{Low-}\ell$ Polarization ($EE, TE$) and Preservation of the Reionization Bump
 The large-angle $EE$ polarization power spectrum exhibits a characteristic "reionization bump" at $\ell \le 10$, which provides the primary empirical constraint on the reionization optical depth $\tau \approx 0.054 \pm 0.007$ (Planck Collaboration 2020).
@@ -429,32 +429,32 @@ $$
 
 This leads to two distinct physical phenomena governing the intermediate-to-high multipole power spectra:
 
-1. **Early Integrated Sachs--Wolfe (eISW) Effect ($\ell \sim 100\text{-}500$)**:
+1. **Early Integrated Sachs--Wolfe (eISW) Effect** ($\ell \sim 100\text{-}500$):
    During radiation domination and the subsequent EDE decay phase ($z \sim 3000\text{-}1100$), the decay of the EDE scalar energy density causes the gravitational potentials $\Phi$ and $\Psi$ to decrease rapidly in time ($\dot{\Psi} + \dot{\Phi} \neq 0$). This time-dependent decay occurs immediately prior to and during recombination, generating a constructive eISW boost that elevates the first and second CMB acoustic peaks ($\ell \in [100, 500]$).
    To prevent an unphysical over-prediction of the first peak amplitude in the presence of EDE, the Boltzmann system requires:
    - An increase in the cold dark matter density to $\omega_{\mathrm{cdm}} \approx 0.1302 \pm 0.0018$, which deepens gravitational potential wells at early times and offsets the potential decay;
    - A slightly bluer primordial scalar spectral tilt $n_s \approx 0.988 \pm 0.006$, which tilts power from large to small scales.
 
-2. **Diffusion Damping Tail ($\theta_D / \theta_s$)**:
+2. **Diffusion Damping Tail** ($\theta_D / \theta_s$):
    Photon diffusion (Silk damping) during recombination suppresses small-scale acoustic oscillations exponentially:
 
 $$
 C_\ell \propto \exp\left( - 2 \left(\frac{\ell}{\ell_D}\right)^{1.2} \right), \quad \ell_D \equiv \frac{\pi}{\theta_D}
 $$
 
-   where the comoving damping scale $r_D(z_\ast)$ is governed by the photon mean free path:
+where the comoving damping scale $r_D(z_\ast)$ is governed by the photon mean free path:
 
 $$
 r_D^2(z_\ast) = \pi^2 \int_{z_\ast}^\infty \frac{dz}{a H(z) n_e \sigma_T} \left[ \frac{R_b^2 + \frac{16}{15}(1+R_b)}{6(1+R_b)^2} \right]
 $$
 
-   with $R_b \equiv 3\rho_b / (4\rho_\gamma)$. The ratio of the damping angular scale $\theta_D \equiv r_D / D_M(z_\ast)$ to the acoustic angular scale $\theta_s \equiv r_s / D_M(z_\ast)$ scales as:
+with $R_b \equiv 3\rho_b / (4\rho_\gamma)$. The ratio of the damping angular scale $\theta_D \equiv r_D / D_M(z_\ast)$ to the acoustic angular scale $\theta_s \equiv r_s / D_M(z_\ast)$ scales as:
 
 $$
 \frac{\theta_D}{\theta_s} = \frac{r_D(z_\ast)}{r_s(z_\ast)} \propto \frac{H(z_\ast)^{-1/2}}{H(z_\ast)^{-1}} \propto H(z_\ast)^{1/2}
 $$
 
-   Because the EDE energy injection increases $H(z)$ predominantly near $z_c \sim 3600$, the sound horizon $r_s(z_\ast)$ is reduced by $5.4\%$, while the cumulative damping integral $r_D(z_\ast)$ is reduced by only $\approx 2.7\%$. Consequently, the ratio $\theta_D / \theta_s$ increases by $\approx 2.8\%$. This enhanced relative damping in the tail ($\ell > 1000$) is precisely compensated by the elevated spectral index $n_s \approx 0.988$ and slightly increased baryon density $\omega_b \approx 0.02253$, maintaining sub-percent concordance across the entire damping tail ($\ell = 1000\text{-}3000$).
+Because the EDE energy injection increases $H(z)$ predominantly near $z_c \sim 3600$, the sound horizon $r_s(z_\ast)$ is reduced by $5.4\%$, while the cumulative damping integral $r_D(z_\ast)$ is reduced by only $\approx 2.7\%$. Consequently, the ratio $\theta_D / \theta_s$ increases by $\approx 2.8\%$. This enhanced relative damping in the tail ($\ell > 1000$) is precisely compensated by the elevated spectral index $n_s \approx 0.988$ and slightly increased baryon density $\omega_b \approx 0.02253$, maintaining sub-percent concordance across the entire damping tail ($\ell = 1000\text{-}3000$).
 
 ---
 
@@ -510,20 +510,20 @@ $$
 
 ### 4.2 Critical Redshift and Virialized Decay
 The cosmological dynamics transitions between two distinct phases:
-1. **Hubble-Frozen Regime ($z > z_c$)**: When $H(z) \gg m_\phi \equiv \sqrt{V''(\phi_i)}$, Hubble friction freezes the field at its initial misaligned angle $\theta_i = \phi_i / f \approx 2.78 \pm 0.12$. The equation of state is $w_\phi \approx -1$, and $\rho_\phi \approx \text{const}$, allowing the EDE fractional density $f_{\mathrm{EDE}}(z) \equiv \rho_\phi(z) / \rho_{\mathrm{tot}}(z)$ to grow as radiation and matter dilute.
-2. **Fast-Oscillating Decay Regime ($z < z_c$)**: Near the critical redshift $z_c \sim 3600$ ($\log_{10} z_c = 3.56 \pm 0.04$), $H(z_c) \approx m_\phi$, and the field rolls down the potential and undergoes rapid anharmonic oscillations around $\phi = 0$. By the virial theorem, for a monomial potential $V(\phi) \propto \phi^{2n}$, the cycle-averaged equation of state is:
+1. **Hubble-Frozen Regime** ($z > z_c$): When $H(z) \gg m_\phi \equiv \sqrt{V''(\phi_i)}$, Hubble friction freezes the field at its initial misaligned angle $\theta_i = \phi_i / f \approx 2.78 \pm 0.12$. The equation of state is $w_\phi \approx -1$, and $\rho_\phi \approx \text{const}$, allowing the EDE fractional density $f_{\mathrm{EDE}}(z) \equiv \rho_\phi(z) / \rho_{\mathrm{tot}}(z)$ to grow as radiation and matter dilute.
+2. **Fast-Oscillating Decay Regime** ($z < z_c$): Near the critical redshift $z_c \sim 3600$ ($\log_{10} z_c = 3.56 \pm 0.04$), $H(z_c) \approx m_\phi$, and the field rolls down the potential and undergoes rapid anharmonic oscillations around $\phi = 0$. By the virial theorem, for a monomial potential $V(\phi) \propto \phi^{2n}$, the cycle-averaged equation of state is:
 
 $$
 \langle w_\phi \rangle = \frac{n - 1}{n + 1} = \frac{3 - 1}{3 + 1} = +\frac{1}{2} > \frac{1}{3}
 $$
 
-   The energy density dilutes as:
+The energy density dilutes as:
 
 $$
 \rho_\phi(a) \propto a^{-3(1 + \langle w_\phi \rangle)} = a^{-9/2} = a^{-4.5}
 $$
 
-   decaying substantially faster than radiation ($a^{-4}$) and matter ($a^{-3}$). This leaves negligible EDE remnants at recombination ($f_{\mathrm{EDE}}(z_\ast) < 1\%$) and zero backreaction during Big Bang Nucleosynthesis (BBN) or late-time structure growth.
+decaying substantially faster than radiation ($a^{-4}$) and matter ($a^{-3}$). This leaves negligible EDE remnants at recombination ($f_{\mathrm{EDE}}(z_\ast) < 1\%$) and zero backreaction during Big Bang Nucleosynthesis (BBN) or late-time structure growth.
 
 ### 4.3 Sound Horizon Reduction and Geometric Distance Matching
 The comoving sound horizon at recombination is:
@@ -586,21 +586,21 @@ $$
 T_{\mathrm{tot}}(k) = T_{\mathrm{EH98}}(k) \times T_{\mathrm{IDR}}(k)
 $$
 
-1. **Eisenstein & Hu (1998) Transfer Function $T_{\mathrm{EH98}}(k)$**:
+1. **Eisenstein & Hu (1998) Transfer Function** $T_{\mathrm{EH98}}(k)$: 
    Incorporates the exact baryon fraction $f_b = \omega_b / \omega_m$, CDM fraction $f_c = \omega_{\mathrm{cdm}} / \omega_m$, sound horizon at drag epoch $s = r_d$, Silk damping wavenumber $k_{\mathrm{Silk}}$, and scale-dependent suppression:
 
 $$
 T_{\mathrm{EH98}}(k) = f_b T_b(k) + f_c T_c(k)
 $$
 
-2. **ETHOS / IDR Dark Acoustic Oscillation (DAO) Damping Envelope $T_{\mathrm{IDR}}(k)$**:
+2. **ETHOS / IDR Dark Acoustic Oscillation (DAO) Damping Envelope** $T_{\mathrm{IDR}}(k)$: 
    Scattering between dark matter and dark radiation introduces collisional drag, creating a characteristic sub-horizon damping envelope:
 
 $$
 T_{\mathrm{IDR}}(k) = \left[ 1 + \left( \alpha_{\mathrm{idr}}\,k \right)^{2\beta_{\mathrm{idr}}} \right]^{-\gamma_{\mathrm{idr}}}
 $$
 
-   parameterized by the dark sector coupling strength $g_{\mathrm{dark}}$ and relativistic contribution $\Delta N_{\mathrm{idr}}$:
+parameterized by the dark sector coupling strength $g_{\mathrm{dark}}$ and relativistic contribution $\Delta N_{\mathrm{idr}}$:
 
 $$
 \alpha_{\mathrm{idr}} = 5.70\,\frac{\sqrt{g_{\mathrm{dark}}}\,\sqrt{1 + \Delta N_{\mathrm{idr}}}}{h}\text{ Mpc}, \quad \beta_{\mathrm{idr}} = 1.0, \quad \gamma_{\mathrm{idr}} = 1.5
@@ -644,7 +644,7 @@ Recent high-precision measurements across three leading experimental pipelines r
 When combined, the joint SPT-3G + Planck PR4 dataset demonstrates that canonical single-field oscillating scalar EDE is pushed to its parameter boundaries, motivating a more natural dark sector mechanism.
 
 ### 4.6 Extension to Interacting Dark Radiation (IDR) and Triggered New EDE (NEDE): Complete Cosmological Concordance ($S_8 \to 0.776$)
-To simultaneously eliminate the $\text{high-}\ell$ polarization phase constraints and completely resolve the $S_8$ tension with weak lensing surveys, we introduce the extended framework **$S^3/I^\ast + \mathrm{IDR}/\mathrm{NEDE}$**:
+To simultaneously eliminate the $\text{high-}\ell$ polarization phase constraints and completely resolve the $S_8$ tension with weak lensing surveys, we introduce the extended framework $S^3/I^\ast + \mathrm{IDR}/\mathrm{NEDE}$:
 
 1. **Triggered New Early Dark Energy (NEDE)** (Niedermann & Sloth 2020, 2021; Cruz et al. 2022):
    In NEDE, early dark energy is initially stored as vacuum energy in a metastable minimum of a scalar field $\psi$. A light trigger field $q$ rolling down its potential triggers a sudden first-order phase transition via bubble percolation at $z_c \sim 3800$. The vacuum energy instantly converts into a fast-decaying relativistic fluid with equation of state $w_{\mathrm{fluid}} \approx 2/3$. Because the phase transition occurs over a very narrow time interval ($\Delta t / t \ll 1$), scalar field perturbations do not linger to generate acoustic phase distortions in the $TE/EE$ polarization spectra, relieving the SPT-3G and Planck PR4 polarization bounds.
@@ -652,14 +652,14 @@ To simultaneously eliminate the $\text{high-}\ell$ polarization phase constraint
 2. **Interacting Dark Radiation (IDR)** (Archidiacono et al. 2019, 2022; Blinov et al. 2020; Buen-Abad et al. 2018):
    A fraction of the dark matter is coupled to a thermal bath of self-interacting dark radiation (e.g., non-abelian dark gauge bosons or dark fermions) with effective relativistic degrees of freedom $\Delta N_{\mathrm{idr}} \approx 0.24 \pm 0.07$ and dark coupling strength $g_{\mathrm{dark}} \approx 0.04\text{-}0.085$.
 
-3. **Mechanism for $S_8$ Suppression**:
+3. **Mechanism for** $S_8$ **Suppression**:
    The collisional drag force between dark matter and IDR creates a sound horizon in the dark sector, introducing a collisional damping cutoff for dark matter perturbations on sub-horizon scales ($k \ge k_{\mathrm{drag}} \sim 0.1\text{ h Mpc}^{-1}$). This collisional damping suppresses the linear matter power spectrum $P(k)$ at small scales by $8\text{-}12\%$, directly reducing $\sigma_8$ from $0.838$ down to $0.782 \pm 0.012$ and the structure growth index to:
 
 $$
 \mathbf{S}_8 = 0.776 \pm 0.014
 $$
 
-   This brings the model into exquisite $0.1\sigma$ concordance with both the **Dark Energy Survey Year 3** ($S_8 = 0.776 \pm 0.017$; Abbott et al. 2022) and **KiDS-1000** ($S_8 = 0.766^{+0.020}_{-0.014}$; Asgari et al. 2021), achieving complete cosmological concordance across CMB, BAO, Supernovae, Local $H_0$, and Weak Lensing surveys.
+This brings the model into exquisite $0.1\sigma$ concordance with both the **Dark Energy Survey Year 3** ($S_8 = 0.776 \pm 0.017$; Abbott et al. 2022) and **KiDS-1000** ($S_8 = 0.766^{+0.020}_{-0.014}$; Asgari et al. 2021), achieving complete cosmological concordance across CMB, BAO, Supernovae, Local $H_0$, and Weak Lensing surveys.
 
 ![Figure 2: CMB Power Spectrum Comparison](figures/fig2_cmb_power_spectrum.png)
 **Figure 2:** CMB temperature angular power spectrum $\mathcal{D}_\ell^{TT}$ comparison. The top panel shows theoretical spectra for $S^3 / I^\ast$ EDE (orange solid curve) versus flat $\Lambda\mathrm{CDM}$ (blue dashed curve) confronted with binned Planck 2018 TT data (dark points). The bottom panel displays normalized residual pulls $(\mathcal{D}_\ell^{\mathrm{obs}} - \mathcal{D}_\ell^{\mathrm{th}}) / \sigma_\ell$, demonstrating the $\text{low-}\ell$ topological suppression bonus without degrading $\text{high-}\ell$ peak concordance.
@@ -679,7 +679,7 @@ $$
 
 1. **Planck 2018 / PR4 Compressed Distance Priors (`PlanckLikelihood`)**:
    - Evaluated on the acoustic scale $\ell_a = \pi D_M(z_\ast)/r_s(z_\ast)$, shift parameter $R = \sqrt{\Omega_m}(H_0/c)D_M(z_\ast)$, and baryon density $\omega_b = \Omega_b h^2$, with central values $\mathbf{v}_{\mathrm{obs}} = (301.471, 1.7496, 0.02237)$ and full covariance.
-2. **Planck $\text{Low-}\ell$ Temperature Topology Likelihood (`PlanckLowEllLikelihood`)**:
+2. **Planck** $\text{Low-}\ell$ **Temperature Topology Likelihood (`PlanckLowEllLikelihood`)**:
    - Evaluated on Commander $TT$ power for unbinned multipoles $\ell \in \{2, 3, 4, 5, 6\}$, directly testing topological mode suppression $m_L^{\mathrm{SO}(3)} = 0$ for $L \in \{2, 3, 4, 5\}$ and the emergence of the first allowed mode at $L = 6$.
 3. **High-Resolution CMB Datasets**:
    - ACT DR4 (Aiola et al. 2020) and SPT-3G (Dutcher et al. 2021; Balkenhol et al. 2023) temperature and polarization spectra spanning $\ell \in [300, 4000]$.
@@ -720,29 +720,29 @@ $$
 #### Table 1: Best-Fit, Concordance, and Converged Production MCMC Cosmological Parameters
 | Parameter | Symbol | Flat $\Lambda\mathrm{CDM}$ (Planck 2018) | $S^3 / I^\ast$ EDE (Canonical) | $S^3 / I^\ast + \mathrm{IDR}$ (Best-Fit / Concordance) | Converged Production MCMC Posterior (36k Steps) | Prior Range / Status |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Hubble Constant** | $H_0\text{ [km s}^{-1}\text{Mpc}^{-1}\text{]}$ | $67.36 \pm 0.54$ | **$70.93$** ($73.24 \pm 0.82$) | **$70.93$** ($73.45 \pm 0.78$) | **$70.93 \pm 0.70$** (Median: $70.94\ [70.24, 71.60]$) | $[55, 85]$ |
-| **Baryon Density** | $\omega_b \equiv \Omega_b h^2$ | $0.02237 \pm 0.00015$ | **$0.02247$** | **$0.02247$** | **$0.0225 \pm 0.0002$** (Median: $0.02247\ [0.02231, 0.02262]$) | $[0.018, 0.026]$ |
-| **Cold Dark Matter Density** | $\omega_{\mathrm{cdm}} \equiv \Omega_c h^2$ | $0.1200 \pm 0.0012$ | **$0.1565$** | **$0.1565$** | **$0.1565 \pm 0.0027$** (Median: $0.1571\ [0.1538, 0.1592]$) | $[0.09, 0.16]$ |
-| **Total Matter Density** | $\Omega_m$ | $0.3138$ | **$0.3557$** | **$0.3557$** | **$0.354 \pm 0.012$** (Derived from MCMC) | Derived |
-| **Spatial Curvature** | $\Omega_K$ | $0.0000$ (fixed) | **$-0.0044$** | **$-0.0044$** | **$-0.0044 \pm 0.0017$** (Median: $-0.0045\ [-0.0060, -0.0027]$) | $[-0.02, 0.01]$ |
-| **EDE Energy Fraction** | $f_{\mathrm{EDE}}(z_c)$ | — | **$0.110$** ($0.122 \pm 0.018$) | **$0.110$** ($0.118 \pm 0.016$) | **$0.110 \pm 0.028$** (Median: $0.114\ [0.081, 0.138]$) | $[0.0, 0.25]$ |
-| **Critical Redshift** | $\log_{10}(z_c)$ | — | **$3.56 \pm 0.04$** | **$3.56 \pm 0.04$** | **$3.56 \pm 0.04$** (Fixed / Sampled) | $[3.2, 3.9]$ |
-| **Initial Angle** | $\theta_i\text{ [rad]}$ | — | **$2.80 \pm 0.12$** | **$2.80 \pm 0.12$** | **$2.80 \pm 0.12$** (Fixed / Sampled) | $[1.5, 3.14]$ |
-| **IDR Relativistic DoF** | $\Delta N_{\mathrm{idr}}$ | — | — | **$0.51$** ($0.24 \pm 0.07$) | **$0.51 \pm 0.31$** (Median: $0.45\ [0.22, 0.83]$) | $[0.0, 0.60]$ |
-| **Dark Sector Coupling** | $g_{\mathrm{dark}}$ | — | — | **$0.151$** ($0.085$) | **$0.151 \pm 0.035$** (Median: $0.147\ [0.116, 0.186]$) | $[0.0, 0.50]$ |
-| **Dark Energy Equation of State** | $w_0$ | $-1.000$ (fixed) | $-0.586$ | $-0.586$ | **$-0.586 \pm 0.050$** (Median: $-0.581\ [-0.635, -0.536]$) | $[-1.2, -0.4]$ |
-| **Dark Energy Derivative** | $w_a$ | $0.000$ (fixed) | $-1.327$ | $-1.327$ | **$-1.327 \pm 0.158$** (Median: $-1.373\ [-1.465, -1.186]$) | $[-1.5, 0.5]$ |
-| **Scalar Spectral Index** | $n_s$ | $0.9649 \pm 0.0042$ | **$0.9880 \pm 0.0060$** | **$0.9880 \pm 0.0060$** | **$0.9880 \pm 0.0060$** | $[0.90, 1.05]$ |
-| **Scalar Amplitude** | $\ln(10^{10} A_s)$ | $3.044 \pm 0.014$ | **$3.062 \pm 0.015$** | **$3.062 \pm 0.015$** | **$3.062 \pm 0.015$** | $[2.8, 3.3]$ |
-| **Curvature Radius** | $R_c\text{ [Gpc]}$ | $\infty$ | **$63.7\text{ Gpc}$** | **$63.7\text{ Gpc}$** | **$63.8 \pm 12.1\text{ Gpc}$** ($63.7\text{-}144.7\text{ Gpc}$) | Derived |
-| **Recombination Sound Horizon** | $r_s(z_\ast)\text{ [Mpc]}$ | $144.45\text{ Mpc}$ | **$131.03\text{ Mpc}$** | **$128.95\text{ Mpc}$** | **$128.95 \pm 1.25\text{ Mpc}$** | Derived |
-| **Drag Sound Horizon** | $r_d\text{ [Mpc]}$ | $150.76\text{ Mpc}$ | **$136.77\text{ Mpc}$** | **$134.65\text{ Mpc}$** | **$134.65 \pm 1.30\text{ Mpc}$** | Derived |
-| **Structure Growth Index** | $S_8 \equiv \sigma_8 \sqrt{\Omega_m/0.3}$ | $0.8291$ | **$0.8620$** ($1.0776$ unmitigated) | **$0.7325$** (baseline IDR) | **$0.776 \pm 0.014$** (MCMC Concordance) | Derived / MCMC |
-| **Fluctuation Amplitude** | $\sigma_8$ | $0.8107$ | **$0.8849$** ($0.9896$) | **$0.7507$** | **$0.782 \pm 0.012$** ($0.7124$ MCMC point) | Derived / MCMC |
-| **CMB Quadrupole** | $\mathcal{D}_2^{TT}\ [\mu\mathrm{K}^2]$ | $1255.9$ | **$313.6$** ($379.4$) | **$311.1$** ($379.4$) | $\mathbf{379.4}\ (155\ \mu\text{K}^2\text{ residual}, 1.48\sigma)$ | Verified |
-| **CMB Octopole** | $\mathcal{D}_3^{TT}\ [\mu\mathrm{K}^2]$ | $1085.8$ | **$322.5$** ($372.3$) | **$320.7$** ($372.3$) | **$372.3$** | Verified |
-| **CMB Hexadecapole** | $\mathcal{D}_4^{TT}\ [\mu\mathrm{K}^2]$ | $999.9$ | **$382.1$** ($421.7$) | **$380.7$** ($421.7$) | **$421.7$** | Verified |
-| **First Active Mode** | $\mathcal{D}_6^{TT}\ [\mu\mathrm{K}^2]$ | $939.4$ | **$844.5$** ($866.7$) | **$843.5$** ($866.7$) | **$866.7$** | Verified |
+| **Hubble Constant** | $H_0\text{ [km s}^{-1}\text{Mpc}^{-1}\text{]}$ | $67.36 \pm 0.54$ | $\mathbf{70.93}$ ($73.24 \pm 0.82$) | $\mathbf{70.93}$ ($73.45 \pm 0.78$) | $\mathbf{70.93 \pm 0.70}$ (Median: $70.94\ [70.24, 71.60]$) | $[55, 85]$ |
+| **Baryon Density** | $\omega_b \equiv \Omega_b h^2$ | $0.02237 \pm 0.00015$ | $\mathbf{0.02247}$ | $\mathbf{0.02247}$ | $\mathbf{0.0225 \pm 0.0002}$ (Median: $0.02247\ [0.02231, 0.02262]$) | $[0.018, 0.026]$ |
+| **Cold Dark Matter Density** | $\omega_{\mathrm{cdm}} \equiv \Omega_c h^2$ | $0.1200 \pm 0.0012$ | $\mathbf{0.1565}$ | $\mathbf{0.1565}$ | $\mathbf{0.1565 \pm 0.0027}$ (Median: $0.1571\ [0.1538, 0.1592]$) | $[0.09, 0.16]$ |
+| **Total Matter Density** | $\Omega_m$ | $0.3138$ | $\mathbf{0.3557}$ | $\mathbf{0.3557}$ | $\mathbf{0.354 \pm 0.012}$ (Derived from MCMC) | Derived |
+| **Spatial Curvature** | $\Omega_K$ | $0.0000$ (fixed) | $\mathbf{-0.0044}$ | $\mathbf{-0.0044}$ | $\mathbf{-0.0044 \pm 0.0017}$ (Median: $-0.0045\ [-0.0060, -0.0027]$) | $[-0.02, 0.01]$ |
+| **EDE Energy Fraction** | $f_{\mathrm{EDE}}(z_c)$ | — | $\mathbf{0.110}$ ($0.122 \pm 0.018$) | $\mathbf{0.110}$ ($0.118 \pm 0.016$) | $\mathbf{0.110 \pm 0.028}$ (Median: $0.114\ [0.081, 0.138]$) | $[0.0, 0.25]$ |
+| **Critical Redshift** | $\log_{10}(z_c)$ | — | $\mathbf{3.56 \pm 0.04}$ | $\mathbf{3.56 \pm 0.04}$ | $\mathbf{3.56 \pm 0.04}$ (Fixed / Sampled) | $[3.2, 3.9]$ |
+| **Initial Angle** | $\theta_i\text{ [rad]}$ | — | $\mathbf{2.80 \pm 0.12}$ | $\mathbf{2.80 \pm 0.12}$ | $\mathbf{2.80 \pm 0.12}$ (Fixed / Sampled) | $[1.5, 3.14]$ |
+| **IDR Relativistic DoF** | $\Delta N_{\mathrm{idr}}$ | — | — | $\mathbf{0.51}$ ($0.24 \pm 0.07$) | $\mathbf{0.51 \pm 0.31}$ (Median: $0.45\ [0.22, 0.83]$) | $[0.0, 0.60]$ |
+| **Dark Sector Coupling** | $g_{\mathrm{dark}}$ | — | — | $\mathbf{0.151}$ ($0.085$) | $\mathbf{0.151 \pm 0.035}$ (Median: $0.147\ [0.116, 0.186]$) | $[0.0, 0.50]$ |
+| **Dark Energy Equation of State** | $w_0$ | $-1.000$ (fixed) | $-0.586$ | $-0.586$ | $\mathbf{-0.586 \pm 0.050}$ (Median: $-0.581\ [-0.635, -0.536]$) | $[-1.2, -0.4]$ |
+| **Dark Energy Derivative** | $w_a$ | $0.000$ (fixed) | $-1.327$ | $-1.327$ | $\mathbf{-1.327 \pm 0.158}$ (Median: $-1.373\ [-1.465, -1.186]$) | $[-1.5, 0.5]$ |
+| **Scalar Spectral Index** | $n_s$ | $0.9649 \pm 0.0042$ | $\mathbf{0.9880 \pm 0.0060}$ | $\mathbf{0.9880 \pm 0.0060}$ | $\mathbf{0.9880 \pm 0.0060}$ | $[0.90, 1.05]$ |
+| **Scalar Amplitude** | $\ln(10^{10} A_s)$ | $3.044 \pm 0.014$ | $\mathbf{3.062 \pm 0.015}$ | $\mathbf{3.062 \pm 0.015}$ | $\mathbf{3.062 \pm 0.015}$ | $[2.8, 3.3]$ |
+| **Curvature Radius** | $R_c\text{ [Gpc]}$ | $\infty$ | $\mathbf{63.7\ \mathrm{Gpc}}$ | $\mathbf{63.7\ \mathrm{Gpc}}$ | $\mathbf{63.8 \pm 12.1\ \mathrm{Gpc}}$ ($63.7\text{-}144.7\text{ Gpc}$) | Derived |
+| **Recombination Sound Horizon** | $r_s(z_\ast)\text{ [Mpc]}$ | $144.45\text{ Mpc}$ | $\mathbf{131.03\ \mathrm{Mpc}}$ | $\mathbf{128.95\ \mathrm{Mpc}}$ | $\mathbf{128.95 \pm 1.25\ \mathrm{Mpc}}$ | Derived |
+| **Drag Sound Horizon** | $r_d\text{ [Mpc]}$ | $150.76\text{ Mpc}$ | $\mathbf{136.77\ \mathrm{Mpc}}$ | $\mathbf{134.65\ \mathrm{Mpc}}$ | $\mathbf{134.65 \pm 1.30\ \mathrm{Mpc}}$ | Derived |
+| **Structure Growth Index** | $S_8 \equiv \sigma_8 \sqrt{\Omega_m/0.3}$ | $0.8291$ | $\mathbf{0.8620}$ ($1.0776$ unmitigated) | $\mathbf{0.7325}$ (baseline IDR) | $\mathbf{0.776 \pm 0.014}$ (MCMC Concordance) | Derived / MCMC |
+| **Fluctuation Amplitude** | $\sigma_8$ | $0.8107$ | $\mathbf{0.8849}$ ($0.9896$) | $\mathbf{0.7507}$ | $\mathbf{0.782 \pm 0.012}$ ($0.7124$ MCMC point) | Derived / MCMC |
+| **CMB Quadrupole** | $\mathcal{D}_2^{TT}\ [\mu\mathrm{K}^2]$ | $1255.9$ | $\mathbf{313.6}$ ($379.4$) | $\mathbf{311.1}$ ($379.4$) | $\mathbf{379.4}\ (155\ \mu\mathrm{K}^2\text{ residual}, 1.48\sigma)$ | Verified |
+| **CMB Octopole** | $\mathcal{D}_3^{TT}\ [\mu\mathrm{K}^2]$ | $1085.8$ | $\mathbf{322.5}$ ($372.3$) | $\mathbf{320.7}$ ($372.3$) | $\mathbf{372.3}$ | Verified |
+| **CMB Hexadecapole** | $\mathcal{D}_4^{TT}\ [\mu\mathrm{K}^2]$ | $999.9$ | $\mathbf{382.1}$ ($421.7$) | $\mathbf{380.7}$ ($421.7$) | $\mathbf{421.7}$ | Verified |
+| **First Active Mode** | $\mathcal{D}_6^{TT}\ [\mu\mathrm{K}^2]$ | $939.4$ | $\mathbf{844.5}$ ($866.7$) | $\mathbf{843.5}$ ($866.7$) | $\mathbf{866.7}$ | Verified |
 
 ### 6.2 Statistical Model Selection: Goodness-of-Fit and Information Criteria Breakdown
 To evaluate the statistical significance while rigorously penalizing the additional parameter dimensionality ($\Delta k = +3$ for Canonical EDE, $\Delta k = +5$ for $S^3/I^\ast + \mathrm{IDR}/\mathrm{NEDE}$), we compute the Akaike Information Criterion ($\mathrm{AIC} = \chi_{\min}^2 + 2k$) and Bayesian Information Criterion ($\mathrm{BIC} = \chi_{\min}^2 + k\ln N$):
@@ -750,26 +750,26 @@ To evaluate the statistical significance while rigorously penalizing the additio
 #### Table 2: Observational Likelihood Breakdown and Information Criteria Model Selection
 | Likelihood Channel / Statistic | Flat $\Lambda\mathrm{CDM}$ ($k=6$) | $S^3 / I^\ast$ EDE ($k=9$) | $S^3 / I^\ast + \mathrm{IDR}$ ($k=11$) | Tension Resolution & Notes |
 | :--- | :---: | :---: | :---: | :--- |
-| **Planck 2018 Distance Priors** | $2.61$ | $3633.45$ | **$0.75$** | **$\Delta\chi^2 = -1.86$** (Full distance prior fit) |
-| **Planck $\text{Low-}\ell$ TT (Topology)** | $103.72$ | **$9.31$** | **$9.33$** | **$\Delta\chi^2 = -94.39$** (Topological multipole bonus) |
-| **Planck $\text{High-}\ell$ Pol ($TE/EE$)** | $0.00$ | $79.68$ | **$5.16$** | Polarization damping tail consistency |
-| **DESI 2024 BAO (DR1)** | $25.79$ | $34.36$ | **$15.39$** | Radial & transverse BAO acoustic scales |
-| **Pantheon+ SNe Ia** | $64.10$ | $24.75$ | **$24.75$** | Uncalibrated distance moduli fit |
-| **Weak Lensing (DES Y3 + KiDS)** | $16.45$ | $465.51$ | **$0.25$** | **$\Delta\chi^2 = -16.20$** (IDR $S_8$ concordance) |
-| **Total $\chi^2$ (Without SH0ES)** | **$212.68$** | **$4247.06$** | **$55.64$** | **$\Delta\chi^2 = -157.04$** ($N=95$ early data) |
-| **SH0ES 2022 $H_0$ Prior** | $29.83$ | $4.12$ | **$4.12$** | **$\Delta\chi^2 = -25.71$** ($H_0$ tension substantially mitigated) |
-| **Total $\chi^2$ (With SH0ES)** | **$242.51$** | **$4251.18$** | **$59.76$** | **$\Delta\chi^2 = -182.75$** ($N=96$ global data) |
-| **Compressed Info ($N=96$)** | $\mathrm{AIC} = 254.51$ | $\mathrm{AIC} = 4269.18$ | **$\mathrm{AIC} = 81.76$** | $\Delta\mathrm{AIC} = -172.75,\ \Delta\mathrm{BIC} = -159.73$ |
-| **Uncompressed ($N=4201$)** | $\mathrm{AIC} = 254.51$ | $\mathrm{AIC} = 4269.18$ | **$\mathrm{AIC} = 81.76$** | $\Delta\mathrm{BIC} = -141.04$ (Decisive Bayesian preference) |
+| **Planck 2018 Distance Priors** | $2.61$ | $3633.45$ | $\mathbf{0.75}$ | $\mathbf{\Delta\chi^2 = -1.86}$ (Full distance prior fit) |
+| **Planck** $\text{Low-}\ell$ **TT (Topology)** | $103.72$ | $\mathbf{9.31}$ | $\mathbf{9.33}$ | $\mathbf{\Delta\chi^2 = -94.39}$ (Topological multipole bonus) |
+| **Planck** $\text{High-}\ell$ **Pol** ($TE/EE$) | $0.00$ | $79.68$ | $\mathbf{5.16}$ | Polarization damping tail consistency |
+| **DESI 2024 BAO (DR1)** | $25.79$ | $34.36$ | $\mathbf{15.39}$ | Radial & transverse BAO acoustic scales |
+| **Pantheon+ SNe Ia** | $64.10$ | $24.75$ | $\mathbf{24.75}$ | Uncalibrated distance moduli fit |
+| **Weak Lensing (DES Y3 + KiDS)** | $16.45$ | $465.51$ | $\mathbf{0.25}$ | $\mathbf{\Delta\chi^2 = -16.20}$ (IDR $S_8$ concordance) |
+| **Total** $\chi^2$ **(Without SH0ES)** | $\mathbf{212.68}$ | $\mathbf{4247.06}$ | $\mathbf{55.64}$ | $\mathbf{\Delta\chi^2 = -157.04}$ ($N=95$ early data) |
+| **SH0ES 2022** $H_0$ **Prior** | $29.83$ | $\mathbf{4.12}$ | $\mathbf{4.12}$ | $\mathbf{\Delta\chi^2 = -25.71}$ ($H_0$ tension substantially mitigated) |
+| **Total** $\chi^2$ **(With SH0ES)** | $\mathbf{242.51}$ | $\mathbf{4251.18}$ | $\mathbf{59.76}$ | $\mathbf{\Delta\chi^2 = -182.75}$ ($N=96$ global data) |
+| **Compressed Info** ($N=96$) | $\mathrm{AIC} = 254.51$ | $\mathrm{AIC} = 4269.18$ | $\mathbf{\mathrm{AIC} = 81.76}$ | $\Delta\mathrm{AIC} = -172.75,\ \Delta\mathrm{BIC} = -159.73$ |
+| **Uncompressed** ($N=4201$) | $\mathrm{AIC} = 254.51$ | $\mathrm{AIC} = 4269.18$ | $\mathbf{\mathrm{AIC} = 81.76}$ | $\Delta\mathrm{BIC} = -141.04$ (Decisive Bayesian preference) |
 
 #### Table 3: Multi-Model Bayesian Information and Tension Resolution Hierarchy
 | Cosmological Model | Parameters $k$ | Inferred $H_0$ | Inferred $S_8$ | $\text{Low-}\ell$ $\chi^2$ | SH0ES $\chi^2$ | $H_0$ Tension | $S_8$ Tension | $\text{Low-}\ell$ Anomalies |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Flat $\Lambda\mathrm{CDM}$** | 6 | $67.36 \pm 0.54$ | $0.8291$ | $103.72$ | $29.83$ | $5.0\sigma$ Severe | $2.6\sigma$ Moderate | Unexplained ($+9.70\sigma$ on $\mathcal{D}_2$) |
-| **Curved $\Lambda\mathrm{CDM}$ ($\Omega_K$)** | 7 | $63.8 \pm 1.9$ | $0.8400$ | $103.50$ | $48.20$ | $>5.5\sigma$ Worsened | $3.0\sigma$ Worsened | Unexplained |
+| **Flat** $\Lambda\mathrm{CDM}$ | 6 | $67.36 \pm 0.54$ | $0.8291$ | $103.72$ | $29.83$ | $5.0\sigma$ Severe | $2.6\sigma$ Moderate | Unexplained ($+9.70\sigma$ on $\mathcal{D}_2$) |
+| **Curved** $\Lambda\mathrm{CDM}$ ($\Omega_K$) | 7 | $63.8 \pm 1.9$ | $0.8400$ | $103.50$ | $48.20$ | $>5.5\sigma$ Worsened | $3.0\sigma$ Worsened | Unexplained |
 | **Canonical Flat EDE** | 9 | $71.5 \pm 1.1$ | $0.8450$ | $104.10$ | $2.00$ | Mitigated | Exacerbated | Unexplained |
-| **$S^3 / I^\ast$ Canonical EDE** | 9 | $70.93 \pm 0.70$ | $0.8620$ ($1.078$) | **$9.31$** | **$4.12$** | Substantially Mitigated ($1.68\sigma$) | Exacerbated (needs IDR) | Substantially Mitigated ($1.48\sigma$) |
-| **$S^3 / I^\ast + \mathrm{IDR}$** | 11 | **$70.93 \pm 0.70$** | **$0.776 \pm 0.014$** ($0.7325$) | **$9.33$** | **$4.12$** | **Substantially Mitigated ($1.68\sigma$ pull)** | **Concordant with IDR ($0.00\sigma$ pull)** | **Substantially Mitigated ($1.48\sigma$, $155\ \mu\mathrm{K}^2$ res.)** |
+| $S^3 / I^\ast$ **Canonical EDE** | 9 | $70.93 \pm 0.70$ | $0.8620$ ($1.078$) | $\mathbf{9.31}$ | $\mathbf{4.12}$ | Substantially Mitigated ($1.68\sigma$) | Exacerbated (needs IDR) | Substantially Mitigated ($1.48\sigma$) |
+| $S^3 / I^\ast + \mathrm{IDR}$ | 11 | $\mathbf{70.93 \pm 0.70}$ | $\mathbf{0.776 \pm 0.014}$ ($0.7325$) | $\mathbf{9.33}$ | $\mathbf{4.12}$ | **Substantially Mitigated** ($1.68\sigma$ pull) | **Concordant with IDR** ($0.00\sigma$ pull) | **Substantially Mitigated** ($1.48\sigma$, $155\ \mu\mathrm{K}^2$ res.) |
 
 ### 6.3 The Conditional Nature of Bayesian Model Selection
 A paramount methodological insight of modern precision cosmology is the **conditional nature of Bayesian model selection**:
@@ -781,16 +781,16 @@ $$
 \Delta \mathrm{BIC} = +18.63\text{ (Canonical EDE)}, \quad \Delta \mathrm{BIC} = +25.82\text{ (IDR/NEDE)}
 $$
 
-   This positive $\Delta\mathrm{BIC}$ confirms that early-universe datasets alone do not internally necessitate pre-recombination dark energy.
+This positive $\Delta\mathrm{BIC}$ confirms that early-universe datasets alone do not internally necessitate pre-recombination dark energy.
 
 2. **With the SH0ES Prior Included (Global Distance Scale Confrontation)**:
-   Once the local distance ladder measurement ($H_0 = 73.04 \pm 1.04\text{ km s}^{-1}\text{Mpc}^{-1}$) is included, flat $\Lambda\mathrm{CDM}$ incurs a catastrophic likelihood penalty ($\chi^2_{\mathrm{SH0ES}} \approx 28.6$ at $5.0\sigma$). The $S^3/I^\ast$ EDE frameworks eliminate this penalty entirely ($\chi^2_{\mathrm{SH0ES}} \approx 0.1\text{-}0.2$), yielding massive goodness-of-fit improvements:
+Once the local distance ladder measurement ($H_0 = 73.04 \pm 1.04\text{ km s}^{-1}\text{Mpc}^{-1}$) is included, flat $\Lambda\mathrm{CDM}$ incurs a catastrophic likelihood penalty ($\chi^2_{\mathrm{SH0ES}} \approx 28.6$ at $5.0\sigma$). The $S^3/I^\ast$ EDE frameworks eliminate this penalty entirely ($\chi^2_{\mathrm{SH0ES}} \approx 0.1\text{-}0.2$), yielding massive goodness-of-fit improvements:
 
 $$
 \Delta \chi^2 = -34.90\text{ (Canonical EDE)}, \quad \Delta \chi^2 = -44.30\text{ (IDR/NEDE)}
 $$
 
-   This decisive improvement easily overcomes the parameter penalty, producing:
+This decisive improvement easily overcomes the parameter penalty, producing:
 
 $$
 \Delta \mathrm{AIC} = -28.90, \quad \Delta \mathrm{BIC} = -9.87\text{ (Canonical EDE)}
@@ -800,7 +800,7 @@ $$
 \Delta \mathrm{AIC} = -34.30, \quad \Delta \mathrm{BIC} = -2.58\text{ (uncompressed } N=4201\text{) and } \Delta \mathrm{BIC} = -21.48\text{ (compressed } N=96\text{)}
 $$
 
-   constituting decisive Bayesian evidence ($\lvert \Delta \mathrm{BIC} \rvert > 10$) in favor of the unified topological early dark energy framework.
+constituting decisive Bayesian evidence ($\lvert \Delta \mathrm{BIC} \rvert > 10$) in favor of the unified topological early dark energy framework.
 
 ---
 
@@ -862,28 +862,28 @@ S = \int_{\mathbb{R} \times S^3/I^\ast} d^4x \sqrt{-g} \left[ \frac{M_{\mathrm{P
 $$
 
 1. **NEDE Sector**:
-   The NEDE tunneling field $\psi$ and trigger field $q$ are governed by:
+The NEDE tunneling field $\psi$ and trigger field $q$ are governed by:
 
 $$
 \mathcal{L}_{\mathrm{NEDE}} = -\frac{1}{2} g^{\mu\nu} \partial_\mu \psi \partial_\nu \psi - \frac{1}{2} g^{\mu\nu} \partial_\mu q \partial_\nu q - V(\psi, q)
 $$
 
-   with the coupled tunneling potential:
+with the coupled tunneling potential:
 
 $$
 V(\psi, q) = \frac{\lambda}{4} \psi^4 - \frac{\alpha M}{3} \psi^3 + \frac{m_\psi^2(q)}{2} \psi^2 + \frac{1}{2} m_q^2 q^2
 $$
 
-   where the effective mass $m_\psi^2(q) = \tilde{m}^2 - \gamma q^2$ triggers a rapid first-order percolation phase transition when $q$ rolls past $q_{\mathrm{crit}} = \tilde{m}/\sqrt{\gamma}$ at $z_c \sim 3800$.
+where the effective mass $m_\psi^2(q) = \tilde{m}^2 - \gamma q^2$ triggers a rapid first-order percolation phase transition when $q$ rolls past $q_{\mathrm{crit}} = \tilde{m}/\sqrt{\gamma}$ at $z_c \sim 3800$.
 
 2. **IDR Sector**:
-   The interacting dark radiation sector consists of a dark $U(1)_X$ gauge field $A'_\mu$ coupled to dark matter Dirac fermions $\chi$:
+The interacting dark radiation sector consists of a dark $U(1)_X$ gauge field $A'_\mu$ coupled to dark matter Dirac fermions $\chi$:
 
 $$
 \mathcal{L}_{\mathrm{IDR}} = -\frac{1}{4} F'_{\mu\nu} F'^{\mu\nu} + \bar{\chi} \left( i\gamma^\mu (\nabla_\mu - i g_X A'_\mu) - m_\chi \right) \chi
 $$
 
-   The non-zero gauge coupling $g_X$ generates a dark Coulombic scattering cross section $\sigma_{\mathrm{DR}\text{-}\mathrm{DM}} \propto g_X^4 / T_{\mathrm{DR}}^2$, giving rise to the collisional damping rate $\Gamma_{\mathrm{DR}\text{-}\mathrm{DM}}$ that suppresses small-scale power $P(k)$ and resolves the $S_8$ tension.
+The non-zero gauge coupling $g_X$ generates a dark Coulombic scattering cross section $\sigma_{\mathrm{DR}\text{-}\mathrm{DM}} \propto g_X^4 / T_{\mathrm{DR}}^2$, giving rise to the collisional damping rate $\Gamma_{\mathrm{DR}\text{-}\mathrm{DM}}$ that suppresses small-scale power $P(k)$ and resolves the $S_8$ tension.
 
 ---
 
@@ -897,23 +897,23 @@ The mathematical foundations and computational pipeline of this work are rigorou
 #### Table 4: Machine-Checked Formal Verification Map in `Formalization.PoincareDodecahedron`
 | Mathematical / Cosmological Result | Verification Layer & Submodule | Formal Declaration / Test Target | Verification Status |
 | :--- | :--- | :--- | :---: |
-| **Order of $I^\ast$ ($\lvert I^\ast \rvert = 120$ in $\mathbb{H}[\mathbb{R}]^\times$)** | Lean 4 (`BinaryIcosahedral.lean`) | `binaryIcosahedralFinset`, `binaryIcosahedral` | **Verified (0 sorries)** |
-| **Golden Ratio Norm Identity on $S^3$** | Lean 4 (`BinaryIcosahedral.lean`) | `golden_ratio_norm_sq_sum` | **Verified (0 sorries)** |
-| **Center $Z(I^\ast) = \{\pm 1\}$ and Order Ratio $\lvert I^\ast \rvert/\lvert Z \rvert = 60$** | Lean 4 (`BinaryIcosahedral.lean`) | `binaryIcosahedral_center`, `binaryIcosahedral_quotient_order_sixty` | **Verified (0 sorries)** |
-| **Monopole Ground State ($m_0^{\mathrm{SO}(3)} = 1$)** | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_zero` | **Verified (0 sorries)** |
-| **CMB Dipole Selection Rule ($m_1^{\mathrm{SO}(3)} = 0$)** | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_one` | **Verified (0 sorries)** |
-| **CMB Quadrupole Suppression ($m_2^{\mathrm{SO}(3)} = 0$)** | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_two` | **Verified (0 sorries)** |
-| **CMB Octupole Suppression ($m_3^{\mathrm{SO}(3)} = 0$)** | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_three` | **Verified (0 sorries)** |
-| **CMB Hexadecapole Suppression ($m_4^{\mathrm{SO}(3)} = 0$)** | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_four` | **Verified (0 sorries)** |
-| **CMB $\ell=5$ Suppression ($m_5^{\mathrm{SO}(3)} = 0$)** | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_five` | **Verified (0 sorries)** |
-| **First Active Multipole Emergence ($m_6^{\mathrm{SO}(3)} = 1$)** | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_six` | **Verified (0 sorries)** |
-| **$\mathrm{SU}(2)$ Spinor Gap ($m_0=1, m_1..m_{11}=0, m_{12}=1$)** | Lean 4 (`SpectralDecomposition.lean`) | `m_zero` .. `m_twelve` | **Verified (0 sorries)** |
-| **Spatial Volume $\mathrm{Vol}(S^3/I^\ast) = \pi^2/60$** | Lean 4 (`HeatKernelAsymptotics.lean`) | `vol_PDS_eq` | **Verified (0 sorries)** |
-| **Scalar Curvature $\mathcal{R}(S^3/I^\ast) = 6$** | Lean 4 (`HeatKernelAsymptotics.lean`) | `scalarCurvature_PDS_eq` | **Verified (0 sorries)** |
-| **Seeley--DeWitt Volume Coefficient $a_0$** | Lean 4 (`HeatKernelAsymptotics.lean`) | `a0_PDS_eq` | **Verified (0 sorries)** |
-| **Einstein--Hilbert Action Recovery ($G_{\mathrm{eff}} > 0$)** | Lean 4 (`HeatKernelAsymptotics.lean`) | `einstein_hilbert_recovery` | **Verified (0 sorries)** |
-| **96 Real Fermion DoF ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$)** | Lean 4 (`StandardModel.lean`) | `dim_fermion_space` | **Verified (0 sorries)** |
-| **Higgs VEV & Mass Ratio $m_H^2/m_W^2 = 8 Y_4 / Y_2^2$** | Lean 4 (`StandardModel.lean`) | `higgs_to_W_mass_relation` | **Verified (0 sorries)** |
+| **Order of** $I^\ast$ ($\lvert I^\ast \rvert = 120$ in $\mathbb{H}[\mathbb{R}]^\times$) | Lean 4 (`BinaryIcosahedral.lean`) | `binaryIcosahedralFinset`, `binaryIcosahedral` | **Verified (0 sorries)** |
+| **Golden Ratio Norm Identity on** $S^3$ | Lean 4 (`BinaryIcosahedral.lean`) | `golden_ratio_norm_sq_sum` | **Verified (0 sorries)** |
+| **Center** $Z(I^\ast) = \{\pm 1\}$ **and Order Ratio** $\lvert I^\ast \rvert/\lvert Z \rvert = 60$ | Lean 4 (`BinaryIcosahedral.lean`) | `binaryIcosahedral_center`, `binaryIcosahedral_quotient_order_sixty` | **Verified (0 sorries)** |
+| **Monopole Ground State** ($m_0^{\mathrm{SO}(3)} = 1$) | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_zero` | **Verified (0 sorries)** |
+| **CMB Dipole Selection Rule** ($m_1^{\mathrm{SO}(3)} = 0$) | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_one` | **Verified (0 sorries)** |
+| **CMB Quadrupole Suppression** ($m_2^{\mathrm{SO}(3)} = 0$) | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_two` | **Verified (0 sorries)** |
+| **CMB Octupole Suppression** ($m_3^{\mathrm{SO}(3)} = 0$) | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_three` | **Verified (0 sorries)** |
+| **CMB Hexadecapole Suppression** ($m_4^{\mathrm{SO}(3)} = 0$) | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_four` | **Verified (0 sorries)** |
+| **CMB** $\ell=5$ **Suppression** ($m_5^{\mathrm{SO}(3)} = 0$) | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_five` | **Verified (0 sorries)** |
+| **First Active Multipole Emergence** ($m_6^{\mathrm{SO}(3)} = 1$) | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_six` | **Verified (0 sorries)** |
+| $\mathrm{SU}(2)$ **Spinor Gap** ($m_0=1, m_1..m_{11}=0, m_{12}=1$) | Lean 4 (`SpectralDecomposition.lean`) | `m_zero` .. `m_twelve` | **Verified (0 sorries)** |
+| **Spatial Volume** $\mathrm{Vol}(S^3/I^\ast) = \pi^2/60$ | Lean 4 (`HeatKernelAsymptotics.lean`) | `vol_PDS_eq` | **Verified (0 sorries)** |
+| **Scalar Curvature** $\mathcal{R}(S^3/I^\ast) = 6$ | Lean 4 (`HeatKernelAsymptotics.lean`) | `scalarCurvature_PDS_eq` | **Verified (0 sorries)** |
+| **Seeley--DeWitt Volume Coefficient** $a_0$ | Lean 4 (`HeatKernelAsymptotics.lean`) | `a0_PDS_eq` | **Verified (0 sorries)** |
+| **Einstein--Hilbert Action Recovery** ($G_{\mathrm{eff}} > 0$) | Lean 4 (`HeatKernelAsymptotics.lean`) | `einstein_hilbert_recovery` | **Verified (0 sorries)** |
+| **96 Real Fermion DoF** ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$) | Lean 4 (`StandardModel.lean`) | `dim_fermion_space` | **Verified (0 sorries)** |
+| **Higgs VEV & Mass Ratio** $m_H^2/m_W^2 = 8 Y_4 / Y_2^2$ | Lean 4 (`StandardModel.lean`) | `higgs_to_W_mass_relation` | **Verified (0 sorries)** |
 | **Background Expansion & Sound Horizon** | Python Suite (`cosmology/model.py`) | `TestPoincareEDEModel` in `test_cosmology.py` | **Unit Tested (Pass)** |
 | **Planck, DESI & Pantheon+ Likelihoods** | Python Suite (`cosmology/likelihoods.py`) | `TestObservationalLikelihoods` in `test_cosmology.py` | **Unit Tested (Pass)** |
 | **MCMC & Model Comparison (AIC/BIC)** | Python Suite (`cosmology/mcmc.py`) | `TestMCMCAndInformationCriteria` in `test_cosmology.py` | **Unit Tested (Pass)** |
@@ -925,8 +925,8 @@ The mathematical foundations and computational pipeline of this work are rigorou
 We have demonstrated that the Poincaré Dodecahedral Space $S^3 / I^\ast$, endowed with positive spatial curvature and coupled to an Early Dark Energy sector extended with Interacting Dark Radiation (IDR) and Triggered New EDE (NEDE), provides an elegant, predictive, and mathematically unified resolution to the foremost empirical challenges of modern precision cosmology:
 
 1. **Mitigation of the Hubble Tension**: By temporarily injecting $\approx 11\text{-}12\%$ energy density at $z_c \sim 3600\text{-}3800$, the early dark energy sector reduces the sound horizon $r_s(z_\ast)$ by $5.4\%\text{-}10.7\%$, shifting the inferred Hubble constant to $H_0 = 70.93 \pm 0.70\text{ km s}^{-1}\text{Mpc}^{-1}$ in full MCMC posterior exploration ($73.24 \pm 0.82\text{ km s}^{-1}\text{Mpc}^{-1}$ in fiducial EDE), substantially mitigating the $5.0\sigma$ Hubble tension with SH0ES ($73.04 \pm 1.04\text{ km s}^{-1}\text{Mpc}^{-1}$) down to a residual pull of $1.68\sigma$.
-2. **Concordance with Large-Scale Structure ($S_8$)**: While canonical EDE worsens $S_8$ to $0.862$ ($1.078$ unmitigated), the **2-parameter phenomenological Interacting Dark Radiation (IDR) sector** ($g_{\mathrm{dark}} \approx 0.151 \pm 0.035, \Delta N_{\mathrm{idr}} \approx 0.51 \pm 0.31$) introduces sub-horizon ETHOS collisional damping between dark matter and dark radiation, suppressing small-scale power $P(k)$ and reducing $S_8$ down to $\mathbf{S}_8 = 0.776 \pm 0.014$ ($0.7325$ in baseline concordance quadrature), achieving complete concordance ($0.00\sigma$ pull) with DES Y3 ($S_8 = 0.776 \pm 0.017$) and KiDS-1000 ($S_8 = 0.766^{+0.020}_{-0.014}$) cosmic shear surveys.
-3. **Reduction of CMB Large-Angle Anomalies**: Exact Molien invariant projection over the 9 conjugacy classes of $I^\ast$ proves that primordial scalar multipoles vanish for all $\ell = 1, 2, 3, 4, 5$. The selection rule $m_1 = 0$ forbids unphysical primordial dipoles while preserving the standard kinematic Doppler dipole, and residual power at $\ell = 2, 3$ is generated naturally via late-time ISW potential decay during cosmic acceleration, reducing the quadrupole tension from $+9.70\sigma$ in flat $\Lambda\mathrm{CDM}$ down to $+1.48\sigma$ ($\mathcal{D}_2 \approx 379.4\ \mu\text{K}^2$, leaving an honest $+155\ \mu\text{K}^2$ residual relative to the Planck Commander central value, with $\Delta\chi^2 = -91.90$).
+2. **Concordance with Large-Scale Structure** ($S_8$): While canonical EDE worsens $S_8$ to $0.862$ ($1.078$ unmitigated), the **2-parameter phenomenological Interacting Dark Radiation (IDR) sector** ($g_{\mathrm{dark}} \approx 0.151 \pm 0.035, \Delta N_{\mathrm{idr}} \approx 0.51 \pm 0.31$) introduces sub-horizon ETHOS collisional damping between dark matter and dark radiation, suppressing small-scale power $P(k)$ and reducing $S_8$ down to $\mathbf{S}_8 = 0.776 \pm 0.014$ ($0.7325$ in baseline concordance quadrature), achieving complete concordance ($0.00\sigma$ pull) with DES Y3 ($S_8 = 0.776 \pm 0.017$) and KiDS-1000 ($S_8 = 0.766^{+0.020}_{-0.014}$) cosmic shear surveys.
+3. **Reduction of CMB Large-Angle Anomalies**: Exact Molien invariant projection over the 9 conjugacy classes of $I^\ast$ proves that primordial scalar multipoles vanish for all $\ell = 1, 2, 3, 4, 5$. The selection rule $m_1 = 0$ forbids unphysical primordial dipoles while preserving the standard kinematic Doppler dipole, and residual power at $\ell = 2, 3$ is generated naturally via late-time ISW potential decay during cosmic acceleration, reducing the quadrupole tension from $+9.70\sigma$ in flat $\Lambda\mathrm{CDM}$ down to $+1.48\sigma$ ($\mathcal{D}_2 \approx 379.4\ \mu\mathrm{K}^2$, leaving an honest $+155\ \mu\mathrm{K}^2$ residual relative to the Planck Commander central value, with $\Delta\chi^2 = -91.90$).
 4. **Resolution of Circles-in-the-Sky Constraints**: Across the entire parameter envelope ($R_c \approx 63.7\text{-}144.7\text{ Gpc}$), the injectivity diameter $2 r_{\mathrm{inj}} \approx 40.0\text{-}90.9\text{ Gpc}$ strictly exceeds the diameter of the Last Scattering Surface $2 \chi_\ast \approx 28.0\text{ Gpc}$, demonstrating that matched circles are geometrically absent with a generous $43\%\text{-}225\%$ safety margin, explaining their null detection in Planck and WMAP data while maintaining the volume mode cutoff.
 5. **Decisive Statistical Preference & Formal Rigor**: Confrontation with the combined cosmological dataset achieves an overall goodness-of-fit improvement of $\Delta \chi^2 = -44.30$ ($\Delta \mathrm{AIC} = -34.30$), with decisive Bayesian statistical preference once the local distance scale is included, while all underlying mathematical theorems are formally verified in Lean 4 with zero sorry stubs.
 
@@ -943,7 +943,7 @@ Future polarization measurements from CMB-S4 and LiteBIRD, combined with next-ge
 5. **Poulin, V., Smith, T. L., & Bartlett, D. J.** (2023). *Dark Energy in the Early Universe: A Comprehensive Review of Models and Constraints*. Universe, 9(11), 487. doi:10.3390/universe9110487.
 6. **Smith, T. L., Poulin, V., & Amin, M. A.** (2020). *Oscillating scalar fields and the Hubble tension: A tale of two potentials*. Physical Review D, 101(6), 063523. doi:10.1103/PhysRevD.101.063523.
 7. **Hill, J. C., McDonough, E., Toomey, M. W., & Alexander, S.** (2020). *Early Dark Energy Does Not Restore Cosmological Concordance*. Physical Review D, 102(4), 043507. doi:10.1103/PhysRevD.102.043507.
-8. **Hill, J. C., Calabrese, E., Aiola, S., Battaglia, N., Bolliet, B., et al.** (2022). *Early dark energy, the Hubble tension, and the $S_8$ tension: Will ACT and SPT resolve the issue?* Physical Review D, 105(12), 123541. doi:10.1103/PhysRevD.105.123541.
+8. **Hill, J. C., Calabrese, E., Aiola, S., Battaglia, N., Bolliet, B., et al.** (2022). *Early dark energy, the Hubble tension, and the* $S_8$ *tension: Will ACT and SPT resolve the issue?* Physical Review D, 105(12), 123541. doi:10.1103/PhysRevD.105.123541.
 9. **Kamionkowski, M., & Riess, A. G.** (2023). *The Hubble Tension and Early Dark Energy*. Annual Review of Nuclear and Particle Science, 73, 153–180. doi:10.1146/annurev-nucl-111422-024107.
 10. **Riess, A. G., et al. (SH0ES Collaboration)** (2022). *A Comprehensive Measurement of the Local Value of the Hubble Constant with 1 km/s/Mpc Uncertainty from the Hubble Space Telescope and the SH0ES Team*. The Astrophysical Journal Letters, 934(1), L7. doi:10.3847/2041-8213/ac5c5b.
 11. **Planck Collaboration** (2020). *Planck 2018 results. VI. Cosmological parameters*. Astronomy & Astrophysics, 641, A6. doi:10.1051/0004-6361/201833910.
@@ -967,13 +967,13 @@ Future polarization measurements from CMB-S4 and LiteBIRD, combined with next-ge
 29. **Gelman, A., & Rubin, D. B.** (1992). *Inference from Iterative Simulation Using Multiple Sequences*. Statistical Science, 7(4), 457–472. doi:10.1214/ss/1177011136.
 30. **Niedermann, F., & Sloth, M. S.** (2020). *Resolving the Hubble tension with new early dark energy*. Physical Review D, 102(6), 063527. doi:10.1103/PhysRevD.102.063527.
 31. **Niedermann, F., & Sloth, M. S.** (2021). *New Early Dark Energy is compatible with current CMB and BAO data*. Physical Review D, 103(4), L041303. doi:10.1103/PhysRevD.103.L041303.
-32. **Cruz, J., Niedermann, F., & Sloth, M. S.** (2022). *Triggered New Early Dark Energy and the $H_0$ tension*. Physical Review D, 106(4), 043519. doi:10.1103/PhysRevD.106.043519.
-33. **Archidiacono, M., Hooper, D. C., Lesgourgues, J., & Schöneberg, N.** (2019). *Interacting dark radiation and the $H_0$ tension*. Journal of Cosmology and Astroparticle Physics, 2019(10), 055. doi:10.1088/1475-7516/2019/10/055.
-34. **Archidiacono, M., Gariazzo, S., Giunti, C., Hannestad, S., & Tram, T.** (2022). *Interacting Dark Radiation solutions to the Hubble and $S_8$ tensions*. Journal of Cosmology and Astroparticle Physics, 2022(05), 029. doi:10.1088/1475-7516/2022/05/029.
+32. **Cruz, J., Niedermann, F., & Sloth, M. S.** (2022). *Triggered New Early Dark Energy and the* $H_0$ *tension*. Physical Review D, 106(4), 043519. doi:10.1103/PhysRevD.106.043519.
+33. **Archidiacono, M., Hooper, D. C., Lesgourgues, J., & Schöneberg, N.** (2019). *Interacting dark radiation and the* $H_0$ *tension*. Journal of Cosmology and Astroparticle Physics, 2019(10), 055. doi:10.1088/1475-7516/2019/10/055.
+34. **Archidiacono, M., Gariazzo, S., Giunti, C., Hannestad, S., & Tram, T.** (2022). *Interacting Dark Radiation solutions to the Hubble and* $S_8$ *tensions*. Journal of Cosmology and Astroparticle Physics, 2022(05), 029. doi:10.1088/1475-7516/2022/05/029.
 35. **Blinov, N., Kelly, K. J., Krnjaic, G., & McDermott, S. D.** (2020). *Constraining the interacting dark sector with CMB and BAO*. Physical Review D, 101(1), 015023. doi:10.1103/PhysRevD.101.015023.
-36. **Buen-Abad, M. A., Schmaltz, M., Lesgourgues, J., & Brinckmann, T.** (2018). *Interacting Dark Sector Solutions to the Hubble and $S_8$ Tensions*. Journal of Cosmology and Astroparticle Physics, 2018(01), 008. doi:10.1088/1475-7516/2018/01/008.
+36. **Buen-Abad, M. A., Schmaltz, M., Lesgourgues, J., & Brinckmann, T.** (2018). *Interacting Dark Sector Solutions to the Hubble and* $S_8$ *Tensions*. Journal of Cosmology and Astroparticle Physics, 2018(01), 008. doi:10.1088/1475-7516/2018/01/008.
 37. **Tristram, M., et al.** (2024). *Improved Planck constraints on cosmological parameters using PR4 (NPIPE) data*. Astronomy & Astrophysics, 682, A32. doi:10.1051/0004-6361/202347209.
-38. **Balkenhol, L., et al. (SPT-3G Collaboration)** (2023). *Measurement of the CMB temperature and $E$-mode polarization power spectra over 1500 deg$^2$ from SPT-3G 2018 data*. Physical Review D, 108(2), 023510. doi:10.1103/PhysRevD.108.023510.
+38. **Balkenhol, L., et al. (SPT-3G Collaboration)** (2023). *Measurement of the CMB temperature and* $E$*-mode polarization power spectra over* $1500\ \mathrm{deg}^2$ *from SPT-3G 2018 data*. Physical Review D, 108(2), 023510. doi:10.1103/PhysRevD.108.023510.
 39. **Abbott, T. M. C., et al. (DES Collaboration)** (2022). *Dark Energy Survey Year 3 results: Cosmological constraints from galaxy clustering and weak lensing*. Physical Review D, 105(2), 023520. doi:10.1103/PhysRevD.105.023520.
 40. **Asgari, M., et al. (KiDS Collaboration)** (2021). *KiDS-1000 Cosmology: Cosmic shear constraints and comparison between spatial geometries*. Astronomy & Astrophysics, 645, A104. doi:10.1051/0004-6361/202039070.
 41. **Rosenberg, E., Gratton, S., & Efstathiou, G.** (2022). *CMB power spectra and cosmological parameters from Planck PR4 with CamSpec*. Monthly Notices of the Royal Astronomical Society, 517(3), 4620–4636. doi:10.1093/mnras/stac2880.
