@@ -69,13 +69,9 @@ theorem not_dvd_one_of_gt_one {d : ℤ} (hd : 1 < d) : ¬ (d ∣ 1) := by
 
 /-- An integer $d > 1$ cannot divide $-1$. -/
 theorem not_dvd_neg_one_of_gt_one {d : ℤ} (hd : 1 < d) : ¬ (d ∣ -1) := by
-  intro ⟨k, hk⟩
-  have hk' : 1 = d * (-k) := by
-    calc 1 = -(-1) := by ring
-    _ = -(d * k) := by rw [hk]
-    _ = d * -k := by ring
-  have h1 : d ∣ 1 := ⟨-k, hk'⟩
-  exact not_dvd_one_of_gt_one hd h1
+  intro h
+  have := Int.le_of_dvd (by omega) (Int.dvd_neg.mp h)
+  omega
 
 /-- **Theorem 2 (Non-Coprime Obstruction)**:
     If $d > 1$ divides both $a_1$ and $a_2$, then for ANY integer twists $(\ell_0, \ell_1, \ell_2)$,
