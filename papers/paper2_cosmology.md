@@ -509,10 +509,20 @@ $$
    - Correlation matrix:
 
 $$
-\mathbf{R}_{\mathrm{Planck}} = \begin{pmatrix} 1.000 & 0.420 & -0.460 \\ 0.420 & 1.000 & -0.660 \\ -0.460 & -0.660 & 1.000 \end{pmatrix}
+\mathbf{R}_{\mathrm{Planck}} = \begin{pmatrix}
+1.000 & 0.420 & -0.460 \\
+0.420 & 1.000 & -0.660 \\
+-0.460 & -0.660 & 1.000
+\end{pmatrix}
 $$
 
-   - Full covariance $\mathbf{C}_{\mathrm{Planck}} = \boldsymbol{\sigma}\boldsymbol{\sigma}^T \odot \mathbf{R}_{\mathrm{Planck}}$. This preserves sub-percent acoustic peak location fidelity while enabling rapid MCMC exploration.
+   - Full covariance matrix:
+
+$$
+\mathbf{C}_{\mathrm{Planck}} = (\boldsymbol{\sigma}\boldsymbol{\sigma}^T) \odot \mathbf{R}_{\mathrm{Planck}}
+$$
+
+     This preserves sub-percent acoustic peak location fidelity while enabling rapid MCMC exploration.
 
 2. **Planck 2018 $\text{Low-}\ell$ Temperature Topology Likelihood (`PlanckLowEllLikelihood`)**:
    - Evaluated on Commander $TT$ power for unbinned multipoles $\ell \in \{2, 3, 4, 5, 6\}$:

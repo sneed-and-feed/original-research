@@ -38,7 +38,10 @@ $$
 Under the standard complex matrix representation, a unit quaternion $q = x_0 + x_1 \mathbf{i} + x_2 \mathbf{j} + x_3 \mathbf{k} \in S^3$ is mapped isomorphically to the unitary matrix:
 
 $$
-U(q) = \begin{pmatrix} x_0 + i x_1 & x_2 + i x_3 \\ -x_2 + i x_3 & x_0 - i x_1 \end{pmatrix} \in \mathrm{SU}(2).
+U(q) = \begin{pmatrix}
+x_0 + i x_1 & x_2 + i x_3 \\
+-x_2 + i x_3 & x_0 - i x_1
+\end{pmatrix} \in \mathrm{SU}(2).
 $$
 
 ### 1.2 The Binary Icosahedral Group $I^\ast$
@@ -426,7 +429,16 @@ $$
 $$
 
    - **Real Particle-Antiparticle Degrees of Freedom ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$)**: Accounting for antiparticles via the antilinear charge conjugation real structure $J_F$ ($J_F^2 = 1, J_F \mathcal{D}_F = \mathcal{D}_F J_F$), yielding $48 \times 2 = 96$ real degrees of freedom.
-3. **Finite Dirac Operator**: $\mathcal{D}_F = \begin{pmatrix} S & T^\dagger \\ T & \overline{S} \end{pmatrix}$, encoding the $3 \times 3$ Dirac Yukawa matrices $(Y_u, Y_d, Y_e, Y_\nu)$ and the symmetric Majorana mass matrix $M_R$ for right-handed neutrinos (Type-I seesaw mechanism).
+3. **Finite Dirac Operator**:
+
+$$
+\mathcal{D}_F = \begin{pmatrix}
+S & T^\dagger \\
+T & \overline{S}
+\end{pmatrix}
+$$
+
+   encoding the $3 \times 3$ Dirac Yukawa matrices $(Y_u, Y_d, Y_e, Y_\nu)$ and the symmetric Majorana mass matrix $M_R$ for right-handed neutrinos (Type-I seesaw mechanism).
 
 ### 4.2 Chamseddine--Connes Spectral Action Expansion
 
