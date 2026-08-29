@@ -11,7 +11,10 @@
 
 We present a unified mathematical treatise and machine-checked formalization in Lean 4 of the spectral invariants, discrete group representations, and topological obstructions characterizing closed 3-manifolds across four canonical Thurston geometries: **Spherical** ($\mathbb{S}^3$), **Hyperbolic** ($\mathbb{H}^3$), **Euclidean** ($\mathbb{E}^3$), and **Nilpotent** ($\mathrm{Nil}^3$). 
 
-For $\mathbb{S}^3$, we formalize the Diophantine classification of Seifert homology spheres $\Sigma(p,q,r)$, the Fintushel–Stern and Kirk–Klassen exact rational Chern–Simons actions on isolated irreducible $\mathrm{SU}(2)$ character varieties $\mathcal{R}^\ast(\Sigma(p,q,r))$, the stationary phase partition sums, and their connection to Lawrence–Zagier / Hikami false theta characters $\chi_{120}$ and rational exponents. For $\mathbb{H}^3$, we formalize the Weeks manifold $\mathcal{W}$—the unique closed orientable hyperbolic 3-manifold of minimal volume $\mathrm{Vol}(\mathcal{W}) \approx 0.942707$—its fundamental group $\pi_1(\mathcal{W})$, first homology $H_1(\mathcal{W}, \mathbb{Z}) \cong \mathbb{Z}_5 \oplus \mathbb{Z}_5$, the invariant cubic trace field $k = \mathbb{Q}(\theta)$ with minimal complex discriminant $\mathrm{Disc} = -23$, Chinburg–Hamilton–Long–Reid quaternion ramification, the Ramanujan–Selberg spectral gap $\lambda_1 \approx 27.80195 > 1$, and geometric horizon containment. For $\mathbb{E}^3$, we formalize the Hantzsche–Wendt didicosm $G_6$ (the unique closed orientable flat 3-manifold with first Betti number $b_1 = 0$), establishing the **Spectral Gap Doubling Theorem** $\lambda_1(G_6) = 2\lambda_1(T^3)$ via destructive Fourier parity interference under affine screw-motions. For $\mathrm{Nil}^3$, we formalize the Heisenberg nilmanifold $N_3 = \mathrm{Nil}^3/\mathcal{H}_3(\mathbb{Z})$ as a principal circle bundle over $T^2$ with Euler class $e = 1$, deriving the discrete Landau-level harmonic oscillator spectral towers $\lambda_{k,n} = 4\pi^2 k^2 + 2\pi |k|(2n+1)$ with exact spectral gap $\Delta\lambda = 2\pi > 0$ and mixed Ricci curvatures ($R = -1/2$). 
+- **Spherical Pillar** ($\mathbb{S}^3$): We formalize the Diophantine classification of Seifert homology spheres $\Sigma(p,q,r)$, the Fintushel–Stern and Kirk–Klassen exact rational Chern–Simons actions on isolated irreducible $\mathrm{SU}(2)$ character varieties $\mathcal{R}^\ast(\Sigma(p,q,r))$, the stationary phase partition sums, and their connection to Lawrence–Zagier false theta characters $\chi_{120}$ and rational exponents.
+- **Hyperbolic Pillar** ($\mathbb{H}^3$): We formalize the Weeks manifold $\mathcal{W}$—the unique closed orientable hyperbolic 3-manifold of minimal volume $\mathrm{Vol}(\mathcal{W}) \approx 0.942707$—its fundamental group $\pi_1(\mathcal{W})$, first homology $H_1(\mathcal{W}, \mathbb{Z}) \cong \mathbb{Z}_5 \oplus \mathbb{Z}_5$, the invariant cubic trace field $k = \mathbb{Q}(\theta)$ with minimal complex discriminant $\mathrm{Disc} = -23$, Chinburg–Hamilton–Long–Reid quaternion ramification, the Ramanujan–Selberg spectral gap $\lambda_1 \approx 27.80195 > 1$, and geometric horizon containment.
+- **Euclidean Pillar** ($\mathbb{E}^3$): We formalize the Hantzsche–Wendt didicosm $G_6$ (the unique closed orientable flat 3-manifold with first Betti number $b_1 = 0$), establishing the Spectral Gap Doubling Theorem $\lambda_1(G_6) = 2\lambda_1(T^3)$ via destructive Fourier parity interference under affine screw-motions.
+- **Nilpotent Pillar** ($\mathrm{Nil}^3$): We formalize the Heisenberg nilmanifold $N_3 = \mathrm{Nil}^3/\mathcal{H}_3(\mathbb{Z})$ as a principal circle bundle over $T^2$ with Euler class $e = 1$, deriving the discrete Landau-level harmonic oscillator spectral towers $\lambda_{k,n} = 4\pi^2 k^2 + 2\pi \lvert k \rvert (2n+1)$ with exact spectral gap $\Delta\lambda = 2\pi > 0$ and mixed Ricci curvatures ($R = -1/2$).
 
 All definitions, theorems, and structural identifications are machine-checked with zero `sorry` stubs, zero custom axioms, and full kernel closure in Lean 4.
 
@@ -25,7 +28,7 @@ The Geometrization Theorem (Thurston 1982, 1997; Perelman 2002, 2003) establishe
 \mathbb{S}^3, \quad \mathbb{H}^3, \quad \mathbb{E}^3, \quad \mathrm{Nil}^3, \quad \mathrm{Sol}^3, \quad \mathbb{S}^2 \times \mathbb{R}, \quad \mathbb{H}^2 \times \mathbb{R}, \quad \widetilde{\mathrm{SL}}_2(\mathbb{R})
 ```
 
-While classification schemes often treat these geometries in isolation, their **spectral geometry**—the discrete eigenvalues and eigenspaces of the Laplace–Beltrami operator $\Delta = -\mathrm{div} \circ \nabla$ acting on $L^2(M)$—exhibits starkly contrasting algebraic structures driven by the discrete fundamental group $\Gamma = \pi_1(M) \subset \mathrm{Isom}(X)$.
+While classification schemes often treat these geometries in isolation, their spectral geometry—the discrete eigenvalues and eigenspaces of the Laplace–Beltrami operator $\Delta = -\mathrm{div} \circ \nabla$ acting on $L^2(M)$—exhibits starkly contrasting algebraic structures driven by the discrete fundamental group $\Gamma = \pi_1(M) \subset \mathrm{Isom}(X)$.
 
 In this work, we formalize the spectral, topological, and gauge-theoretic invariants across four canonical representatives:
 
@@ -185,7 +188,7 @@ In `Formalization.WeeksManifold.SpectralGap`, we formalize:
    ```math
    \lambda_1(\mathcal{W}) \approx 27.80195, \quad k_1 \approx 5.17706, \quad \Delta\lambda = \lambda_1 - 1 \approx 26.80195 > 0
    ```
-   This certifies the Generalized Ramanujan–Selberg property: $\mathcal{W}$ possesses **zero small eigenvalues** in the complementary series $(0, 1)$.
+   This certifies the Generalized Ramanujan–Selberg property: $\mathcal{W}$ possesses zero small eigenvalues in the complementary series $(0, 1)$.
 2. Cosmic Horizon Containment:
    For comoving surface-of-last-scattering radius $\chi_\ast \approx 3.14$ and curvature radius $R_c = 1/\sqrt{|\Omega_K|} \ge 1/\sqrt{0.005} \approx 14.14$, the comoving depth satisfies:
    ```math
@@ -232,7 +235,7 @@ On the Didicosm $G_6$, any eigenfunction $f$ must be invariant under the screw m
 f(\gamma_1(x, y, z)) = f\left(x + \frac{L}{2}, -y, -z\right) = f(x, y, z)
 ```
 
-For a single-axis mode $(1, 0, 0)$, shifting $x \mapsto x + L/2$ introduces a phase shift $e^{i \frac{2\pi}{L} \cdot \frac{L}{2}} = e^{i\pi} = -1$, enforcing **destructive interference**:
+For a single-axis mode $(1, 0, 0)$, shifting $x \mapsto x + L/2$ introduces a phase shift $e^{i \frac{2\pi}{L} \cdot \frac{L}{2}} = e^{i\pi} = -1$, enforcing destructive interference:
 
 ```math
 f(x + L/2) = -f(x) = f(x) \implies f \equiv 0
@@ -295,15 +298,15 @@ The Laplace–Beltrami operator $\Delta = -(X^2 + Y^2 + Z^2)$ decomposes under F
    ```
    with ground state $\lambda_1(N_3) = \lambda_{0, 1, 0} = 4\pi^2 \approx 39.4784$.
 2. Central Excited Subspaces ($k \in \mathbb{Z} \setminus \{0\}$):
-   For $f(x, y, z) = \phi(x, y) e^{2\pi i k z}$, the sub-Laplacian $-(X^2 + Y^2)$ transforms into a 1D quantum harmonic oscillator Hamiltonian with frequency $\omega = 4\pi |k|$:
+   For $f(x, y, z) = \phi(x, y) e^{2\pi i k z}$, the sub-Laplacian $-(X^2 + Y^2)$ transforms into a 1D quantum harmonic oscillator Hamiltonian with frequency $\omega = 4\pi \lvert k \rvert$:
    ```math
    \mathcal{H}_k = -\partial_x^2 + 4\pi^2 k^2 \left(x - \frac{y_0}{2\pi k}\right)^2
    ```
-   yielding discrete **Landau-level harmonic oscillator eigenvalue towers**:
+   yielding discrete Landau-level harmonic oscillator eigenvalue towers:
    ```math
-   \lambda_{k, n} = 4\pi^2 k^2 + 2\pi |k| (2n + 1), \quad n \in \mathbb{N}, \; k \in \mathbb{Z} \setminus \{0\}
+   \lambda_{k, n} = 4\pi^2 k^2 + 2\pi \lvert k \rvert (2n + 1), \quad n \in \mathbb{N}, \; k \in \mathbb{Z} \setminus \{0\}
    ```
-   with exact $|k|$-fold geometric degeneracy.
+   with exact $\lvert k \rvert$-fold geometric degeneracy.
 
 **Harmonic Oscillator Gap Theorem:**
 The lowest central excited state occurs at $k = \pm 1, n = 0$:
@@ -360,7 +363,7 @@ Formalization/
 | Euclidean ($\mathbb{E}^3$) | `Formalization/HantzscheWendt/` | 37 | Standard Kernel | 0 errors |
 | Nilpotent ($\mathrm{Nil}^3$) | `Formalization/HeisenbergNilmanifold/` | 34 | Standard Kernel | 0 errors |
 | Poincaré Dodecahedron | `Formalization/PoincareDodecahedron/` | 38 | Standard Kernel | 0 errors |
-| **Global Suite** | `Formalization.lean` | **226+** | **Standard Kernel** | **0 errors, 3203 jobs** |
+| Global Suite | `Formalization.lean` | 226+ | Standard Kernel | 0 errors, 3203 jobs |
 
 ---
 
