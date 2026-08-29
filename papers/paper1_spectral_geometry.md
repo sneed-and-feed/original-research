@@ -660,12 +660,12 @@ The formalization resides in the `Formalization.PoincareDodecahedron` module tre
 | $\mathrm{SU}(2)$ Quaternionic Character Formula $\chi_\ell(u) = U_\ell(a)$ | `SpectralDecomposition.lean` | `chebyshevU`, `chi_re`, `chi` |
 | Molien Invariant Projection Formula $m_\ell = \frac{1}{120} \sum \chi_\ell(g)$ | `SpectralDecomposition.lean` | `sum_chi_binaryIcosahedral`, `m` |
 | Monopole Ground State Multiplicity ($m_0^{\mathrm{SO}(3)} = 1$) | `SpectralDecomposition.lean` | `m_SO3_zero` |
-| Harmonic Selection Vanishing ($m_1 = \dots = m_5 = 0$) | `SpectralDecomposition.lean` | `m_SO3_one` $\dots$ `m_SO3_five` |
+| Harmonic Selection Vanishing ($m_1 = \dots = m_5 = 0$) | `SpectralDecomposition.lean` | `m_SO3_one` .. `m_SO3_five` |
 | First Active Mode Multiplicity ($m_6^{\mathrm{SO}(3)} = 1$) | `SpectralDecomposition.lean` | `m_SO3_six` |
-| Spinor Representation Multiplicities ($m_0=1, m_1..m_{11}=0, m_{12}=1$) | `SpectralDecomposition.lean` | `m_zero` $\dots$ `m_twelve` |
+| Spinor Representation Multiplicities ($m_0=1, m_1..m_{11}=0, m_{12}=1$) | `SpectralDecomposition.lean` | `m_zero` .. `m_twelve` |
 | Weyl--Molien Linear & Quadratic Densities | `SpectralDecomposition.lean` | `weyl_molien_invariant_density`, `laplacian_spectral_density_leading` |
 | Weyl--Molien Landmark Values ($\ell = 12, 60, 120$) | `SpectralDecomposition.lean` | `weyl_molien_landmark_values`, `laplacian_spectral_density_landmark_values` |
-| Discrete Heat Kernel Trace $Z(t)$ on $S^3/I^\ast$ | `SpectralDecomposition.lean` | `heatTrace`, `heatTraceTerm_zero` $\dots$ `heatTraceTerm_twelve` |
+| Discrete Heat Kernel Trace $Z(t)$ on $S^3/I^\ast$ | `SpectralDecomposition.lean` | `heatTrace`, `heatTraceTerm_zero` .. `heatTraceTerm_twelve` |
 | Volume of $S^3/I^\ast$ Closed-Form ($\mathrm{Vol} = \pi^2/60$) | `HeatKernelAsymptotics.lean` | `vol_PDS_eq` |
 | Constant Scalar Curvature $\mathcal{R}(S^3/I^\ast) = 6$ | `HeatKernelAsymptotics.lean` | `scalarCurvature_PDS_eq` |
 | Seeley--DeWitt Coefficients $a_0 = (\pi^2/60)/(4\pi)^{3/2}$ and $a_2 = a_0$ | `HeatKernelAsymptotics.lean` | `a0`, `a2`, `a2_eq_a0` |

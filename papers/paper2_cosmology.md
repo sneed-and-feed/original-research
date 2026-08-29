@@ -11,9 +11,9 @@
 
 We present a unified cosmological, topological, and field-theoretic framework based on the **Poincaré Dodecahedral Space** $\mathcal{M}^3 = S^3 / I^\ast$, the compact spherical 3-manifold obtained as the isometric quotient of the round 3-sphere $S^3$ by the binary icosahedral group $I^\ast \subset \mathrm{SU}(2)$ of order 120, coupled to an Early Dark Energy (EDE) scalar field in a positively curved background ($\Omega_K < 0$). Using Molien's invariant theory and character projection over the 9 conjugacy classes of $I^\ast$, we rigorously establish the spatial harmonic selection rules on $S^3 / I^\ast$, proving the exact vanishing of primordial scalar multipole multiplicities for all physical spherical harmonics $\ell = 1, 2, 3, 4, 5$ on $\mathrm{SO}(3)$ ($m_L^{\mathrm{SO}(3)} = 0$), with the first non-trivial spatial harmonic emerging at $\ell = 6$ ($m_6^{\mathrm{SO}(3)} = 1$). We resolve the long-standing question regarding the CMB dipole by demonstrating that the observed temperature dipole ($\Delta T \approx 3.36\text{ mK}$) is purely kinematic in origin ($v \approx 369.8\text{ km s}^{-1}$ observer Doppler boost), whereas the topological selection rule $m_1^{\mathrm{SO}(3)} = 0$ acts as an essential theoretical consistency condition forbidding unphysical primordial dipole gradients. Residual power at the quadrupole ($\ell = 2$) and octupole ($\ell = 3$) is generated dynamically via late-time Integrated Sachs--Wolfe (ISW) decay during dark energy acceleration, substantially reducing the flat $\Lambda\mathrm{CDM}$ quadrupole tension from $+9.70\sigma$ ($\chi^2 = 94.0$) down to $+1.48\sigma$ ($\chi_2^2 = 2.19$, total $\text{low-}\ell$ $\chi^2 = 9.05$, $\Delta\chi^2 = -91.90$) with a $+155\ \mu\mathrm{K}^2$ residual relative to the Planck Commander central value ($224.0 \pm 105.0\ \mu\text{K}^2$), and providing a deterministic geometric explanation for large-angle power suppression, planar alignment, and parity asymmetry anomalies.
 
-We directly confront the Cornish et al. (2004) and Planck 2015/2018 topological "circles-in-the-sky" constraints: with the corrected curvature radius $R_c = \frac{c}{H_0 \sqrt{\lvert \Omega_K \rvert}} \approx 63.7\text{--}144.7\text{ Gpc}$ (corresponding to $\Omega_K \in [-0.0044, -0.0008]$), the injectivity diameter is $2 r_{\mathrm{inj}} = \frac{\pi R_c}{5} \approx 40.0\text{--}90.9\text{ Gpc}$, which strictly exceeds the diameter of the Last Scattering Surface $2 \chi_\ast \approx 28.0\text{ Gpc}$ ($z_\ast \approx 1090$). Because $2 r_{\mathrm{inj}} > 2 \chi_\ast$, the last scattering sphere does not self-intersect, naturally explaining the null detection of matched circle pairs in Planck and WMAP data while still providing the required global infrared cutoff that excises large-angle modes. The previous "8% near-miss" claim in early literature was an artifact of an arithmetic error (confusing diameter and radius), whereas the physical topology possesses a generous $43\%\text{--}225\%$ safety margin preventing matched circles.
+We directly confront the Cornish et al. (2004) and Planck 2015/2018 topological "circles-in-the-sky" constraints: with the corrected curvature radius $R_c = \frac{c}{H_0 \sqrt{\lvert \Omega_K \rvert}} \approx 63.7\text{-}144.7\text{ Gpc}$ (corresponding to $\Omega_K \in [-0.0044, -0.0008]$), the injectivity diameter is $2 r_{\mathrm{inj}} = \frac{\pi R_c}{5} \approx 40.0\text{-}90.9\text{ Gpc}$, which strictly exceeds the diameter of the Last Scattering Surface $2 \chi_\ast \approx 28.0\text{ Gpc}$ ($z_\ast \approx 1090$). Because $2 r_{\mathrm{inj}} > 2 \chi_\ast$, the last scattering sphere does not self-intersect, naturally explaining the null detection of matched circle pairs in Planck and WMAP data while still providing the required global infrared cutoff that excises large-angle modes. The previous "8% near-miss" claim in early literature was an artifact of an arithmetic error (confusing diameter and radius), whereas the physical topology possesses a generous $43\%\text{-}225\%$ safety margin preventing matched circles.
 
-We analyze the full Boltzmann perturbation dynamics governing the early Integrated Sachs--Wolfe (eISW) effect at $\ell \sim 100\text{-}500$ and the diffusion damping tail ratio $\theta_D / \theta_s$. Simultaneously, the EDE scalar field $\phi$, governed by an axion-like potential $V(\phi) = \Lambda_{\mathrm{EDE}}^4 [1 - \cos(\phi/f)]^n$ with $n = 3$ and critical redshift $z_c \sim 3600$ ($\log_{10} z_c = 3.56 \pm 0.04$), achieves a maximum fractional energy density $f_{\mathrm{EDE}}(z_c) \approx 0.110\text{--}0.122$ and oscillates with a cycle-averaged virial equation of state $\langle w_\phi \rangle = +1/2$. This injects localized pre-recombination expansion that reduces the comoving sound horizon by $5.4\%\text{--}10.7\%$ (from $r_s(z_\ast) = 144.45\text{ Mpc}$ in flat $\Lambda\mathrm{CDM}$ to $128.95\text{--}136.07\text{ Mpc}$), raising the inferred Hubble constant to $H_0 = 70.93 \pm 0.70\text{ km s}^{-1}\text{Mpc}^{-1}$ (MCMC posterior mean) / $73.24 \pm 0.82\text{ km s}^{-1}\text{Mpc}^{-1}$ (fiducial EDE parameter point), substantially mitigating the $5.0\sigma$ Hubble tension with SH0ES ($H_0 = 73.04 \pm 1.04\text{ km s}^{-1}\text{Mpc}^{-1}$) down to a residual pull of $1.68\sigma$.
+We analyze the full Boltzmann perturbation dynamics governing the early Integrated Sachs--Wolfe (eISW) effect at $\ell \sim 100\text{-}500$ and the diffusion damping tail ratio $\theta_D / \theta_s$. Simultaneously, the EDE scalar field $\phi$, governed by an axion-like potential $V(\phi) = \Lambda_{\mathrm{EDE}}^4 [1 - \cos(\phi/f)]^n$ with $n = 3$ and critical redshift $z_c \sim 3600$ ($\log_{10} z_c = 3.56 \pm 0.04$), achieves a maximum fractional energy density $f_{\mathrm{EDE}}(z_c) \approx 0.110\text{-}0.122$ and oscillates with a cycle-averaged virial equation of state $\langle w_\phi \rangle = +1/2$. This injects localized pre-recombination expansion that reduces the comoving sound horizon by $5.4\%\text{-}10.7\%$ (from $r_s(z_\ast) = 144.45\text{ Mpc}$ in flat $\Lambda\mathrm{CDM}$ to $128.95\text{-}136.07\text{ Mpc}$), raising the inferred Hubble constant to $H_0 = 70.93 \pm 0.70\text{ km s}^{-1}\text{Mpc}^{-1}$ (MCMC posterior mean) / $73.24 \pm 0.82\text{ km s}^{-1}\text{Mpc}^{-1}$ (fiducial EDE parameter point), substantially mitigating the $5.0\sigma$ Hubble tension with SH0ES ($H_0 = 73.04 \pm 1.04\text{ km s}^{-1}\text{Mpc}^{-1}$) down to a residual pull of $1.68\sigma$.
 
 We provide a comprehensive examination of $\text{high-}\ell$ polarization constraints from Planck PR4 (NPIPE), ACT DR4, and SPT-3G, clarifying why SPT-3G and Planck PR4 tightly bound canonical scalar EDE in polarization. Crucially, while pure canonical $S^3/I^\ast$ EDE pushes the structure growth index up to $S_8 \approx 0.862$ ($1.078$ unmitigated) due to higher $\omega_{\mathrm{cdm}} \approx 0.1565$, extending the framework with a **2-parameter phenomenological Interacting Dark Radiation (IDR) sector** ($g_{\mathrm{dark}} \approx 0.151 \pm 0.035, \Delta N_{\mathrm{idr}} \approx 0.51 \pm 0.31$; fiducial $g_{\mathrm{dark}} = 0.085, \Delta N_{\mathrm{idr}} = 0.24$)—required to counteract EDE's clustering enhancement—and **Triggered New Early Dark Energy (NEDE)** provides the necessary sub-horizon ETHOS collisional damping in the windowed matter power spectrum quadrature to lower the structure growth index to $\mathbf{S}_8 = 0.776 \pm 0.014$ ($0.7325$ derived baseline / $0.776 \pm 0.014$ in MCMC), in complete concordance with DES Y3 ($S_8 = 0.776 \pm 0.017$) and KiDS-1000 ($S_8 = 0.766^{+0.020}_{-0.014}$).
 
@@ -210,7 +210,7 @@ In our closed Poincaré Dodecahedral Space cosmology across the joint parameter 
 1. The physical radius of curvature spans:
 
 $$
-R_c = \frac{c}{H_0 \sqrt{\lvert \Omega_K \rvert}} \approx 63.7\text{--}144.7\text{ Gpc}
+R_c = \frac{c}{H_0 \sqrt{\lvert \Omega_K \rvert}} \approx 63.7\text{-}144.7\text{ Gpc}
 $$
 
    (with $R_c = 63.7\text{ Gpc}$ at the converged MCMC posterior mean $\Omega_K = -0.0044, H_0 = 70.93$, and $R_c = 144.7\text{ Gpc}$ at the fiducial boundary $\Omega_K = -0.0008, H_0 = 73.24$).
@@ -218,30 +218,30 @@ $$
 2. The injectivity radius and fundamental domain diameter are:
 
 $$
-r_{\mathrm{inj}} = \frac{\pi R_c}{10} \approx 20.0\text{--}45.5\text{ Gpc}, \quad 2 r_{\mathrm{inj}} = \frac{\pi R_c}{5} \approx 40.0\text{--}90.9\text{ Gpc}
+r_{\mathrm{inj}} = \frac{\pi R_c}{10} \approx 20.0\text{-}45.5\text{ Gpc}, \quad 2 r_{\mathrm{inj}} = \frac{\pi R_c}{5} \approx 40.0\text{-}90.9\text{ Gpc}
 $$
 
 3. The comoving radial distance to the surface of last scattering ($z_\ast = 1089.9$) is:
 
 $$
-\chi_\ast = \frac{c}{H_0} \int_0^{z_\ast} \frac{dz'}{E(z')} \approx 13.5\text{--}14.0\text{ Gpc}
+\chi_\ast = \frac{c}{H_0} \int_0^{z_\ast} \frac{dz'}{E(z')} \approx 13.5\text{-}14.0\text{ Gpc}
 $$
 
    giving a total LSS diameter of:
 
 $$
-2 \chi_\ast \approx 27.0\text{--}28.0\text{ Gpc}
+2 \chi_\ast \approx 27.0\text{-}28.0\text{ Gpc}
 $$
 
 Crucially, because:
 
 $$
-2 r_{\mathrm{inj}} \approx 40.0\text{--}90.9\text{ Gpc} \gg 2 \chi_\ast \approx 28.0\text{ Gpc}
+2 r_{\mathrm{inj}} \approx 40.0\text{-}90.9\text{ Gpc} \gg 2 \chi_\ast \approx 28.0\text{ Gpc}
 $$
 
 the surface of last scattering does **not** intersect its topological copies under any element of $I^\ast$. Consequently, the angular radius of matched circles is geometrically absent (no self-intersection of the last scattering sphere occurs).
 
-This geometric fact completely resolves the apparent tension with Cornish et al. (2004) and Planck 2015/2018 topology constraints: **the null detection of matched circle pairs in CMB data is a direct, deterministic consequence of $2 r_{\mathrm{inj}} > 2 \chi_\ast$**. We explicitly note that the old "8% near-miss" claim in preliminary drafts was an artifact of an arithmetic error (which inadvertently confused diameter and radius); in reality, the topology possesses a generous $43\%\text{--}225\%$ safety margin preventing matched circles, while still providing the required compact volume cutoff that excises unobserved large-angle modes $\ell = 1, 2, 3, 4, 5$.
+This geometric fact completely resolves the apparent tension with Cornish et al. (2004) and Planck 2015/2018 topology constraints: **the null detection of matched circle pairs in CMB data is a direct, deterministic consequence of $2 r_{\mathrm{inj}} > 2 \chi_\ast$**. We explicitly note that the old "8% near-miss" claim in preliminary drafts was an artifact of an arithmetic error (which inadvertently confused diameter and radius); in reality, the topology possesses a generous $43\%\text{-}225\%$ safety margin preventing matched circles, while still providing the required compact volume cutoff that excises unobserved large-angle modes $\ell = 1, 2, 3, 4, 5$.
 
 ---
 
@@ -395,7 +395,7 @@ $$
 
 where $\mathcal{D}_\ell^{\mathrm{proj}} = (\mathcal{D}_\ell^{\mathrm{flat}} - \mathcal{D}_\ell^{\mathrm{ISW}}) \cdot \left(\frac{\ell}{6}\right)^{\gamma_{\mathrm{proj}}} \times A_{\mathrm{proj}}$, explicitly parameterized by the sub-horizon mode projection parameters $\gamma_{\mathrm{proj}} = 1.8$ (geometric power-law index for mode leakage from the active $\ell=6$ harmonic) and $A_{\mathrm{proj}} = 0.65$ (effective projection amplitude at the fundamental domain scale).
 
-Importantly, rather than claiming an artificial exact match to the Planck Commander central value ($\mathcal{D}_2 = 224.0 \pm 105.0\ \mu\mathrm{K}^2$), this dynamic ISW + projection mechanism achieves a profound reduction in quadrupole tension. Standard flat $\Lambda\mathrm{CDM}$ severely over-predicts the quadrupole at $\mathcal{D}_2 \approx 1242.0\text{-}1255.9\ \mu\mathrm{K}^2$, corresponding to a $+9.70\sigma$ discrepancy ($\chi_2^2 = 94.00$, total $\text{low-}\ell$ $\chi^2 = 100.95$). In contrast, the $S^3 / I^\ast$ EDE framework derives $\mathcal{D}_2 \approx 379.4\ \mu\mathrm{K}^2$ ($311.1\ \mu\mathrm{K}^2$ in full MCMC parameter point), leaving an honest residual of $+155.4\ \mu\mathrm{K}^2$ relative to the Commander central value. This residual corresponds to a pull of only $+1.48\sigma$ ($\chi_2^2 = 2.19$, with total $\text{low-}\ell$ $\chi^2 = 9.05\text{--}9.33$, representing a massive goodness-of-fit improvement of $\Delta\chi^2 = -91.90$). The octupole is likewise predicted at $\mathcal{D}_3 \approx 372.3\ \mu\text{K}^2$ (pull $-0.78\sigma$, $\chi_3^2 = 0.60$ relative to $562.0 \pm 210.0\ \mu\text{K}^2$), naturally resolving the large-angle power suppression anomalies without ad-hoc phenomenological damping.
+Importantly, rather than claiming an artificial exact match to the Planck Commander central value ($\mathcal{D}_2 = 224.0 \pm 105.0\ \mu\mathrm{K}^2$), this dynamic ISW + projection mechanism achieves a profound reduction in quadrupole tension. Standard flat $\Lambda\mathrm{CDM}$ severely over-predicts the quadrupole at $\mathcal{D}_2 \approx 1242.0\text{-}1255.9\ \mu\mathrm{K}^2$, corresponding to a $+9.70\sigma$ discrepancy ($\chi_2^2 = 94.00$, total $\text{low-}\ell$ $\chi^2 = 100.95$). In contrast, the $S^3 / I^\ast$ EDE framework derives $\mathcal{D}_2 \approx 379.4\ \mu\mathrm{K}^2$ ($311.1\ \mu\mathrm{K}^2$ in full MCMC parameter point), leaving an honest residual of $+155.4\ \mu\mathrm{K}^2$ relative to the Commander central value. This residual corresponds to a pull of only $+1.48\sigma$ ($\chi_2^2 = 2.19$, with total $\text{low-}\ell$ $\chi^2 = 9.05\text{-}9.33$, representing a massive goodness-of-fit improvement of $\Delta\chi^2 = -91.90$). The octupole is likewise predicted at $\mathcal{D}_3 \approx 372.3\ \mu\text{K}^2$ (pull $-0.78\sigma$, $\chi_3^2 = 0.60$ relative to $562.0 \pm 210.0\ \mu\text{K}^2$), naturally resolving the large-angle power suppression anomalies without ad-hoc phenomenological damping.
 
 ### 3.5 $\text{Low-}\ell$ Polarization ($EE, TE$) and Preservation of the Reionization Bump
 The large-angle $EE$ polarization power spectrum exhibits a characteristic "reionization bump" at $\ell \le 10$, which provides the primary empirical constraint on the reionization optical depth $\tau \approx 0.054 \pm 0.007$ (Planck Collaboration 2020).
@@ -588,23 +588,23 @@ $$
 
 1. **Eisenstein & Hu (1998) Transfer Function $T_{\mathrm{EH98}}(k)$**:
    Incorporates the exact baryon fraction $f_b = \omega_b / \omega_m$, CDM fraction $f_c = \omega_{\mathrm{cdm}} / \omega_m$, sound horizon at drag epoch $s = r_d$, Silk damping wavenumber $k_{\mathrm{Silk}}$, and scale-dependent suppression:
-   
-   $$
-   T_{\mathrm{EH98}}(k) = f_b T_b(k) + f_c T_c(k)
-   $$
+
+$$
+T_{\mathrm{EH98}}(k) = f_b T_b(k) + f_c T_c(k)
+$$
 
 2. **ETHOS / IDR Dark Acoustic Oscillation (DAO) Damping Envelope $T_{\mathrm{IDR}}(k)$**:
    Scattering between dark matter and dark radiation introduces collisional drag, creating a characteristic sub-horizon damping envelope:
-   
-   $$
-   T_{\mathrm{IDR}}(k) = \left[ 1 + \left( \alpha_{\mathrm{idr}}\,k \right)^{2\beta_{\mathrm{idr}}} \right]^{-\gamma_{\mathrm{idr}}}
-   $$
-   
+
+$$
+T_{\mathrm{IDR}}(k) = \left[ 1 + \left( \alpha_{\mathrm{idr}}\,k \right)^{2\beta_{\mathrm{idr}}} \right]^{-\gamma_{\mathrm{idr}}}
+$$
+
    parameterized by the dark sector coupling strength $g_{\mathrm{dark}}$ and relativistic contribution $\Delta N_{\mathrm{idr}}$:
-   
-   $$
-   \alpha_{\mathrm{idr}} = 5.70\,\frac{\sqrt{g_{\mathrm{dark}}}\,\sqrt{1 + \Delta N_{\mathrm{idr}}}}{h}\text{ Mpc}, \quad \beta_{\mathrm{idr}} = 1.0, \quad \gamma_{\mathrm{idr}} = 1.5
-   $$
+
+$$
+\alpha_{\mathrm{idr}} = 5.70\,\frac{\sqrt{g_{\mathrm{dark}}}\,\sqrt{1 + \Delta N_{\mathrm{idr}}}}{h}\text{ Mpc}, \quad \beta_{\mathrm{idr}} = 1.0, \quad \gamma_{\mathrm{idr}} = 1.5
+$$
 
 #### 3. Linear Matter Power Spectrum and Windowed $\sigma_8$ Quadrature
 The linear matter power spectrum at redshift $z$ is given by:
@@ -620,9 +620,11 @@ $$
 $$
 
 where $W(x) = \frac{3(\sin x - x\cos x)}{x^3}$ is the spherical top-hat filter, and $\mathcal{C}_{\mathrm{norm}} = 1.162$ is the calibration factor. Explicitly, $\mathcal{C}_{\mathrm{norm}} = 1.162$ is the square of the amplitude ratio between the zero-radiation analytical Eisenstein \& Hu (1998) transfer function integral ($\sigma_8^{\mathrm{EH98}} = 0.752$ for Planck 2018 fiducial parameters) and full relativistic Boltzmann solvers (CAMB / CLASS, which yield $\sigma_8^{\mathrm{CAMB}} = 0.811$):
+
 $$
 \mathcal{C}_{\mathrm{norm}} = \left( \frac{\sigma_8^{\mathrm{CAMB}}}{\sigma_8^{\mathrm{EH98}}} \right)^2 = \left( \frac{0.811}{0.752} \right)^2 = 1.162.
 $$
+
 Physically, this $+7.8\%$ amplitude boost ($\sqrt{1.162} \approx 1.078$) accounts for the non-zero radiation density at recombination and early neutrino anisotropic stress damping that analytical zero-radiation formulas omit. The corresponding cosmic shear clustering parameter is:
 
 $$
@@ -732,7 +734,7 @@ $$
 | **Dark Energy Derivative** | $w_a$ | $0.000$ (fixed) | $-1.327$ | $-1.327$ | **$-1.327 \pm 0.158$** (Median: $-1.373\ [-1.465, -1.186]$) | $[-1.5, 0.5]$ |
 | **Scalar Spectral Index** | $n_s$ | $0.9649 \pm 0.0042$ | **$0.9880 \pm 0.0060$** | **$0.9880 \pm 0.0060$** | **$0.9880 \pm 0.0060$** | $[0.90, 1.05]$ |
 | **Scalar Amplitude** | $\ln(10^{10} A_s)$ | $3.044 \pm 0.014$ | **$3.062 \pm 0.015$** | **$3.062 \pm 0.015$** | **$3.062 \pm 0.015$** | $[2.8, 3.3]$ |
-| **Curvature Radius** | $R_c\text{ [Gpc]}$ | $\infty$ | **$63.7\text{ Gpc}$** | **$63.7\text{ Gpc}$** | **$63.8 \pm 12.1\text{ Gpc}$** ($63.7\text{--}144.7\text{ Gpc}$) | Derived |
+| **Curvature Radius** | $R_c\text{ [Gpc]}$ | $\infty$ | **$63.7\text{ Gpc}$** | **$63.7\text{ Gpc}$** | **$63.8 \pm 12.1\text{ Gpc}$** ($63.7\text{-}144.7\text{ Gpc}$) | Derived |
 | **Recombination Sound Horizon** | $r_s(z_\ast)\text{ [Mpc]}$ | $144.45\text{ Mpc}$ | **$131.03\text{ Mpc}$** | **$128.95\text{ Mpc}$** | **$128.95 \pm 1.25\text{ Mpc}$** | Derived |
 | **Drag Sound Horizon** | $r_d\text{ [Mpc]}$ | $150.76\text{ Mpc}$ | **$136.77\text{ Mpc}$** | **$134.65\text{ Mpc}$** | **$134.65 \pm 1.30\text{ Mpc}$** | Derived |
 | **Structure Growth Index** | $S_8 \equiv \sigma_8 \sqrt{\Omega_m/0.3}$ | $0.8291$ | **$0.8620$** ($1.0776$ unmitigated) | **$0.7325$** (baseline IDR) | **$0.776 \pm 0.014$** (MCMC Concordance) | Derived / MCMC |
@@ -905,7 +907,7 @@ The mathematical foundations and computational pipeline of this work are rigorou
 | **CMB Hexadecapole Suppression ($m_4^{\mathrm{SO}(3)} = 0$)** | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_four` | **Verified (0 sorries)** |
 | **CMB $\ell=5$ Suppression ($m_5^{\mathrm{SO}(3)} = 0$)** | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_five` | **Verified (0 sorries)** |
 | **First Active Multipole Emergence ($m_6^{\mathrm{SO}(3)} = 1$)** | Lean 4 (`SpectralDecomposition.lean`) | `m_SO3_six` | **Verified (0 sorries)** |
-| **$\mathrm{SU}(2)$ Spinor Gap ($m_0=1, m_1..m_{11}=0, m_{12}=1$)** | Lean 4 (`SpectralDecomposition.lean`) | `m_zero` $\dots$ `m_twelve` | **Verified (0 sorries)** |
+| **$\mathrm{SU}(2)$ Spinor Gap ($m_0=1, m_1..m_{11}=0, m_{12}=1$)** | Lean 4 (`SpectralDecomposition.lean`) | `m_zero` .. `m_twelve` | **Verified (0 sorries)** |
 | **Spatial Volume $\mathrm{Vol}(S^3/I^\ast) = \pi^2/60$** | Lean 4 (`HeatKernelAsymptotics.lean`) | `vol_PDS_eq` | **Verified (0 sorries)** |
 | **Scalar Curvature $\mathcal{R}(S^3/I^\ast) = 6$** | Lean 4 (`HeatKernelAsymptotics.lean`) | `scalarCurvature_PDS_eq` | **Verified (0 sorries)** |
 | **Seeley--DeWitt Volume Coefficient $a_0$** | Lean 4 (`HeatKernelAsymptotics.lean`) | `a0_PDS_eq` | **Verified (0 sorries)** |
@@ -922,10 +924,10 @@ The mathematical foundations and computational pipeline of this work are rigorou
 
 We have demonstrated that the Poincaré Dodecahedral Space $S^3 / I^\ast$, endowed with positive spatial curvature and coupled to an Early Dark Energy sector extended with Interacting Dark Radiation (IDR) and Triggered New EDE (NEDE), provides an elegant, predictive, and mathematically unified resolution to the foremost empirical challenges of modern precision cosmology:
 
-1. **Mitigation of the Hubble Tension**: By temporarily injecting $\approx 11\text{-}12\%$ energy density at $z_c \sim 3600\text{-}3800$, the early dark energy sector reduces the sound horizon $r_s(z_\ast)$ by $5.4\%\text{--}10.7\%$, shifting the inferred Hubble constant to $H_0 = 70.93 \pm 0.70\text{ km s}^{-1}\text{Mpc}^{-1}$ in full MCMC posterior exploration ($73.24 \pm 0.82\text{ km s}^{-1}\text{Mpc}^{-1}$ in fiducial EDE), substantially mitigating the $5.0\sigma$ Hubble tension with SH0ES ($73.04 \pm 1.04\text{ km s}^{-1}\text{Mpc}^{-1}$) down to a residual pull of $1.68\sigma$.
+1. **Mitigation of the Hubble Tension**: By temporarily injecting $\approx 11\text{-}12\%$ energy density at $z_c \sim 3600\text{-}3800$, the early dark energy sector reduces the sound horizon $r_s(z_\ast)$ by $5.4\%\text{-}10.7\%$, shifting the inferred Hubble constant to $H_0 = 70.93 \pm 0.70\text{ km s}^{-1}\text{Mpc}^{-1}$ in full MCMC posterior exploration ($73.24 \pm 0.82\text{ km s}^{-1}\text{Mpc}^{-1}$ in fiducial EDE), substantially mitigating the $5.0\sigma$ Hubble tension with SH0ES ($73.04 \pm 1.04\text{ km s}^{-1}\text{Mpc}^{-1}$) down to a residual pull of $1.68\sigma$.
 2. **Concordance with Large-Scale Structure ($S_8$)**: While canonical EDE worsens $S_8$ to $0.862$ ($1.078$ unmitigated), the **2-parameter phenomenological Interacting Dark Radiation (IDR) sector** ($g_{\mathrm{dark}} \approx 0.151 \pm 0.035, \Delta N_{\mathrm{idr}} \approx 0.51 \pm 0.31$) introduces sub-horizon ETHOS collisional damping between dark matter and dark radiation, suppressing small-scale power $P(k)$ and reducing $S_8$ down to $\mathbf{S}_8 = 0.776 \pm 0.014$ ($0.7325$ in baseline concordance quadrature), achieving complete concordance ($0.00\sigma$ pull) with DES Y3 ($S_8 = 0.776 \pm 0.017$) and KiDS-1000 ($S_8 = 0.766^{+0.020}_{-0.014}$) cosmic shear surveys.
 3. **Reduction of CMB Large-Angle Anomalies**: Exact Molien invariant projection over the 9 conjugacy classes of $I^\ast$ proves that primordial scalar multipoles vanish for all $\ell = 1, 2, 3, 4, 5$. The selection rule $m_1 = 0$ forbids unphysical primordial dipoles while preserving the standard kinematic Doppler dipole, and residual power at $\ell = 2, 3$ is generated naturally via late-time ISW potential decay during cosmic acceleration, reducing the quadrupole tension from $+9.70\sigma$ in flat $\Lambda\mathrm{CDM}$ down to $+1.48\sigma$ ($\mathcal{D}_2 \approx 379.4\ \mu\text{K}^2$, leaving an honest $+155\ \mu\text{K}^2$ residual relative to the Planck Commander central value, with $\Delta\chi^2 = -91.90$).
-4. **Resolution of Circles-in-the-Sky Constraints**: Across the entire parameter envelope ($R_c \approx 63.7\text{--}144.7\text{ Gpc}$), the injectivity diameter $2 r_{\mathrm{inj}} \approx 40.0\text{--}90.9\text{ Gpc}$ strictly exceeds the diameter of the Last Scattering Surface $2 \chi_\ast \approx 28.0\text{ Gpc}$, demonstrating that matched circles are geometrically absent with a generous $43\%\text{--}225\%$ safety margin, explaining their null detection in Planck and WMAP data while maintaining the volume mode cutoff.
+4. **Resolution of Circles-in-the-Sky Constraints**: Across the entire parameter envelope ($R_c \approx 63.7\text{-}144.7\text{ Gpc}$), the injectivity diameter $2 r_{\mathrm{inj}} \approx 40.0\text{-}90.9\text{ Gpc}$ strictly exceeds the diameter of the Last Scattering Surface $2 \chi_\ast \approx 28.0\text{ Gpc}$, demonstrating that matched circles are geometrically absent with a generous $43\%\text{-}225\%$ safety margin, explaining their null detection in Planck and WMAP data while maintaining the volume mode cutoff.
 5. **Decisive Statistical Preference & Formal Rigor**: Confrontation with the combined cosmological dataset achieves an overall goodness-of-fit improvement of $\Delta \chi^2 = -44.30$ ($\Delta \mathrm{AIC} = -34.30$), with decisive Bayesian statistical preference once the local distance scale is included, while all underlying mathematical theorems are formally verified in Lean 4 with zero sorry stubs.
 
 Future polarization measurements from CMB-S4 and LiteBIRD, combined with next-generation high-redshift supernova surveys from the Roman Space Telescope and Euclid, will definitively test the spatial topology and curvature predictions of the Poincaré Dodecahedral Universe.
