@@ -269,27 +269,46 @@ lemma heatTraceTerm_twelve (t : ℝ) :
   simp only [heatTraceTerm, m_twelve, laplacianEigenvalue_twelve]
   ring_nf
 
-/-! ### 5. Weyl-Molien High-Degree Asymptotics -/
+/-! ### 5. Weyl-Molien High-Degree Asymptotics & Spectral Multiplicity Density -/
 
-/-- The leading Weyl-Molien quadratic growth term for invariant harmonic multiplicities on $S^3 / I^*$:
-$$\overline{m}_\ell = \frac{\ell^2}{120}$$ -/
-def weyl_molien_leading (l : ℕ) : ℝ :=
+/-- The leading linear growth density for representation-theoretic $I^*$-invariant multiplicities on $\mathrm{SU}(2)$:
+$$\overline{m}_\ell^{\mathrm{SU}(2)} = \frac{\ell}{120}$$ -/
+def weyl_molien_invariant_density (l : ℕ) : ℝ :=
+  (l : ℝ) / 120
+
+/-- The leading quadratic growth density for the total spatial Laplacian eigenfunction multiplicity on $S^3 / I^*$:
+$$\overline{d}_\ell = \overline{m}_\ell (\ell + 1) \sim \frac{\ell^2}{120}$$ -/
+def laplacian_spectral_density_leading (l : ℕ) : ℝ :=
   (l : ℝ) ^ 2 / 120
 
-/-- Non-negativity of the leading Weyl-Molien asymptotic term. -/
-lemma weyl_molien_leading_nonneg (l : ℕ) : weyl_molien_leading l ≥ 0 := by
-  unfold weyl_molien_leading
+/-- Non-negativity of the linear invariant multiplicity density. -/
+lemma weyl_molien_invariant_density_nonneg (l : ℕ) : weyl_molien_invariant_density l ≥ 0 := by
+  unfold weyl_molien_invariant_density
   positivity
 
-/-- Explicit values of the Weyl-Molien mean growth at landmark degrees $\ell = 12, 60, 120$. -/
+/-- Non-negativity of the quadratic Laplacian spectral density. -/
+lemma laplacian_spectral_density_leading_nonneg (l : ℕ) : laplacian_spectral_density_leading l ≥ 0 := by
+  unfold laplacian_spectral_density_leading
+  positivity
+
+/-- Explicit values of the linear invariant density at landmark degrees $\ell = 12, 60, 120$. -/
 theorem weyl_molien_landmark_values :
-    weyl_molien_leading 12 = 6 / 5 ∧
-    weyl_molien_leading 60 = 30 ∧
-    weyl_molien_leading 120 = 120 := by
-  unfold weyl_molien_leading
+    weyl_molien_invariant_density 12 = 1 / 10 ∧
+    weyl_molien_invariant_density 60 = 1 / 2 ∧
+    weyl_molien_invariant_density 120 = 1 := by
+  unfold weyl_molien_invariant_density
+  refine ⟨by norm_num, by norm_num, by norm_num⟩
+
+/-- Explicit values of the quadratic Laplacian spectral density at landmark degrees $\ell = 12, 60, 120$. -/
+theorem laplacian_spectral_density_landmark_values :
+    laplacian_spectral_density_leading 12 = 6 / 5 ∧
+    laplacian_spectral_density_leading 60 = 30 ∧
+    laplacian_spectral_density_leading 120 = 120 := by
+  unfold laplacian_spectral_density_leading
   refine ⟨by norm_num, by norm_num, by norm_num⟩
 
 end PoincareDodecahedron
+
 
 
 
