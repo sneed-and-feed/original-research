@@ -77,103 +77,69 @@ def R3 : Matrix (Fin 3) (Fin 3) ℝ :=
 
 /-- Involutive property of $R_1$: $R_1^2 = I_3$. -/
 theorem R1_sq : R1 * R1 = 1 := by
-  ext i j
-  fin_cases i <;> fin_cases j <;> {
-    rw [Matrix.mul_apply, Fin.sum_univ_three]
-    rw [Matrix.one_apply]
-    simp [R1, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
-  }
+  ext i j; fin_cases i <;> fin_cases j <;> { rw [mul_apply, Fin.sum_univ_three, one_apply]; simp [R1] }
 
 /-- Involutive property of $R_2$: $R_2^2 = I_3$. -/
 theorem R2_sq : R2 * R2 = 1 := by
-  ext i j
-  fin_cases i <;> fin_cases j <;> {
-    rw [Matrix.mul_apply, Fin.sum_univ_three]
-    rw [Matrix.one_apply]
-    simp [R2, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
-  }
+  ext i j; fin_cases i <;> fin_cases j <;> { rw [mul_apply, Fin.sum_univ_three, one_apply]; simp [R2] }
 
 /-- Involutive property of $R_3$: $R_3^2 = I_3$. -/
 theorem R3_sq : R3 * R3 = 1 := by
-  ext i j
-  fin_cases i <;> fin_cases j <;> {
-    rw [Matrix.mul_apply, Fin.sum_univ_three]
-    rw [Matrix.one_apply]
-    simp [R3, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
-  }
+  ext i j; fin_cases i <;> fin_cases j <;> { rw [mul_apply, Fin.sum_univ_three, one_apply]; simp [R3] }
 
 /-- Determinant $\det(R_1) = +1$ (orientation preserving in $\mathrm{SO}(3)$). -/
 theorem det_R1 : Matrix.det R1 = 1 := by
-  rw [Matrix.det_fin_three]
-  simp [R1, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+  rw [det_fin_three]; simp [R1]
 
 /-- Determinant $\det(R_2) = +1$ (orientation preserving in $\mathrm{SO}(3)$). -/
 theorem det_R2 : Matrix.det R2 = 1 := by
-  rw [Matrix.det_fin_three]
-  simp [R2, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+  rw [det_fin_three]; simp [R2]
 
 /-- Determinant $\det(R_3) = +1$ (orientation preserving in $\mathrm{SO}(3)$). -/
 theorem det_R3 : Matrix.det R3 = 1 := by
-  rw [Matrix.det_fin_three]
-  simp [R3, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+  rw [det_fin_three]; simp [R3]
 
 /-- Trace $\operatorname{Tr}(R_1) = -1$. -/
 theorem trace_R1 : Matrix.trace R1 = -1 := by
-  simp [Matrix.trace, Matrix.diag, R1, Fin.sum_univ_three]
+  simp [trace, diag, R1, Fin.sum_univ_three]
 
 /-- Trace $\operatorname{Tr}(R_2) = -1$. -/
 theorem trace_R2 : Matrix.trace R2 = -1 := by
-  simp [Matrix.trace, Matrix.diag, R2, Fin.sum_univ_three]
+  simp [trace, diag, R2, Fin.sum_univ_three]
 
 /-- Trace $\operatorname{Tr}(R_3) = -1$. -/
 theorem trace_R3 : Matrix.trace R3 = -1 := by
-  simp [Matrix.trace, Matrix.diag, R3, Fin.sum_univ_three]
+  simp [trace, diag, R3, Fin.sum_univ_three]
 
 /-- Derivation of $\cos\theta = -1$ from the rotation trace formula $\operatorname{Tr}(R_1) = 1 + 2\cos\theta$. -/
 theorem cos_twist_angle_of_trace {θ : ℝ} (h : 1 + 2 * Real.cos θ = Matrix.trace R1) :
     Real.cos θ = -1 := by
-  rw [trace_R1] at h
-  linarith
+  linarith [trace_R1]
 
 /-- Derivation of $\cos\theta = -1$ from the rotation trace formula for $R_2$. -/
 theorem cos_twist_angle_of_trace_R2 {θ : ℝ} (h : 1 + 2 * Real.cos θ = Matrix.trace R2) :
     Real.cos θ = -1 := by
-  rw [trace_R2] at h
-  linarith
+  linarith [trace_R2]
 
 /-- Derivation of $\cos\theta = -1$ from the rotation trace formula for $R_3$. -/
 theorem cos_twist_angle_of_trace_R3 {θ : ℝ} (h : 1 + 2 * Real.cos θ = Matrix.trace R3) :
     Real.cos θ = -1 := by
-  rw [trace_R3] at h
-  linarith
+  linarith [trace_R3]
 
 /-- Rigorous twist angle derivation: the canonical rotation angle $\theta \in [0, 2\pi)$
     associated with $\operatorname{Tr}(R_1) = -1$ is uniquely $\theta = \pi$. -/
 theorem twist_angle_eq_pi_of_trace {θ : ℝ} (h_range : 0 ≤ θ ∧ θ < 2 * Real.pi)
     (h_tr : 1 + 2 * Real.cos θ = Matrix.trace R1) : θ = Real.pi := by
-  have h_cos : Real.cos θ = -1 := cos_twist_angle_of_trace h_tr
-  rw [Real.cos_eq_neg_one_iff] at h_cos
-  rcases h_cos with ⟨k, rfl⟩
-  have hpi : 0 < Real.pi := Real.pi_pos
-  have h1 : 0 ≤ 1 + 2 * (k : ℝ) := by
-    have h : (0 : ℝ) ≤ (1 + 2 * (k : ℝ)) * Real.pi := by
-      calc (0 : ℝ) ≤ Real.pi + (k : ℝ) * (2 * Real.pi) := h_range.1
-      _ = (1 + 2 * (k : ℝ)) * Real.pi := by ring
-    exact nonneg_of_mul_nonneg_left h hpi
-  have h2 : 1 + 2 * (k : ℝ) < 2 := by
-    have h : (1 + 2 * (k : ℝ)) * Real.pi < 2 * Real.pi := by
-      calc (1 + 2 * (k : ℝ)) * Real.pi = Real.pi + (k : ℝ) * (2 * Real.pi) := by ring
-      _ < 2 * Real.pi := h_range.2
-    exact (mul_lt_mul_iff_of_pos_right hpi).mp h
-  have hk0 : k = 0 := by
-    by_contra hk
-    rcases lt_or_gt_of_ne hk with h_neg | h_pos
-    · have : (k : ℝ) ≤ -1 := by exact_mod_cast (show k ≤ -1 by omega)
-      linarith
-    · have : (k : ℝ) ≥ 1 := by exact_mod_cast (show k ≥ 1 by omega)
-      linarith
-  subst hk0
-  simp
+  obtain ⟨k, rfl⟩ := Real.cos_eq_neg_one_iff.mp (cos_twist_angle_of_trace h_tr)
+  have hpi := Real.pi_pos
+  have hk : k = 0 := by
+    by_contra h
+    have : (k : ℝ) ≤ -1 ∨ (k : ℝ) ≥ 1 := by
+      rcases lt_or_gt_of_ne h with hl | hg
+      · left; exact_mod_cast (show k ≤ -1 by omega)
+      · right; exact_mod_cast (show k ≥ 1 by omega)
+    cases this <;> nlinarith [h_range.1, h_range.2]
+  simp [hk]
 
 /-! ### 2. Euclidean Metrics, Displacement Vectors & Sharp Lower Bounds -/
 
@@ -240,10 +206,7 @@ theorem normSq_dispGamma1 (p : RealPoint) :
     $\|\Delta_1(p)\|^2 \ge 1/4$ for all $p \in \mathbb{R}^3$. -/
 theorem normSq_dispGamma1_ge_quarter (p : RealPoint) :
     normSq (dispGamma1 p) ≥ 1 / 4 := by
-  rw [normSq_dispGamma1]
-  have h1 : 0 ≤ p.2.1 ^ 2 := sq_nonneg p.2.1
-  have h2 : 0 ≤ p.2.2 ^ 2 := sq_nonneg p.2.2
-  linarith
+  rw [normSq_dispGamma1]; linarith [sq_nonneg p.2.1, sq_nonneg p.2.2]
 
 /-- Sharp equality characterization:
     $\|\Delta_1(p)\|^2 = 1/4 \iff y = 0 \wedge z = 0$ (the screw rotation axis). -/
@@ -252,15 +215,10 @@ theorem normSq_dispGamma1_eq_quarter_iff (p : RealPoint) :
   rw [normSq_dispGamma1]
   constructor
   · intro h
-    have hsum : p.2.1 ^ 2 + p.2.2 ^ 2 = 0 := by linarith
-    have h1 : 0 ≤ p.2.1 ^ 2 := sq_nonneg p.2.1
-    have h2 : 0 ≤ p.2.2 ^ 2 := sq_nonneg p.2.2
-    have hp1 : p.2.1 ^ 2 = 0 := by linarith
-    have hp2 : p.2.2 ^ 2 = 0 := by linarith
+    have hp1 : p.2.1 ^ 2 = 0 := by linarith [sq_nonneg p.2.1, sq_nonneg p.2.2]
+    have hp2 : p.2.2 ^ 2 = 0 := by linarith [sq_nonneg p.2.1, sq_nonneg p.2.2]
     exact ⟨sq_eq_zero_iff.mp hp1, sq_eq_zero_iff.mp hp2⟩
-  · rintro ⟨h1, h2⟩
-    rw [h1, h2]
-    ring
+  · rintro ⟨h1, h2⟩; rw [h1, h2]; ring
 
 /-- The minimum displacement of $1/4$ is attained on the rotation axis $y = 0, z = 0$. -/
 theorem min_dispGamma1_normSq :
@@ -278,10 +236,7 @@ theorem normSq_dispGamma2 (p : RealPoint) :
     $\|\Delta_2(p)\|^2 \ge 1/4$ for all $p \in \mathbb{R}^3$. -/
 theorem normSq_dispGamma2_ge_quarter (p : RealPoint) :
     normSq (dispGamma2 p) ≥ 1 / 4 := by
-  rw [normSq_dispGamma2]
-  have h1 : 0 ≤ 4 * p.1 ^ 2 := by positivity
-  have h2 : 0 ≤ (1 / 2 - 2 * p.2.2) ^ 2 := sq_nonneg _
-  linarith
+  rw [normSq_dispGamma2]; linarith [sq_nonneg p.1, sq_nonneg (1 / 2 - 2 * p.2.2)]
 
 /-- Sharp equality characterization for $\gamma_2$:
     $\|\Delta_2(p)\|^2 = 1/4 \iff x = 0 \wedge z = 1/4$ (the $\gamma_2$ rotation axis). -/
@@ -290,19 +245,11 @@ theorem normSq_dispGamma2_eq_quarter_iff (p : RealPoint) :
   rw [normSq_dispGamma2]
   constructor
   · intro h
-    have hsum : 4 * p.1 ^ 2 + (1 / 2 - 2 * p.2.2) ^ 2 = 0 := by linarith
-    have h1 : 0 ≤ 4 * p.1 ^ 2 := by positivity
-    have h2 : 0 ≤ (1 / 2 - 2 * p.2.2) ^ 2 := sq_nonneg _
-    have hp1 : 4 * p.1 ^ 2 = 0 := by linarith
-    have hp2 : (1 / 2 - 2 * p.2.2) ^ 2 = 0 := by linarith
-    have hp1' : p.1 = 0 := by nlinarith
-    have hp2' : p.2.2 = 1 / 4 := by
-      have := sq_eq_zero_iff.mp hp2
-      linarith
-    exact ⟨hp1', hp2'⟩
-  · rintro ⟨h1, h2⟩
-    rw [h1, h2]
-    ring
+    have hp1 : p.1 ^ 2 = 0 := by linarith [sq_nonneg p.1, sq_nonneg (1 / 2 - 2 * p.2.2)]
+    have hp2 : (1 / 2 - 2 * p.2.2) ^ 2 = 0 := by linarith [sq_nonneg p.1, sq_nonneg (1 / 2 - 2 * p.2.2)]
+    have hp2' : p.2.2 = 1 / 4 := by linarith [sq_eq_zero_iff.mp hp2]
+    exact ⟨sq_eq_zero_iff.mp hp1, hp2'⟩
+  · rintro ⟨h1, h2⟩; rw [h1, h2]; ring
 
 /-- Euclidean squared norm formula for $\Delta_z(p)$:
     $\|\Delta_z(p)\|^2 = 1/4 + (1/2 - 2x)^2 + 4y^2$. -/
@@ -315,10 +262,7 @@ theorem normSq_dispGammaZ (p : RealPoint) :
     $\|\Delta_z(p)\|^2 \ge 1/4$ for all $p \in \mathbb{R}^3$. -/
 theorem normSq_dispGammaZ_ge_quarter (p : RealPoint) :
     normSq (dispGammaZ p) ≥ 1 / 4 := by
-  rw [normSq_dispGammaZ]
-  have h1 : 0 ≤ (1 / 2 - 2 * p.1) ^ 2 := sq_nonneg _
-  have h2 : 0 ≤ 4 * p.2.1 ^ 2 := by positivity
-  linarith
+  rw [normSq_dispGammaZ]; linarith [sq_nonneg (1 / 2 - 2 * p.1), sq_nonneg p.2.1]
 
 /-- Sharp equality characterization for $\gamma_z$:
     $\|\Delta_z(p)\|^2 = 1/4 \iff x = 1/4 \wedge y = 0$ (the $\gamma_z$ rotation axis). -/
@@ -327,19 +271,11 @@ theorem normSq_dispGammaZ_eq_quarter_iff (p : RealPoint) :
   rw [normSq_dispGammaZ]
   constructor
   · intro h
-    have hsum : (1 / 2 - 2 * p.1) ^ 2 + 4 * p.2.1 ^ 2 = 0 := by linarith
-    have h1 : 0 ≤ (1 / 2 - 2 * p.1) ^ 2 := sq_nonneg _
-    have h2 : 0 ≤ 4 * p.2.1 ^ 2 := by positivity
-    have hp1 : (1 / 2 - 2 * p.1) ^ 2 = 0 := by linarith
-    have hp2 : 4 * p.2.1 ^ 2 = 0 := by linarith
-    have hp1' : p.1 = 1 / 4 := by
-      have := sq_eq_zero_iff.mp hp1
-      linarith
-    have hp2' : p.2.1 = 0 := by nlinarith
-    exact ⟨hp1', hp2'⟩
-  · rintro ⟨h1, h2⟩
-    rw [h1, h2]
-    ring
+    have hp1 : (1 / 2 - 2 * p.1) ^ 2 = 0 := by linarith [sq_nonneg (1 / 2 - 2 * p.1), sq_nonneg p.2.1]
+    have hp2 : p.2.1 ^ 2 = 0 := by linarith [sq_nonneg (1 / 2 - 2 * p.1), sq_nonneg p.2.1]
+    have hp1' : p.1 = 1 / 4 := by linarith [sq_eq_zero_iff.mp hp1]
+    exact ⟨hp1', sq_eq_zero_iff.mp hp2⟩
+  · rintro ⟨h1, h2⟩; rw [h1, h2]; ring
 
 /-! ### 3. Systole, Injectivity Radius & Volume Invariants -/
 
@@ -425,36 +361,21 @@ def isParallelToXAxis (v : RealPoint) : Prop :=
 theorem isParallelToXAxis_iff_exists_scalar (v : RealPoint) :
     isParallelToXAxis v ↔ ∃ c : ℝ, v = (c, 0, 0) := by
   constructor
-  · rintro ⟨h1, h2⟩
-    refine ⟨v.1, ?_⟩
-    rcases v with ⟨vx, vy, vz⟩
-    dsimp at h1 h2 ⊢
-    rw [h1, h2]
-  · rintro ⟨c, rfl⟩
-    exact ⟨rfl, rfl⟩
+  · rintro ⟨h1, h2⟩; rcases v with ⟨vx, vy, vz⟩; exact ⟨vx, by dsimp at *; rw [h1, h2]⟩
+  · rintro ⟨c, rfl⟩; exact ⟨rfl, rfl⟩
 
 /-- $\Delta_1(p)$ is parallel to the translation direction $(1, 0, 0)$ if and only if
     $p$ lies on the rotation axis ($y = 0 \wedge z = 0$). -/
 theorem dispGamma1_parallel_xAxis_iff (p : RealPoint) :
     isParallelToXAxis (dispGamma1 p) ↔ p.2.1 = 0 ∧ p.2.2 = 0 := by
-  rw [dispGamma1_eq]
-  dsimp [isParallelToXAxis]
-  constructor
-  · rintro ⟨h1, h2⟩
-    constructor <;> linarith
-  · rintro ⟨h1, h2⟩
-    rw [h1, h2]
-    exact ⟨by ring, by ring⟩
+  rw [dispGamma1_eq]; dsimp [isParallelToXAxis]
+  constructor <;> intro ⟨h1, h2⟩ <;> constructor <;> linarith
 
 /-- For any observer off the screw axis ($y \ne 0 \vee z \ne 0$), $\Delta_1(p)$ is NOT parallel
     to the translation axis $(1, 0, 0)$, explaining non-back-to-back matched circles. -/
 theorem dispGamma1_not_parallel_xAxis_of_off_axis (p : RealPoint) (h : p.2.1 ≠ 0 ∨ p.2.2 ≠ 0) :
     ¬ isParallelToXAxis (dispGamma1 p) := by
-  rw [dispGamma1_parallel_xAxis_iff]
-  rintro ⟨h1, h2⟩
-  rcases h with hy | hz
-  · exact hy h1
-  · exact hz h2
+  rw [dispGamma1_parallel_xAxis_iff]; rintro ⟨h1, h2⟩; rcases h with hy | hz <;> contradiction
 
 /-- Displacement vector for the squared generator $\gamma_1^2$:
     $\Delta_1^{(2)}(p) = \gamma_1^2(p) - p$. -/
@@ -465,15 +386,13 @@ noncomputable def dispGamma1Sq (p : RealPoint) : RealPoint :=
     $(1, 0, 0)$ for all points $p \in \mathbb{R}^3$. -/
 theorem dispGamma1Sq_eq_const (p : RealPoint) :
     dispGamma1Sq p = (1, 0, 0) := by
-  dsimp [dispGamma1Sq, pointSub, gamma1]
-  ring_nf
+  dsimp [dispGamma1Sq, pointSub, gamma1]; ring_nf
 
 /-- Consequently, $\Delta_1^{(2)}(p)$ is uniformly parallel to the $x$-axis for every point $p$,
     proving algebraically why $\gamma_1^2$ produces back-to-back matched pairs. -/
 theorem dispGamma1Sq_isParallelToXAxis (p : RealPoint) :
     isParallelToXAxis (dispGamma1Sq p) := by
-  rw [dispGamma1Sq_eq_const]
-  exact ⟨rfl, rfl⟩
+  rw [dispGamma1Sq_eq_const]; exact ⟨rfl, rfl⟩
 
 /-- Displacement vector for the squared generator $\gamma_2^2$:
     $\Delta_2^{(2)}(p) = \gamma_2^2(p) - p = (0, 1, 0)$. -/
@@ -482,8 +401,7 @@ noncomputable def dispGamma2Sq (p : RealPoint) : RealPoint :=
 
 theorem dispGamma2Sq_eq_const (p : RealPoint) :
     dispGamma2Sq p = (0, 1, 0) := by
-  dsimp [dispGamma2Sq, pointSub, gamma2]
-  ring_nf
+  dsimp [dispGamma2Sq, pointSub, gamma2]; ring_nf
 
 /-- Displacement vector for the squared generator $\gamma_z^2$:
     $\Delta_z^{(2)}(p) = \gamma_z^2(p) - p = (0, 0, 1)$. -/
@@ -492,40 +410,34 @@ noncomputable def dispGammaZSq (p : RealPoint) : RealPoint :=
 
 theorem dispGammaZSq_eq_const (p : RealPoint) :
     dispGammaZSq p = (0, 0, 1) := by
-  dsimp [dispGammaZSq, pointSub, gammaZ]
-  ring_nf
+  dsimp [dispGammaZSq, pointSub, gammaZ]; ring_nf
 
 /-! ### 5. Isometry Distance Preservation -/
 
 /-- $\gamma_1$ is an isometry: preserves Euclidean squared distances. -/
 theorem distSq_gamma1 (p q : RealPoint) :
     distSq (gamma1 p) (gamma1 q) = distSq p q := by
-  dsimp [distSq, normSq, pointSub, gamma1]
-  ring
+  dsimp [distSq, normSq, pointSub, gamma1]; ring
 
 /-- $\gamma_2$ is an isometry: preserves Euclidean squared distances. -/
 theorem distSq_gamma2 (p q : RealPoint) :
     distSq (gamma2 p) (gamma2 q) = distSq p q := by
-  dsimp [distSq, normSq, pointSub, gamma2]
-  ring
+  dsimp [distSq, normSq, pointSub, gamma2]; ring
 
 /-- $\gamma_3$ is an isometry: preserves Euclidean squared distances. -/
 theorem distSq_gamma3 (p q : RealPoint) :
     distSq (gamma3 p) (gamma3 q) = distSq p q := by
-  dsimp [distSq, normSq, pointSub, gamma3]
-  ring
+  dsimp [distSq, normSq, pointSub, gamma3]; ring
 
 /-- $\gamma_z$ is an isometry: preserves Euclidean squared distances. -/
 theorem distSq_gammaZ (p q : RealPoint) :
     distSq (gammaZ p) (gammaZ q) = distSq p q := by
-  dsimp [distSq, normSq, pointSub, gammaZ]
-  ring
+  dsimp [distSq, normSq, pointSub, gammaZ]; ring
 
 /-- Pure translation preserves Euclidean squared distances. -/
 theorem distSq_trans (v : RealPoint) (p q : RealPoint) :
     distSq (trans v p) (trans v q) = distSq p q := by
-  dsimp [distSq, normSq, pointSub, trans]
-  ring
+  dsimp [distSq, normSq, pointSub, trans]; ring
 
 /-! ### 6. Fundamental Polyhedron Geometry & Cosmic Topology Matched Circles -/
 
