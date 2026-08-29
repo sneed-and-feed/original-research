@@ -29,18 +29,12 @@ While classification schemes often treat these geometries in isolation, their **
 
 In this work, we formalize the spectral, topological, and gauge-theoretic invariants across four canonical representatives:
 
-```math
-\begin{array}{lcccc}
-\hline
-\textbf{Geometric Pillar} & \textbf{Space Form} & \textbf{Fundamental Group } \Gamma & \textbf{First Homology } H_1(M, \mathbb{Z}) & \textbf{First Eigenvalue } \lambda_1 \\
-\hline
-\text{Spherical } (\mathbb{S}^3) & \Sigma(2,3,5) = S^3/I^\ast & I^\ast \subset \mathrm{SU}(2), \; |I^\ast| = 120 & 0 \; (b_1 = 0) & \ell(\ell+2) = 48 \; (\ell_1=6) \\
-\text{Hyperbolic } (\mathbb{H}^3) & \text{Weeks Manifold } \mathcal{W} & \langle a,b \mid w_1=w_2=1 \rangle & \mathbb{Z}_5 \oplus \mathbb{Z}_5 \; (b_1 = 0) & \lambda_1 \approx 27.80195 > 1 \\
-\text{Flat } (\mathbb{E}^3) & \text{Didicosm } G_6 & \langle \gamma_1, \gamma_2, \gamma_3 \mid \text{Bieberbach} \rangle & \mathbb{Z}_4 \oplus \mathbb{Z}_4 \; (b_1 = 0) & 8\pi^2/L^2 = 2\lambda_1(T^3) \\
-\text{Nilpotent } (\mathrm{Nil}^3) & \text{Heisenberg } N_3 & \mathcal{H}_3(\mathbb{Z}) \subset \mathrm{SL}_3(\mathbb{Z}) & \mathbb{Z} \oplus \mathbb{Z} \; (b_1 = 2) & 4\pi^2 \text{ (base torus mode)} \\
-\hline
-\end{array}
-```
+| Geometric Pillar | Space Form | Fundamental Group $\Gamma$ | First Homology $H_1(M, \mathbb{Z})$ | First Eigenvalue $\lambda_1$ |
+| :--- | :--- | :--- | :--- | :--- |
+| Spherical ($\mathbb{S}^3$) | $\Sigma(2,3,5) = S^3/I^\ast$ | $I^\ast \subset \mathrm{SU}(2), \; \lvert I^\ast \rvert = 120$ | $0 \; (b_1 = 0)$ | $\ell(\ell+2) = 48 \; (\ell_1=6)$ |
+| Hyperbolic ($\mathbb{H}^3$) | Weeks Manifold $\mathcal{W}$ | $\langle a,b \mid w_1=w_2=1 \rangle$ | $\mathbb{Z}_5 \oplus \mathbb{Z}_5 \; (b_1 = 0)$ | $\lambda_1 \approx 27.80195 > 1$ |
+| Flat ($\mathbb{E}^3$) | Didicosm $G_6$ | $\langle \gamma_1, \gamma_2, \gamma_3 \mid \text{Bieberbach} \rangle$ | $\mathbb{Z}_4 \oplus \mathbb{Z}_4 \; (b_1 = 0)$ | $8\pi^2/L^2 = 2\lambda_1(T^3)$ |
+| Nilpotent ($\mathrm{Nil}^3$) | Heisenberg $N_3$ | $\mathcal{H}_3(\mathbb{Z}) \subset \mathrm{SL}_3(\mathbb{Z})$ | $\mathbb{Z} \oplus \mathbb{Z} \; (b_1 = 2)$ | $4\pi^2 \text{ (base torus mode)}$ |
 
 Every result discussed herein is verified in the accompanying Lean 4 formalization library `Formalization/`.
 

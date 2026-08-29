@@ -66,6 +66,12 @@ def verify_files():
                 print(f"  [ERROR] Line {idx}: \\text{{K}} unit found: {m.group(0)} in: {line.rstrip()[:80]}")
                 file_errors += 1
 
+        # Check 4: \hline or \begin{array} table in math mode (triggers Misplaced \hline in KaTeX)
+        for idx, line in enumerate(lines, 1):
+            if r'\hline' in line:
+                print(f"  [ERROR] Line {idx}: Banned \\hline in math/markdown (use GFM tables instead): {line.rstrip()[:80]}")
+                file_errors += 1
+
         if file_errors == 0:
             print(f"  [PASS] All checks passed for {basename}! (0 violations)")
         else:
