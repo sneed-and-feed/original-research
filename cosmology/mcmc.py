@@ -16,10 +16,12 @@ References:
 """
 
 from __future__ import annotations
+import json
 import math
+import os
 import time
-from dataclasses import dataclass, field
-from typing import Callable, Dict, List, Optional, Tuple, Union
+from dataclasses import dataclass, field, asdict
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 import numpy as np
 
 from .model import CosmologicalParameters, PoincareEDEModel
@@ -61,6 +63,134 @@ class PosteriorSummary:
     cov_matrix: np.ndarray
     corr_matrix: np.ndarray
     gelman_rubin_r_hat: Optional[Dict[str, float]] = None
+    autocorr_time: Optional[Dict[str, float]] = None
+    effective_sample_size: Optional[Dict[str, float]] = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert summary statistics to a JSON-serializable dictionary."""
+        return {
+            "param_names": list(self.param_names),
+            "means": {k: float(v) for k, v in self.means.items()},
+            "stds": {k: float(v) for k, v in self.stds.items()},
+            "medians": {k: float(v) for k, v in self.medians.items()},
+            "ci_68": {k: [float(v[0]), float(v[1])] for k, v in self.ci_68.items()},
+            "ci_95": {k: [float(v[0]), float(v[1])] for k, v in self.ci_95.items()},
+            "map_estimate": {k: float(v) for k, v in self.map_estimate.items()},
+            "cov_matrix": self.cov_matrix.tolist(),
+            "corr_matrix": self.corr_matrix.tolist(),
+            "gelman_rubin_r_hat": {k: float(v) for k, v in self.gelman_rubin_r_hat.items()} if self.gelman_rubin_r_hat else None,
+            "autocorr_time": {k: float(v) for k, v in self.autocorr_time.items()} if self.autocorr_time else None,
+            "effective_sample_size": {k: float(v) for k, v in self.effective_sample_size.items()} if self.effective_sample_size else None,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> PosteriorSummary:
+        """Construct PosteriorSummary from a dictionary."""
+        ci_68 = {k: (float(v[0]), float(v[1])) for k, v in data["ci_68"].items()}
+        ci_95 = {k: (float(v[0]), float(v[1])) for k, v in data["ci_95"].items()}
+        cov_matrix = np.array(data["cov_matrix"], dtype=float)
+        corr_matrix = np.array(data["corr_matrix"], dtype=float)
+        r_hat = {k: float(v) for k, v in data["gelman_rubin_r_hat"].items()} if data.get("gelman_rubin_r_hat") else None
+        act = {k: float(v) for k, v in data["autocorr_time"].items()} if data.get("autocorr_time") else None
+        ess = {k: float(v) for k, v in data["effective_sample_size"].items()} if data.get("effective_sample_size") else None
+
+        return cls(
+            param_names=list(data["param_names"]),
+            means={k: float(v) for k, v in data["means"].items()},
+            stds={k: float(v) for k, v in data["stds"].items()},
+            medians={k: float(v) for k, v in data["medians"].items()},
+            ci_68=ci_68,
+            ci_95=ci_95,
+            map_estimate={k: float(v) for k, v in data["map_estimate"].items()},
+            cov_matrix=cov_matrix,
+            corr_matrix=corr_matrix,
+            gelman_rubin_r_hat=r_hat,
+            autocorr_time=act,
+            effective_sample_size=ess
+        )
+
+
+# ==============================================================================
+# Serialization Utilities
+# ==============================================================================
+
+def save_chains(chains: List[MCMCChain], filename: str) -> None:
+    """
+    Save MCMC chain objects to a compressed .npz file on disk.
+    """
+    dir_name = os.path.dirname(filename)
+    if dir_name:
+        os.makedirs(dir_name, exist_ok=True)
+
+    samples_arr = np.array([c.samples for c in chains], dtype=float)
+    log_probs_arr = np.array([c.log_probs for c in chains], dtype=float)
+    acc_arr = np.array([c.acceptance_fraction for c in chains], dtype=float)
+    chain_ids = np.array([c.chain_id for c in chains], dtype=int)
+    param_names = np.array(chains[0].param_names, dtype=str)
+
+    np.savez_compressed(
+        filename,
+        samples=samples_arr,
+        log_probs=log_probs_arr,
+        acceptance_fractions=acc_arr,
+        chain_ids=chain_ids,
+        param_names=param_names
+    )
+
+
+def load_chains(filename: str) -> List[MCMCChain]:
+    """
+    Load MCMC chain objects from a compressed .npz file on disk.
+    """
+    data = np.load(filename, allow_pickle=True)
+    samples_arr = data["samples"]
+    log_probs_arr = data["log_probs"]
+    acc_arr = data["acceptance_fractions"]
+    chain_ids = data["chain_ids"]
+    param_names = list(data["param_names"])
+
+    n_chains = samples_arr.shape[0]
+    chains: List[MCMCChain] = []
+    for i in range(n_chains):
+        chain = MCMCChain(
+            param_names=param_names,
+            samples=samples_arr[i],
+            log_probs=log_probs_arr[i],
+            acceptance_fraction=float(acc_arr[i]),
+            chain_id=int(chain_ids[i])
+        )
+        chains.append(chain)
+    return chains
+
+
+def save_posterior_summary(summary: PosteriorSummary, filename: str) -> None:
+    """
+    Save PosteriorSummary statistics to a JSON or NPZ file on disk.
+    """
+    dir_name = os.path.dirname(filename)
+    if dir_name:
+        os.makedirs(dir_name, exist_ok=True)
+
+    if filename.endswith(".npz"):
+        s_dict = summary.to_dict()
+        np.savez_compressed(filename, **s_dict)
+    else:
+        with open(filename, "w", encoding="utf-8") as f:
+            json.dump(summary.to_dict(), f, indent=2)
+
+
+def load_posterior_summary(filename: str) -> PosteriorSummary:
+    """
+    Load PosteriorSummary statistics from a JSON or NPZ file on disk.
+    """
+    if filename.endswith(".npz"):
+        data = np.load(filename, allow_pickle=True)
+        d = {k: data[k].item() if data[k].shape == () else data[k] for k in data.files}
+        return PosteriorSummary.from_dict(d)
+    else:
+        with open(filename, "r", encoding="utf-8") as f:
+            d = json.load(f)
+        return PosteriorSummary.from_dict(d)
 
 
 # ==============================================================================
@@ -116,41 +246,242 @@ def compute_information_criteria(
 
 
 # ==============================================================================
+# Autocorrelation Time & Effective Sample Size
+# ==============================================================================
+
+def _autocorr_1d(x: np.ndarray) -> np.ndarray:
+    """
+    Compute sample autocorrelation function rho(t) for a 1D sequence x using FFT.
+    """
+    n = len(x)
+    if n <= 1:
+        return np.array([1.0], dtype=float)
+    x_cen = x - np.mean(x)
+    var = float(np.var(x))
+    if var < 1e-15:
+        return np.zeros(n, dtype=float)
+    
+    # FFT-based autocorrelation for O(N log N) speed
+    n_fft = 2 ** int(math.ceil(math.log2(2 * n - 1)))
+    fx = np.fft.rfft(x_cen, n=n_fft)
+    corr = np.fft.irfft(fx * np.conjugate(fx), n=n_fft)[:n]
+    norm = np.arange(n, 0, -1, dtype=float) * var
+    return np.maximum(-1.0, np.minimum(1.0, corr / np.maximum(1e-12, norm)))
+
+
+def _compute_tau_1d(corr: np.ndarray, c: float = 5.0) -> float:
+    """
+    Compute integrated autocorrelation time tau from autocorrelation rho(t)
+    with automated Sokal windowing cutoff W >= c * tau_W.
+    """
+    n = len(corr)
+    if n <= 1:
+        return 1.0
+    
+    tau_w = 1.0 + 2.0 * np.cumsum(corr[1:])
+    windows = np.arange(1, n, dtype=float)
+    window_mask = windows >= c * tau_w
+    if np.any(window_mask):
+        w_idx = int(np.where(window_mask)[0][0])
+        return float(max(1.0, min(float(n), tau_w[w_idx])))
+    else:
+        # Conservative fallback if chain has not reached full window
+        return float(max(1.0, min(float(n), tau_w[-1])))
+
+
+def integrated_autocorr_time(
+    chain: Union[MCMCChain, List[MCMCChain], np.ndarray],
+    c: float = 5.0
+) -> Union[Dict[str, float], np.ndarray, float]:
+    """
+    Compute integrated autocorrelation time tau for MCMC chains using automated Sokal windowing.
+    
+    Supports:
+    - MCMCChain: returns Dict[str, float]
+    - List[MCMCChain]: averages autocorrelation across chains and returns Dict[str, float]
+    - 1D np.ndarray: returns float
+    - 2D np.ndarray (N_samples, N_dim): returns 1D np.ndarray (N_dim,)
+    - 3D np.ndarray (N_chains, N_samples, N_dim): returns 1D np.ndarray (N_dim,)
+    """
+    if isinstance(chain, MCMCChain):
+        res = {}
+        for i, name in enumerate(chain.param_names):
+            corr = _autocorr_1d(chain.samples[:, i])
+            res[name] = _compute_tau_1d(corr, c=c)
+        return res
+
+    elif isinstance(chain, list) and len(chain) > 0 and isinstance(chain[0], MCMCChain):
+        param_names = chain[0].param_names
+        d = chain[0].n_dim
+        n = min(c_i.n_samples for c_i in chain)
+        res = {}
+        for i, name in enumerate(param_names):
+            # Average autocorrelation across chains
+            corrs = np.array([_autocorr_1d(c_i.samples[:n, i]) for c_i in chain], dtype=float)
+            mean_corr = np.mean(corrs, axis=0)
+            res[name] = _compute_tau_1d(mean_corr, c=c)
+        return res
+
+    elif isinstance(chain, np.ndarray):
+        arr = np.asarray(chain, dtype=float)
+        if arr.ndim == 1:
+            corr = _autocorr_1d(arr)
+            return _compute_tau_1d(corr, c=c)
+        elif arr.ndim == 2:
+            n_samples, n_dim = arr.shape
+            tau_arr = np.zeros(n_dim, dtype=float)
+            for j in range(n_dim):
+                corr = _autocorr_1d(arr[:, j])
+                tau_arr[j] = _compute_tau_1d(corr, c=c)
+            return tau_arr
+        elif arr.ndim == 3:
+            n_chains, n_samples, n_dim = arr.shape
+            tau_arr = np.zeros(n_dim, dtype=float)
+            for j in range(n_dim):
+                corrs = np.array([_autocorr_1d(arr[i, :, j]) for i in range(n_chains)], dtype=float)
+                mean_corr = np.mean(corrs, axis=0)
+                tau_arr[j] = _compute_tau_1d(mean_corr, c=c)
+            return tau_arr
+        else:
+            raise ValueError(f"Unsupported array dimension {arr.ndim} for autocorrelation estimation")
+    elif isinstance(chain, list) and len(chain) > 0 and isinstance(chain[0], np.ndarray):
+        # List of numpy arrays
+        n = min(len(a) for a in chain)
+        stacked = np.array([a[:n] for a in chain], dtype=float)
+        return integrated_autocorr_time(stacked, c=c)
+    else:
+        raise TypeError(f"Unsupported input type {type(chain)} for integrated_autocorr_time")
+
+
+def effective_sample_size(
+    chain: Union[MCMCChain, List[MCMCChain], np.ndarray],
+    c: float = 5.0
+) -> Union[Dict[str, float], np.ndarray, float]:
+    """
+    Compute Effective Sample Size (ESS = N_total / tau) for MCMC chains.
+    """
+    if isinstance(chain, MCMCChain):
+        tau = integrated_autocorr_time(chain, c=c)
+        n = float(chain.n_samples)
+        return {k: float(n / max(1e-6, v)) for k, v in tau.items()}
+
+    elif isinstance(chain, list) and len(chain) > 0 and isinstance(chain[0], MCMCChain):
+        tau = integrated_autocorr_time(chain, c=c)
+        total_samples = float(sum(c_i.n_samples for c_i in chain))
+        return {k: float(total_samples / max(1e-6, v)) for k, v in tau.items()}
+
+    elif isinstance(chain, np.ndarray):
+        arr = np.asarray(chain, dtype=float)
+        tau = integrated_autocorr_time(arr, c=c)
+        if arr.ndim == 1:
+            return float(len(arr) / max(1e-6, float(tau)))
+        elif arr.ndim == 2:
+            n_samples, _ = arr.shape
+            return np.array([float(n_samples / max(1e-6, t)) for t in tau], dtype=float)
+        elif arr.ndim == 3:
+            n_chains, n_samples, _ = arr.shape
+            total_samples = float(n_chains * n_samples)
+            return np.array([float(total_samples / max(1e-6, t)) for t in tau], dtype=float)
+        else:
+            raise ValueError(f"Unsupported array dimension {arr.ndim} for effective sample size")
+    elif isinstance(chain, list) and len(chain) > 0 and isinstance(chain[0], np.ndarray):
+        n = min(len(a) for a in chain)
+        stacked = np.array([a[:n] for a in chain], dtype=float)
+        return effective_sample_size(stacked, c=c)
+    else:
+        raise TypeError(f"Unsupported input type {type(chain)} for effective_sample_size")
+
+
+# ==============================================================================
 # Gelman-Rubin Convergence Diagnostic R_hat
 # ==============================================================================
 
-def gelman_rubin_diagnostic(chains: List[MCMCChain]) -> Dict[str, float]:
+def gelman_rubin_diagnostic(
+    chains: Union[List[MCMCChain], np.ndarray, List[np.ndarray]],
+    param_names: Optional[List[str]] = None
+) -> Union[Dict[str, float], np.ndarray, float]:
     """
     Calculate Gelman-Rubin R_hat convergence statistic across multiple independent chains.
-    Target: R_hat < 1.05 indicates excellent convergence.
+    Target: R_hat < 1.05 indicates convergence, R_hat < 1.01 indicates excellent convergence.
+    
+    Accepts:
+    - List[MCMCChain]: returns Dict[str, float]
+    - np.ndarray (M_chains, N_samples, D_dim): returns Dict[str, float] if param_names else np.ndarray (D,)
+    - np.ndarray (M_chains, N_samples): returns Dict[str, float] if param_names else float
+    - List[np.ndarray]: list of arrays each of shape (N_samples, D_dim) or (N_samples,)
     """
-    M = len(chains)
+    # 1. Format into 3D array of shape (M, N, D)
+    if isinstance(chains, list) and len(chains) > 0 and isinstance(chains[0], MCMCChain):
+        names = chains[0].param_names
+        M = len(chains)
+        if M < 2:
+            return {p: 1.0 for p in names}
+        N = min(c.n_samples for c in chains)
+        D = chains[0].n_dim
+        chain_data = np.array([c.samples[:N] for c in chains], dtype=float)
+        return_dict = True
+    elif isinstance(chains, np.ndarray):
+        arr = np.asarray(chains, dtype=float)
+        if arr.ndim == 2:
+            # shape (M, N) -> single param
+            M, N = arr.shape
+            D = 1
+            chain_data = arr[:, :, np.newaxis]
+        elif arr.ndim == 3:
+            M, N, D = arr.shape
+            chain_data = arr
+        else:
+            raise ValueError(f"Array for Gelman-Rubin must be 2D (M, N) or 3D (M, N, D), got shape {arr.shape}")
+        names = param_names
+        return_dict = (names is not None)
+    elif isinstance(chains, list) and len(chains) > 0 and isinstance(chains[0], np.ndarray):
+        M = len(chains)
+        N = min(len(a) for a in chains)
+        sample0 = np.asarray(chains[0])
+        if sample0.ndim == 1:
+            D = 1
+            chain_data = np.array([a[:N, np.newaxis] for a in chains], dtype=float)
+        else:
+            D = sample0.shape[1]
+            chain_data = np.array([a[:N] for a in chains], dtype=float)
+        names = param_names
+        return_dict = (names is not None)
+    else:
+        raise TypeError(f"Unsupported chains format {type(chains)} for gelman_rubin_diagnostic")
+
     if M < 2:
-        return {p: 1.0 for p in chains[0].param_names}
+        if return_dict and names:
+            return {p: 1.0 for p in names}
+        elif D == 1:
+            return 1.0
+        else:
+            return np.ones(D, dtype=float)
 
-    N = min(c.n_samples for c in chains)
-    D = chains[0].n_dim
-    param_names = chains[0].param_names
-
-    # Extract aligned arrays: shape (M, N, D)
-    chain_data = np.array([c.samples[:N] for c in chains], dtype=float)
-
-    # 1. Within-chain mean and variance
+    # 2. Within-chain mean and variance
     chain_means = np.mean(chain_data, axis=1)  # shape (M, D)
     chain_vars = np.var(chain_data, axis=1, ddof=1)  # shape (M, D)
     W = np.mean(chain_vars, axis=0)  # shape (D,)
 
-    # 2. Between-chain variance
+    # 3. Between-chain variance
     grand_mean = np.mean(chain_means, axis=0)  # shape (D,)
     B = (N / (M - 1.0)) * np.sum((chain_means - grand_mean)**2, axis=0)  # shape (D,)
 
-    # 3. Estimated marginal posterior variance
+    # 4. Estimated marginal posterior variance
     var_plus = ((N - 1.0) / N) * W + (1.0 / N) * B
 
-    # 4. Potential scale reduction factor R_hat
-    r_hat = np.sqrt(np.maximum(1e-8, var_plus) / np.maximum(1e-8, W))
+    # 5. Scale reduction factor R_hat
+    safe_W = np.where(W < 1e-12, 1e-12, W)
+    r_hat = np.sqrt(np.maximum(1.0, var_plus / safe_W))
+    # If both W and B are virtually zero, r_hat is 1.0
+    zero_var_mask = (W < 1e-12) & (B < 1e-12)
+    r_hat[zero_var_mask] = 1.0
 
-    return {param_names[i]: float(r_hat[i]) for i in range(D)}
+    if return_dict and names:
+        return {names[i]: float(r_hat[i]) for i in range(D)}
+    elif D == 1 and not return_dict:
+        return float(r_hat[0])
+    else:
+        return r_hat
 
 
 # ==============================================================================
@@ -280,12 +611,12 @@ class MCMCSampler:
         total_steps = n_samples + burn_in
 
         s_d = (2.38**2) / max(1, d)
-        eps_cov = 1e-6 * np.diag(base_scales**2)
+        eps_cov = 1e-4 * np.diag(base_scales**2)
 
         for step in range(1, total_steps + 1):
-            if step > 60:
+            # Mixture proposal: 95% adaptive empirical covariance, 5% base proposal (Roberts & Rosenthal 2009)
+            if step > 40 and rng.uniform() > 0.05:
                 try:
-                    # Adaptive empirical covariance
                     emp_cov = s_d * (cov_accum / (step - 1)) + eps_cov
                     L = np.linalg.cholesky(emp_cov) * gamma
                 except np.linalg.LinAlgError:
@@ -315,7 +646,7 @@ class MCMCSampler:
                     gamma *= math.exp(adapt_rate * (1.0 - target_acc))
                 else:
                     gamma *= math.exp(-adapt_rate * target_acc)
-                gamma = max(0.1, min(5.0, gamma))
+                gamma = max(0.05, min(5.0, gamma))
 
             # Update running moments
             delta = x_curr - mean_accum
@@ -427,7 +758,7 @@ class MCMCSampler:
         scales = np.array([self.PARAM_PROPOSAL_SCALES.get(p, 0.01) for p in self.active_params])
         for i in range(n_chains):
             chain_seed = None if seed is None else seed + i * 1013 + 7
-            x_init = x0 + rng.normal(0.0, 0.1 * scales, size=d)
+            x_init = x0 + rng.normal(0.0, 0.02 * scales, size=d)
             chain = self.run_adaptive_metropolis(
                 x0=x_init,
                 n_samples=n_samples,
@@ -437,6 +768,32 @@ class MCMCSampler:
             )
             chains.append(chain)
 
+        summary = self.compute_posterior_summary(chains)
+        return chains, summary
+
+    def run_ensemble_multi_chain(
+        self,
+        x0: np.ndarray,
+        n_walkers: int = 16,
+        n_steps: int = 200,
+        burn_in: int = 50,
+        a_stretch: float = 2.0,
+        seed: Optional[int] = None
+    ) -> Tuple[List[MCMCChain], PosteriorSummary]:
+        """
+        Run vectorized Goodman & Weare affine-invariant ensemble sampler initialized around x0.
+        """
+        rng = np.random.default_rng(seed)
+        d = len(self.active_params)
+        scales = np.array([self.PARAM_PROPOSAL_SCALES.get(p, 0.01) for p in self.active_params])
+        walkers_init = x0 + rng.normal(0.0, 0.05 * scales, size=(n_walkers, d))
+        chains = self.run_ensemble_sampler(
+            x0_ensemble=walkers_init,
+            n_steps=n_steps,
+            burn_in=burn_in,
+            a_stretch=a_stretch,
+            seed=seed
+        )
         summary = self.compute_posterior_summary(chains)
         return chains, summary
 
@@ -468,6 +825,8 @@ class MCMCSampler:
         corr_matrix = cov_matrix / np.outer(std_diag, std_diag)
 
         r_hat = gelman_rubin_diagnostic(chains) if len(chains) > 1 else None
+        act = integrated_autocorr_time(chains)
+        ess = effective_sample_size(chains)
 
         return PosteriorSummary(
             param_names=param_names,
@@ -479,5 +838,7 @@ class MCMCSampler:
             map_estimate=map_estimate,
             cov_matrix=cov_matrix,
             corr_matrix=corr_matrix,
-            gelman_rubin_r_hat=r_hat
+            gelman_rubin_r_hat=r_hat,
+            autocorr_time=act,
+            effective_sample_size=ess
         )

@@ -135,9 +135,15 @@ class PlanckLowEllLikelihood(ObservationalLikelihood):
     Likelihood for low-ell CMB multipoles (ell = 2..6) testing the S^3/I^*
     Poincaré Dodecahedral Space topology against Planck 2018 Commander TT data.
     
-    In standard flat Lambda-CDM, the predicted quadrupole D_2 ~ 1100 muK^2,
+    Evaluates chi^2 using dynamically derived D_ell from model.cmb_low_ell_power(),
+    combining primordial Sachs-Wolfe plateau power with genuine numerical line-of-sight
+    late-time Integrated Sachs-Wolfe (ISW) integration.
+    
+    In standard flat Lambda-CDM, the predicted quadrupole D_2 ~ 1100-1250 muK^2,
     which is in 2.5-sigma tension with the observed low value D_2 = 224 muK^2.
-    In S^3/I^*, m_2=m_3=m_4=m_5=0 mode suppression naturally yields D_2 ~ 250 muK^2.
+    In S^3/I^*, the topological selection rule m_L^SO(3) = 0 for L in {2,3,4,5} suppresses
+    the primordial perturbation, leaving residual power generated dynamically via late-time
+    ISW potential decay and sub-horizon harmonic mode projection, yielding D_2 ~ 220-250 muK^2.
     """
     name: str = "Planck 2018 Low-ell TT (Topology)"
 
