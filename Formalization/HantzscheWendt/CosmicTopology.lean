@@ -40,10 +40,10 @@ and observational cosmic topology properties of the **Hantzsche-Wendt manifold**
    - Ratio: $\frac{r_{\mathrm{inj}}(G_6)}{r_{\mathrm{inj}}(T^3)} = \frac{1}{2}$.
 
 4. **Observational Cosmic Topology & Matched Circles**:
-   - If the universe has the topology of the Didicosm $G_6$, the cosmic microwave background (CMB)
-     temperature fluctuation map displays 6 pairs of matched circles on the Surface of Last Scattering (SLS).
-   - The distinctive topological signature of $G_6$ is that every matched circle pair is antipodal
-     with a phase twist angle of exactly $\alpha = \pi$ radians (Aurich, Jancke, Lustig, Steiner 2008).
+   - The Dirichlet fundamental domain centered at the origin exhibits 6 pairs of identified faces
+     with a relative phase twist angle of $\alpha = \pi$ radians.
+   - For an observer at an arbitrary position, the single screw motions produce non-back-to-back
+     circle pairs, while pure translations $\gamma_i^2$ produce back-to-back circle pairs (Aurich & Lustig 2014).
 -/
 
 namespace HantzscheWendt

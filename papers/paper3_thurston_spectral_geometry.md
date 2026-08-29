@@ -537,7 +537,7 @@ E_{\min}(G_6) = 1^2 + 1^2 + 0^2 = 2
 
 ### 4.3 Invariant Cell Geometry, Cosmic Topology & Observational CMB Limits
 
-In physical cosmology and cosmic topology (Cornish, Spergel, & Starkman 1998; Aurich, Jancke, Lustig, & Steiner 2008, 2010; Aurich, Lustig, Steiner, & Then 2004; Bielewicz & Banday 2011; Planck Collaboration 2014, 2016), the Hantzsche–Wendt didicosm $G_6$ occupies a singularly unique theoretical position among all 18 Euclidean 3-space forms:
+In physical cosmology and cosmic topology (Cornish, Spergel, & Starkman 1998; Aurich, Janzer, Lustig, & Steiner 2008; Aurich & Lustig 2014; Bielewicz & Banday 2011; Planck Collaboration 2014, 2016), the Hantzsche–Wendt didicosm $G_6$ occupies a singularly unique theoretical position among all 18 Euclidean 3-space forms:
 
 1. **Topological Invariant: The Only Orientable Flat 3-Manifold with $b_1 = 0$**:
    Among the 6 closed orientable flat 3-manifolds ($T^3$, half-turn space, quarter-turn space, third-turn space, sixth-turn space, and the didicosm), $G_6$ is the **unique** topology with first Betti number $b_1(G_6) = 0$ and torsion homology $H_1(G_6, \mathbb{Z}) \cong \mathbb{Z}/4\mathbb{Z} \oplus \mathbb{Z}/4\mathbb{Z}$.
@@ -566,12 +566,12 @@ l_{\min}(G_6) = \frac{L}{2}, \quad r_{\mathrm{inj}}(G_6) = \frac{l_{\min}}{2} = 
 4. **Low Multipole ($\ell \le 3$) CMB Quadrupole Suppression from Spectral Gap Doubling**:
    Large-scale cosmic microwave background (CMB) measurements by COBE, WMAP, and Planck consistently reveal an anomalous suppression of the quadrupole ($\ell = 2$) and octopole ($\ell = 3$) power relative to standard $\Lambda\mathrm{CDM}$ predictions on infinite $\mathbb{R}^3$.
    - On the Didicosm, our formalized theorem `spectral_gap_doubling` establishes an exact doubling of the lowest non-zero Laplace eigenvalue: $\lambda_1(G_6) = 2\lambda_1(T^3) = 8\pi^2/L^2$.
-   - Aurich, Jancke, Lustig, and Steiner (2008, 2010) demonstrated that the destructive parity cancellation of single-axis modes with energy $E = 1$ imposes an intrinsic physical infrared cutoff $\lambda_{\min} = 8\pi^2/L^2$, suppressing the low multipoles $C_2, C_3$ without fine-tuning primordial inflationary perturbations.
+   - As demonstrated by Aurich, Janzer, Lustig, and Steiner (2008) and Aurich & Lustig (2014), the destructive parity cancellation of single-axis modes with energy $E = 1$ imposes an intrinsic physical infrared cutoff $\lambda_{\min} = 8\pi^2/L^2$, naturally suppressing large-angle temperature correlations $C(\theta)$ and low multipoles $C_2, C_3$.
 
-5. **Antipodal Matched Circles in the Sky & Observational Limits**:
-   If the spatial geometry of the universe is modeled by $G_6$, the intersection of the Dirichlet cell boundaries with the Surface of Last Scattering (SLS) produces **6 pairs of antipodal matched circles** ($N_{\mathrm{pairs}} = 6$), each exhibiting a relative phase twist of $\alpha = \pi$ radians.
-   - Comprehensive matched-circle searches in WMAP 7-year and Planck 2013/2015 temperature maps (Aurich et al. 2008, 2010; Bielewicz & Banday 2011; Planck Collaboration 2014) established that no correlated circle pairs exist down to circle radii $\alpha_{\min} \approx 20^\circ$.
-   - This constrains the didicosm scale to $L \ge 2\chi_{\mathrm{SLS}} \approx 28 \text{ Gpc}$, demonstrating that if cosmic topology is realized by the didicosm $G_6$, its fundamental domain must currently envelop our entire observable particle horizon.
+5. **Non-Back-to-Back Matched Circles & Observational Evasion**:
+   In standard cosmic topology searches (Cornish, Spergel & Starkman 1998; Bielewicz & Banday 2011; Planck Collaboration 2014, 2016), topologies are primarily tested via antipodal ("back-to-back") matched circle pairs on the Surface of Last Scattering (SLS).
+   - *Observer-Dependent Geometry (Aurich & Lustig 2014)*: For an observer located at a generic position, the single screw motions $\gamma_1, \gamma_2, \gamma_3$ do not have rotation axes intersecting the observer, producing **non-back-to-back** circle pairs on the CMB sky. Only the squared operations $\gamma_i^2 = t_{\vec{e}_i}$ produce exact back-to-back pairs with displacement $L$.
+   - Consequently, the Hantzsche–Wendt space possesses significantly fewer back-to-back circle pairs than $T^3$, allowing it to escape detection by standard antipodal Circles-in-the-Sky pipelines while standard isotropic volume bounds require $L \ge 2\chi_{\mathrm{SLS}} \approx 28.2\text{ Gpc}$ (comoving last-scattering diameter) for complete circle-signature suppression.
 
 - Lean Theorems: [`HantzscheWendt.unitVolumeDidicosm_eq`](../Formalization/HantzscheWendt/CosmicTopology.lean), [`fundamental_polyhedron_euler_char`](../Formalization/HantzscheWendt/CosmicTopology.lean), [`injectivityRadiusDidicosm_eq`](../Formalization/HantzscheWendt/CosmicTopology.lean), [`injectivityRadius_ratio`](../Formalization/HantzscheWendt/CosmicTopology.lean), [`cmb_matched_circle_pairs_eq_face_pairs`](../Formalization/HantzscheWendt/CosmicTopology.lean), [`cmbMatchedCircleTwistAngle_pos`](../Formalization/HantzscheWendt/CosmicTopology.lean).
 
@@ -1027,9 +1027,9 @@ via certified interval arithmetic linear programming over simplicial deformation
 
 ## 13. References
 
-1. Aurich, R., Jancke, H. S., Lustig, S., & Steiner, F. (2008). *Do cosmic microwave background temperature fluctuations exclude the Didicosm?* Classical and Quantum Gravity, 25(12), 125010.
-2. Aurich, R., Jancke, H. S., Lustig, S., & Steiner, F. (2010). *Cosmic topology of the Didicosm: CMB temperature fluctuations and multipole alignments*. Classical and Quantum Gravity, 27(13), 135017.
-3. Aurich, R., Lustig, S., Steiner, F., & Then, H. (2004). *Hyperbolic universe models with compact Dirichlet polyhedra*. Classical and Quantum Gravity, 21(21), 4901–4925.
+1. Aurich, R., Janzer, H. S., Lustig, S., & Steiner, F. (2008). *Do we live in a 'small universe'?* Classical and Quantum Gravity, 25(12), 125006.
+2. Aurich, R., & Lustig, S. (2014). *The Hantzsche–Wendt manifold in cosmic topology*. Classical and Quantum Gravity, 31(16), 165009.
+3. Aurich, R., Lustig, S., Steiner, F., & Then, H. (2004). *CMB anisotropy of the Poincaré dodecahedron*. Classical and Quantum Gravity, 21(20), 4901–4925.
 4. Aurich, R., & Steiner, F. (1993). *Statistical properties of the spectrum of compact hyperbolic 3-manifolds*. Physica D: Nonlinear Phenomena, 64(1-3), 185–214.
 5. Aurich, R., & Steiner, F. (1999). *Numerical computation of the Laplace-Beltrami spectrum on compact hyperbolic 3-manifolds by the direct boundary element method*. Journal of Physics A: Mathematical and General, 32(14), 2673–2688.
 6. Bieberbach, L. (1911). *Über die Bewegungsgruppen der Euklidischen Räume*. Mathematische Annalen, 70(3), 297–336.
