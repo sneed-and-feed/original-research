@@ -26,7 +26,7 @@ In this monograph, we present a complete spectral-geometric and representation-t
 The standard unit 3-sphere $S^3 \subset \mathbb{R}^4$ is canonically identified with the compact Lie group of unit quaternions $\mathrm{Sp}(1) \cong \mathrm{SU}(2)$:
 
 $$
-S^3 = \left\{ q = x_0 + x_1 \mathbf{i} + x_2 \mathbf{j} + x_3 \mathbf{k} \in \mathbb{H} \;\middle\vert\; \lvert q \rvert^2 = x_0^2 + x_1^2 + x_2^2 + x_3^2 = 1 \right\}.
+S^3 = \left\{ q = x_0 + x_1 \mathbf{i} + x_2 \mathbf{j} + x_3 \mathbf{k} \in \mathbb{H} \;\middle|\; \lvert q \rvert^2 = x_0^2 + x_1^2 + x_2^2 + x_3^2 = 1 \right\}.
 $$
 
 Quaternionic multiplication is governed by Hamilton's relations:
@@ -47,22 +47,23 @@ The binary icosahedral group $I^\ast \subset \mathrm{SU}(2)$ is the universal do
 
 1. **The 8 Lipschitz Units**: The elements of the quaternion group $Q_8$:
 
-   $$
-   \{\pm 1, \pm \mathbf{i}, \pm \mathbf{j}, \pm \mathbf{k}\}.
-   $$
+$$
+\{\pm 1, \pm \mathbf{i}, \pm \mathbf{j}, \pm \mathbf{k}\}.
+$$
 
 2. **The 16 Hurwitz Units**: The vertices of the regular 24-cell:
 
-   $$
-   \frac{1}{2} (\pm 1 \pm \mathbf{i} \pm \mathbf{j} \pm \mathbf{k}).
-   $$
+$$
+\frac{1}{2} (\pm 1 \pm \mathbf{i} \pm \mathbf{j} \pm \mathbf{k}).
+$$
 
    Together with the Lipschitz units, these 24 elements form the binary tetrahedral group $2T \subset I^\ast$ of order $8 + 16 = 24$.
+
 3. **The 96 Non-Hurwitz Icosahedral Units**: All even permutations of the coordinates:
 
-   $$
-   \frac{1}{2} \left( 0, \pm \phi^{-1}, \pm 1, \pm \phi \right),
-   $$
+$$
+\frac{1}{2} \left( 0, \pm \phi^{-1}, \pm 1, \pm \phi \right),
+$$
 
    where $\phi = \frac{1+\sqrt{5}}{2} \approx 1.618034$ is the golden ratio and $\phi^{-1} = \frac{\sqrt{5}-1}{2} = \phi - 1 \approx 0.618034$. The 12 even coordinate permutations combined with the $2^3 = 8$ sign combinations yield exactly $12 \times 8 = 96$ distinct units.
 
@@ -175,7 +176,7 @@ The 120 elements of the binary icosahedral group $I^\ast$ partition into exactly
 | $C_8$ | 12 | 10 | 5 | $\phi^{-1}/2$  | $3\pi/5$                     | $6\pi/5$ |
 | $C_9$ | 12 | 5  | 5 | $-\phi^{-1}/2$ | $2\pi/5$                     | $4\pi/5$ |
 
-*Table 1: The 9 Conjugacy Classes of the Binary Icosahedral Group $I^\ast$. Note that $\sum_{i=1}^9 |C_i| = 1 + 1 + 30 + 20 + 20 + 12 + 12 + 12 + 12 = 120 = \lvert I^\ast \rvert$.*
+**Table 1:** The 9 Conjugacy Classes of the Binary Icosahedral Group $I^\ast$. Note that $\sum_{i=1}^9 \lvert C_i \rvert = 1 + 1 + 30 + 20 + 20 + 12 + 12 + 12 + 12 = 120 = \lvert I^\ast \rvert$.
 
 ### 2.2 Molien Projection Formula and Multiplicity Derivation
 
@@ -272,7 +273,7 @@ $$
 > 3. **Exact Periodicity of Arithmetic Fluctuations**: The arithmetic oscillation $\Delta m_\ell = m_\ell - \ell/120$ is strictly quasi-periodic with fundamental period:
 >
 > $$
-> P = \mathrm{lcm}\left(\left\{ \mathrm{ord}(g) \;\middle\vert\; g \in I^\ast \right\}\right) = \mathrm{lcm}(1, 2, 3, 4, 5, 6, 10) = 60.
+> P = \mathrm{lcm}\left(\left\{ \mathrm{ord}(g) \;\middle|\; g \in I^\ast \right\}\right) = \mathrm{lcm}(1, 2, 3, 4, 5, 6, 10) = 60.
 > $$
 
 | Degree $\ell$ | $L = \ell/2$ | $\dim V_\ell$ | $m_\ell^{\mathrm{SU}(2)}$ | $m_L^{\mathrm{SO}(3)}$ | Physical / Geometric Interpretation |
@@ -292,7 +293,7 @@ $$
 | 22 | 11 | 23 | 0 | 0 | Degree-11 harmonic (forbidden) |
 | 24 | 12 | 25 | 1 | 1 | Composite invariant $\Phi_6^2$ (Third active mode) |
 
-*Table 2: Multiplicity Spectrum of $\mathrm{SU}(2)$ and $\mathrm{SO}(3)$ Representations on $S^3 / I^\ast$.*
+**Table 2:** Multiplicity Spectrum of $\mathrm{SU}(2)$ and $\mathrm{SO}(3)$ Representations on $S^3 / I^\ast$.
 
 ---
 
@@ -420,9 +421,9 @@ where:
 2. **Fermion Hilbert Space**:
    - **Complex Chiral Weyl Representation ($\dim_{\mathbb{C}} \mathcal{H}_F = 48$)**: 3 generations of 16 Weyl fermions:
 
-   $$
-   3 \times \left( 4 \text{ leptons } (\nu_L, e_L, \nu_R, e_R) + 12 \text{ quarks } (u_L, d_L, u_R, d_R) \times 3 \text{ colors} \right) = 48.
-   $$
+$$
+3 \times \left( 4 \text{ leptons } (\nu_L, e_L, \nu_R, e_R) + 12 \text{ quarks } (u_L, d_L, u_R, d_R) \times 3 \text{ colors} \right) = 48.
+$$
 
    - **Real Particle-Antiparticle Degrees of Freedom ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$)**: Accounting for antiparticles via the antilinear charge conjugation real structure $J_F$ ($J_F^2 = 1, J_F \mathcal{D}_F = \mathcal{D}_F J_F$), yielding $48 \times 2 = 96$ real degrees of freedom.
 3. **Finite Dirac Operator**: $\mathcal{D}_F = \begin{pmatrix} S & T^\dagger \\ T & \overline{S} \end{pmatrix}$, encoding the $3 \times 3$ Dirac Yukawa matrices $(Y_u, Y_d, Y_e, Y_\nu)$ and the symmetric Majorana mass matrix $M_R$ for right-handed neutrinos (Type-I seesaw mechanism).
@@ -467,29 +468,31 @@ $$
 Evaluating the $a_4(\mathcal{D}_A^2)$ Seeley--DeWitt coefficient from the spectral action expansion yields the Yang--Mills gauge kinetic terms and the Higgs potential:
 1. **Dimensionless Tree-Level Gauge Coupling Unification**:
 
-   $$
-   g_1^2 = g_2^2 = g_3^2 = \frac{\pi^2 f_0}{2 f_2 \Lambda^2},
-   $$
+$$
+g_1^2 = g_2^2 = g_3^2 = \frac{\pi^2 f_0}{2 f_2 \Lambda^2},
+$$
 
    where $g_1 = \sqrt{5/3} g_Y$ is the canonical Grand Unified Theory (GUT) normalized hypercharge coupling.
+
 2. **Higgs Quartic Potential**:
 
-   $$
-   V(H) = \lambda \left( \lvert H \rvert^2 - v^2 \right)^2, \quad \lambda = \frac{\pi^2 f_0 Y_4}{2 f_2 \Lambda^2 Y_2^2}, \quad v^2 = \frac{2 f_2 \Lambda^2 Y_2}{f_0 Y_4},
-   $$
+$$
+V(H) = \lambda \left( \lvert H \rvert^2 - v^2 \right)^2, \quad \lambda = \frac{\pi^2 f_0 Y_4}{2 f_2 \Lambda^2 Y_2^2}, \quad v^2 = \frac{2 f_2 \Lambda^2 Y_2}{f_0 Y_4},
+$$
 
    where $Y_2 = \mathrm{Tr}(3 Y_u^\dagger Y_u + 3 Y_d^\dagger Y_d + Y_e^\dagger Y_e + Y_\nu^\dagger Y_\nu)$ and $Y_4 = \mathrm{Tr}(3 (Y_u^\dagger Y_u)^2 + 3 (Y_d^\dagger Y_d)^2 + (Y_e^\dagger Y_e)^2 + (Y_\nu^\dagger Y_\nu)^2)$.
+
 3. **Electroweak Boson and Higgs Mass Relations at Unification**:
 
-   $$
-   m_W^2 = \frac{1}{4} g_2^2 v^2 = \frac{\pi^2}{4}, \quad m_Z^2 = \frac{1}{4}(g_1^2 + g_2^2) v^2 = 2 m_W^2, \quad m_H^2 = 2 \lambda v^2 = \frac{8 Y_4}{Y_2^2} m_W^2,
-   $$
+$$
+m_W^2 = \frac{1}{4} g_2^2 v^2 = \frac{\pi^2}{4}, \quad m_Z^2 = \frac{1}{4}(g_1^2 + g_2^2) v^2 = 2 m_W^2, \quad m_H^2 = 2 \lambda v^2 = \frac{8 Y_4}{Y_2^2} m_W^2,
+$$
 
    yielding the scale-invariant mass ratio at the unification scale:
 
-   $$
-   \frac{m_H^2}{m_W^2} = \frac{8 Y_4}{Y_2^2} \quad \implies \quad m_H^2 = \frac{8 Y_4}{Y_2^2} m_W^2.
-   $$
+$$
+\frac{m_H^2}{m_W^2} = \frac{8 Y_4}{Y_2^2} \quad \implies \quad m_H^2 = \frac{8 Y_4}{Y_2^2} m_W^2.
+$$
 
 4. **Bare UV Boundary Condition Status**:
    The relation $m_Z^2 = 2 m_W^2$ (corresponding to bare tree-level $\sin^2 \theta_W(\Lambda) = 1/2$, or $\sin^2 \theta_W = 3/8$ in GUT hypercharge normalization) is strictly the **bare UV boundary condition** holding at the noncommutative spectral cutoff scale $\Lambda \sim 10^{16}\text{ GeV}$. Quantum radiative corrections via 2-loop Renormalization Group running down to $M_Z$ break this equality, shifting the weak mixing angle to its observed low-energy value $\sin^2 \theta_W(M_Z) \approx 0.2312$ and separating the physical masses to $m_W \approx 80.38\text{ GeV}$ and $m_Z \approx 91.19\text{ GeV}$.
@@ -541,7 +544,7 @@ We now situate the smooth manifold $M = \mathbb{R} \times (S^3 / I^\ast)$ within
 The global adele ring $\mathbb{A}_{\mathbb{Q}}$ over the rational numbers $\mathbb{Q}$ is the restricted topological product:
 
 $$
-\mathbb{A}_{\mathbb{Q}} = \mathbb{R} \times {\prod_{p < \infty}}' \mathbb{Q}_p = \left\{ (x_\infty, x_2, x_3, x_5, \dots) \;\middle\vert\; x_\infty \in \mathbb{R}, x_p \in \mathbb{Q}_p, \text{ and } x_p \in \mathbb{Z}_p \text{ for almost all } p \right\},
+\mathbb{A}_{\mathbb{Q}} = \mathbb{R} \times {\prod_{p < \infty}}' \mathbb{Q}_p = \left\{ (x_\infty, x_2, x_3, x_5, \dots) \;\middle|\; x_\infty \in \mathbb{R}, x_p \in \mathbb{Q}_p, \text{ and } x_p \in \mathbb{Z}_p \text{ for almost all } p \right\},
 $$
 
 where:
@@ -665,7 +668,7 @@ The formalization resides in the `Formalization.PoincareDodecahedron` module tre
 | Bare $Z$ to $W$ Mass Ratio at Unification ($m_Z^2 = 2 m_W^2$) | `StandardModel.lean` | `mZ_to_mW_relation` |
 | Spectral Action Grand Unification Structural Consistency | `StandardModel.lean` | `spectral_action_standard_model_unification` |
 
-*Table 3: Lean 4 Machine-Checked Formal Verification Map (`Formalization.PoincareDodecahedron`).*
+**Table 3:** Lean 4 Machine-Checked Formal Verification Map (`Formalization.PoincareDodecahedron`).
 
 ---
 

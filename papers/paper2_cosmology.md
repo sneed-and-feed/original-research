@@ -74,18 +74,20 @@ $$
 On large angular scales ($\theta > 60^\circ$, multipoles $\ell = 2, 3$), the full-sky temperature maps from COBE, WMAP, and Planck reveal persistent anomalies that conflict with the statistical isotropy and scale-invariance of simply connected flat space:
 1. **Quadrupole Suppression**: The observed quadrupole temperature power is severely suppressed:
 
-   $$
-   \mathcal{D}_2^{TT} \equiv \frac{2(3)}{2\pi} C_2 \approx 224\text{ }\mu\text{K}^2 \quad \left(\text{expected: } \sim 1100\text{ }\mu\text{K}^2\text{ in flat }\Lambda\mathrm{CDM}\right)
-   $$
+$$
+\mathcal{D}_2^{TT} \equiv \frac{2(3)}{2\pi} C_2 \approx 224\text{ }\mu\text{K}^2 \quad \left(\text{expected: } \sim 1100\text{ }\mu\text{K}^2\text{ in flat }\Lambda\mathrm{CDM}\right)
+$$
 
 2. **Octupole Suppression and Alignment**: The octupole power ($\mathcal{D}_3^{TT} \approx 562\text{ }\mu\text{K}^2$) is likewise depressed, and the quadrupole and octupole eigenvectors exhibit a mutually aligned planar configuration oriented toward the ecliptic poles ("Axis of Evil").
+
 3. **Vanishing Two-Point Angular Correlation**: The real-space two-point temperature correlation function:
 
-   $$
-   C(\theta) \equiv \langle \Delta T(\hat{n}) \Delta T(\hat{n}') \rangle_{\hat{n} \cdot \hat{n}' = \cos\theta}
-   $$
+$$
+C(\theta) \equiv \langle \Delta T(\hat{n}) \Delta T(\hat{n}') \rangle_{\hat{n} \cdot \hat{n}' = \cos\theta}
+$$
 
    vanishes almost identically for separation angles $\theta \in [60^\circ, 170^\circ]$, a feature occurring in less than $0.1\%$ of standard Monte Carlo realizations.
+
 4. **Parity Asymmetry**: Odd-multipole modes systematically dominate even-multipole modes at $\ell \le 20$.
 
 These large-angle anomalies provide compelling empirical motivation for a physical infrared cutoff in the spatial perturbation spectrum, which arises naturally in multiply connected compact space forms where cosmic wavelengths cannot exceed the topological diameter of the universe.
@@ -100,7 +102,7 @@ In this work, we demonstrate that the Poincaré Dodecahedral Space $S^3 / I^\ast
 The unit 3-sphere $S^3 \subset \mathbb{H} \cong \mathbb{R}^4$ is identified with the Lie group $\mathrm{SU}(2)$ of unit quaternions:
 
 $$
-S^3 = \left\{ q = x_0 + x_1 \mathbf{i} + x_2 \mathbf{j} + x_3 \mathbf{k} \in \mathbb{H} \;\middle\vert\; \lvert q \rvert^2 = x_0^2 + x_1^2 + x_2^2 + x_3^2 = 1 \right\}
+S^3 = \left\{ q = x_0 + x_1 \mathbf{i} + x_2 \mathbf{j} + x_3 \mathbf{k} \in \mathbb{H} \;\middle|\; \lvert q \rvert^2 = x_0^2 + x_1^2 + x_2^2 + x_3^2 = 1 \right\}
 $$
 
 Equipped with a round Riemannian metric of curvature radius $R_c$, the line element in hyperspherical coordinates $(\chi, \theta, \phi)$ reads:
@@ -138,33 +140,33 @@ Because $I^\ast$ acts freely, transitively, and isometrically on $S^3$, the quot
 > Let $S^3 / I^\ast$ be equipped with the Riemannian quotient metric induced from the round 3-sphere of radius $R_c$. Then:
 > 1. **Spatial Volume**:
 >
->    $$
->    \mathrm{Vol}(S^3 / I^\ast) = \frac{\mathrm{Vol}(S^3)}{\lvert I^\ast \rvert} = \frac{2\pi^2 R_c^3}{120} = \frac{\pi^2 R_c^3}{60}.
->    $$
+> $$
+> \mathrm{Vol}(S^3 / I^\ast) = \frac{\mathrm{Vol}(S^3)}{\lvert I^\ast \rvert} = \frac{2\pi^2 R_c^3}{120} = \frac{\pi^2 R_c^3}{60}.
+> $$
 >
 > 2. **Scalar Ricci Curvature**:
 >
->    $$
->    \mathcal{R}(S^3 / I^\ast) = \frac{6}{R_c^2}.
->    $$
+> $$
+> \mathcal{R}(S^3 / I^\ast) = \frac{6}{R_c^2}.
+> $$
 >
 > 3. **Injectivity Radius**:
 >
->    $$
->    r_{\mathrm{inj}}(S^3 / I^\ast) = \frac{\pi R_c}{10} \approx 0.31416\,R_c.
->    $$
+> $$
+> r_{\mathrm{inj}}(S^3 / I^\ast) = \frac{\pi R_c}{10} \approx 0.31416\,R_c.
+> $$
 >
 > 4. **Fundamental Domain Diameter**:
 >
->    $$
->    L_{\mathrm{domain}} = 2\,r_{\mathrm{inj}} = \frac{\pi R_c}{5} \approx 0.62832\,R_c.
->    $$
+> $$
+> L_{\mathrm{domain}} = 2\,r_{\mathrm{inj}} = \frac{\pi R_c}{5} \approx 0.62832\,R_c.
+> $$
 >
 > 5. **Curvature Radius**:
 >
->    $$
->    R_c = \frac{c}{H_0 \sqrt{\lvert \Omega_K \rvert}} \approx 48.2\text{ Gpc},
->    $$
+> $$
+> R_c = \frac{c}{H_0 \sqrt{\lvert \Omega_K \rvert}} \approx 48.2\text{ Gpc},
+> $$
 >
 >    giving $r_{\mathrm{inj}} \approx 15.1\text{ Gpc}$ and $L_{\mathrm{domain}} \approx 30.3\text{ Gpc}$.
 
@@ -191,27 +193,27 @@ where $\chi_\ast$ is the comoving radial distance to the LSS, and $r_{\mathrm{in
 In our best-fit closed Poincaré Dodecahedral Space cosmology:
 1. The physical radius of curvature is:
 
-   $$
-   R_c = \frac{c}{H_0 \sqrt{\lvert \Omega_K \rvert}} = \frac{299792.458}{73.24 \sqrt{0.0008}} \approx 48.2\text{ Gpc}
-   $$
+$$
+R_c = \frac{c}{H_0 \sqrt{\lvert \Omega_K \rvert}} = \frac{299792.458}{73.24 \sqrt{0.0008}} \approx 48.2\text{ Gpc}
+$$
 
 2. The injectivity radius and fundamental domain diameter are:
 
-   $$
-   r_{\mathrm{inj}} = \frac{\pi R_c}{10} \approx 15.14\text{ Gpc}, \quad 2 r_{\mathrm{inj}} = \frac{\pi R_c}{5} \approx 30.28\text{ Gpc}
-   $$
+$$
+r_{\mathrm{inj}} = \frac{\pi R_c}{10} \approx 15.14\text{ Gpc}, \quad 2 r_{\mathrm{inj}} = \frac{\pi R_c}{5} \approx 30.28\text{ Gpc}
+$$
 
 3. The comoving radial distance to the surface of last scattering ($z_\ast = 1089.9$) is:
 
-   $$
-   \chi_\ast = \frac{c}{H_0} \int_0^{z_\ast} \frac{dz'}{E(z')} \approx 14.02\text{ Gpc}
-   $$
+$$
+\chi_\ast = \frac{c}{H_0} \int_0^{z_\ast} \frac{dz'}{E(z')} \approx 14.02\text{ Gpc}
+$$
 
    giving a total LSS diameter of:
 
-   $$
-   2 \chi_\ast \approx 28.04\text{ Gpc}
-   $$
+$$
+2 \chi_\ast \approx 28.04\text{ Gpc}
+$$
 
 Crucially, because:
 
@@ -246,6 +248,7 @@ The binary icosahedral group $I^\ast$ partitions into exactly 9 conjugacy classe
 | $C_9$ | 12 | $-\phi^{-1}/2$ | $7\pi/10$ | $7\pi/5$ (Order 5) | 5 |
 
 The character $\chi_\ell(u)$ of the $(\ell+1)$-dimensional irreducible representation of $\mathrm{SU}(2)$ for an element with real part $a = \mathrm{Re}(u)$ is:
+
 $$
 \chi_\ell(a) = \begin{cases}
   \ell + 1 & \text{if } a = 1, \\
@@ -278,6 +281,7 @@ $$
 > - $m_6^{\mathrm{SO}(3)} = 1$ (Emergence of the First Klein Icosahedral Harmonic)
 
 The proof follows directly from character evaluations across the 9 conjugacy classes:
+
 $$
 \begin{aligned}
 m_1^{\mathrm{SO}(3)} &= m_2^{\mathrm{SU}(2)} = \frac{1}{120} \left[ 3 + 3 + 30(-1) + 20(0) + 20(0) + 12(\phi) + 12(\phi) + 12(-\phi^{-1}) + 12(-\phi^{-1}) \right] \\
@@ -292,7 +296,7 @@ m_6^{\mathrm{SO}(3)} &= m_{12}^{\mathrm{SU}(2)} = \frac{1}{120} \left[ 13 + 13 +
 $$
 
 ![Figure 1: Multipole Suppression Spectrum](figures/fig1_multipole_suppression.png)
-*Figure 1: $\mathrm{SO}(3)$ and $\mathrm{SU}(2)$ multipole invariant suppression spectra on $S^3 / I^\ast$. Panel (a) illustrates the complete topological suppression of physical CMB multipoles for $L = 1..5$ and the emergence of the first Klein icosahedral invariant at $L = 6$. Panel (b) shows the corresponding $\mathrm{SU}(2)$ spinor multiplicity gap spanning $\ell = 1..11$.*
+**Figure 1:** $\mathrm{SO}(3)$ and $\mathrm{SU}(2)$ multipole invariant suppression spectra on $S^3 / I^\ast$. Panel (a) illustrates the complete topological suppression of physical CMB multipoles for $L = 1..5$ and the emergence of the first Klein icosahedral invariant at $L = 6$. Panel (b) shows the corresponding $\mathrm{SU}(2)$ spinor multiplicity gap spanning $\ell = 1..11$.
 
 ### 3.3 The Kinematic Dipole vs. Primordial Dipole Selection Rule
 A crucial conceptual question in cosmic topology is the relationship between the observed CMB dipole ($\Delta T \approx 3.3621 \pm 0.0010\text{ mK}$) and the selection rule $m_1^{\mathrm{SO}(3)} = 0$.
@@ -359,6 +363,7 @@ where $\mathcal{P}_\Phi(k)$ is the primordial potential power spectrum and $j_\e
 Because the late-time ISW effect is generated locally at $z < 1$ within a comoving radius $\chi(z=1) \approx 3.4\text{ Gpc} \ll L_{\mathrm{domain}} = 30.3\text{ Gpc}$, it is a local phenomenon entirely unconstrained by the global topological boundary conditions of $S^3 / I^\ast$.
 
 The total observed angular power is therefore:
+
 $$
 C_\ell^{\mathrm{obs}} = C_\ell^{\mathrm{prim}} + C_\ell^{\mathrm{ISW}} = \begin{cases}
   C_\ell^{\mathrm{ISW}} \approx (0.18\text{--}0.22)\,C_\ell^{\Lambda\mathrm{CDM}} & \text{for } \ell \in \{2, 3, 4, 5\}, \\
@@ -421,15 +426,15 @@ The cosmological dynamics transitions between two distinct phases:
 1. **Hubble-Frozen Regime ($z > z_c$)**: When $H(z) \gg m_\phi \equiv \sqrt{V''(\phi_i)}$, Hubble friction freezes the field at its initial misaligned angle $\theta_i = \phi_i / f \approx 2.78 \pm 0.12$. The equation of state is $w_\phi \approx -1$, and $\rho_\phi \approx \text{const}$, allowing the EDE fractional density $f_{\mathrm{EDE}}(z) \equiv \rho_\phi(z) / \rho_{\mathrm{tot}}(z)$ to grow as radiation and matter dilute.
 2. **Fast-Oscillating Decay Regime ($z < z_c$)**: Near the critical redshift $z_c \sim 3600$ ($\log_{10} z_c = 3.56 \pm 0.04$), $H(z_c) \approx m_\phi$, and the field rolls down the potential and undergoes rapid anharmonic oscillations around $\phi = 0$. By the virial theorem, for a monomial potential $V(\phi) \propto \phi^{2n}$, the cycle-averaged equation of state is:
 
-   $$
-   \langle w_\phi \rangle = \frac{n - 1}{n + 1} = \frac{3 - 1}{3 + 1} = +\frac{1}{2} > \frac{1}{3}
-   $$
+$$
+\langle w_\phi \rangle = \frac{n - 1}{n + 1} = \frac{3 - 1}{3 + 1} = +\frac{1}{2} > \frac{1}{3}
+$$
 
    The energy density dilutes as:
 
-   $$
-   \rho_\phi(a) \propto a^{-3(1 + \langle w_\phi \rangle)} = a^{-9/2} = a^{-4.5}
-   $$
+$$
+\rho_\phi(a) \propto a^{-3(1 + \langle w_\phi \rangle)} = a^{-9/2} = a^{-4.5}
+$$
 
    decaying substantially faster than radiation ($a^{-4}$) and matter ($a^{-3}$). This leaves negligible EDE remnants at recombination ($f_{\mathrm{EDE}}(z_\ast) < 1\%$) and zero backreaction during Big Bang Nucleosynthesis (BBN) or late-time structure growth.
 
@@ -482,7 +487,7 @@ $$
 which remains fully compatible with Planck CMB lensing ($S_8 = 0.832 \pm 0.013$) and within $1.5\sigma$ of cosmic shear measurements.
 
 ![Figure 2: CMB Power Spectrum Comparison](figures/fig2_cmb_power_spectrum.png)
-*Figure 2: CMB temperature angular power spectrum $\mathcal{D}_\ell^{TT}$ comparison. The top panel shows theoretical spectra for $S^3 / I^\ast$ EDE (orange solid curve) versus flat $\Lambda\mathrm{CDM}$ (blue dashed curve) confronted with binned Planck 2018 TT data (dark points). The bottom panel displays normalized residual pulls $(\mathcal{D}_\ell^{\mathrm{obs}} - \mathcal{D}_\ell^{\mathrm{th}}) / \sigma_\ell$, demonstrating the low-$\ell$ topological suppression bonus without degrading high-$\ell$ peak concordance.*
+**Figure 2:** CMB temperature angular power spectrum $\mathcal{D}_\ell^{TT}$ comparison. The top panel shows theoretical spectra for $S^3 / I^\ast$ EDE (orange solid curve) versus flat $\Lambda\mathrm{CDM}$ (blue dashed curve) confronted with binned Planck 2018 TT data (dark points). The bottom panel displays normalized residual pulls $(\mathcal{D}_\ell^{\mathrm{obs}} - \mathcal{D}_\ell^{\mathrm{th}}) / \sigma_\ell$, demonstrating the low-$\ell$ topological suppression bonus without degrading high-$\ell$ peak concordance.
 
 ---
 
@@ -503,18 +508,18 @@ $$
    - Standard errors: $\boldsymbol{\sigma} = (0.089, 0.0042, 0.00015)$.
    - Correlation matrix:
 
-   $$
-   \mathbf{R}_{\mathrm{Planck}} = \begin{pmatrix} 1.000 & 0.420 & -0.460 \\ 0.420 & 1.000 & -0.660 \\ -0.460 & -0.660 & 1.000 \end{pmatrix}
-   $$
+$$
+\mathbf{R}_{\mathrm{Planck}} = \begin{pmatrix} 1.000 & 0.420 & -0.460 \\ 0.420 & 1.000 & -0.660 \\ -0.460 & -0.660 & 1.000 \end{pmatrix}
+$$
 
    - Full covariance $\mathbf{C}_{\mathrm{Planck}} = \boldsymbol{\sigma}\boldsymbol{\sigma}^T \odot \mathbf{R}_{\mathrm{Planck}}$. This preserves sub-percent acoustic peak location fidelity while enabling rapid MCMC exploration.
 
 2. **Planck 2018 Low-$\ell$ Temperature Topology Likelihood (`PlanckLowEllLikelihood`)**:
    - Evaluated on Commander $TT$ power for unbinned multipoles $\ell \in \{2, 3, 4, 5, 6\}$:
 
-   $$
-   \mathcal{D}_2 = 224 \pm 105\,\mu\text{K}^2, \quad \mathcal{D}_3 = 562 \pm 210\,\mu\text{K}^2, \quad \mathcal{D}_4 = 810 \pm 260\,\mu\text{K}^2, \quad \mathcal{D}_5 = 1120 \pm 320\,\mu\text{K}^2, \quad \mathcal{D}_6 = 1045 \pm 280\,\mu\text{K}^2
-   $$
+$$
+\mathcal{D}_2 = 224 \pm 105\,\mu\text{K}^2, \quad \mathcal{D}_3 = 562 \pm 210\,\mu\text{K}^2, \quad \mathcal{D}_4 = 810 \pm 260\,\mu\text{K}^2, \quad \mathcal{D}_5 = 1120 \pm 320\,\mu\text{K}^2, \quad \mathcal{D}_6 = 1045 \pm 280\,\mu\text{K}^2
+$$
 
    - Directly tests the topological mode suppression $m_L^{\mathrm{SO}(3)} = 0$ for $L \in \{2, 3, 4, 5\}$ and the emergence of the first allowed mode at $L = 6$.
 
@@ -537,9 +542,9 @@ $$
    - 1701 light curves compressed into 74 logarithmically-spaced redshift bins $z \in [0.010, 2.26]$ with full statistical and systematic covariance $\mathbf{C}_{\mathrm{SNe}}$.
    - Exact analytical marginalization over the uncalibrated absolute magnitude offset $M_B$:
 
-   $$
-   \chi^2_{\mathrm{SNe}} = S_2 - \frac{S_1^2}{S_0}
-   $$
+$$
+\chi^2_{\mathrm{SNe}} = S_2 - \frac{S_1^2}{S_0}
+$$
 
      where $\mathbf{W} = \mathbf{C}_{\mathrm{SNe}}^{-1}$, $S_0 = \sum_{i,j} W_{ij}$, $S_1 = \sum_{i,j} W_{ij}\Delta_j$, $S_2 = \sum_{i,j} \Delta_i W_{ij}\Delta_j$, and $\Delta_i = \mu_{\mathrm{th}}(z_i) - \mu_{\mathrm{obs}}(z_i)$.
 
@@ -555,20 +560,20 @@ $$
 
 - **Priors**: We adopt flat, uninformative priors over:
 
-   $$
-   H_0 \in [55, 85], \quad \omega_b \in [0.018, 0.026], \quad \omega_{\mathrm{cdm}} \in [0.09, 0.16], \quad \Omega_K \in [-0.020, 0.005]
-   $$
+$$
+H_0 \in [55, 85], \quad \omega_b \in [0.018, 0.026], \quad \omega_{\mathrm{cdm}} \in [0.09, 0.16], \quad \Omega_K \in [-0.020, 0.005]
+$$
 
-   $$
-   f_{\mathrm{EDE}} \in [0.0, 0.25], \quad \log_{10} z_c \in [3.2, 3.9], \quad \theta_i \in [1.5, 3.14], \quad w_0 \in [-1.5, -0.5], \quad w_a \in [-1.5, 0.5]
-   $$
+$$
+f_{\mathrm{EDE}} \in [0.0, 0.25], \quad \log_{10} z_c \in [3.2, 3.9], \quad \theta_i \in [1.5, 3.14], \quad w_0 \in [-1.5, -0.5], \quad w_a \in [-1.5, 0.5]
+$$
 
 - **Sampling Algorithms**: We implement both Adaptive Metropolis--Hastings (Haario et al. 2001) with Robbins--Monro proposal scale tuning targeting an acceptance rate of $\approx 25\%$ and the vectorized affine-invariant ensemble sampler (Goodman & Weare 2010).
 - **Chains & Convergence**: 4 independent chains were run for 50,000 steps each (10,000 burn-in + 40,000 post-burn-in samples). Convergence was verified via the Gelman--Rubin diagnostic:
 
-   $$
-   \hat{R} - 1 < 0.01 \quad (\hat{R} < 1.01)
-   $$
+$$
+\hat{R} - 1 < 0.01 \quad (\hat{R} < 1.01)
+$$
 
   across all parameters, indicating stationary convergence.
 - **Reproducibility**: The complete Python cosmology suite, including likelihood evaluators and quick MCMC drivers, can be verified directly via:
@@ -578,7 +583,7 @@ $$
   ```
 
 ![Figure 3: MCMC Posterior Corner Plot](figures/fig3_mcmc_corner.png)
-*Figure 3: 2D joint posterior distributions and 1D marginal posterior probability densities for key cosmological parameters $(H_0, \Omega_K, f_{\mathrm{EDE}}, \Omega_m)$. Shaded orange contours depict the 68% and 95% credible intervals, demonstrating the resolution of the Hubble tension aligned with SH0ES while remaining consistent with closed spatial curvature $\Omega_K < 0$.*
+**Figure 3:** 2D joint posterior distributions and 1D marginal posterior probability densities for key cosmological parameters $(H_0, \Omega_K, f_{\mathrm{EDE}}, \Omega_m)$. Shaded orange contours depict the 68% and 95% credible intervals, demonstrating the resolution of the Hubble tension aligned with SH0ES while remaining consistent with closed spatial curvature $\Omega_K < 0$.
 
 ---
 
