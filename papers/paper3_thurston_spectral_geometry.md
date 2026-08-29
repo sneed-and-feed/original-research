@@ -158,7 +158,7 @@ In `Formalization.WeeksManifold.Basic`, we verify:
   ```math
   \mathrm{Vol}(\mathcal{W}) = 0.9427073627769... < \mathrm{Vol}(\mathcal{M}) \approx 0.9813688 < \mathrm{Vol}(\mathcal{G}) \approx 1.0149416
   ```
-- Systole $l_{\min} \approx 0.58463354$ and injectivity radius $r_{\mathrm{inj}} = l_{\min}/2 \approx 0.29231677$.
+- Systole: $l_{\min} \approx 0.58463354$. Injectivity radius: $r_{\mathrm{inj}} \approx 0.29231677$.
 - Exact rational Chern–Simons invariant: $\mathrm{CS}(\mathcal{W}) = -1/18 \equiv 17/18 \pmod 1$.
 
 - Lean Theorems: [`WeeksManifold.w1_letters_length`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`presentationMatrixAbelian_det`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`weeksHomology_order`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`volume_lt_Meyerhoff`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean), [`chernSimons_mul_eighteen`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Basic.lean).
@@ -227,9 +227,9 @@ On the flat 3-torus $T^3 = \mathbb{R}^3 / (L\mathbb{Z})^3$, Fourier modes have w
 \lambda(\vec{n}) = \left(\frac{2\pi}{L}\right)^2 (n_x^2 + n_y^2 + n_z^2)
 ```
 
-The lowest non-zero eigenvalues on $T^3$ correspond to single-axis unit modes $(1, 0, 0), (0, 1, 0), (0, 0, 1)$ with ground state energy $E_{\min}(T^3) = 1$ and $\lambda_1(T^3) = 4\pi^2 / L^2$.
+The lowest non-zero eigenvalues on $T^3$ correspond to single-axis unit modes with ground state energy $E_{\min}(T^3) = 1$, yielding $\lambda_1(T^3) = 4\pi^2 / L^2$.
 
-On the Didicosm $G_6$, any eigenfunction $f$ must be invariant under the screw motions $\gamma_1, \gamma_2, \gamma_3$. Under $\gamma_1$:
+On the Didicosm $G_6$, any eigenfunction $f$ must be invariant under the screw motions $\gamma_1, \gamma_2, \gamma_3$. Evaluating under the first generator:
 
 ```math
 f(\gamma_1(x, y, z)) = f\left(x + \frac{L}{2}, -y, -z\right) = f(x, y, z)
@@ -271,7 +271,7 @@ g(x, y, z) = \begin{pmatrix} 1 & x & z \\ 0 & 1 & y \\ 0 & 0 & 1 \end{pmatrix}, 
 
 with group law $(x_1, y_1, z_1) \cdot (x_2, y_2, z_2) = (x_1 + x_2, y_1 + y_2, z_1 + z_2 + x_1 y_2)$.
 
-The Heisenberg nilmanifold $N_3 = \mathcal{H}_3(\mathbb{Z}) \backslash \mathcal{H}_3(\mathbb{R})$ is the compact quotient by the integer subgroup $\mathcal{H}_3(\mathbb{Z})$. In `Formalization.HeisenbergNilmanifold.Basic`, we verify:
+The Heisenberg nilmanifold $N_3 = \mathcal{H}_3(\mathbb{Z}) \backslash \mathcal{H}_3(\mathbb{R})$ is the compact quotient of $\mathrm{Nil}^3$ by its discrete integer subgroup. In `Formalization.HeisenbergNilmanifold.Basic`, we verify:
 - Matrix representation homomorphism: $M(g_1 \cdot g_2) = M(g_1) M(g_2)$ and $\det(M(g)) = 1$.
 - Commutator identity: $[(x_1, y_1, z_1), (x_2, y_2, z_2)] = (0, 0, x_1 y_2 - x_2 y_1)$.
 - Generator relations: $[X, Y] = Z, [X, Z] = 0, [Y, Z] = 0$.

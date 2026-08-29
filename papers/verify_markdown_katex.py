@@ -72,6 +72,14 @@ def verify_files():
                 print(f"  [ERROR] Line {idx}: Banned \\hline in math/markdown (use GFM tables instead): {line.rstrip()[:80]}")
                 file_errors += 1
 
+        # Check 5: Cross-span flanking underscore emphasis hijack (punctuation-flanked subscripts in math across prose)
+        flanking_pattern = re.compile(r'(\$[^$]*(_[^a-zA-Z0-9\s]|[^a-zA-Z0-9\s]_|_[0-9]+\$)[^$]*\$\s+[A-Za-z]{3,}[\s\S]*?\$[^$]*(_[^a-zA-Z0-9\s]|[^a-zA-Z0-9\s]_|_[0-9]+\$)[^$]*\$)')
+        for idx, line in enumerate(lines, 1):
+            if not line.strip().startswith('|') and basename == "paper3_thurston_spectral_geometry.md":
+                if flanking_pattern.search(line):
+                    print(f"  [ERROR] Line {idx}: Cross-span underscore emphasis risk (punctuation-flanked subscripts across prose): {line.rstrip()[:80]}")
+                    file_errors += 1
+
         if file_errors == 0:
             print(f"  [PASS] All checks passed for {basename}! (0 violations)")
         else:
