@@ -15,7 +15,7 @@ We directly confront the Cornish et al. (2004) and Planck 2015/2018 topological 
 
 Simultaneously, the EDE scalar field $\phi$, governed by an axion-like potential $V(\phi) = \Lambda_{\mathrm{EDE}}^4 [1 - \cos(\phi/f)]^n$ with $n = 3$ and critical redshift $z_c \sim 3600$ ($\log_{10} z_c = 3.56 \pm 0.04$), achieves a maximum fractional energy density $f_{\mathrm{EDE}}(z_c) \approx 0.122 \pm 0.018$ and oscillates with a cycle-averaged virial equation of state $\langle w_\phi \rangle = +1/2$. This injects localized pre-recombination expansion that reduces the comoving sound horizon by $5.4\%$ (from $r_s(z_\ast) = 147.2\text{ Mpc}$ in flat $\Lambda\mathrm{CDM}$ to $139.3\text{ Mpc}$), raising the inferred local Hubble constant to $H_0 = 73.24 \pm 0.82\text{ km s}^{-1}\text{Mpc}^{-1}$ and fully resolving the $5.0\sigma$ Hubble tension with SH0ES ($H_0 = 73.04 \pm 1.04\text{ km s}^{-1}\text{Mpc}^{-1}$). The positive spatial curvature suppresses super-horizon growth modes, maintaining the structure growth parameter at $S_8 \equiv \sigma_8 \sqrt{\Omega_m/0.3} = 0.832 \pm 0.012$ in full concordance with weak lensing surveys.
 
-We execute a comprehensive joint Bayesian Markov Chain Monte Carlo (MCMC) likelihood analysis combining Planck 2018 ($TT, TE, EE$, low-$\ell$, and lensing), ACT DR4 / SPT-3G high-$\ell$ CMB, BAO (BOSS DR12, eBOSS, DESI 2024), Pantheon+ SNe Ia ($N = 1701$), and the SH0ES distance ladder prior. The joint model yields an improvement of $\Delta \chi^2 = -18.42$ ($\Delta \mathrm{AIC} = -10.42, \Delta \mathrm{BIC} = -4.18$ without SH0ES) and $\Delta \chi^2 = -34.90$ ($\Delta \mathrm{AIC} = -28.90, \Delta \mathrm{BIC} = -9.87$ with SH0ES) over flat $\Lambda\mathrm{CDM}$. All foundational mathematical theorems have been formally verified in Lean 4 with zero sorry stubs, while cosmological dynamics and MCMC parameter estimation are fully verified via our companion Python cosmology suite.
+We execute a comprehensive joint Bayesian Markov Chain Monte Carlo (MCMC) likelihood analysis combining Planck 2018 ($TT, TE, EE$, $\text{low-}\ell$, and lensing), ACT DR4 / SPT-3G $\text{high-}\ell$ CMB, BAO (BOSS DR12, eBOSS, DESI 2024), Pantheon+ SNe Ia ($N = 1701$), and the SH0ES distance ladder prior. The joint model yields an improvement of $\Delta \chi^2 = -18.42$ ($\Delta \mathrm{AIC} = -10.42, \Delta \mathrm{BIC} = -4.18$ without SH0ES) and $\Delta \chi^2 = -34.90$ ($\Delta \mathrm{AIC} = -28.90, \Delta \mathrm{BIC} = -9.87$ with SH0ES) over flat $\Lambda\mathrm{CDM}$. All foundational mathematical theorems have been formally verified in Lean 4 with zero sorry stubs, while cosmological dynamics and MCMC parameter estimation are fully verified via our companion Python cosmology suite.
 
 ---
 
@@ -317,7 +317,7 @@ $$
 
 is an **essential theoretical consistency check**: it guarantees that the primordial scalar perturbation field on $S^3 / I^\ast$ is strictly protected against unphysical intrinsic dipole gradients.
 
-### 3.4 Analytical Low-$\ell$ ISW Transfer Function & Residual Power
+### 3.4 Analytical $\text{Low-}\ell$ ISW Transfer Function & Residual Power
 Although primordial fluctuations vanish at the surface of last scattering ($z_\ast \approx 1090$) for $\ell \in \{2, 3, 4, 5\}$, the observed CMB temperature power spectrum is non-zero due to the late-time Integrated Sachs--Wolfe (ISW) effect.
 
 In conformal Newtonian gauge with gravitational potential $\Phi$, the temperature perturbation along line-of-sight direction $\hat{n}$ is:
@@ -487,7 +487,7 @@ $$
 which remains fully compatible with Planck CMB lensing ($S_8 = 0.832 \pm 0.013$) and within $1.5\sigma$ of cosmic shear measurements.
 
 ![Figure 2: CMB Power Spectrum Comparison](figures/fig2_cmb_power_spectrum.png)
-**Figure 2:** CMB temperature angular power spectrum $\mathcal{D}_\ell^{TT}$ comparison. The top panel shows theoretical spectra for $S^3 / I^\ast$ EDE (orange solid curve) versus flat $\Lambda\mathrm{CDM}$ (blue dashed curve) confronted with binned Planck 2018 TT data (dark points). The bottom panel displays normalized residual pulls $(\mathcal{D}_\ell^{\mathrm{obs}} - \mathcal{D}_\ell^{\mathrm{th}}) / \sigma_\ell$, demonstrating the low-$\ell$ topological suppression bonus without degrading high-$\ell$ peak concordance.
+**Figure 2:** CMB temperature angular power spectrum $\mathcal{D}_\ell^{TT}$ comparison. The top panel shows theoretical spectra for $S^3 / I^\ast$ EDE (orange solid curve) versus flat $\Lambda\mathrm{CDM}$ (blue dashed curve) confronted with binned Planck 2018 TT data (dark points). The bottom panel displays normalized residual pulls $(\mathcal{D}_\ell^{\mathrm{obs}} - \mathcal{D}_\ell^{\mathrm{th}}) / \sigma_\ell$, demonstrating the $\text{low-}\ell$ topological suppression bonus without degrading $\text{high-}\ell$ peak concordance.
 
 ---
 
@@ -503,7 +503,7 @@ $$
 $$
 
 1. **Planck 2018 Compressed Distance Priors (`PlanckLikelihood`)**:
-   - Intermediate and high-$\ell$ CMB acoustic peak geometry is rigidly constrained through the Planck 2018 compressed distance prior vector $\mathbf{v} = (\ell_a, R, \omega_b)$, where $\ell_a = \pi D_M(z_\ast)/r_s(z_\ast)$ is the acoustic scale, $R = \sqrt{\Omega_m}(H_0/c)D_M(z_\ast)$ is the CMB shift parameter, and $\omega_b = \Omega_b h^2$.
+   - Intermediate and $\text{high-}\ell$ CMB acoustic peak geometry is rigidly constrained through the Planck 2018 compressed distance prior vector $\mathbf{v} = (\ell_a, R, \omega_b)$, where $\ell_a = \pi D_M(z_\ast)/r_s(z_\ast)$ is the acoustic scale, $R = \sqrt{\Omega_m}(H_0/c)D_M(z_\ast)$ is the CMB shift parameter, and $\omega_b = \Omega_b h^2$.
    - Central values: $\mathbf{v}_{\mathrm{obs}} = (301.471, 1.7496, 0.02237)$.
    - Standard errors: $\boldsymbol{\sigma} = (0.089, 0.0042, 0.00015)$.
    - Correlation matrix:
@@ -514,7 +514,7 @@ $$
 
    - Full covariance $\mathbf{C}_{\mathrm{Planck}} = \boldsymbol{\sigma}\boldsymbol{\sigma}^T \odot \mathbf{R}_{\mathrm{Planck}}$. This preserves sub-percent acoustic peak location fidelity while enabling rapid MCMC exploration.
 
-2. **Planck 2018 Low-$\ell$ Temperature Topology Likelihood (`PlanckLowEllLikelihood`)**:
+2. **Planck 2018 $\text{Low-}\ell$ Temperature Topology Likelihood (`PlanckLowEllLikelihood`)**:
    - Evaluated on Commander $TT$ power for unbinned multipoles $\ell \in \{2, 3, 4, 5, 6\}$:
 
 $$
@@ -535,7 +535,7 @@ $$
      * LRG3+ELG1 ($z = 0.930$): $D_M/r_d = 21.71 \pm 0.28$, $D_H/r_d = 17.88 \pm 0.35$, $\rho = -0.435$
      * ELG2 ($z = 1.317$): $D_M/r_d = 27.79 \pm 0.69$, $D_H/r_d = 13.82 \pm 0.42$, $\rho = -0.440$
      * QSO ($z = 1.491$): $D_M/r_d = 30.69 \pm 0.94$, $D_H/r_d = 13.26 \pm 0.55$, $\rho = -0.480$
-     * Lyman-$\alpha$ ($z = 2.330$): $D_M/r_d = 39.71 \pm 0.94$, $D_H/r_d = 8.52 \pm 0.17$, $\rho = -0.477$
+     * $\text{Lyman-}\alpha$ ($z = 2.330$): $D_M/r_d = 39.71 \pm 0.94$, $D_H/r_d = 8.52 \pm 0.17$, $\rho = -0.477$
    - Evaluated with full $13 \times 13$ block-diagonal covariance matrix.
 
 5. **Pantheon+ Type Ia Supernovae (`PantheonPlusLikelihood`)**:
@@ -631,7 +631,7 @@ To evaluate the statistical significance while rigorously penalizing the additio
 | **Intermediate Baseline ($\Delta\chi^2 = -18.42$)** | $\Delta \chi^2$ / $\Delta\mathrm{AIC}$ / $\Delta\mathrm{BIC}$ | — | — | $\mathbf{-18.42\text{ / } -10.42\text{ / } -4.18}$ |
 
 *Interpretation of Model Selection*:
-- **Without SH0ES Prior**: The baseline CMB, BAO, and supernova data exhibit a modest improvement of $\Delta \chi^2 = -6.40$, primarily driven by the low-$\ell$ topological multipole suppression bonus ($-8.7$). In the absence of a local $H_0$ prior, early-universe data do not independently require EDE, reflected in the honest Occam penalty $\Delta \mathrm{BIC} = +18.63$.
+- **Without SH0ES Prior**: The baseline CMB, BAO, and supernova data exhibit a modest improvement of $\Delta \chi^2 = -6.40$, primarily driven by the $\text{low-}\ell$ topological multipole suppression bonus ($-8.7$). In the absence of a local $H_0$ prior, early-universe data do not independently require EDE, reflected in the honest Occam penalty $\Delta \mathrm{BIC} = +18.63$.
 - **With SH0ES Prior**: Inclusion of the local distance scale produces an overwhelming goodness-of-fit improvement $\Delta \chi^2 = -34.90$. This decisive preference overcomes the parameter penalty, yielding $\Delta \mathrm{AIC} = -28.90$ and $\Delta \mathrm{BIC} = -9.87$ (and $\Delta \mathrm{BIC} = -21.21$ in compressed data space), constituting decisive statistical evidence ($\lvert \Delta \mathrm{BIC} \rvert > 10$) in favor of $S^3 / I^\ast$ EDE.
 
 ---
@@ -645,7 +645,7 @@ $$
 f(\gamma \cdot \mathbf{x}) = f(\mathbf{x}) \quad \forall \gamma \in I^\ast
 $$
 
-At $\ell = 6$, the unique icosahedral harmonic invariant (the Klein invariant $K_6$) is concentrated along the 10 three-fold and 6 five-fold symmetry axes of the dodecahedron. When projected onto the 2-sphere, the residual low-$\ell$ power induced by the coupling of these discrete axes with the late-time ISW effect forces the preferred angular momentum directions of the reconstructed $\ell = 2$ and $\ell = 3$ multipoles to lie in a common plane aligned with the dodecahedral face normals, explaining the observed "Axis of Evil" alignment without ad-hoc statistical flukes.
+At $\ell = 6$, the unique icosahedral harmonic invariant (the Klein invariant $K_6$) is concentrated along the 10 three-fold and 6 five-fold symmetry axes of the dodecahedron. When projected onto the 2-sphere, the residual $\text{low-}\ell$ power induced by the coupling of these discrete axes with the late-time ISW effect forces the preferred angular momentum directions of the reconstructed $\ell = 2$ and $\ell = 3$ multipoles to lie in a common plane aligned with the dodecahedral face normals, explaining the observed "Axis of Evil" alignment without ad-hoc statistical flukes.
 
 ### 7.2 Vanishing Large-Angle Two-Point Correlation $C(\theta)$
 The real-space angular two-point correlation function is:
