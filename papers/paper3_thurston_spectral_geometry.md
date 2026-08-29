@@ -428,7 +428,7 @@ where $\lambda_0(\mathbb{H}^3) = 1$ is the continuous spectral baseline of the u
 
 #### Numerical Collocation Estimates vs. Rigorous Spectral Theorems
 
-1. **Numerical Literature Estimates ($\lambda_1 \approx 27.8$ / $27.80195$)**:
+1. **Numerical Literature Estimates** ($\lambda_1 \approx 27.8$ / $27.80195$):
    The value $\lambda_1(\mathcal{W}) \approx 27.80$ is a **numerical computation**, not a mathematically rigorous analytical proof. In the literature, this estimate was computed via numerical Trefftz boundary collocation on fundamental polyhedra by:
    - **Cornish, N. J. & Spergel, D. N. (1999)**, *"On the eigenmodes of compact hyperbolic 3-manifolds"*, Phys. Rev. D 60, 083501 (arXiv:math/9906017), Table III: $\lambda_1 \approx 27.8$ (multiplicity 1).
    and subsequently refined via periodic orbit sum (Selberg trace formula) expansions by:
@@ -443,7 +443,7 @@ where $\lambda_0(\mathbb{H}^3) = 1$ is the continuous spectral baseline of the u
 
    Because boundary element and Trefftz methods involve finite matrix truncations, they provide empirical approximations rather than computer-assisted interval-arithmetic bounds or closed-form proofs.
 
-2. **Analytical Status of the Ramanujan–Selberg Spectral Gap ($\lambda_1 > 1$)**:
+2. **Analytical Status of the Ramanujan–Selberg Spectral Gap** ($\lambda_1 > 1$):
    A rigorous, non-numerical analytical proof that the first positive Laplace eigenvalue of the Weeks manifold satisfies $\lambda_1(\mathcal{W}) > 1$ represents an open challenge at the intersection of geometric analysis, automorphic forms, and spectral geometry. Such a theorem, if proved analytically, would be an independent structural result distinct from numerical collocation.
 
    In our Lean 4 formalization library ([`Formalization/WeeksManifold/SpectralGap.lean`](../Formalization/WeeksManifold/SpectralGap.lean)), we formalize the conditional structural theorem:
@@ -539,7 +539,7 @@ E_{\min}(G_6) = 1^2 + 1^2 + 0^2 = 2
 
 In physical cosmology and cosmic topology (Cornish, Spergel, & Starkman 1998; Aurich, Janzer, Lustig, & Steiner 2008; Aurich & Lustig 2014; Bielewicz & Banday 2011; Planck Collaboration 2014, 2016), the Hantzsche–Wendt didicosm $G_6$ occupies a singularly unique theoretical position among all 18 Euclidean 3-space forms:
 
-1. **Topological Invariant: The Only Orientable Flat 3-Manifold with $b_1 = 0$**:
+1. **Topological Invariant: The Only Orientable Flat 3-Manifold with** $b_1 = 0$:
    Among the 6 closed orientable flat 3-manifolds ($T^3$, half-turn space, quarter-turn space, third-turn space, sixth-turn space, and the didicosm), $G_6$ is the **unique** topology with first Betti number $b_1(G_6) = 0$ and torsion homology $H_1(G_6, \mathbb{Z}) \cong \mathbb{Z}/4\mathbb{Z} \oplus \mathbb{Z}/4\mathbb{Z}$.
    - *Cosmological Consequence*: Manifolds with $b_1 > 0$ (such as the standard 3-torus $T^3$ with $b_1 = 3$) permit non-trivial continuous Wilson loops along non-torsion 1-cycles, leading to preferred spatial directions and dipole/quadrupole runaway. Because $b_1(G_6) = 0$, the didicosm prevents continuous 1-cycle drift, rendering the space form globally rigid and naturally isotropic on large scales.
 
@@ -565,7 +565,7 @@ V - E + F = 14 - 24 + 12 = 2
 l_{\min}(G_6) = \frac{L}{2}, \quad r_{\mathrm{inj}}(G_6) = \frac{l_{\min}}{2} = \frac{L}{4} = \frac{1}{2} r_{\mathrm{inj}}(T^3)
 ```
 
-4. **Low Multipole ($\ell \le 3$) CMB Quadrupole Suppression from Spectral Gap Doubling**:
+4. **Low Multipole** ($\ell \le 3$) **CMB Quadrupole Suppression from Spectral Gap Doubling**:
    Large-scale cosmic microwave background (CMB) measurements by COBE, WMAP, and Planck consistently reveal an anomalous suppression of the quadrupole ($\ell = 2$) and octopole ($\ell = 3$) power relative to standard $\Lambda\mathrm{CDM}$ predictions on infinite $\mathbb{R}^3$.
    - On the Didicosm, our formalized theorem `spectral_gap_doubling` establishes an exact doubling of the lowest non-zero Laplace eigenvalue: $\lambda_1(G_6) = 2\lambda_1(T^3) = 8\pi^2/L^2$.
    - As demonstrated by Aurich, Janzer, Lustig, and Steiner (2008) and Aurich & Lustig (2014), the destructive parity cancellation of single-axis modes with energy $E = 1$ imposes an intrinsic physical infrared cutoff $\lambda_{\min} = 8\pi^2/L^2$, naturally suppressing large-angle temperature correlations $C(\theta)$ and low multipoles $C_2, C_3$.
