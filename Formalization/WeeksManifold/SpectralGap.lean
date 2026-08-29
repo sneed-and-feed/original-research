@@ -39,7 +39,7 @@ This module formalizes the spectral geometry of the Laplace-Beltrami operator on
        computation of the Laplace-Beltrami spectrum on compact hyperbolic 3-manifolds by the direct
        boundary element method (DBEM)", *J. Phys. A: Math. Gen.* 32, 2673.
      * **Cornish, N. J. & Spergel, D. N. (1999)**, "On the eigenmodes of compact hyperbolic
-       3-manifolds", *Phys. Rev. D* 60, 083501; arXiv:astro-ph/9906001.
+       3-manifolds", arXiv:math/9906017.
    - **Structural Ramanujan-Selberg Property**: The qualitative geometric theorem $\lambda_1 > 1$
      establishes the complete absence of small eigenvalues in the complementary series $(0, 1)$,
      confirming that $\mathcal{W}$ behaves as a generalized Ramanujan space form.
