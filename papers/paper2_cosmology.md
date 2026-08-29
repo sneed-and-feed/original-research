@@ -546,7 +546,7 @@ $$
 \chi^2_{\mathrm{SNe}} = S_2 - \frac{S_1^2}{S_0}
 $$
 
-     where $\mathbf{W} = \mathbf{C}_{\mathrm{SNe}}^{-1}$, $S_0 = \sum_{i,j} W_{ij}$, $S_1 = \sum_{i,j} W_{ij}\Delta_j$, $S_2 = \sum_{i,j} \Delta_i W_{ij}\Delta_j$, and $\Delta_i = \mu_{\mathrm{th}}(z_i) - \mu_{\mathrm{obs}}(z_i)$.
+   - Weight matrix definitions: $\mathbf{W} = \mathbf{C}_{\mathrm{SNe}}^{-1}$, $S_0 = \sum_{i,j} W_{ij}$, $S_1 = \sum_{i,j} W_{ij}\Delta_j$, $S_2 = \sum_{i,j} \Delta_i W_{ij}\Delta_j$, and $\Delta_i = \mu_{\mathrm{th}}(z_i) - \mu_{\mathrm{obs}}(z_i)$.
 
 6. **SH0ES 2022 Local Distance Scale Prior**:
    - Gaussian prior: $H_0 = 73.04 \pm 1.04\text{ km s}^{-1}\text{Mpc}^{-1}$ (Riess et al. 2022).
