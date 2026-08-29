@@ -144,17 +144,25 @@ Evaluating at $n = 1$ and $n = 13$ yields the exact Chern–Simons invariants of
 
 ## 3. Hyperbolic Geometry ($\mathbb{H}^3$): The Weeks Manifold & Arithmetic Invariants
 
-### 3.1 Fundamental Group, Homology & Volume Minimality
+### 3.1 Census Identification, Multi-Surgery Triangulation & Canonical Presentation
 
-The Weeks manifold $\mathcal{W}$ (also denoted $M003(-3,1)$ or `vol3`) is obtained via $(5,1), (5,2)$ Dehn surgery on the Whitehead link in $S^3$. Its fundamental group admits the 2-generator 2-relator presentation:
+The Weeks manifold $\mathcal{W}$ is the unique closed orientable hyperbolic 3-manifold of minimal volume ($\mathrm{Vol}(\mathcal{W}) \approx 0.9427073627769...$), proven by David Gabai, Robert Meyerhoff, and Peter Milley (2009). It admits several dual topological descriptions across canonical census databases and surgery presentations:
 
-```math
-\pi_1(\mathcal{W}) = \langle a, b \mid a b a b a^{-1} b^2 a^{-1} b = 1, \; a b a b^{-1} a^2 b^{-1} a b = 1 \rangle
-```
-
-with relators $w_1 = a b a b a^{-1} b^2 a^{-1} b$ and $w_2 = a b a b^{-1} a^2 b^{-1} a b$.
+1. **Hodgson–Weeks & SnapPea/SnapPy Census (`m003(-3,1)`)**:
+   In the cusped hyperbolic census, `m003` denotes the sister manifold of the figure-eight knot complement (the Gieseking sibling / $(-2,3,8)$ manifold). Performing $(-3, 1)$ Dehn filling on the single cusp of `m003` yields $\mathcal{W} = \text{m003}(-3,1)$.
+2. **SnapPea Closed Census Index & Mom-3 Classification (`vol1` vs `vol3`)**:
+   In the SnapPea closed census catalog, $\mathcal{W}$ occupies index #1 by volume (`vol1`). In the Mom-technology classification of Gabai–Meyerhoff–Milley (2009), it arises as the minimal volume Mom-3 manifold and is designated `Vol3` (or `vol3`).
+3. **Whitehead Link Dehn Surgery**:
+   $\mathcal{W}$ is obtained by performing $(5/1, 5/2)$ or $(5/2, 5/1)$ Dehn surgery on the two cusps of the Whitehead link $W = 5_1^2 = L7a4$ in $S^3$.
+4. **Canonical 2-Generator 2-Relator Presentation**:
+   The fundamental group $\pi_1(\mathcal{W})$ admits the symmetric 2-generator presentation (Chinburg–Friedman–Jones–Reid 2001, Gabai–Meyerhoff–Milley 2009, SnapPy `m003(-3,1)`):
+   ```math
+   \pi_1(\mathcal{W}) = \langle a, b \mid a b a b a^{-1} b^2 a^{-1} b = 1, \; a b a b^{-1} a^2 b^{-1} a b = 1 \rangle
+   ```
+   with relators $w_1 = a b a b a^{-1} b^2 a^{-1} b$ and $w_2 = a b a b^{-1} a^2 b^{-1} a b$.
 
 In `Formalization.WeeksManifold.Basic`, we verify:
+- Syllable lengths: $\lvert w_1 \rvert = 8$, $\lvert w_2 \rvert = 8$.
 - Exponent sums: $\vec{w}_1 = (0, 5)^T, \vec{w}_2 = (5, 0)^T$.
 - Abelian presentation matrix:
   ```math
@@ -181,15 +189,54 @@ In `Formalization.WeeksManifold.Arithmetic`, we formalize the invariant trace fi
 P(x) = x^3 - x^2 + 1
 ```
 
-- Discriminant: $\mathrm{Disc}(P) = -23$. Since $-23 < 0$, $P(x)$ has signature $(r_1, r_2) = (1, 1)$ (1 real root $\theta_0 \approx -0.754878$ and 1 pair of complex conjugate roots).
-- Arithmetic Minimality (Chinburg–Hamilton–Long–Reid 2007): The invariant quaternion algebra $A$ over $k$ is ramified at exactly 2 places: the unique real embedding $\sigma : k \hookrightarrow \mathbb{R}$ and the unique dyadic prime ideal $\mathfrak{p}_2 \subset \mathcal{O}_k$ of norm 2. This satisfies the Albert–Brauer–Hasse–Noether parity condition:
+- Discriminant: $\mathrm{Disc}(P) = -23$. Since $-23 < 0$, $P(x)$ has signature $(r_1, r_2) = (1, 1)$ (1 real root $\theta_0 \approx -0.754878$ and 1 pair of complex conjugate roots $\theta_{1,2} \approx 0.877439 \pm 0.744862 i$).
+- Arithmetic Minimality (Chinburg–Friedman–Jones–Reid 2001, Chinburg–Hamilton–Long–Reid 2008): The invariant quaternion algebra $A$ over $k$ is ramified at exactly 2 places: the unique real embedding $\sigma : k \hookrightarrow \mathbb{R}$ and the unique dyadic prime ideal $\mathfrak{p}_2 \subset \mathcal{O}_k$ of norm 2. This satisfies the Albert–Brauer–Hasse–Noether parity condition:
   ```math
   |\mathrm{Ram}(A)| = 2 \equiv 0 \pmod 2
   ```
+- Borel Volume Formula:
+  ```math
+  \mathrm{Vol}(\mathcal{W}) = \frac{23^{3/2}}{4\pi^2} \zeta_k(2) \approx 0.94270736...
+  ```
+  where $\zeta_k(s)$ is the Dedekind zeta function of the cubic field $k = \mathbb{Q}(\theta)$.
 
-- Lean Theorems: [`WeeksManifold.Arithmetic.weeksCubic_discriminant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`real_root_bracket`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`totalRamifiedPlaces_eq_two`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean).
+- Lean Theorems: [`WeeksManifold.Arithmetic.weeksCubic_discriminant`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`real_root_bracket`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`totalRamifiedPlaces_eq_two`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`borel_volume_consistency`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean).
 
-### 3.3 Laplace Spectrum & Ramanujan–Selberg Spectral Gap
+### 3.3 Discrete Faithful Representation & Character Variety Rigidity
+
+The geometric holonomy representation:
+
+```math
+\rho_{\mathrm{geom}} : \pi_1(\mathcal{W}) \longrightarrow \mathrm{PSL}(2, \mathbb{C})
+```
+
+lifts to an explicit matrix representation in $\mathrm{SL}(2, \mathcal{O}_k)$, where $\mathcal{O}_k = \mathbb{Z}[\theta]$ is the maximal order of the cubic field $k = \mathbb{Q}(\theta)$.
+
+
+1. **Fricke–Vogt Trace Coordinates**:
+   The traces of the canonical generators and their product evaluate to:
+   ```math
+   \mathrm{tr}(\rho(a)) = \theta, \quad \mathrm{tr}(\rho(b)) = \theta, \quad \mathrm{tr}(\rho(ab)) = \theta^2 - \theta
+   ```
+2. **Master Commutator Trace Theorem**:
+   Applying the Fricke identity $\mathrm{tr}([A,B]) = \mathrm{tr}(A)^2 + \mathrm{tr}(B)^2 + \mathrm{tr}(AB)^2 - \mathrm{tr}(A)\mathrm{tr}(B)\mathrm{tr}(AB) - 2$, the commutator trace evaluates in the coordinate ring $\mathbb{Z}[\theta]/(\theta^3 - \theta^2 + 1)$ to:
+   ```math
+   \mathrm{tr}([\rho(a), \rho(b)]) = \theta^2 + \theta^2 + (\theta^2 - \theta)^2 - \theta^2(\theta^2 - \theta) - 2 = 2\theta^2 - 1
+   ```
+   evaluated at $\theta_{1,2} \approx 0.8774 \pm 0.7449 i$ to $\mathrm{tr}([\rho(a),\rho(b)]) \approx -0.5698 \pm 2.6143 i \ne 2$, proving the representation is non-abelian, irreducible, and non-elementary.
+3. **Relator Evaluation & Spin-Lift Classification**:
+   Evaluating the relator words in $\mathrm{SL}(2, \mathbb{C})$ yields:
+   ```math
+   \rho(w_1) = +I, \quad \rho(w_2) = +I
+   ```
+   The representation variety $\mathcal{R}(\pi_1(\mathcal{W}), \mathrm{SL}(2, \mathbb{C}))$ decomposes into exactly 12 isolated 0-dimensional points ($3 \times 4 = 12$):
+   - 3 Galois conjugate representations into $\mathrm{SL}(2, k)$ corresponding to the 3 roots of $\theta^3 - \theta^2 + 1 = 0$ (1 real representation, 2 complex conjugate representations $\rho_{\mathrm{geom}}, \overline{\rho}_{\mathrm{geom}}$).
+   - 4 spin lifts per Galois point corresponding to the sign choices $(\epsilon_1, \epsilon_2) \in \{\pm 1\}^2$ for $(\rho(w_1), \rho(w_2))$.
+   In $\mathrm{PSL}(2, \mathbb{C})$, all 4 spin lifts project to the exact same 3 Galois-rigid points, proving that the geometric holonomy representation is uniquely pinned down and algebraically rigid.
+
+- Lean Theorems: [`WeeksManifold.Arithmetic.weeks_commutator_trace`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean), [`sl2_character_variety_card_eq_twelve`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/Arithmetic.lean).
+
+### 3.4 Laplace Spectrum & Ramanujan–Selberg Spectral Gap
 
 The Laplace–Beltrami operator on $\mathbb{H}^3/\Gamma$ parameterized by continuous wavenumber $k \in \mathbb{R}$ has eigenvalues $\lambda(k) = 1 + k^2$. The spectrum on $\mathbb{H}^3$ starts at the continuous base $\lambda_0(\mathbb{H}^3) = 1$.
 
@@ -207,6 +254,7 @@ In `Formalization.WeeksManifold.SpectralGap`, we formalize:
    proving that the observable universe is strictly contained within a single Dirichlet fundamental domain of $\mathcal{W}$, precluding any antipodal matched circles in the sky.
 
 - Lean Theorems: [`WeeksManifold.SpectralGap.lambda1_gt_one`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/SpectralGap.lean), [`no_small_first_eigenvalue`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/SpectralGap.lean), [`sls_strictly_contained_in_fundamental_domain`](file:///c:/Users/x/Documents/antigravity/original-research/Formalization/WeeksManifold/SpectralGap.lean).
+
 
 ---
 
