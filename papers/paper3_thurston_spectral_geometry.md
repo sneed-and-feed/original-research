@@ -409,10 +409,10 @@ The Laplace–Beltrami operator $-\Delta$ on $\mathbb{H}^3/\Gamma$ parameterized
 
 where $\lambda_0(\mathbb{H}^3) = 1$ is the continuous spectral baseline of the universal cover and $\lambda_0(\mathcal{W}) = 0$ is the constant zero-mode.
 
-#### Numerical PDE Certificate vs. Structural Ramanujan–Selberg Property
+#### Numerical Collocation Estimates vs. Rigorous Spectral Theorems
 
-1. **Numerical PDE Result** ($\lambda_1 \approx 27.8$ / $27.80195$):
-   The lowest non-trivial Laplace eigenvalue on the Weeks manifold $m003(-3,1)$ was computed via Trefftz boundary collocation by:
+1. **Numerical Literature Estimates ($\lambda_1 \approx 27.8$ / $27.80195$)**:
+   The value $\lambda_1(\mathcal{W}) \approx 27.80$ is a **numerical computation**, not a mathematically rigorous analytical proof. In the literature, this estimate was computed via numerical Trefftz boundary collocation on fundamental polyhedra by:
    - **Cornish, N. J. & Spergel, D. N. (1999)**, *"On the eigenmodes of compact hyperbolic 3-manifolds"*, Phys. Rev. D 60, 083501 (arXiv:math/9906017), Table III: $\lambda_1 \approx 27.8$ (multiplicity 1).
    and subsequently refined via periodic orbit sum (Selberg trace formula) expansions by:
    - **Inoue, K. T. (2001)**, *"Numerical study of length spectra and low-lying eigenvalue spectra of compact hyperbolic 3-manifolds"*, Class. Quantum Grav. 18, 629–644 (arXiv:math-ph/0011012):
@@ -421,17 +421,21 @@ where $\lambda_0(\mathbb{H}^3) = 1$ is the continuous spectral baseline of the u
 \lambda_1(\mathcal{W}) \approx 27.80195, \quad k_1 \approx 5.17706, \quad \Delta\lambda = \lambda_1 - 1 \approx 26.80195 > 0
 ```
 
-   alongside the Direct Boundary Element Method (DBEM) developed by:
+   alongside the Direct Boundary Element Method (DBEM) of:
    - **Aurich, R. & Steiner, F. (1993, 1999)**, *"Numerical computation of the Laplace-Beltrami spectrum on compact hyperbolic 3-manifolds by the direct boundary element method"*, J. Phys. A: Math. Gen. 32, 2673; Physica D 64, 185.
 
-2. **Structural Ramanujan–Selberg Property** ($\lambda_1 > 1$):
-   Crucially, we maintain the rigorous logical distinction between the specific numerical bracketing ($\lambda_1 \approx 27.80$) and the universal structural property. The qualitative geometric theorem formalized in Lean 4:
+   Because boundary element and Trefftz methods involve finite matrix truncations, they provide empirical approximations rather than computer-assisted interval-arithmetic bounds or closed-form proofs.
+
+2. **Analytical Status of the Ramanujan–Selberg Spectral Gap ($\lambda_1 > 1$)**:
+   A rigorous, non-numerical analytical proof that the first positive Laplace eigenvalue of the Weeks manifold satisfies $\lambda_1(\mathcal{W}) > 1$ represents an open challenge at the intersection of geometric analysis, automorphic forms, and spectral geometry. Such a theorem, if proved analytically, would be an independent structural result distinct from numerical collocation.
+
+   In our Lean 4 formalization library ([`Formalization/WeeksManifold/SpectralGap.lean`](../Formalization/WeeksManifold/SpectralGap.lean)), we formalize the conditional structural theorem:
 
 ```math
-\lambda_1(\mathcal{W}) > 1 \implies \mathcal{W} \text{ has no eigenvalues in } (0, 1)
+\lambda_1(\mathcal{W}) > 1 \implies \mathrm{Spec}(\Delta_\mathcal{W}) \cap (0, 1) = \emptyset
 ```
 
-   certifies the Generalized Ramanujan–Selberg property for $\mathcal{W}$—namely, the complete absence of small eigenvalues in the complementary series $(0, 1)$.
+   which machine-checks the qualitative absence of small eigenvalues in the complementary series $(0, 1)$ conditioned on the spectral bound, without claiming that the continuous antecedent $\lambda_1 > 1$ is derived from the metric in Lean 4.
 
 #### Conditional Cosmic Horizon Containment Bound
 
