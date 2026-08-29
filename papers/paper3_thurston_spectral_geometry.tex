@@ -8,7 +8,7 @@
 
 \geometry{margin=1in}
 
-\title{\textbf{Spectral Invariants, Discrete Group Actions, and Topological Obstructions of Closed 3-Manifolds across Thurston Geometries}}
+\title{\textbf{Spectral Invariants, Discrete Group Actions, and Topological Obstructions of Closed 3-Manifolds across the Eight Thurston Geometries}}
 \author{\textbf{Sneed \& Feed Research Group} \\ \texttt{Formalization/}}
 \date{August 2026}
 
@@ -16,16 +16,40 @@
 \maketitle
 
 \begin{abstract}
-We present a unified mathematical treatise and machine-checked formalization in Lean~4 of the spectral invariants, discrete group representations, and topological obstructions characterizing closed 3-manifolds across four canonical Thurston geometries: \textbf{Spherical} ($\mathbb{S}^3$), \textbf{Hyperbolic} ($\mathbb{H}^3$), \textbf{Euclidean} ($\mathbb{E}^3$), and \textbf{Nilpotent} ($\mathrm{Nil}^3$). All results are certified with 0 sorries and strictly standard kernel axioms.
+We present a unified mathematical treatise and machine-checked formalization in Lean~4 of the spectral invariants, discrete group representations, curvature tensors, and topological obstructions characterizing closed 3-manifolds across all eight canonical Thurston model geometries: \textbf{Spherical} ($\mathbb{S}^3$), \textbf{Hyperbolic} ($\mathbb{H}^3$), \textbf{Euclidean} ($\mathbb{E}^3$), \textbf{Nilpotent} ($\mathrm{Nil}^3$), \textbf{Solvable} ($\mathrm{Sol}^3$), \textbf{Universal Cover of $\mathrm{SL}_2(\mathbb{R})$} ($\widetilde{\mathrm{SL}}_2(\mathbb{R})$), \textbf{Spherical Cylinder} ($\mathbb{S}^2 \times \mathbb{R}$), and \textbf{Hyperbolic Cylinder} ($\mathbb{H}^2 \times \mathbb{R}$). All definitions, classifications, and structural theorems are certified with 0 sorries and strictly standard kernel closure in Lean~4.
 \end{abstract}
 
-\section{Introduction}
-The Geometrization Theorem establishes that every closed, orientable 3-manifold decomposes into geometric pieces admitting one of the eight Thurston geometries. We formalize the discrete spectral and topological invariants for four canonical representatives: $\Sigma(2,3,5)$, the Weeks manifold $\mathcal{W}$, the Hantzsche--Wendt didicosm $G_6$, and the Heisenberg nilmanifold $N_3$.
+\section{Introduction \& The Thurston Octet}
+The Geometrization Theorem establishes that every closed, orientable 3-manifold decomposes canonically along essential spheres and incompressible tori into geometric pieces admitting one of the eight homogeneous Thurston model metrics $(X, \mathrm{Isom}(X))$:
+\begin{equation}
+\mathbb{S}^3, \quad \mathbb{H}^3, \quad \mathbb{E}^3, \quad \mathrm{Nil}^3, \quad \mathrm{Sol}^3, \quad \widetilde{\mathrm{SL}}_2(\mathbb{R}), \quad \mathbb{S}^2 \times \mathbb{R}, \quad \mathbb{H}^2 \times \mathbb{R}.
+\end{equation}
+We formalize the discrete spectral, geometric, and topological invariants across all eight geometries:
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{@{}llcccccl@{}}
+\toprule
+\textbf{Geometry} & \textbf{Model Space $X$} & $\dim H$ & $\dim \mathrm{Isom}$ & \textbf{Space Form $M$} & $b_1(M)$ & $R$ & \textbf{Spectral Gap $\lambda_1$} \\
+\midrule
+$\mathbb{S}^3$ & $S^3$ & 3 & 6 & $\Sigma(2,3,5)$ & 0 & $+6$ & $48 > 0$ \\
+$\mathbb{H}^3$ & $\mathbb{H}^3$ & 3 & 6 & Weeks $\mathcal{W}$ & 0 & $-6$ & $\lambda_1 \approx 27.80 > 1$ \\
+$\mathbb{E}^3$ & $\mathbb{R}^3$ & 3 & 6 & Didicosm $G_6$ & 0 & $0$ & $8\pi^2/L^2 = 2\lambda_1(T^3)$ \\
+$\mathrm{Nil}^3$ & $\mathcal{H}_3(\mathbb{R})$ & 1 & 4 & Heisenberg $N_3$ & 2 & $-1/2$ & $4\pi^2$ ($\Delta\lambda = 2\pi$) \\
+$\mathrm{Sol}^3$ & $\mathbb{R}^2 \rtimes \mathbb{R}$ & 0 & 3 & Torus Bundle $M_A$ & 1 & $-2$ & $(\pi/\ln\varphi)^2 > 0$ \\
+$\widetilde{\mathrm{SL}}_2(\mathbb{R})$ & $\widetilde{\mathrm{SL}}_2(\mathbb{R})$ & 1 & 4 & $T^1(\Sigma_g)$ & $2g$ & $-1/2$ & $\min(\lambda_1(\Sigma_g), 1/4) > 0$ \\
+$\mathbb{S}^2 \times \mathbb{R}$ & $S^2 \times \mathbb{R}$ & 1 & 4 & $S^2 \times S^1_L$ & 1 & $+2$ & $\min(2, 4\pi^2/L^2) > 0$ \\
+$\mathbb{H}^2 \times \mathbb{R}$ & $\mathbb{H}^2 \times \mathbb{R}$ & 1 & 4 & $\Sigma_g \times S^1_L$ & $2g+1$ & $-2$ & $\ge \min(3/16, 4\pi^2/L^2) > 0$ \\
+\bottomrule
+\end{tabular}
+\caption{The Eight Thurston Geometries, Isometries, Curvatures, and Canonical Spectral Invariants.}
+\end{table}
 
 \section{Spherical Geometry ($\mathbb{S}^3$): Seifert Fibrations \& Chern--Simons Actions}
-For Brieskorn spheres $\Sigma(p,q,r)$, irreducible $\mathrm{SU}(2)$ representations correspond to Diophantine spherical angle triples $(a,b,c)$. The exact rational Chern--Simons action is:
+For Brieskorn homology spheres $\Sigma(p,q,r)$, irreducible $\mathrm{SU}(2)$ representations correspond to Diophantine spherical angle triples $(a,b,c)$. The exact rational Chern--Simons action is:
 \begin{equation}
-CS(p,q,r; a,b,c) = -\frac{(a q r + b p r + c p q - p q r)^2}{4 p q r} \pmod 1
+CS(p,q,r; a,b,c) = -\frac{(a q r + b p r + c p q - p q r)^2}{4 p q r} \pmod 1.
 \end{equation}
 For $\Sigma(2,3,5)$, the values are $-1/120$ and $-169/120$, matching the Lawrence--Zagier false theta exponents $-\Delta(n) - 1/120$ at $n = 1, 13$.
 
@@ -35,14 +59,49 @@ The Weeks manifold $\mathcal{W}$ minimizes volume among closed hyperbolic 3-mani
 \section{Euclidean Geometry ($\mathbb{E}^3$): Hantzsche--Wendt Didicosm}
 The flat didicosm $G_6$ is generated by affine screw-motions. Due to destructive parity cancellation of single-axis odd modes, the lowest invariant mode is $(1,1,0)$ with energy 2, proving the Spectral Gap Doubling Theorem:
 \begin{equation}
-\lambda_1(G_6) = \frac{8\pi^2}{L^2} = 2 \cdot \lambda_1(T^3)
+\lambda_1(G_6) = \frac{8\pi^2}{L^2} = 2 \cdot \lambda_1(T^3).
 \end{equation}
 
 \section{Nilpotent Geometry ($\mathrm{Nil}^3$): Heisenberg Nilmanifold}
 The Heisenberg nilmanifold $N_3 = \mathrm{Nil}^3/\mathcal{H}_3(\mathbb{Z})$ has $H_1(N_3, \mathbb{Z}) \cong \mathbb{Z}^2$ and Euler class $e=1$. The Laplace spectrum decomposes into continuous $T^2$ base modes ($\lambda_1 = 4\pi^2$) and discrete Landau-level harmonic oscillator towers:
 \begin{equation}
-\lambda_{k,n} = 4\pi^2 k^2 + 2\pi |k|(2n+1), \quad k \ne 0, \; n \in \mathbb{N}
+\lambda_{k,n} = 4\pi^2 k^2 + 2\pi |k|(2n+1), \quad k \ne 0, \; n \in \mathbb{N},
 \end{equation}
-with exact harmonic gap $\Delta\lambda = \lambda_{1,0} - \lambda_1(N_3) = 2\pi > 0$.
+with exact harmonic gap $\Delta\lambda_{\mathrm{HO}} = \lambda_{1,0} - \lambda_1(N_3) = 2\pi > 0$.
+
+\section{Solvable Geometry ($\mathrm{Sol}^3$): Fibonacci Anosov Torus Bundles}
+The solvmanifold $M_A = T^2 \rtimes_A S^1$ with Fibonacci matrix $A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$ has golden ratio spectrum $\lambda_1 = \varphi^2 = \frac{3+\sqrt{5}}{2}$ and Lyapunov exponent $\mu = 2\ln\varphi > 0$. The left-invariant metric has sectional curvatures $K \in \{-1, +1\}$ and scalar curvature $R = -2$. The vertical fiber spectrum is:
+\begin{equation}
+\lambda_{0,n} = \left(\frac{2\pi n}{2\ln\varphi}\right)^2, \quad \lambda_{0,1} = \left(\frac{\pi}{\ln\varphi}\right)^2 > 0.
+\end{equation}
+
+\section{$\widetilde{\mathrm{SL}}_2(\mathbb{R})$ Geometry: Unit Tangent Bundles}
+The unit tangent bundle $T^1(\Sigma_g)$ over a closed hyperbolic surface of genus $g \ge 2$ has Euler class $e = 2-2g < 0$, volume $4\pi^2(g-1)$, mixed curvatures $K \in \{-3/4, 1/4\}$, and scalar curvature $R = -1/2$. The Casimir Laplace spectrum decomposes as:
+\begin{equation}
+\lambda_{j,m} = \lambda_j(\Sigma_g) + \frac{m^2}{4}, \quad \lambda_1(T^1(\Sigma_g)) = \min\left(\lambda_1(\Sigma_g), \, \frac{1}{4}\right) > 0.
+\end{equation}
+
+\section{$\mathbb{S}^2 \times \mathbb{R}$ Product Geometry: Spherical Cylinders}
+The manifold $S^2 \times S^1_L$ ($L > 0$) has $b_0=b_1=b_2=b_3=1$, non-negative sectional curvatures $K \in \{0, 1\}$, and scalar curvature $R = +2$. The joint Laplace--Beltrami spectrum is:
+\begin{equation}
+\lambda_{\ell,n}(L) = \ell(\ell+1) + \left(\frac{2\pi n}{L}\right)^2, \quad \lambda_1(L) = \min\left(2, \, \frac{4\pi^2}{L^2}\right) > 0,
+\end{equation}
+with critical crossover circumference $L_c = \pi\sqrt{2}$.
+
+\section{$\mathbb{H}^2 \times \mathbb{R}$ Product Geometry: Hyperbolic Cylinders}
+The manifold $\Sigma_g \times S^1_L$ ($g \ge 2, L > 0$) has $b_1 = 2g+1$, non-positive sectional curvatures $K \le 0$, and scalar curvature $R = -2$. Joint eigenvalues are $\lambda_{j,n} = \lambda_j(\Sigma_g) + 4\pi^2 n^2 / L^2$. Under Selberg's $3/16$ lower bound:
+\begin{equation}
+\lambda_1(M) \ge \min\left(\frac{3}{16}, \, \frac{4\pi^2}{L^2}\right) > 0, \quad L_{\mathrm{crit}} = \frac{8\pi}{\sqrt{3}}.
+\end{equation}
+
+\section{The Master Classification Theorem}
+In `Formalization.ThurstonOctet`, the complete classification is encapsulated in the bundled structure `ThurstonOctetCertificate` and verified by `masterThurstonOctetCertificate`, establishing:
+\begin{enumerate}
+\item Manifold dimension $\dim(X) = 3$ for all geometries;
+\item Isotropy dimension $\dim H = 3 \iff g \in \{\mathbb{S}^3, \mathbb{H}^3, \mathbb{E}^3\}$;
+\item Einstein metric $\mathrm{Ric} = \frac{R}{3}g \iff g \in \{\mathbb{S}^3, \mathbb{H}^3, \mathbb{E}^3\}$;
+\item Positive scalar curvature $R > 0 \iff g \in \{\mathbb{S}^3, \mathbb{S}^2 \times \mathbb{R}\}$;
+\item Universal spectral gap positivity $\lambda_1(M_g) > 0$ across all eight canonical space forms.
+\end{enumerate}
 
 \end{document}

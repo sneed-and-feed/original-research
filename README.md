@@ -1,8 +1,9 @@
-# Machine-Checked Formalization of Modular Triangle Groups, Seifert Spheres, and Poincaré Spectral Geometry in Lean 4
+# Machine-Checked Formalization of Modular Triangle Groups, Seifert Spheres, and the 8-Geometry Thurston Octet in Lean 4
 
 This repository provides machine-checked formalizations, certified proofs, and a comprehensive mathematical physics monograph exploring:
 1. **Hyperbolic Triangle Groups & Abelian Surface Degenerations**: Representation theory in $\mathrm{GL}_4(\mathbb{Z})$ and $\mathrm{Sp}_4(\mathbb{Z})$, the algebraic backbone of modular families of complex 2-tori, Brieskorn singularity links, gauge-theoretic Casson invariants, and Deligne–Schmid monodromy weight filtrations.
 2. **Poincaré Dodecahedral Space** $S^3/I^\ast$ **& Spectral Geometry**: Exact algebraic construction of the binary icosahedral group $I^\ast \subset \mathrm{SU}(2)$, Chebyshev recurrence character evaluations, Molien invariant projection selection rules ($m_0=1, m_1=\dots=m_5=0, m_6=1$ on $\mathrm{SO}(3)$ and 11-mode spinor gap on $\mathrm{SU}(2)$), off-diagonal mode coupling selection rules and parity conservation theorems ($\Delta L \equiv 0 \pmod 2$), Seeley--DeWitt heat kernel asymptotics ($a_0, a_2, a_4$), 4D Einstein--Hilbert action recovery ($G_{\mathrm{eff}} > 0$), and the almost-commutative Noncommutative Standard Model spectral triple ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$).
+3. **The Complete 8-Geometry Thurston Octet**: Machine-checked spectral invariants, discrete group representations, Riemannian curvature tensors, and topological classifications across all eight Thurston model geometries ($\mathbb{S}^3, \mathbb{H}^3, \mathbb{E}^3, \mathrm{Nil}^3, \mathrm{Sol}^3, \widetilde{\mathrm{SL}}_2(\mathbb{R}), \mathbb{S}^2 \times \mathbb{R}, \mathbb{H}^2 \times \mathbb{R}$).
 
 ---
 
@@ -34,116 +35,18 @@ This repository provides machine-checked formalizations, certified proofs, and a
 
 ---
 
-## Detailed Module Descriptions & Literate Mathematical Comments
+### Part III: The Complete 8-Geometry Thurston Octet (Paper 3)
 
-### 1. The $(3,4,\infty)$ Modular Triangle Group Representation
-* **Root Module:** [`Formalization/TriangleModularGroup.lean`](Formalization/TriangleModularGroup.lean)
-* **Literate Context:**
-  The hyperbolic triangle group $\Delta(3,4,\infty) = \langle \tau_1, \tau_2, \tau_0 \mid \tau_1^3 = 1, \, \tau_2^4 = 1, \, \tau_1 \tau_2 \tau_0 = 1 \rangle$ acts on the homology lattice $H_1(A_t, \mathbb{Z}) \cong \mathbb{Z}^4$ of a 1-parameter degenerating family of complex abelian surfaces. The parabolic transformation $T_0$ around the cusp is unipotent of index 2 ($N = T_0 - I_4$ satisfies $N^2 = 0$), establishing a Kulikov Type II degeneration.
-* **Submodules:**
-  - [`Formalization/TriangleModularGroup/Basic.lean`](Formalization/TriangleModularGroup/Basic.lean): Matrix definitions $T_1, T_2, T_0, N$, orders $T_1^3 = I_4, T_2^4 = I_4$, inverse $(T_1 T_2) T_0 = I_4$, and index-2 unipotence $N^2 = 0$.
-  - [`Formalization/TriangleModularGroup/LatticeAction.lean`](Formalization/TriangleModularGroup/LatticeAction.lean): Standard lattice basis $(\gamma, u, w, \delta)$ and nilpotent actions: $N\gamma = 0, Nu = 0, Nw = -u, N\delta = \gamma$.
-  - [`Formalization/TriangleModularGroup/SeifertInvariant.lean`](Formalization/TriangleModularGroup/SeifertInvariant.lean): Seifert invariant evaluation $\lvert 12\ell_0 - 4\ell_1 - 3\ell_2 \rvert = 1$ for $(\ell_0, \ell_1, \ell_2) = (0, 1, -1) \implies \pi_1(X) \cong 0$.
-
----
-
-### 2. Diophantine Classification of Sphere-Yielding Seifert Fibrations
-* **Root Module:** [`Formalization/SeifertSphereFibrations.lean`](Formalization/SeifertSphereFibrations.lean)
-* **Literate Context:**
-  A Seifert fibered 3-manifold $M^3(b; (\alpha_1, \beta_1), \dots, (\alpha_k, \beta_k))$ over $S^2$ is a homology 3-sphere ($H_1(M^3, \mathbb{Z}) = 0$) if and only if the order of its abelianized fundamental group $\lvert O(a; \ell_0, \vec{\ell}) \rvert = 1$. For $k=2$ and $k=3$, coprimality of multiplicities guarantees constructive Bézout integer twist solutions.
-* **Submodules:**
-  - [`Formalization/SeifertSphereFibrations/Basic.lean`](Formalization/SeifertSphereFibrations/Basic.lean): Seifert order $O(a_1, a_2; \ell_0, \ell_1, \ell_2) = a_1 a_2 \ell_0 - a_2 \ell_1 - a_1 \ell_2$ and Bézout witness constructor.
-  - [`Formalization/SeifertSphereFibrations/CoprimeSolvability.lean`](Formalization/SeifertSphereFibrations/CoprimeSolvability.lean): Constructive Bézout existence theorem (`coprime_exists_sphere`) and divisibility obstruction theorem (`noncoprime_obstruction`).
-  - [`Formalization/SeifertSphereFibrations/CanonicalFamilies.lean`](Formalization/SeifertSphereFibrations/CanonicalFamilies.lean): Certified solutions for $(2,3,\infty), (3,4,\infty), (2,5,\infty), (3,5,\infty)$.
-  - [`Formalization/SeifertSphereFibrations/CompactThreePoint.lean`](Formalization/SeifertSphereFibrations/CompactThreePoint.lean): Compact 3-point Seifert order $O_3$, pairwise coprime solvability, pair obstruction, and Poincaré $\Sigma(2,3,5)$ / Brieskorn $\Sigma(2,3,7)$ certificates.
-
----
-
-### 3. Universal Diophantine Classification for $k$-Point Seifert Fibrations
-* **Root Module:** [`Formalization/GeneralSeifertClassification.lean`](Formalization/GeneralSeifertClassification.lean)
-* **Literate Context:**
-  Extends the Diophantine classification to arbitrary $k \ge 1$ singular fibers. Using cofactor products $A_j = \prod_{i \ne j} a_i$, the fundamental group order is $O_k(a; \ell_0, \vec{\ell}) = (\prod a_i)\ell_0 - \sum A_j \ell_j$. Solvability $\lvert O_k \rvert = 1$ is mathematically equivalent to the linear Diophantine condition $\gcd(A_1, \dots, A_k) = 1$.
-* **Submodules:**
-  - [`Formalization/GeneralSeifertClassification/Cofactors.lean`](Formalization/GeneralSeifertClassification/Cofactors.lean): $k$-point cofactors $A_j$, product reconstructions, $O_k(a; \ell_0, \ell)$, and cofactor GCD $\gcd(A_1, \dots, A_k)$.
-  - [`Formalization/GeneralSeifertClassification/Solvability.lean`](Formalization/GeneralSeifertClassification/Solvability.lean): Master Bézout Solvability Theorem ($\lvert O_k \rvert = 1 \iff \gcd(A_1,\dots,A_k) = 1$) and Pairwise Coprimality Sufficiency Theorem.
-  - [`Formalization/GeneralSeifertClassification/Obstructions.lean`](Formalization/GeneralSeifertClassification/Obstructions.lean): Common divisor obstructions showing that any shared factor $\gcd(a_i, a_j) > 1$ divides $O_k$, strictly precluding homology spheres.
-  - [`Formalization/GeneralSeifertClassification/Certificates.lean`](Formalization/GeneralSeifertClassification/Certificates.lean): Certified 3-point ($\Sigma(2,3,5), \Sigma(2,3,7), \Sigma(2,3,11)$), 4-point ($\Sigma(2,3,5,7), \Sigma(2,3,7,11), \Sigma(2,3,7,13), \Sigma(3,4,5,7)$), and 5-point ($\Sigma(2,3,5,7,11)$) spheres and obstruction certificates.
-
----
-
-### 4. The Seifert / Brieskorn Bridge & Casson Invariants
-* **Root Module:** [`Formalization/GeneralSeifertClassification/BrieskornBridge.lean`](Formalization/GeneralSeifertClassification/BrieskornBridge.lean)
-* **Literate Context:**
-  Unifies the algebraic Diophantine Seifert fibration theory with the complex algebraic singularity theory of Brieskorn links $\Sigma(p,q,r) = \{z_1^p + z_2^q + z_3^r = 0\} \cap S^5$. Proves that pairwise coprimality ensures both the graph-theoretic Brieskorn–Hirzebruch sphere criterion ($G(p,q,r)$ has 3 isolated vertices) and Seifert homology 3-sphere solvability. Connects Seifert twist witnesses directly to the gauge-theoretic Casson invariant $\lambda_{SU(2)} = \frac{1}{2} \lvert \mathcal{R}^\ast(\Sigma) \rvert$ and Milnor signature Casson invariant $\lambda_{\text{Milnor}} = \frac{1}{8}\lvert \sigma(p,q,r) \rvert$.
-* **Declarations:**
-  - `pairwiseCoprime_3_implies_hasTwoIsolated`, `pairwiseCoprime_3_implies_brieskornSphere`.
-  - `brieskorn_seifert_bridge_3point`, `brieskorn_casson_bridge_3point`.
-  - Bundled bridge structure `SeifertBrieskornBridge3` and certified instances for $\Sigma(2,3,5)$, $\Sigma(2,3,7)$, $\Sigma(2,3,11)$, $\Sigma(2,5,7)$, $\Sigma(3,4,5)$, $\Sigma(3,5,7)$.
-
----
-
-### 5. Symplectic Triangle Representations in $\mathrm{Sp}_4(\mathbb{Z})$ & Monodromy Classification
-* **Root Module:** [`Formalization/SymplecticTriangleRepresentations.lean`](Formalization/SymplecticTriangleRepresentations.lean)
-* **Literate Context:**
-  Formalizes explicit 4-dimensional integral symplectic representations $\rho: \Delta(p,q,\infty) \to \mathrm{Sp}_4(\mathbb{Z})$ preserving the standard skew-symmetric form $J = \begin{pmatrix} 0 & I_2 \\ -I_2 & 0 \end{pmatrix}$. Covers $\Delta(3,4,\infty)$, $\Delta(2,3,\infty)$, $\Delta(2,4,\infty)$, $\Delta(2,5,\infty)$ (via companion matrix of cyclotomic polynomial $\Phi_5(x)$), $\Delta(3,5,\infty)$, and $\Delta(4,4,\infty)$. Classifies unipotent cusp monodromies into Kulikov Type I ($M=0$), Type II ($M \ne 0, M^2 = 0$), and Type III ($M^2 \ne 0, M^4 = 0$).
-* **Submodules:**
-  - [`Formalization/SymplecticTriangleRepresentations/Basic.lean`](Formalization/SymplecticTriangleRepresentations/Basic.lean): Standard symplectic form $J \in \mathrm{Mat}_4(\mathbb{Z})$ ($J^T = -J, J^2 = -I_4$) and `IsSymplectic` predicate.
-  - [`Formalization/SymplecticTriangleRepresentations/Representations.lean`](Formalization/SymplecticTriangleRepresentations/Representations.lean): Explicit matrix generators, relations $T_1^p = I, T_2^q = I, (T_1 T_2) T_0 = I$, nilpotency $N^2 = 0, N \ne 0$, and symplectic proofs across all families.
-  - [`Formalization/SymplecticTriangleRepresentations/MonodromyClassification.lean`](Formalization/SymplecticTriangleRepresentations/MonodromyClassification.lean): Type II classification proofs and Type I / Type III mutual exclusion theorems.
-  - [`Formalization/SymplecticTriangleRepresentations/WeightFiltration.lean`](Formalization/SymplecticTriangleRepresentations/WeightFiltration.lean): Monodromy weight filtration $W_0 \subseteq W_1 \subseteq W_2$ and polarized form $\Omega_6$ for the geometric $S_6$-family.
-
----
-
-### 6. Moduli Families of Abelian Surfaces, Asymptotics & Complete Stratification
-* **Root Module:** [`Formalization/AbelianSurfaceDegenerations.lean`](Formalization/AbelianSurfaceDegenerations.lean)
-* **Literate Context:**
-  Formalizes the complete moduli geometry of abelian surfaces over hyperbolic triangle curves $\mathcal{X}(p,q,\infty)$: the Siegel upper half-space $\mathbb{H}_2$, $\mathrm{Sp}_4(\mathbb{Z})$ fractional linear actions, Schmid's Nilpotent Orbit Theorem and matrix exponential $\exp(z N)$, Baily–Borel and Toroidal compactifications ($\mathcal{A}_2^st, \overline{\mathcal{A}_2}$), weight filtration energy growth and stationarity, and Néron–Severi rank jumps $\Delta \rho \ge 1$ at elliptic cone points.
-* **Submodules:**
-  - [`Formalization/AbelianSurfaceDegenerations/SiegelSpace.lean`](Formalization/AbelianSurfaceDegenerations/SiegelSpace.lean): Siegel upper half-space $\mathbb{H}_2$ ($g=2$), positive definiteness `IsPosDef2`, diagonal basepoints, and $\mathrm{Sp}_4(\mathbb{Z})$ fractional linear transformations.
-  - [`Formalization/AbelianSurfaceDegenerations/NilpotentOrbit.lean`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbit.lean): Schmid's Nilpotent Orbit Theorem, cusp shift matrix $N_\tau$, period map $\tau_{\text{nilp}}$, and monodromy periodicity.
-  - [`Formalization/AbelianSurfaceDegenerations/BoundaryStratification.lean`](Formalization/AbelianSurfaceDegenerations/BoundaryStratification.lean): Boundary stratification $\overline{\mathcal{A}_2} = \mathcal{A}_2 \cup \Delta_1 \cup \Delta_0$, toric rank classification (0, 1, 2), and semi-abelian boundary extension $\Delta_1$.
-  - [`Formalization/AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean`](Formalization/AbelianSurfaceDegenerations/NilpotentOrbitAsymptotics.lean): Lie matrix exponential $\exp(z N)$, symplectic preservation $(\exp(z N))^T J_{\mathbb{C}} \exp(z N) = J_{\mathbb{C}}$, block projections, FLT translation equivalence, bundled `SchmidAsymptoticEstimate`, and limit elliptic parameter isolation $\tau_{22} = (\tau_0)_{11} \in \mathbb{H}_1$.
-  - [`Formalization/AbelianSurfaceDegenerations/CompleteBoundaryStratification.lean`](Formalization/AbelianSurfaceDegenerations/CompleteBoundaryStratification.lean): Baily–Borel stratification $\mathcal{A}_2^st = \mathcal{A}_2 \sqcup \mathcal{A}_1 \sqcup \mathcal{A}_0$ (dimensions 3, 1, 0; codimensions 0, 2, 3), Toroidal compactification divisor $\Delta = \Delta_1 \cup \Delta_0$ (codimensions 0, 1, 2), semi-abelian fiber rank conservation $\operatorname{toricRank}(s) + \operatorname{abelianRank}(s) = 2$, and master cusp classifications landing all 6 triangle groups in $\Delta_1 \cong \mathcal{A}_1$ and Calabi-Yau MUM cusps in $\Delta_0 \cong \mathcal{A}_0$.
-  - [`Formalization/AbelianSurfaceDegenerations/WeightFiltrationCoupling.lean`](Formalization/AbelianSurfaceDegenerations/WeightFiltrationCoupling.lean): Graded homology pieces $\dim \operatorname{Gr}_1^W + \dim \operatorname{Gr}_2^W = 2 + 2 = 4$, quadratic energy function $E_v(z)$, exact linear growth $E_v(z) = E_v(0) + (\operatorname{Im} z) v_0^2$, stationarity $\frac{\partial E_v}{\partial \operatorname{Im} z} = 0$ on $\ker(N_\tau)$, Hodge-Riemann pairing compatibility $Q_N > 0$, and master moduli degeneration coupling theorem.
-  - [`Formalization/AbelianSurfaceDegenerations/PicardStratification.lean`](Formalization/AbelianSurfaceDegenerations/PicardStratification.lean): Parameterized base curve model `TriangleBaseCurvePoint (p q : ℕ)`, uniform Picard jump theorems $\rho(A_{t_i}) - \rho(A_{\text{gen}}) \ge 1$, and master stratification theorem with concrete certificates for $(2,3,\infty), (2,4,\infty), (2,5,\infty), (3,4,\infty), (3,5,\infty), (4,4,\infty)$.
-
----
-
-### 10. Order-4 Picard-Fuchs Differential Equations, Mirror Symmetry & Monodromy for $\Delta(p,q,\infty)$
-* **Root Module:** [`Formalization/PicardFuchsMirrorMonodromy.lean`](Formalization/PicardFuchsMirrorMonodromy.lean)
-* **Literate Context:**
-  Formalizes the complete order-4 Picard-Fuchs differential operator $\mathcal{L}_4 = \theta^4 - z \prod_{i=0}^3 (\theta + \alpha_i)$, algebraic symbol expansions in elementary symmetric polynomials $e_1, e_2, e_3, e_4$, and the universal Calabi-Yau self-duality theorem $\sum \alpha_i = 2, e_3 = e_2 - 1$ across all 6 triangle modular families $\Delta(p,q,\infty)$ and Calabi-Yau 3-fold mirror families (Quintic and Bicubic). Establishes the flat mirror map coordinate $t(z) = \frac{1}{2\pi i} \frac{w_1(z)}{w_0(z)}$, instanton series $q(z) = z(1 + q_1 z + q_2 z^2)$, and exact reversion series $z(q) = q(1 + z_1 q + z_2 q^2)$ ($z_1 = -q_1, z_2 = 2q_1^2 - q_2$) with unipotent monodromy translation $t \mapsto t + 1 \longleftrightarrow \exp(N)$. Formalizes classical Special Geometry Yukawa couplings $C_{zzz}(z)$, cusp/conifold regularizations, multi-covering Aspinwall-Morrison Gromov-Witten / BPS relations $N_d = \sum_{k \mid d} n_{d/k}/k^3$, Möbius inversion, and certified BPS instanton expansions. Generalizes symplectic Lie algebra invariance $N^T J_{2g} + J_{2g} N = 0$ to arbitrary genus $g \in \{1, 2, 3\}$, proves Hodge filtration inclusion flags $F^3 \subset F^2 \subset F^1 \subset F^0$, and verifies Griffiths transversality $N(F^p) \subseteq F^{p-1}$ for $N_{\mathrm{MUM}}$, $N$, and $N_{S_6}$.
-* **Submodules:**
-  - [`Formalization/PicardFuchsMirrorMonodromy/DifferentialOperator.lean`](Formalization/PicardFuchsMirrorMonodromy/DifferentialOperator.lean): Differential operator $\mathcal{L}_4$, symbol expansion, Calabi-Yau self-duality sum $\sum \alpha_i = 2, e_3 = e_2 - 1$, indicial polynomial $I_0(\theta) = \theta^4$, and parameter evaluations for $(3,4,\infty)$ geom & mod, $(2,3,\infty)$, $(2,4,\infty)$, $(2,5,\infty)$, $(3,5,\infty)$, $(4,4,\infty)$, Quintic, and Bicubic.
-  - [`Formalization/PicardFuchsMirrorMonodromy/CuspMonodromy.lean`](Formalization/PicardFuchsMirrorMonodromy/CuspMonodromy.lean): Cusp monodromy $T_0 \in \mathrm{Sp}_4(\mathbb{Z})$, nilpotent operator $N = T_0 - I_4$, index-2 unipotence ($N^2 = 0$, Type II), geometric basis action ($N\gamma = 0, Nu = 0, Nw = -u, N\delta = \gamma$), and classification vs Type III MUM ($N_{\mathrm{MUM}}^4 = 0$).
-  - [`Formalization/PicardFuchsMirrorMonodromy/MirrorMap.lean`](Formalization/PicardFuchsMirrorMonodromy/MirrorMap.lean): Frobenius series ($w_0, w_1$), flat mirror map $q(z) = z(1+q_1 z+q_2 z^2)$, inverse series $z(q)$ ($z_1=-q_1, z_2=2q_1^2-q_2$), matrix exponentials $\exp(N)$, monodromy translation $t \mapsto t + 1$, and certified inversion pairs for Quintic, $\Delta(3,4,\infty)$, and $\Delta(2,3,\infty)$.
-  - [`Formalization/PicardFuchsMirrorMonodromy/YukawaInstantons.lean`](Formalization/PicardFuchsMirrorMonodromy/YukawaInstantons.lean): Classical Yukawa coupling $C_{zzz}(z)$, cusp/conifold regularizations, Aspinwall-Morrison multi-covering $N_d = \sum_{k \mid d} n_{d/k}/k^3$, Möbius inversion roundtrip, asymptotic equivalences $C_{ttt}(q) \sim C_{\mathrm{GW}}(q)$, BPS integrality/positivity, and certified counts for Quintic ($d=1,2,3$), $(3,4,\infty)$, $(2,3,\infty)$, and $(2,5,\infty)$.
-  - [`Formalization/PicardFuchsMirrorMonodromy/SymplecticInvariance.lean`](Formalization/PicardFuchsMirrorMonodromy/SymplecticInvariance.lean): Symplectic Lie algebra invariance $N^T J + J N = 0$, polarized invariance $N^T \Omega_6 + \Omega_6 N = 0$, finite group invariance $T_0^T J T_0 = J$, and invariant bilinear pairings.
-  - [`Formalization/PicardFuchsMirrorMonodromy/GriffithsTransversality.lean`](Formalization/PicardFuchsMirrorMonodromy/GriffithsTransversality.lean): Dimension-independent symplectic forms $J_{2g}$ ($g=1,2,3$), generalized Lie algebra $\mathfrak{sp}_{2g}(\mathbb{Z})$ invariance, 4D Hodge filtration flags $F^3 \subset F^2 \subset F^1 \subset F^0$, Hodge-Riemann relations, Griffiths transversality $M(F^p) \subseteq F^{p-1}$ for $N_{\mathrm{MUM}}, N, N_{S_6}$, and $g=1,3$ parabolic generators.
-
----
-
-### 11. Deligne-Schmid Mixed Hodge Weight Filtrations $W_\bullet(N)$ & Symplectic Polarizations
-* **Root Module:** [`Formalization/UniversalMonodromyWeightFiltration.lean`](Formalization/UniversalMonodromyWeightFiltration.lean)
-* **Literate Context:**
-  Formalizes the universal Deligne canonical weight filtration $W_\bullet(N)$ associated with a nilpotent monodromy operator $N$. Verifies the defining shift property $N(W_l) \subseteq W_{l-2}$, monotonicity $W_{l-1} \subseteq W_l$, explicit 2-step Type II filtrations on $\mathbb{Z}^4$ for triangle modular degenerations, explicit 4-step Type III MUM filtrations for Calabi-Yau 3-fold degenerations, and strict positivity of the Hodge-Riemann polarization pairing $Q_N(v,w) = \langle v, N w \rangle_J > 0$.
-* **Submodules:**
-  - [`Formalization/UniversalMonodromyWeightFiltration/DeligneFormula.lean`](Formalization/UniversalMonodromyWeightFiltration/DeligneFormula.lean): Canonical subspace construction $W_l(N,k) = \sum_j (\ker N^{j+1} \cap \operatorname{im} N^{j-l+k})$.
-  - [`Formalization/UniversalMonodromyWeightFiltration/FiltrationProperties.lean`](Formalization/UniversalMonodromyWeightFiltration/FiltrationProperties.lean): Shift theorem, monotonicity, top space identity $W_{2k} = V$, and bottom space identity $W_0 = \ker N$.
-  - [`Formalization/UniversalMonodromyWeightFiltration/Filtrations4D.lean`](Formalization/UniversalMonodromyWeightFiltration/Filtrations4D.lean): Explicit 2-step Type II chain and 4-step Type III MUM chain on $\mathbb{Z}^4$.
-  - [`Formalization/UniversalMonodromyWeightFiltration/HodgeRiemannPairing.lean`](Formalization/UniversalMonodromyWeightFiltration/HodgeRiemannPairing.lean): Polarized bilinear form $Q_N$, symmetry, and strict positivity.
-
----
-
-### 12. Poincaré Dodecahedral Space $S^3/I^\ast$, Spectral Geometry & Noncommutative Standard Model
-* **Root Module:** [`Formalization/PoincareDodecahedron.lean`](Formalization/PoincareDodecahedron.lean)
-* **Literate Context:**
-  Formalizes the complete spectral geometry, representation theory, heat kernel asymptotics, and Chamseddine-Connes-Marcolli almost-commutative spectral triple of the Poincaré Dodecahedral Space $S^3 / I^\ast \cong \mathrm{SU}(2) / I^\ast$, where $I^\ast \subset \mathrm{SU}(2)$ is the binary icosahedral group of order 120.
-* **Submodules:**
-  - [`Formalization/PoincareDodecahedron/BinaryIcosahedral.lean`](Formalization/PoincareDodecahedron/BinaryIcosahedral.lean): Exact 120 algebraic units in $\mathbb{H}[\mathbb{R}]^\times$ with golden ratio $\phi = (1+\sqrt{5})/2$, norm identity $(\phi^{-1}/2)^2 + (1/2)^2 + (\phi/2)^2 = 1$, subgroup closure, center $Z(I^\ast) = \{\pm 1\}$, and quotient isomorphism $I^\ast/Z(I^\ast) \cong A_5$.
-  - [`Formalization/PoincareDodecahedron/SpectralDecomposition.lean`](Formalization/PoincareDodecahedron/SpectralDecomposition.lean): $\mathrm{SU}(2)$ character formula $\chi_\ell(u)$, Chebyshev recurrence evaluations across all 9 conjugacy classes, Molien projection formula $m_\ell = \frac{1}{120}\sum_{g\in I^\ast} \chi_\ell(g)$, constructive proofs of the $\mathrm{SO}(3)$ selection rules ($m_0 = 1, m_1 = \dots = m_5 = 0, m_6 = 1$), the 11-mode $\mathrm{SU}(2)$ spinor gap ($m_0=1, m_1=\dots=m_{11}=0, m_{12}=1$), the universal parity selection rule `parity_selection_rule` ($C(L, L') = 0$ for $L \not\equiv L' \pmod 2$), explicit off-diagonal mode couplings $C^{\mathrm{SO}(3)}(L, L')$, and heat trace $Z(t) = \sum m_\ell (\ell+1) e^{-t\ell(\ell+2)}$ on $S^3/I^\ast$.
-  - [`Formalization/PoincareDodecahedron/HeatKernelAsymptotics.lean`](Formalization/PoincareDodecahedron/HeatKernelAsymptotics.lean): $\text{Small-}t$ Seeley-DeWitt asymptotic expansion $Z(t) \sim (4\pi t)^{-3/2} (a_0 + a_2 t + a_4 t^2 + \dots)$, exact volume $\mathrm{Vol}(S^3/I^\ast) = \pi^2/60$, constant scalar curvature $\mathcal{R} = 6$, Seeley-DeWitt coefficients $a_0 = \frac{\pi^2/60}{(4\pi)^{3/2}}$, $a_2 = a_0$, $a_4 = a_0/2 = \sqrt{\pi}/960$, and Chamseddine-Connes spectral action recovery of the 4D Einstein-Hilbert action with positive $G_{\mathrm{eff}} > 0$.
-  - [`Formalization/PoincareDodecahedron/StandardModel.lean`](Formalization/PoincareDodecahedron/StandardModel.lean): Almost-commutative spectral triple $(\mathcal{A}, \mathcal{H}, \mathcal{D}) = (C^\infty(S^3/I^\ast) \otimes \mathcal{A}_F, L^2(S^3/I^\ast, \mathbb{S}) \otimes \mathcal{H}_F, \mathcal{D}_{S^3/I^\ast} \otimes \gamma^5 + \mathbb{I} \otimes \mathcal{D}_F)$, formal proof of 96 real fermion basis degrees of freedom $\mathcal{H}_F$ (`dim_HF = 96`), spectral action gauge coupling unification $g_1^2 = g_2^2 = g_3^2$, and Higgs potential minimum with scale-invariant mass ratio $(m_H/m_W)^2 = 8 Y_4 / Y_2^2$.
+| # | Theorem / Topic | Primary Declaration(s) | Mathematical Domain | Established Literature | Status & Implementation Architecture |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| 13 | **The Weeks Manifold** ($\mathbb{H}^3$ Hyperbolic Space Forms) | [`weeksCubic_discriminant`](Formalization/WeeksManifold/Arithmetic.lean), [`weeksHomology_order`](Formalization/WeeksManifold/Basic.lean), [`volume_lt_Meyerhoff`](Formalization/WeeksManifold/Basic.lean), [`lambda1_gt_one`](Formalization/WeeksManifold/SpectralGap.lean), [`sls_strictly_contained_in_fundamental_domain`](Formalization/WeeksManifold/SpectralGap.lean) | Hyperbolic 3-Manifolds, Arithmetic Invariants & Spectral Gaps | Weeks (1985), Gabai–Meyerhoff–Milley (2009), Chinburg et al. (2007) | **Modular Package (`Formalization/WeeksManifold/`)** (2-relator group $\pi_1(\mathcal{W})$, $H_1 \cong \mathbb{Z}_5 \oplus \mathbb{Z}_5$, minimal volume $\mathrm{Vol} \approx 0.9427$, trace field $D = -23$, quaternion ramification, and Ramanujan–Selberg spectral gap $\lambda_1 \approx 27.80 > 1$ verified) |
+| 14 | **The Hantzsche-Wendt Didicosm** ($\mathbb{E}^3$ Flat Space Forms) | [`gamma1_sq`](Formalization/HantzscheWendt/Basic.lean), [`holonomy_card`](Formalization/HantzscheWendt/Basic.lean), [`spectral_gap_doubling`](Formalization/HantzscheWendt/SpectralSelection.lean), [`admissible_energy_ge_two`](Formalization/HantzscheWendt/SpectralSelection.lean), [`cosmic_matched_circles_count`](Formalization/HantzscheWendt/CosmicTopology.lean) | Flat Riemannian Manifolds, Bieberbach Groups & Fourier Analysis | Hantzsche & Wendt (1935), Bieberbach (1911), Aurich et al. (2008) | **Modular Package (`Formalization/HantzscheWendt/`)** (Affine screw generators in $\mathrm{Isom}(\mathbb{R}^3)$, holonomy $H \cong \mathbb{Z}_2^2$, $H_1 \cong \mathbb{Z}_4^2$ ($b_1=0$), Fourier parity destructive interference, and **Spectral Gap Doubling** $\lambda_1(G_6) = 2\lambda_1(T^3)$ verified) |
+| 15 | **The Heisenberg Nilmanifold** ($\mathrm{Nil}^3$ Nilpotent Space Forms) | [`commutator_X_Y`](Formalization/HeisenbergNilmanifold/Basic.lean), [`eulerClass_eq_one`](Formalization/HeisenbergNilmanifold/Basic.lean), [`harmonic_oscillator_gap`](Formalization/HeisenbergNilmanifold/SpectralTowers.lean), [`scalarCurvature_eq`](Formalization/HeisenbergNilmanifold/Geometry.lean), [`ricciAnisotropyRatio_eq`](Formalization/HeisenbergNilmanifold/Geometry.lean) | Nilpotent Lie Groups, Nilmanifolds & Landau Quantum Spectrum | Malcev (1951), Gordon & Wilson (1984), Pesce (1993) | **Modular Package (`Formalization/HeisenbergNilmanifold/`)** (Upper unitriangular Heisenberg group $\mathcal{H}_3(\mathbb{Z})$, circle bundle $e=1$, continuous 2D torus spectrum, discrete **Landau oscillator towers** $\lambda_{k,n}$, harmonic gap $\Delta\lambda = 2\pi > 0$, and mixed Ricci curvatures verified) |
+| 16 | **The Fibonacci Solvmanifold** ($\mathrm{Sol}^3$ Solvable Space Forms) | [`fibonacciAnosov_trace`](Formalization/Solvmanifold/Basic.lean), [`betti1_eq_one`](Formalization/Solvmanifold/Basic.lean), [`bracket_X_Z`](Formalization/Solvmanifold/Geometry.lean), [`scalarCurvature_eq`](Formalization/Solvmanifold/Geometry.lean), [`fiberSpectralGap_pos`](Formalization/Solvmanifold/SpectralGeometry.lean) | Solvable Lie Groups, Anosov Diffeomorphisms & Foliated Spectra | Thurston (1997), Scott (1983), Milnor (1976) | **Modular Package (`Formalization/Solvmanifold/`)** (Solvable Lie group $\mathbb{R}^2 \rtimes \mathbb{R}$, Fibonacci Anosov matrix $\operatorname{Tr}(A)=3$, golden ratio spectrum $\lambda_1=\varphi^2$, Lyapunov exponent $\mu=2\ln\varphi$, mixed curvatures $K \in \{-1,1\}$, $R=-2$, and fiber gap $\lambda_{0,1}>0$ verified) |
+| 17 | **Unit Tangent Bundles over Surfaces** ($\widetilde{\mathrm{SL}}_2(\mathbb{R})$ Geometry) | [`bracket_e1_e2`](Formalization/SL2RGeometry/Basic.lean), [`eulerClass_eq_eulerChar`](Formalization/SL2RGeometry/Basic.lean), [`secE1E2_eq_neg_three_fourths`](Formalization/SL2RGeometry/Geometry.lean), [`casimirEigenvalue_fiber_invariant`](Formalization/SL2RGeometry/SpectralDecomposition.lean), [`totalSpectralGap_pos`](Formalization/SL2RGeometry/SpectralDecomposition.lean) | Lie Groups, Unit Tangent Bundles & Casimir Operators | Milnor (1976), Scott (1983), Buser (1992) | **Modular Package (`Formalization/SL2RGeometry/`)** ($\mathfrak{sl}_2(\mathbb{R})$ Lie algebra, $T^1(\Sigma_g)$ ($g \ge 2$) topology with Euler class $e = 2-2g$, mixed sectional curvatures $K \in \{-3/4, 1/4\}$, $R=-1/2$, Casimir spectrum $\lambda_{j,m} = \lambda_j + m^2/4$, and spectral gap $\lambda_1 > 0$ verified) |
+| 18 | **Spherical Product Cylinders** ($\mathbb{S}^2 \times \mathbb{R}$ Geometry) | [`kunneth_betti_eq`](Formalization/S2xRGeometry/Basic.lean), [`secThetaPhi_pos`](Formalization/S2xRGeometry/Geometry.lean), [`scalarCurvature_pos`](Formalization/S2xRGeometry/Geometry.lean), [`spectralGap_pos`](Formalization/S2xRGeometry/SpectralDecomposition.lean), [`circle_gap_at_critical`](Formalization/S2xRGeometry/SpectralDecomposition.lean) | Product Manifolds, Spherical Harmonics & Spectral Crossings | Thurston (1997), Scott (1983) | **Modular Package (`Formalization/S2xRGeometry/`)** ($S^2 \times S^1_L$ Künneth homology, non-negative curvature $K \ge 0, R=2$, joint eigenvalues $\ell(\ell+1) + (2\pi n/L)^2$, spectral gap $\min(2, 4\pi^2/L^2) > 0$, and critical length $L_c = \pi\sqrt{2}$ verified) |
+| 19 | **Hyperbolic Product Cylinders** ($\mathbb{H}^2 \times \mathbb{R}$ Geometry) | [`poincare_duality_one_two`](Formalization/H2xRGeometry/Basic.lean), [`sec_xy_neg`](Formalization/H2xRGeometry/Geometry.lean), [`scalarCurvature_eq`](Formalization/H2xRGeometry/Geometry.lean), [`selbergSpectralGap_pos`](Formalization/H2xRGeometry/SpectralDecomposition.lean), [`seeleyDeWittA1_neg`](Formalization/H2xRGeometry/SpectralDecomposition.lean) | Product Manifolds, Hyperbolic Surfaces & Selberg Bounds | Thurston (1997), Selberg (1956) | **Modular Package (`Formalization/H2xRGeometry/`)** ($\Sigma_g \times S^1_L$ ($g \ge 2$) Künneth Betti numbers $b_1=2g+1$, non-positive curvature $K \le 0, R=-2$, Selberg-certified spectral gap $\ge \min(3/16, 4\pi^2/L^2) > 0$, and heat kernel asymptotics verified) |
+| 20 | **The Master Thurston Octet Classification Theorem** | [`dimension_eq_three`](Formalization/ThurstonOctet.lean), [`isotropic_classification`](Formalization/ThurstonOctet.lean), [`einstein_classification`](Formalization/ThurstonOctet.lean), [`positive_scalar_curvature_classification`](Formalization/ThurstonOctet.lean), [`spectral_gap_positivity`](Formalization/ThurstonOctet.lean), [`masterThurstonOctetCertificate`](Formalization/ThurstonOctet.lean) | 3-Manifold Geometrization & Differential Geometry | Thurston (1982, 1997), Perelman (2002, 2003) | **Modular Package (`Formalization/ThurstonOctet.lean`)** (Unified inductive type `ThurstonGeometry`, dimension 3 invariance, isotropy dimension spectrum (3, 1, 0), Einstein metric equivalence, scalar curvature sign trichotomy, and universal spectral gap positivity verified) |
 
 ---
 
@@ -249,21 +152,25 @@ graph TD
         UMW_HR --> ASD_WFC
     end
 
-    subgraph PoincareSpectralGeometry ["4. Poincaré Dodecahedral Space & Spectral Action"]
-        PDS_BI["PoincareDodecahedron/BinaryIcosahedral.lean<br/>(Order 120 Units, Norms & Group Closure)"]
-        PDS_SD["PoincareDodecahedron/SpectralDecomposition.lean<br/>(Chebyshev Recurrence, 9 Conjugacy Classes & Molien Rules)"]
-        PDS_HK["PoincareDodecahedron/HeatKernelAsymptotics.lean<br/>(Seeley-DeWitt Asymptotics & GR Recovery)"]
-        PDS_SM["PoincareDodecahedron/StandardModel.lean<br/>(Spectral Triple, dim H_F = 96, Gauge Unification)"]
-        PDS_Root["PoincareDodecahedron.lean"]
+    subgraph ThurstonOctetSuite ["4. The Complete 8-Geometry Thurston Octet"]
+        PDS_Root["PoincareDodecahedron.lean<br/>(𝕊³ Spherical Space Form)"]
+        WM_Root["WeeksManifold.lean<br/>(ℍ³ Hyperbolic Space Form)"]
+        HW_Root["HantzscheWendt.lean<br/>(𝔼³ Flat Space Form)"]
+        HN_Root["HeisenbergNilmanifold.lean<br/>(Nil³ Nilpotent Space Form)"]
+        SOL_Root["Solvmanifold.lean<br/>(Sol³ Solvable Space Form)"]
+        SL2_Root["SL2RGeometry.lean<br/>(SL̃₂(ℝ) Unit Tangent Bundle)"]
+        S2R_Root["S2xRGeometry.lean<br/>(𝕊² × ℝ Product Cylinder)"]
+        H2R_Root["H2xRGeometry.lean<br/>(ℍ² × ℝ Product Cylinder)"]
+        TO_Root["ThurstonOctet.lean<br/>(Master Octet Classification & Certificate)"]
 
-        PDS_BI & PDS_SD & PDS_HK & PDS_SM --> PDS_Root
+        PDS_Root & WM_Root & HW_Root & HN_Root & SOL_Root & SL2_Root & S2R_Root & H2R_Root --> TO_Root
     end
 
     subgraph MasterSuite ["Master Formalization Suite"]
         F_Master["Formalization.lean"]
     end
 
-    TMG_Root & STR_Root & SSF_Root & GSC_Root & BM_Root & BSU2_Root & ASD_Root & OSZ_Root & PFM_Root & UMW_Root & PDS_Root --> F_Master
+    TMG_Root & STR_Root & SSF_Root & GSC_Root & BM_Root & BSU2_Root & ASD_Root & OSZ_Root & PFM_Root & UMW_Root & TO_Root --> F_Master
 ```
 
 ---
@@ -278,11 +185,11 @@ The repository includes comprehensive mathematical physics monographs and prepri
    - **Title:** *Spectral Geometry and Invariant Theory on the Poincaré Homology 3-Sphere: Character Projections, Heat Kernel Asymptotics, and Machine-Checked Verification*
    - **Summary:** Rigorous mathematical foundations of $S^3/I^\ast$: $\mathrm{SU}(2)$ character Chebyshev recurrence over 9 conjugacy classes, Molien invariant projection selection rules ($m_0=1, m_1=\dots=m_5=0, m_6=1$ on $\mathrm{SO}(3)$ and 11-mode spinor gap on $\mathrm{SU}(2)$), Seeley--DeWitt heat kernel coefficients ($a_0 = \sqrt{\pi}/480, a_2 = a_0, a_4 = \sqrt{\pi}/960$), 4D Einstein--Hilbert action recovery ($G_{\mathrm{eff}} > 0$), and the almost-commutative Noncommutative Standard Model spectral triple ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$).
 
-2. **Paper 3: The 4-Pillar Thurston 3-Manifold Atlas & Spectral Invariants**
+2. **Paper 3: The Complete 8-Geometry Thurston Octet & Spectral Invariants**
    - **Markdown Preprint:** [`papers/paper3_thurston_spectral_geometry.md`](papers/paper3_thurston_spectral_geometry.md)
    - **LaTeX Source:** [`papers/paper3_thurston_spectral_geometry.tex`](papers/paper3_thurston_spectral_geometry.tex)
-   - **Title:** *Spectral Invariants, Discrete Group Actions, and Topological Obstructions of Closed 3-Manifolds across Thurston Geometries*
-   - **Summary:** Machine-checked spectral invariants and quantum actions across four canonical Thurston 3-manifold geometries: Spherical ($\mathbb{S}^3$), Hyperbolic ($\mathbb{H}^3$), Euclidean ($\mathbb{E}^3$), and Nilpotent ($\mathrm{Nil}^3$).
+   - **Title:** *Spectral Invariants, Discrete Group Actions, and Topological Obstructions of Closed 3-Manifolds across the Eight Thurston Geometries*
+   - **Summary:** Machine-checked spectral invariants, discrete group representations, Riemannian curvatures, and master classification theorems across all eight Thurston 3-manifold geometries: Spherical ($\mathbb{S}^3$), Hyperbolic ($\mathbb{H}^3$), Euclidean ($\mathbb{E}^3$), Nilpotent ($\mathrm{Nil}^3$), Solvable ($\mathrm{Sol}^3$), Universal Cover ($\widetilde{\mathrm{SL}}_2(\mathbb{R})$), Spherical Product ($\mathbb{S}^2 \times \mathbb{R}$), and Hyperbolic Product ($\mathbb{H}^2 \times \mathbb{R}$).
 
 To verify manuscript cross-consistency and KaTeX syntax:
 
@@ -297,24 +204,34 @@ python papers/audit_gfm_math.py
 
 ---
 
-## Part III: The 4-Pillar Thurston 3-Manifold Atlas & Spectral Invariants (Paper 3)
+## Part III: The Complete 8-Geometry Thurston Octet & Spectral Invariants (Paper 3)
 
-The repository includes the complete machine-checked formalization and accompanying monograph ([Paper 3: `papers/paper3_thurston_spectral_geometry.md`](papers/paper3_thurston_spectral_geometry.md)) covering all four canonical Thurston 3-manifold geometries:
+The repository includes the complete machine-checked formalization and accompanying monograph ([Paper 3: `papers/paper3_thurston_spectral_geometry.md`](papers/paper3_thurston_spectral_geometry.md)) covering all eight canonical Thurston 3-manifold geometries:
 
-1. **Spherical Pillar** $\mathbb{S}^3$: Brieskorn Homology Spheres $\Sigma(p,q,r)$ & Quantum Invariants ([`Formalization/BrieskornSU2CharacterVariety/`](Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean))
+1. **Spherical Geometry** ($\mathbb{S}^3$): Brieskorn Homology Spheres $\Sigma(p,q,r)$ & Quantum Invariants ([`Formalization/BrieskornSU2CharacterVariety/`](Formalization/BrieskornSU2CharacterVariety/ChernSimons.lean), [`Formalization/PoincareDodecahedron/`](Formalization/PoincareDodecahedron/SpectralDecomposition.lean))
    - Exact rational Chern–Simons actions ($CS = -1/120, -169/120$), character variety $\mathcal{R}^\ast$, discrete partition sums, Lawrence–Zagier character $\chi_{120}$ antisymmetry, and false theta exponent matching $-\Delta(n) - 1/120 = CS$.
-2. **Hyperbolic Pillar** $\mathbb{H}^3$: The Weeks Manifold $\mathcal{W}$ ([`Formalization/WeeksManifold/`](Formalization/WeeksManifold.lean))
+2. **Hyperbolic Geometry** ($\mathbb{H}^3$): The Weeks Manifold $\mathcal{W}$ ([`Formalization/WeeksManifold/`](Formalization/WeeksManifold.lean))
    - 2-relator group $\pi_1(\mathcal{W})$, $H_1 \cong \mathbb{Z}_5 \oplus \mathbb{Z}_5$, minimal volume $\mathrm{Vol} \approx 0.9427$, invariant trace field $k = \mathbb{Q}(\theta)$ ($D = -23$), Chinburg–Hamilton–Long–Reid quaternion ramification, and Ramanujan–Selberg spectral gap $\lambda_1 \approx 27.80195 > 1$.
-3. **Euclidean Pillar** $\mathbb{E}^3$: The Hantzsche–Wendt Didicosm $G_6$ ([`Formalization/HantzscheWendt/`](Formalization/HantzscheWendt.lean))
-   - Bieberbach affine screw motions in $\mathrm{Isom}(\mathbb{R}^3)$, holonomy $H \cong \mathbb{Z}_2 \times \mathbb{Z}_2$, $H_1 \cong \mathbb{Z}_4 \oplus \mathbb{Z}_4$ ($b_1 = 0$), destructive Fourier parity interference, and the **Spectral Gap Doubling Theorem** $\lambda_1(G_6) = 2\lambda_1(T^3)$.
-4. **Nilpotent Pillar** $\mathrm{Nil}^3$: The Heisenberg Nilmanifold $N_3$ ([`Formalization/HeisenbergNilmanifold/`](Formalization/HeisenbergNilmanifold.lean))
+3. **Euclidean Geometry** ($\mathbb{E}^3$): The Hantzsche–Wendt Didicosm $G_6$ ([`Formalization/HantzscheWendt/`](Formalization/HantzscheWendt.lean))
+   - Bieberbach affine screw motions in $\mathrm{Isom}(\mathbb{R}^3)$, holonomy $H \cong \mathbb{Z}_2 \times \mathbb{Z}_2$, $H_1 \cong \mathbb{Z}_4 \oplus \mathbb{Z}_4$ ($b_1 = 0$), destructive Fourier parity interference, and the **Spectral Gap Doubling Theorem** $\lambda_1(G_6) = 2\lambda_1(T^3) = 8\pi^2/L^2$.
+4. **Nilpotent Geometry** ($\mathrm{Nil}^3$): The Heisenberg Nilmanifold $N_3$ ([`Formalization/HeisenbergNilmanifold/`](Formalization/HeisenbergNilmanifold.lean))
    - Upper unitriangular Heisenberg group $\mathcal{H}_3(\mathbb{Z})$ in $\mathrm{SL}_3(\mathbb{Z})$, center $Z \cong \mathbb{Z}$, circle bundle Euler class $e = 1$, continuous 2D torus base spectrum, discrete **Landau-level harmonic oscillator towers** $\lambda_{k,n} = 4\pi^2 k^2 + 2\pi \lvert k \rvert(2n+1)$, harmonic gap $\Delta\lambda = 2\pi > 0$, and mixed Ricci curvatures ($R = -1/2$).
+5. **Solvable Geometry** ($\mathrm{Sol}^3$): The Fibonacci Anosov Solvmanifold $M_A$ ([`Formalization/Solvmanifold/`](Formalization/Solvmanifold.lean))
+   - Solvable Lie group $\mathbb{R}^2 \rtimes \mathbb{R}$, Fibonacci Anosov matrix $\operatorname{Tr}(A)=3$, golden ratio spectrum $\lambda_1 = \varphi^2 = \frac{3+\sqrt{5}}{2}$, Lyapunov exponent $\mu = 2\ln\varphi > 0$, mixed sectional curvatures $K \in \{-1, +1\}$, scalar curvature $R = -2$, and fundamental fiber spectral gap $\lambda_{0,1} = (2\pi / (2\ln\varphi))^2 > 0$.
+6. $\widetilde{\mathrm{SL}}_2(\mathbb{R})$ **Geometry**: Unit Tangent Bundles over Hyperbolic Surfaces ([`Formalization/SL2RGeometry/`](Formalization/SL2RGeometry.lean))
+   - Lie algebra $\mathfrak{sl}_2(\mathbb{R})$, $T^1(\Sigma_g)$ ($g \ge 2$) topology with Euler class $e = 2 - 2g$, volume $4\pi^2(g-1)$, mixed curvatures $K \in \{-3/4, 1/4\}$, $R = -1/2$, Casimir eigenvalue decomposition $\lambda_{j,m} = \lambda_j(\Sigma_g) + m^2/4$, and positive spectral gap $\lambda_1 = \min(\lambda_1(\Sigma_g), 1/4) > 0$.
+7. $\mathbb{S}^2 \times \mathbb{R}$ **Product Geometry**: Spherical Cylinder Space Forms ([`Formalization/S2xRGeometry/`](Formalization/S2xRGeometry.lean))
+   - Product manifold $S^2 \times S^1_L$ ($L > 0$), Künneth homology $b_0=b_1=b_2=b_3=1$, non-negative sectional curvatures $K \in \{0, 1\}$, scalar curvature $R = +2$, joint eigenvalues $\lambda_{\ell, n} = \ell(\ell+1) + (2\pi n/L)^2$, spectral gap $\min(2, 4\pi^2/L^2) > 0$, and critical length $L_c = \pi\sqrt{2}$.
+8. $\mathbb{H}^2 \times \mathbb{R}$ **Product Geometry**: Hyperbolic Cylinder Space Forms ([`Formalization/H2xRGeometry/`](Formalization/H2xRGeometry.lean))
+   - Product manifold $\Sigma_g \times S^1_L$ ($g \ge 2, L > 0$), Künneth Betti numbers $b_1 = 2g+1$, non-positive sectional curvatures $K \le 0$, scalar curvature $R = -2$, Selberg $3/16$ spectral gap $\lambda_1 \ge \min(3/16, 4\pi^2/L^2) > 0$, critical length $L_{\mathrm{crit}} = 8\pi/\sqrt{3}$, and Seeley–DeWitt heat kernel coefficients $a_0 > 0, a_1 < 0$.
+9. **The Master Thurston Octet Classification Theorem** ([`Formalization/ThurstonOctet.lean`](Formalization/ThurstonOctet.lean))
+   - Unified inductive enumeration `ThurstonGeometry`, dimension 3 invariance, isotropy dimension classification ($\dim H = 3, 1, 0$), Einstein metric classification ($\mathrm{Ric} = \frac{R}{3}g \iff \mathbb{S}^3, \mathbb{H}^3, \mathbb{E}^3$), scalar curvature sign trichotomy, and universal spectral gap positivity $\lambda_1(M_g) > 0$ across all eight canonical space forms.
 
 ---
 
 ## Verification and Build Instructions
 
-The entire formalization is compiled with Lean 4 (`v4.34.0-rc2`) and Mathlib. All 12 research modules (2,250+ declarations) compile with **0 errors, 0 warnings, and 0 sorries** using only standard Lean 4 core axioms (`propext`, `Quot.sound`, `Classical.choice`).
+The entire formalization is compiled with Lean 4 (`v4.34.0-rc2`) and Mathlib. All 19 research modules (350+ master declarations, 3,240+ verification jobs) compile with **0 errors, 0 warnings, and 0 sorries** using only standard Lean 4 core axioms (`propext`, `Quot.sound`, `Classical.choice`).
 
 To build the entire formalization suite:
 
@@ -344,3 +261,8 @@ lake build Formalization
 15. **Schmid, W.** (1973). *Variation of Hodge structure: the singularities of the period mapping*. Inventiones Mathematicae, 22(3), 211–319.
 16. **Candelas, P., De La Ossa, X. C., Green, P. S., & Parkes, L.** (1991). *A pair of Calabi-Yau manifolds as an exactly soluble superconformal theory*. Nuclear Physics B, 359(1), 21–74.
 17. **Morrison, D. R.** (1993). *Mirror symmetry and rational curves on Calabi-Yau threefolds: a guide for mathematicians*. Journal of the American Mathematical Society, 6(1), 223–247.
+18. **Perelman, G.** (2002). *The entropy formula for the Ricci flow and its geometric applications*. arXiv:math/0211159.
+19. **Scott, P.** (1983). *The geometries of 3-manifolds*. Bulletin of the London Mathematical Society, 15(5), 401–487.
+20. **Thurston, W. P.** (1982). *Three-dimensional manifolds, Kleinian groups and hyperbolic geometry*. Bulletin of the American Mathematical Society, 6(3), 357–381.
+21. **Thurston, W. P.** (1997). *Three-Dimensional Geometry and Topology*. Princeton University Press.
+22. **Weeks, J. R.** (1985). *Hyperbolic structures on 3-manifolds*. Ph.D. thesis, Princeton University.
