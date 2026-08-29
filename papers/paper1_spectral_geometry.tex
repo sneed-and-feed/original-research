@@ -35,7 +35,7 @@
 \DeclareMathOperator{\PGL}{PGL}
 \DeclareMathOperator{\Hom}{Hom}
 
-\title{\textbf{\Large Spectral Geometry, Molien Invariant Theory, and Heat Kernel Asymptotics\\on the Poincar\'e Homology 3-Sphere}}
+\title{\textbf{\Large Spectral Geometry and Invariant Theory on the Poincar\'e Homology 3-Sphere:\\Character Projections, Heat Kernel Asymptotics, and Machine-Checked Verification}}
 
 \author{\textbf{The Poincar\'e Spectral Geometry Collaboration}\\[0.5em]
 \small Division of Mathematical Physics and Theoretical Cosmology\\
@@ -584,7 +584,7 @@ While infinitely many other spherical space forms exist (lens spaces $L(p, q)$, 
 
 All core algebraic structures, group representation dimensions, Seeley--DeWitt heat kernel asymptotic relations (including the fourth coefficient $a_4$), and Noncommutative Standard Model spectral triples presented in this monograph have been formally formalized and machine-checked in Lean 4 (toolchain \texttt{v4.34.0-rc2} with Mathlib). Specifically, group closure, quaternionic unit norms, central inversion, exact Chebyshev character evaluations across all 9 conjugacy classes, Molien selection rules ($m_0..m_{12}$ on $\mathrm{SU}(2)$ and $m_0^{\mathrm{SO}(3)}..m_6^{\mathrm{SO}(3)}$ on $\mathrm{SO}(3)$), Seeley--DeWitt algebraic coefficient identities ($a_0, a_2, a_4$), the 96-dimensional fermion Hilbert space $\mathcal{H}_F$, and bare Standard Model gauge-Higgs unification relations are machine-checked in Lean 4 with 0 custom axioms beyond Lean's standard kernel (\texttt{propext}, \texttt{Quot.sound}, \texttt{Classical.choice}).
 
-The formalization resides in the \texttt{Formalization.PoincareDodecahedron} module tree within the public repository at \url{https://github.com/sneed-and-feed/original-research} (commit \texttt{59e4324}). Table \ref{tab:lean} maps each analytical result to its verified formal declaration.
+The formalization resides in the \texttt{Formalization.PoincareDodecahedron} module tree within the public repository at \url{https://github.com/sneed-and-feed/original-research} (commit \texttt{6b108df}). Table \ref{tab:lean} maps each analytical result to its verified formal declaration.
 
 \begin{table}[htbp]
 \centering
@@ -599,14 +599,15 @@ The formalization resides in the \texttt{Formalization.PoincareDodecahedron} mod
 Binary Icosahedral Group $I^* \subset \mathbb{H}[\mathbb{R}]^\times$ ($120$ units) & \texttt{BinaryIcosahedral.lean} & \texttt{binaryIcosahedralFinset}, \texttt{binaryIcosahedral} \\
 Golden Ratio Norm Identity on $S^3$ & \texttt{BinaryIcosahedral.lean} & \texttt{golden\_ratio\_norm\_sq\_sum} \\
 Unit Norm Equality ($\forall u \in I^*, |u|^2 = 1$) & \texttt{BinaryIcosahedral.lean} & \texttt{binaryIcosahedralUnits\_normSq} \\
-Group Closure \& Central Inversion ($-1 \in I^*$, $Z(I^*)=\{\pm 1\}$) & \texttt{BinaryIcosahedral.lean} & \texttt{mem\_binaryIcosahedral\_centralInv}, \texttt{binaryIcosahedral\_center} \\
-Quotient Isomorphism $I^* / Z(I^*) \cong A_5$ (Order 60) & \texttt{BinaryIcosahedral.lean} & \texttt{binaryIcosahedral\_quotient\_A5} \\
-$\SU(2)$ Quaternionic Character Formula $\chi_\ell(u)$ & \texttt{SpectralDecomposition.lean} & \texttt{chi\_re}, \texttt{chi} \\
-Molien Invariant Projection Formula $m_\ell = \frac{1}{120} \sum \chi_\ell(g)$ & \texttt{SpectralDecomposition.lean} & \texttt{m} \\
+Group Closure \& Center Subgroup ($Z(I^*)=\{\pm 1\}$, $|Z|=2$) & \texttt{BinaryIcosahedral.lean} & \texttt{mem\_binaryIcosahedral\_centralInv}, \texttt{binaryIcosahedral\_center} \\
+Quotient Order Ratio ($|I^*| / |Z(I^*)| = 120/2 = 60$) & \texttt{BinaryIcosahedral.lean} & \texttt{binaryIcosahedral\_quotient\_order\_sixty} \\
+Subgroup Embedding ($2T \le I^*$) & \texttt{BinaryIcosahedral.lean} & \texttt{binaryTetrahedral\_le\_binaryIcosahedral} \\
+$\SU(2)$ Quaternionic Character Formula $\chi_\ell(u) = U_\ell(a)$ & \texttt{SpectralDecomposition.lean} & \texttt{chebyshevU}, \texttt{chi\_re}, \texttt{chi} \\
+Molien Invariant Projection Formula $m_\ell = \frac{1}{120} \sum \chi_\ell(g)$ & \texttt{SpectralDecomposition.lean} & \texttt{sum\_chi\_binaryIcosahedral}, \texttt{m} \\
 Monopole Ground State Multiplicity ($m_0^{\SO(3)} = 1$) & \texttt{SpectralDecomposition.lean} & \texttt{m\_SO3\_zero} \\
 Harmonic Selection Vanishing ($m_1 = \dots = m_5 = 0$) & \texttt{SpectralDecomposition.lean} & \texttt{m\_SO3\_one} $\dots$ \texttt{m\_SO3\_five} \\
 First Active Mode Multiplicity ($m_6^{\SO(3)} = 1$) & \texttt{SpectralDecomposition.lean} & \texttt{m\_SO3\_six} \\
-Spinor Representation Multiplicities ($m_0..m_{11}=0, m_{12}=1$) & \texttt{SpectralDecomposition.lean} & \texttt{m\_zero} $\dots$ \texttt{m\_five}, \texttt{m\_twelve} \\
+Spinor Representation Multiplicities ($m_0=1, m_1..m_{11}=0, m_{12}=1$) & \texttt{SpectralDecomposition.lean} & \texttt{m\_zero} $\dots$ \texttt{m\_twelve} \\
 Weyl--Molien Linear \& Quadratic Densities & \texttt{SpectralDecomposition.lean} & \texttt{weyl\_molien\_invariant\_density}, \texttt{laplacian\_spectral\_density\_leading} \\
 Weyl--Molien Landmark Values ($\ell = 12, 60, 120$) & \texttt{SpectralDecomposition.lean} & \texttt{weyl\_molien\_landmark\_values}, \texttt{laplacian\_spectral\_density\_landmark\_values} \\
 Discrete Heat Kernel Trace $Z(t)$ on $S^3/I^*$ & \texttt{SpectralDecomposition.lean} & \texttt{heatTrace}, \texttt{heatTraceTerm\_zero} $\dots$ \texttt{heatTraceTerm\_twelve} \\
@@ -615,14 +616,14 @@ Constant Scalar Curvature $\mathcal{R}(S^3/I^*) = 6$ & \texttt{HeatKernelAsympto
 Seeley--DeWitt Coefficients $a_0 = (\pi^2/60)/(4\pi)^{3/2}$ and $a_2 = a_0$ & \texttt{HeatKernelAsymptotics.lean} & \texttt{a0}, \texttt{a2}, \texttt{a2\_eq\_a0} \\
 Gilkey Curvature Factor ($\mathcal{G}(6,12,12) = 1/2$) & \texttt{HeatKernelAsymptotics.lean} & \texttt{gilkey\_integrand\_a4\_S3} \\
 Fourth Seeley--DeWitt Coefficient $a_4 = a_0/2 = \sqrt{\pi}/960$ & \texttt{HeatKernelAsymptotics.lean} & \texttt{a4\_PDS}, \texttt{a4\_PDS\_from\_gilkey} \\
+Small-$t$ Asymptotic Remainder Hypothesis & \texttt{HeatKernelAsymptotics.lean} & \texttt{heatTrace\_asymptotic\_remainder\_holds} \\
 Spectral Action Einstein--Hilbert Recovery ($G_{\mathrm{eff}} > 0$) & \texttt{HeatKernelAsymptotics.lean} & \texttt{einstein\_hilbert\_recovery} \\
 Curvature/Volume Ratio Relation ($= \Lambda_0^{-1}$) & \texttt{HeatKernelAsymptotics.lean} & \texttt{spectral\_ratio\_eq\_inv\_cosmologicalConstant} \\
 96 Real Fermion Basis States ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$) & \texttt{StandardModel.lean} & \texttt{dim\_fermion\_space} \\
-Standard Model Gauge Coupling Unification ($g_1^2 = g_2^2 = g_3^2$) & \texttt{StandardModel.lean} & \texttt{gauge\_coupling\_unification} \\
-Higgs Potential Minimum at $v^2$ & \texttt{StandardModel.lean} & \texttt{spectral\_action\_standard\_model\_unification} \\
+Bare Gauge Coupling Identity ($g_1^2 = g_2^2 = g_3^2 = \frac{\pi^2 f_0}{2 f_2 \Lambda^2}$) & \texttt{StandardModel.lean} & \texttt{gauge\_coupling\_unification} \\
 Scale-Invariant Mass Ratio $(m_H/m_W)^2 = 8 Y_4 / Y_2^2$ & \texttt{StandardModel.lean} & \texttt{higgs\_to\_W\_mass\_relation} \\
 Bare $Z$ to $W$ Mass Ratio at Unification ($m_Z^2 = 2 m_W^2$) & \texttt{StandardModel.lean} & \texttt{mZ\_to\_mW\_relation} \\
-Grand Unification of Gravity \& SM on $S^3/I^*$ & \texttt{StandardModel.lean} & \texttt{spectral\_action\_standard\_model\_unification} \\
+Spectral Action Grand Unification Structural Consistency & \texttt{StandardModel.lean} & \texttt{spectral\_action\_standard\_model\_unification} \\
 \bottomrule
 \end{tabularx}
 \end{table}

@@ -38,7 +38,7 @@
 \newcommand{\EDE}{\mathrm{EDE}}
 \newcommand{\PDS}{S^3/I^*}
 
-\title{\textbf{\Large Cosmic Topology and Early Dark Energy:\\[0.3em] CMB Multipole Selection Rules and Joint Likelihood Constraints\\ in a Closed Spherical Space Form}}
+\title{\textbf{\Large Cosmic Topology and Early Dark Energy:\\[0.3em] Harmonic Selection Rules and Joint Likelihood Constraints\\ on Poincar\'e Dodecahedral Space}}
 
 \author{
   \textbf{The Poincar\'e Spectral Cosmology Collaboration}\\[0.4em]
@@ -504,7 +504,7 @@ The combined log-likelihood is structured as:
     Gaussian prior: $H_0 = 73.04 \pm 1.04\text{ km s}^{-1}\text{Mpc}^{-1}$~\cite{Riess2022}.
 \end{enumerate}
 
-\subsection{Markov Chain Monte Carlo (MCMC) Architecture}
+\subsection{Markov Chain Monte Carlo (MCMC) Architecture and Reproducibility}
 
 We sample the 9-dimensional physical parameter space:
 \begin{equation}
@@ -515,7 +515,11 @@ using an adaptive Metropolis--Hastings algorithm with Robbins--Monro proposal co
 H_0 &\in [55, 85], & \omega_b &\in [0.018, 0.026], & \omega_{\mathrm{cdm}} &\in [0.09, 0.16], & \Omega_K &\in [-0.020, 0.005], \\
 f_{\mathrm{EDE}} &\in [0.0, 0.25], & \log_{10} z_c &\in [3.2, 3.9], & \theta_i &\in [1.5, 3.14], & w_0 &\in [-1.5, -0.5], & w_a &\in [-1.5, 0.5].
 \end{align*}
-Chain convergence is confirmed via the Gelman--Rubin diagnostic~\cite{GelmanRubin1992}, achieving $\hat{R} - 1 < 0.01$ ($\hat{R} < 1.01$) across all sampled parameters.
+Chain convergence is confirmed via the Gelman--Rubin diagnostic~\cite{GelmanRubin1992}, achieving $\hat{R} - 1 < 0.01$ ($\hat{R} < 1.01$) across all sampled parameters. The entire Python cosmology evaluation suite and unit tests are executable locally via:
+\begin{verbatim}
+python cosmology/run_quick_eval.py
+python -m unittest tests/test_cosmology.py
+\end{verbatim}
 
 \begin{figure}[htbp]
 \centering
@@ -644,7 +648,7 @@ The mathematical foundations and computational pipeline of this work are validat
 \midrule
 Order of $I^*$ ($|I^*| = 120$ in $\mathbb{H}[\mathbb{R}]^\times$) & Lean 4 (\texttt{BinaryIcosahedral.lean}) & \texttt{binaryIcosahedralFinset} & \textbf{Verified (0 sorries)} \\
 Golden Ratio Norm Identity on $S^3$ & Lean 4 (\texttt{BinaryIcosahedral.lean}) & \texttt{golden\_ratio\_norm\_sq\_sum} & \textbf{Verified (0 sorries)} \\
-Center $Z(I^*) = \{\pm 1\}$ and $I^*/Z(I^*) \cong A_5$ & Lean 4 (\texttt{BinaryIcosahedral.lean}) & \texttt{binaryIcosahedral\_center} & \textbf{Verified (0 sorries)} \\
+Center $Z(I^*) = \{\pm 1\}$ and Order Ratio $|I^*|/|Z| = 60$ & Lean 4 (\texttt{BinaryIcosahedral.lean}) & \texttt{binaryIcosahedral\_center}, \texttt{binaryIcosahedral\_quotient\_order\_sixty} & \textbf{Verified (0 sorries)} \\
 Monopole Ground State ($m_0^{\SO(3)} = 1$) & Lean 4 (\texttt{SpectralDecomposition.lean}) & \texttt{m\_SO3\_zero} & \textbf{Verified (0 sorries)} \\
 CMB Dipole Selection Rule ($m_1^{\SO(3)} = 0$) & Lean 4 (\texttt{SpectralDecomposition.lean}) & \texttt{m\_SO3\_one} & \textbf{Verified (0 sorries)} \\
 CMB Quadrupole Suppression ($m_2^{\SO(3)} = 0$) & Lean 4 (\texttt{SpectralDecomposition.lean}) & \texttt{m\_SO3\_two} & \textbf{Verified (0 sorries)} \\
@@ -652,10 +656,11 @@ CMB Octupole Suppression ($m_3^{\SO(3)} = 0$) & Lean 4 (\texttt{SpectralDecompos
 CMB Hexadecapole Suppression ($m_4^{\SO(3)} = 0$) & Lean 4 (\texttt{SpectralDecomposition.lean}) & \texttt{m\_SO3\_four} & \textbf{Verified (0 sorries)} \\
 CMB $\ell=5$ Suppression ($m_5^{\SO(3)} = 0$) & Lean 4 (\texttt{SpectralDecomposition.lean}) & \texttt{m\_SO3\_five} & \textbf{Verified (0 sorries)} \\
 First Active Multipole Emergence ($m_6^{\SO(3)} = 1$) & Lean 4 (\texttt{SpectralDecomposition.lean}) & \texttt{m\_SO3\_six} & \textbf{Verified (0 sorries)} \\
-$\SU(2)$ Spinor Gap ($m_0..m_{11}=0, m_{12}=1$) & Lean 4 (\texttt{SpectralDecomposition.lean}) & \texttt{m\_zero} $\dots$ \texttt{m\_twelve} & \textbf{Verified (0 sorries)} \\
+$\SU(2)$ Spinor Gap ($m_0=1, m_1..m_{11}=0, m_{12}=1$) & Lean 4 (\texttt{SpectralDecomposition.lean}) & \texttt{m\_zero} $\dots$ \texttt{m\_twelve} & \textbf{Verified (0 sorries)} \\
 Spatial Volume $\Vol(S^3/I^*) = \pi^2/60$ & Lean 4 (\texttt{HeatKernelAsymptotics.lean}) & \texttt{vol\_PDS\_eq} & \textbf{Verified (0 sorries)} \\
 Scalar Curvature $\mathcal{R}(S^3/I^*) = 6$ & Lean 4 (\texttt{HeatKernelAsymptotics.lean}) & \texttt{scalarCurvature\_PDS\_eq} & \textbf{Verified (0 sorries)} \\
 Seeley--DeWitt Coefficients $a_0, a_2$ & Lean 4 (\texttt{HeatKernelAsymptotics.lean}) & \texttt{a0\_PDS\_eq}, \texttt{a2\_PDS\_eq} & \textbf{Verified (0 sorries)} \\
+Small-$t$ Remainder Hypothesis & Lean 4 (\texttt{HeatKernelAsymptotics.lean}) & \texttt{heatTrace\_asymptotic\_remainder\_holds} & \textbf{Verified (0 sorries)} \\
 Einstein--Hilbert Action Recovery ($G_{\mathrm{eff}} > 0$) & Lean 4 (\texttt{HeatKernelAsymptotics.lean}) & \texttt{einstein\_hilbert\_recovery} & \textbf{Verified (0 sorries)} \\
 96 Real Fermions ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$) & Lean 4 (\texttt{StandardModel.lean}) & \texttt{dim\_fermion\_space} & \textbf{Verified (0 sorries)} \\
 Higgs VEV \& Mass Ratio $m_H^2/m_W^2 = 8 Y_4 / Y_2^2$ & Lean 4 (\texttt{StandardModel.lean}) & \texttt{higgs\_to\_W\_mass\_relation} & \textbf{Verified (0 sorries)} \\
