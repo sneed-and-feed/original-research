@@ -556,6 +556,8 @@ V - E + F = 14 - 24 + 12 = 2
 \mathrm{Vol}(G_6) = \frac{L^3}{4} = \frac{\mathrm{Vol}(T^3)}{4}
 ```
 
+   *(Scope note: The face/vertex counts and Euler characteristic are recorded as combinatorial scaffolding definitions; constructive extraction of the Dirichlet Voronoi polytope from the infinite group action in Lean 4 is unformalized).*
+
 3. **Shortest Geodesic (Systole) & Injectivity Radius**:
    Because the screw generators translate by half-lattice steps $x \mapsto x + L/2$, the shortest closed geodesic (systole) is halved relative to the torus:
 
