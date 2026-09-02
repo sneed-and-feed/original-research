@@ -45,11 +45,11 @@ The complete 8-geometry classification atlas is summarized below:
 
 | Geometry | Model Space $X$ | Point Stabilizer $H$ | $\dim H$ | $\dim \mathrm{Isom}$ | Canonical Space Form $M$ | $b_1(M)$ | Scalar Curvature $R$ | Spectral Gap $\lambda_1(M)$ |
 | :--- | :--- | :--- | :---: | :---: | :--- | :---: | :---: | :--- |
-| $\mathbb{S}^3$ | $S^3$ | $\mathrm{O}(3)$ | 3 | 6 | Poincaré Sphere $\Sigma(2,3,5)$ | 0 | $+6$ | $48 > 0$ |
+| $\mathbb{S}^3$ | $S^3$ | $\mathrm{O}(3)$ | 3 | 6 | Poincaré Sphere $\Sigma(2,3,5)$ | 0 | $+6$ | $168 > 0$ ($3$ on $S^3$) |
 | $\mathbb{H}^3$ | $\mathbb{H}^3$ | $\mathrm{O}(3)$ | 3 | 6 | Weeks Manifold $\mathcal{W}$ | 0 | $-6$ | $\lambda_1 \approx 27.80 > 1$ |
 | $\mathbb{E}^3$ | $\mathbb{R}^3$ | $\mathrm{O}(3)$ | 3 | 6 | Didicosm $G_6$ | 0 | $0$ | $8\pi^2/L^2 = 2\lambda_1(T^3)$ |
 | $\mathrm{Nil}^3$ | $\mathcal{H}_3(\mathbb{R})$ | $\mathrm{O}(2)$ | 1 | 4 | Heisenberg $N_3$ | 2 | $-1/2$ | $4\pi^2$ (Landau gap $2\pi$) |
-| $\mathrm{Sol}^3$ | $\mathbb{R}^2 \rtimes \mathbb{R}$ | $D_8$ | 0 | 3 | Fibonacci Torus Bundle $M_A$ | 1 | $-2$ | $(2\pi / (2\ln\varphi))^2 > 0$ |
+| $\mathrm{Sol}^3$ | $\mathbb{R}^2 \rtimes \mathbb{R}$ | $D_8$ | 0 | 3 | Fibonacci Torus Bundle $M_A$ | 1 | $-2$ | $(\pi / \ln\varphi)^2 > 0$ |
 | $\tilde{\mathrm{SL}}(2, \mathbb{R})$ | $\tilde{\mathrm{SL}}(2, \mathbb{R})$ | $\mathrm{O}(2)$ | 1 | 4 | Unit Tangent $T^1(\Sigma_g)$ | $2g$ | $-1/2$ | $\min(\lambda_1(\Sigma_g), 1/4) > 0$ |
 | $\mathbb{S}^2 \times \mathbb{R}$ | $S^2 \times \mathbb{R}$ | $\mathrm{O}(2) \times \mathbb{Z}_2$ | 1 | 4 | Cylinder $S^2 \times S^1_L$ | 1 | $+2$ | $\min(2, 4\pi^2/L^2) > 0$ |
 | $\mathbb{H}^2 \times \mathbb{R}$ | $\mathbb{H}^2 \times \mathbb{R}$ | $\mathrm{O}(2) \times \mathbb{Z}_2$ | 1 | 4 | Cylinder $\Sigma_g \times S^1_L$ | $2g+1$ | $-2$ | $\ge \min(3/16, 4\pi^2/L^2) > 0$ |
