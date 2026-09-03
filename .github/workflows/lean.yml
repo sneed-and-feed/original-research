@@ -3,12 +3,19 @@ name: Lean 4 CI
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - '**.md'
+      - '.vscode/**'
+      - 'LICENSE'
+      - 'papers/**'
+      - 'cosmology/**'
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
   build:
+    name: Lean 4 Build
     runs-on: ubuntu-latest
 
     steps:
