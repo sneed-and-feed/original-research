@@ -4,7 +4,6 @@ import Formalization.TriangleModularGroup.SeifertInvariant
 
 open scoped Matrix
 
-set_option linter.unusedSectionVars false
 
 /-!
 # The (3,4,∞) Modular Triangle Group Representation & Seifert Invariants

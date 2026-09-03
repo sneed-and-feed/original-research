@@ -13,8 +13,6 @@ import Mathlib.Tactic.Ring
 open scoped Matrix
 open Matrix SymplecticTriangleRepresentations
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Symplectic Group $\mathrm{Sp}_4(\mathbb{Z})$ Action and Fractional Linear Transformations
 

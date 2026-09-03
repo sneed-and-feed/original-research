@@ -20,8 +20,6 @@ import Mathlib.Tactic.Ring
 open scoped Matrix Real
 open Matrix SymplecticTriangleRepresentations UniversalMonodromyWeightFiltration
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Weight Filtration & Energy Coupling on $\mathbb{H}_2$ Boundary
 

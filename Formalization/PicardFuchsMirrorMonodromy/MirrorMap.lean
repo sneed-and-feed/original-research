@@ -15,8 +15,6 @@ import Mathlib.Tactic.FinCases
 open scoped Matrix BigOperators
 open Matrix SymplecticTriangleRepresentations
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Component 2: Mirror Map & Unipotent Monodromy for Picard-Fuchs Systems
 

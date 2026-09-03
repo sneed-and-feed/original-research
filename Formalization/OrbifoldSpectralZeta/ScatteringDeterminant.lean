@@ -8,8 +8,6 @@ import Mathlib.Data.Complex.Basic
 import Mathlib.Tactic.Ring
 import Mathlib.Tactic.NormNum
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Eisenstein Series Scattering Determinant & Functional Equation
 

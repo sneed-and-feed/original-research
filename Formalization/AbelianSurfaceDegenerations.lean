@@ -14,7 +14,6 @@ import Formalization.AbelianSurfaceDegenerations.WeightFiltrationCoupling
 open scoped Matrix
 open Matrix SymplecticTriangleRepresentations
 
-set_option linter.unusedSectionVars false
 
 /-!
 # Abelian Surface Degenerations, Siegel Moduli $\mathcal{A}_2$, & Picard Stratification

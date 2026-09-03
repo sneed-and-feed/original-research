@@ -2,7 +2,6 @@ import Formalization.TriangleModularGroup.Basic
 
 open scoped Matrix
 
-set_option linter.unusedSectionVars false
 
 /-!
 # Lattice Basis Vectors & Nilpotent Monodromy Action

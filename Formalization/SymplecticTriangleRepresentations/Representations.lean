@@ -7,8 +7,6 @@ import Formalization.SymplecticTriangleRepresentations.Basic
 
 open scoped Matrix
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Integral Symplectic Triangle Group Representations
 

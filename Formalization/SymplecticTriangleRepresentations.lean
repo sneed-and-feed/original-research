@@ -10,8 +10,6 @@ import Formalization.SymplecticTriangleRepresentations.WeightFiltration
 
 open scoped Matrix
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Symplectic Triangle Group Representations in $\mathrm{Sp}_4(\mathbb{Z})$ & Monodromy Weight Filtration
 

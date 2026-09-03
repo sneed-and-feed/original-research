@@ -10,8 +10,6 @@ import Mathlib.Data.Complex.Basic
 import Mathlib.Tactic.Ring
 import Mathlib.Tactic.Linarith
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Orbifold Selberg Trace Formula & Selberg Zeta Function $\mathcal{Z}_{\mathcal{O}}(s)$
 

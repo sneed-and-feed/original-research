@@ -18,8 +18,6 @@ import Mathlib.Tactic.Ring
 open scoped Matrix Real
 open Matrix SymplecticTriangleRepresentations
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Nilpotent Orbit Asymptotics & Matrix Exponential
 

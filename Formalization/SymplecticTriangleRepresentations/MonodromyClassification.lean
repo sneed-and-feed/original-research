@@ -7,8 +7,6 @@ import Formalization.SymplecticTriangleRepresentations.Representations
 
 open scoped Matrix
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Classification of Nilpotent Cusp Monodromies
 

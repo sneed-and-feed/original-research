@@ -15,8 +15,6 @@ import Mathlib.Tactic.Linarith
 open scoped Matrix BigOperators
 open Matrix SymplecticTriangleRepresentations
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Component 4: Higher-Dimensional Griffiths Transversality & PVHS Generalization
 

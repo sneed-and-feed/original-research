@@ -8,8 +8,6 @@ import Mathlib.Tactic.FinCases
 
 open scoped Matrix
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Foundational Symplectic Form & $\mathrm{Sp}_4(\mathbb{Z})$ Predicate
 

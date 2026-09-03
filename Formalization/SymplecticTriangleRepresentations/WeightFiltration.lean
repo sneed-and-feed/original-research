@@ -8,8 +8,6 @@ import Formalization.TriangleModularGroup
 
 open scoped Matrix
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Monodromy Weight Filtration & Polarized Symplectic Geometry
 

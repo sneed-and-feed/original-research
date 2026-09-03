@@ -14,8 +14,6 @@ import Mathlib.Tactic.Ring
 open scoped Matrix
 open Matrix SymplecticTriangleRepresentations
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Schmid's Nilpotent Orbit Theorem for Cusp Period Monodromy
 

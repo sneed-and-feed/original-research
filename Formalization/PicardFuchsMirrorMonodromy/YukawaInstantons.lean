@@ -12,8 +12,6 @@ import Mathlib.Tactic.FieldSimp
 
 open scoped BigOperators
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Component 3: Multi-Instanton BPS & Gromov–Witten Expansions
 

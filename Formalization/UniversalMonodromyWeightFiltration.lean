@@ -11,8 +11,6 @@ import Formalization.UniversalMonodromyWeightFiltration.HodgeRiemannPairing
 open scoped Matrix
 open Matrix UniversalMonodromyWeightFiltration
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Deligne-Schmid Mixed Hodge Weight Filtration $W_\bullet(N)$ & Symplectic Monodromy
 

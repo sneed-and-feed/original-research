@@ -13,8 +13,6 @@ import Formalization.PicardFuchsMirrorMonodromy.GriffithsTransversality
 open scoped Matrix BigOperators
 open Matrix SymplecticTriangleRepresentations
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Order-4 Picard-Fuchs Differential Equations, Mirror Symmetry & Monodromy for $\Delta(p,q,\infty)$
 

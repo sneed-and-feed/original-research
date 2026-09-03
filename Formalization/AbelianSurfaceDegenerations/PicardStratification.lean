@@ -10,8 +10,6 @@ import Formalization.SymplecticTriangleRepresentations
 open scoped Matrix
 open Matrix SymplecticTriangleRepresentations
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Picard Number / Néron–Severi Rank Stratification $\rho(A_t)$
 

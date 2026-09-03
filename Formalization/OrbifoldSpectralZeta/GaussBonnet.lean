@@ -15,8 +15,6 @@ import Mathlib.Tactic.Ring
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.NormNum
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Hyperbolic Triangle Orbifold Signatures & Gauss–Bonnet Hyperbolic Area
 

@@ -12,8 +12,6 @@ import Mathlib.Tactic.FinCases
 open scoped Matrix
 open Matrix SymplecticTriangleRepresentations
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Symplectic Bilinear Invariance & Griffiths Transversality
 

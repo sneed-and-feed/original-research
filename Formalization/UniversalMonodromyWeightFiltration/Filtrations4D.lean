@@ -12,8 +12,6 @@ import Mathlib.Tactic.FinCases
 
 open scoped Matrix
 
-set_option linter.unusedSectionVars false
-
 /-!
 # 4D Nilpotent Monodromy Weight Filtrations: Type II vs Type III MUM
 

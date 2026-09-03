@@ -14,8 +14,6 @@ import Mathlib.Tactic.Linarith
 open scoped Matrix
 open Matrix SymplecticTriangleRepresentations
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Complete Boundary Stratification: Baily–Borel, Toroidal, & Triangle Cusps
 

@@ -10,8 +10,6 @@ import Mathlib.Tactic.FinCases
 open scoped Matrix
 open Matrix
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Genus-2 Siegel Upper Half-Space $\mathbb{H}_2$
 

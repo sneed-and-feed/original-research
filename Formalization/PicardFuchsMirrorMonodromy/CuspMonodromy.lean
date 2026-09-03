@@ -15,8 +15,6 @@ import Mathlib.Tactic.NormNum
 open scoped Matrix BigOperators
 open Matrix SymplecticTriangleRepresentations
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Frobenius Local Monodromy at Cusp $z = 0$ & Monodromy Classification
 

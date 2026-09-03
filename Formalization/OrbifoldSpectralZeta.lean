@@ -8,8 +8,6 @@ import Formalization.OrbifoldSpectralZeta.ScatteringDeterminant
 import Formalization.OrbifoldSpectralZeta.ResidueProduct
 import Formalization.OrbifoldSpectralZeta.SelbergTrace
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Hyperbolic Orbifold Spectral Zeta, Gauss–Bonnet Area & Selberg Trace Formula
 

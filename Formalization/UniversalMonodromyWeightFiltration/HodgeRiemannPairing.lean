@@ -12,8 +12,6 @@ import Mathlib.Tactic.FinCases
 
 open scoped Matrix
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Hodge-Riemann Polarization Pairings & Positivity Certificates
 

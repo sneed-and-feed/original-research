@@ -10,8 +10,6 @@ import Mathlib.Data.Matrix.Basic
 open scoped Matrix
 open Matrix SymplecticTriangleRepresentations
 
-set_option linter.unusedSectionVars false
-
 /-!
 # Kodaira–Mumford Toric Degeneration at Boundary $\partial \overline{\mathcal{A}_2}$
 

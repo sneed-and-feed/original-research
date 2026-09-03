@@ -1,6 +1,5 @@
 import Mathlib.Tactic.Ring
 
-set_option linter.unusedSectionVars false
 
 /-!
 # Seifert Invariant Order Formula & Homology Spheres
