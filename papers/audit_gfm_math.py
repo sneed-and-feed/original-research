@@ -86,6 +86,20 @@ def fix_content(filepath):
 
     content = re.sub(r'\(\$([^\$\n]+)\$\)', paren_repl, content)
 
+    # 3d. Fix brace-preceded underscore subscripts to eliminate CommonMark emphasis openers
+    brace_sub_replacements = [
+        (r'\\mathcal\{H\}_F', r'\\mathcal H_F'),
+        (r'\\mathcal\{A\}_F', r'\\mathcal A_F'),
+        (r'\\mathcal\{D\}_F', r'\\mathcal D_F'),
+        (r'\\mathbb\{Z\}_p', r'\\mathbb Z_p'),
+        (r'\\mathbb\{Q\}_p', r'\\mathbb Q_p'),
+        (r'\\mathbb\{N\}_0', r'\\mathbb N_0'),
+        (r'\\mathrm\{Vol\}_0', r'\\mathrm{Vol}'),
+        (r'\\mathcal\{R\}_0', r'\\mathcal{R}'),
+    ]
+    for pat, rep in brace_sub_replacements:
+        content = re.sub(pat, rep, content)
+
     # 4. Fix backtick math in table cells:
     content = content.replace(r'`m_SO3_one` $\dots$ `m_SO3_five`', r'`m_SO3_one` .. `m_SO3_five`')
     content = content.replace(r'`m_zero` $\dots$ `m_twelve`', r'`m_zero` .. `m_twelve`')

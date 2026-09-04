@@ -9,9 +9,9 @@
 
 ### Abstract
 
-We present a rigorous mathematical physics monograph on the spectral geometry, Molien invariant theory, and heat kernel asymptotics of the Laplace--Beltrami and Dirac operators on the Poincaré Homology 3-Sphere $\Sigma(2,3,5) \cong S^3 / I^\ast$, the smooth spherical space form obtained as the isometric quotient of $S^3 \subset \mathbb{H}$ by the binary icosahedral group $I^\ast \subset \mathrm{SU}(2)$ of order 120. Using the quaternionic character theory of $\mathrm{SU}(2)$ and Molien's invariant projection theorem across the 9 conjugacy classes of $I^\ast$, we derive the complete primary and secondary polynomial invariant ring generators $\mathbb{C}[u, v]^{I^\ast} \cong \mathbb{C}[f_{12}, f_{20}, f_{30}] / (f_{30}^2 - f_{12}^5 + 1728 f_{20}^3)$ and the non-truncated generating series $M_{\mathrm{SU}(2)}(t) = (1+t^{30})/((1-t^{12})(1-t^{20}))$. We prove the exact vanishing of all physical $\mathrm{SO}(3)$ spherical harmonics for multipoles $L \in \{1, 2, 3, 4, 5\}$ ($m_1 = \dots = m_5 = 0$) and establish the first active mode emergence at $L = 6$ ($m_6 = 1$), accompanied by an 11-degree representation gap on $\mathrm{SU}(2)$ ($m_1 = \dots = m_{11} = 0$, with first non-trivial invariant at $\ell = 12$). We establish the high-degree Weyl--Molien asymptotic law: representation-theoretic invariant multiplicities grow linearly as $m_\ell^{\mathrm{SU}(2)} = \ell / 120 + \mathcal{O}(1)$ with period 60 fluctuations, and quadratic total spatial Laplacian spectral multiplicities grow as $d_\ell(S^3/I^\ast) = m_\ell^{\mathrm{SU}(2)}(\ell+1) = \ell^2 / 120 + \mathcal{O}(\ell)$, with quasi-periodic arithmetic fluctuations of fundamental period $P = 60$.
+We present a rigorous mathematical physics monograph on the spectral geometry, Molien invariant theory, and heat kernel asymptotics of the Laplace--Beltrami and Dirac operators on the Poincaré Homology 3-Sphere $\Sigma(2,3,5) \cong S^3 / I^\ast$, the smooth spherical space form obtained as the isometric quotient of $S^3 \subset \mathbb{H}$ by the binary icosahedral group $I^\ast \subset \mathrm{SU}(2)$ of order 120. Using the quaternionic character theory of $\mathrm{SU}(2)$ and Molien's invariant projection theorem across the 9 conjugacy classes of $I^\ast$, we derive the complete primary and secondary polynomial invariant ring generators $\mathbb{C}[u, v]^{I^\ast} \cong \mathbb{C}[f_{12}, f_{20}, f_{30}] / (f_{30}^2 - f_{12}^5 + 1728 f_{20}^3)$ and the non-truncated generating series $M_{\mathrm{SU}(2)}(t) = (1+t^{30})/((1-t^{12})(1-t^{20}))$. We prove the exact vanishing of all physical $\mathrm{SO}(3)$ spherical harmonics for multipoles $L \in \{1, 2, 3, 4, 5\}$ $(m_1 = \dots = m_5 = 0)$ and establish the first active mode emergence at $L = 6$ $(m_6 = 1)$, accompanied by an 11-degree representation gap on $\mathrm{SU}(2)$ ($m_1 = \dots = m_{11} = 0$, with first non-trivial invariant at $\ell = 12$). We establish the high-degree Weyl--Molien asymptotic law: representation-theoretic invariant multiplicities grow linearly as $m_\ell^{\mathrm{SU}(2)} = \ell / 120 + \mathcal{O}(1)$ with period 60 fluctuations, and quadratic total spatial Laplacian spectral multiplicities grow as $d_\ell(S^3/I^\ast) = m_\ell^{\mathrm{SU}(2)}(\ell+1) = \ell^2 / 120 + \mathcal{O}(\ell)$, with quasi-periodic arithmetic fluctuations of fundamental period $P = 60$.
 
-Evaluating the discrete heat trace $Z(t) = \sum_{\ell=0}^\infty m_\ell (\ell+1) e^{-t \ell(\ell+2)}$, we derive the $\text{small-}t$ Seeley--DeWitt asymptotic expansion $Z(t) = a_0 t^{-3/2} + a_2 t^{-1/2} + a_4 t^{1/2} + \mathcal{O}(t^{3/2})$, proving the exact closed forms $a_0 = \sqrt{\pi}/480$, $a_2 = a_0$ (via constant scalar curvature $\mathcal{R} = 6$), and the fourth coefficient $a_4(S^3/I^\ast) = a_0 / 2 = \sqrt{\pi}/960$ derived from the Gilkey Riemannian curvature integrand $(5\mathcal{R}^2 - 2\lvert \mathrm{Ric} \rvert^2 + 2\lvert \mathrm{Riem} \rvert^2)/360 = 1/2$. Within the Chamseddine--Connes almost-commutative spectral triple framework $(\mathcal{A}, \mathcal{H}, \mathcal{D})$ over $M = \mathbb{R} \times (S^3/I^\ast)$ with 3 fermion generations ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$), we deduce the bare Einstein--Hilbert gravitational action with positive Newton constant $G_{\mathrm{eff}} = 3\pi/(4 f_2 \Lambda^2) > 0$, higher-order $2 f_0 a_4$ curvature-squared action, and bare gauge coupling unification $g_1^2 = g_2^2 = g_3^2 = \frac{\pi^2 f_0}{2 f_2 \Lambda^2}$ at $\Lambda \sim 10^{16}\text{ GeV}$ (clarifying $m_Z^2 = 2 m_W^2$ as the bare UV boundary condition prior to 2-loop Standard Model Renormalization Group running down to $M_Z$). We formulate an explicit $p$-adic spectral model via the Vladimirov fractional pseudo-differential operator $D^\alpha_p$ on $L^2(\mathbb{Q}_p)$ with discrete eigenspaces of dimension $(p-1)p^{k-1}$ and eigenvalues $p^{\alpha k}$ on $\mathbb{Z}_p$, yielding the exact local heat trace $Z_p(t) = 1 + \sum_{k=1}^\infty (1-p^{-1})p^k e^{-t p^{\alpha k}}$ and connecting at $\alpha = 1$ to the local Euler factor of Tate's thesis and the global adèlic Euler product. All core algebraic structures, character tables, Seeley--DeWitt algebraic identities, and spectral triple dimensions are formally verified in Lean 4 without custom axioms, while smooth manifold remainder bounds and adèlic embeddings are developed as rigorous analytical mathematical physics frameworks.
+Evaluating the discrete heat trace $Z(t) = \sum_{\ell=0}^\infty m_\ell (\ell+1) e^{-t \ell(\ell+2)}$, we derive the $\text{small-}t$ Seeley--DeWitt asymptotic expansion $Z(t) = a_0 t^{-3/2} + a_2 t^{-1/2} + a_4 t^{1/2} + \mathcal{O}(t^{3/2})$, proving the exact closed forms $a_0 = \sqrt{\pi}/480$, $a_2 = a_0$ (via constant scalar curvature $\mathcal{R} = 6$), and the fourth coefficient $a_4(S^3/I^\ast) = a_0 / 2 = \sqrt{\pi}/960$ derived from the Gilkey Riemannian curvature integrand $(5\mathcal{R}^2 - 2\lvert \mathrm{Ric} \rvert^2 + 2\lvert \mathrm{Riem} \rvert^2)/360 = 1/2$. Within the Chamseddine--Connes almost-commutative spectral triple framework $(\mathcal{A}, \mathcal{H}, \mathcal{D})$ over $M = \mathbb{R} \times (S^3/I^\ast)$ with 3 fermion generations $(\dim_{\mathbb{R}} \mathcal H_F = 96)$, we deduce the bare Einstein--Hilbert gravitational action with positive Newton constant $G_{\mathrm{eff}} = 3\pi/(4 f_2 \Lambda^2) > 0$, higher-order $2 f_0 a_4$ curvature-squared action, and bare gauge coupling unification $g_1^2 = g_2^2 = g_3^2 = \frac{\pi^2 f_0}{2 f_2 \Lambda^2}$ at $\Lambda \sim 10^{16}\text{ GeV}$ (clarifying $m_Z^2 = 2 m_W^2$ as the bare UV boundary condition prior to 2-loop Standard Model Renormalization Group running down to $M_Z$). We formulate an explicit $p$-adic spectral model via the Vladimirov fractional pseudo-differential operator $D^\alpha_p$ on $L^2(\mathbb Q_p)$ with discrete eigenspaces of dimension $(p-1)p^{k-1}$ and eigenvalues $p^{\alpha k}$ on $\mathbb Z_p$, yielding the exact local heat trace $Z_p(t) = 1 + \sum_{k=1}^\infty (1-p^{-1})p^k e^{-t p^{\alpha k}}$ and connecting at $\alpha = 1$ to the local Euler factor of Tate's thesis and the global adèlic Euler product. All core algebraic structures, character tables, Seeley--DeWitt algebraic identities, and spectral triple dimensions are formally verified in Lean 4 without custom axioms, while smooth manifold remainder bounds and adèlic embeddings are developed as rigorous analytical mathematical physics frameworks.
 
 ---
 
@@ -124,14 +124,14 @@ Let $S^3(R_c)$ denote the round 3-sphere of physical curvature radius $R_c > 0$,
 > \mathrm{Vol}(S^3 / I^\ast) = \frac{\mathrm{Vol}(S^3(R_c))}{\lvert I^\ast \rvert} = \frac{2 \pi^2 R_c^3}{120} = \frac{\pi^2 R_c^3}{60}.
 > $$
 >
->    For the unit-radius space form ($R_c = 1$), $\mathrm{Vol}_0 = \pi^2 / 60 \approx 0.1644934$.
+>    For the unit-radius space form $(R_c = 1)$, $\mathrm{Vol} = \pi^2 / 60 \approx 0.1644934$.
 > 2. **Ricci Tensor and Scalar Curvature**:
 >
 > $$
 > \mathrm{Ric}_{\mu \nu} = \frac{2}{R_c^2} g_{\mu \nu}, \quad \mathcal{R}(S^3 / I^\ast) = \frac{6}{R_c^2}.
 > $$
 >
->    For unit radius $R_c = 1$, the scalar curvature is strictly constant: $\mathcal{R}_0 = 6$.
+>    For unit radius $R_c = 1$, the scalar curvature is strictly constant: $\mathcal{R} = 6$.
 > 3. **Injectivity Radius**: The shortest non-trivial closed geodesic in $S^3 / I^\ast$ is determined by the minimum non-zero displacement angle $\theta_{\mathrm{min}}$ among elements in $I^\ast \setminus \{e\}$. The non-identity elements closest to the identity in $S^3$ are the 12 elements with $\mathrm{Re}(q) = \phi/2 = \cos(\pi/5)$, corresponding to rotation angle $\theta = \pi/5$. Thus:
 >
 > $$
@@ -155,7 +155,7 @@ The spatial spectrum of differential operators on $S^3 / I^\ast$ is governed by 
 
 ### 2.1 Character Theory on the 9 Conjugacy Classes of $I^\ast$
 
-The irreducible representations of $\mathrm{SU}(2)$ are indexed by their degree $\ell \in \mathbb{N}_0$, with carrier spaces $V_\ell = \mathrm{Sym}^\ell(\mathbb{C}^2)$ of dimension $\dim V_\ell = \ell + 1$. For any group element $g \in \mathrm{SU}(2)$ with eigenvalues $e^{\pm i \theta}$, its real scalar part is $a = \mathrm{Re}(g) = \cos \theta \in [-1, 1]$. The Weyl character formula yields:
+The irreducible representations of $\mathrm{SU}(2)$ are indexed by their degree $\ell \in \mathbb N_0$, with carrier spaces $V_\ell = \mathrm{Sym}^\ell(\mathbb{C}^2)$ of dimension $\dim V_\ell = \ell + 1$. For any group element $g \in \mathrm{SU}(2)$ with eigenvalues $e^{\pm i \theta}$, its real scalar part is $a = \mathrm{Re}(g) = \cos \theta \in [-1, 1]$. The Weyl character formula yields:
 
 $$
 \chi_\ell (a) = \begin{cases}
@@ -197,7 +197,7 @@ $$
 
 ### 2.3 Physical Spherical Harmonics on $\mathrm{SO}(3)$ vs Spinor Representations
 
-In spatial geometry and cosmological perturbation theory, physical scalar spherical harmonics on the celestial 2-sphere $S^2 \cong \mathrm{SO}(3)/\mathrm{SO}(2)$ transform under integer angular momentum representations $L \in \mathbb{N}_0$ of $\mathrm{SO}(3)$. Under the universal double cover $\mathrm{SU}(2) \to \mathrm{SO}(3)$, an $\mathrm{SO}(3)$ representation of degree $L$ lifts to an $\mathrm{SU}(2)$ representation of even degree $\ell = 2L$, because the central element $-1 \in \mathrm{SU}(2)$ acts as $(-1)^\ell = +1$. Thus, we have the exact identification:
+In spatial geometry and cosmological perturbation theory, physical scalar spherical harmonics on the celestial 2-sphere $S^2 \cong \mathrm{SO}(3)/\mathrm{SO}(2)$ transform under integer angular momentum representations $L \in \mathbb N_0$ of $\mathrm{SO}(3)$. Under the universal double cover $\mathrm{SU}(2) \to \mathrm{SO}(3)$, an $\mathrm{SO}(3)$ representation of degree $L$ lifts to an $\mathrm{SU}(2)$ representation of even degree $\ell = 2L$, because the central element $-1 \in \mathrm{SU}(2)$ acts as $(-1)^\ell = +1$. Thus, we have the exact identification:
 
 $$
 m_L^{\mathrm{SO}(3)} = m_{2L}^{\mathrm{SU}(2)}.
@@ -219,12 +219,12 @@ $$
 > $$
 
 *Proof.* We evaluate $m_{2L}^{\mathrm{SU}(2)}$ directly from the Molien projection sum:
-- For $L = 0$ ($\ell = 0$): $\chi_0(a) = 1$ for all $a$. Thus $m_0 = \frac{1}{120} (120 \times 1) = 1$.
-- For $L = 1$ ($\ell = 2$): $a_1=1 \implies \chi_2(1)=3$; $a_2=-1 \implies \chi_2(-1)=3$; $a_3=0 \implies \chi_2(0) = \frac{\sin(3\pi/2)}{\sin(\pi/2)} = -1$; $a_4=1/2 \implies \chi_2(1/2) = \frac{\sin(\pi)}{\sin(\pi/3)} = 0$; $a_5=-1/2 \implies \chi_2(-1/2) = 0$; $a_6=\phi/2 \implies \theta=\pi/5, \chi_2 = \frac{\sin(3\pi/5)}{\sin(\pi/5)} = 1+2\cos(2\pi/5) = \phi$; $a_7=-\phi/2 \implies \theta=4\pi/5, \chi_2 = \phi$; $a_8=\phi^{-1}/2 \implies \theta=3\pi/5, \chi_2 = -\phi^{-1}$; $a_9=-\phi^{-1}/2 \implies \chi_2 = -\phi^{-1}$.  
+- For $L = 0$ $(\ell = 0)$: $\chi_0(a) = 1$ for all $a$. Thus $m_0 = \frac{1}{120} (120 \times 1) = 1$.
+- For $L = 1$ $(\ell = 2)$: $a_1=1 \implies \chi_2(1)=3$; $a_2=-1 \implies \chi_2(-1)=3$; $a_3=0 \implies \chi_2(0) = \frac{\sin(3\pi/2)}{\sin(\pi/2)} = -1$; $a_4=1/2 \implies \chi_2(1/2) = \frac{\sin(\pi)}{\sin(\pi/3)} = 0$; $a_5=-1/2 \implies \chi_2(-1/2) = 0$; $a_6=\phi/2 \implies \theta=\pi/5, \chi_2 = \frac{\sin(3\pi/5)}{\sin(\pi/5)} = 1+2\cos(2\pi/5) = \phi$; $a_7=-\phi/2 \implies \theta=4\pi/5, \chi_2 = \phi$; $a_8=\phi^{-1}/2 \implies \theta=3\pi/5, \chi_2 = -\phi^{-1}$; $a_9=-\phi^{-1}/2 \implies \chi_2 = -\phi^{-1}$.  
   Summing: $3 + 3 + 30(-1) + 20(0) + 20(0) + 12(\phi + \phi) + 12(-\phi^{-1} - \phi^{-1}) = 6 - 30 + 24(\phi - \phi^{-1})$.  
   Since $\phi - \phi^{-1} = 1$, this equals $-24 + 24(1) = 0$. Thus $m_1^{\mathrm{SO}(3)} = 0$.
-- For $L = 2, 3, 4, 5$ ($\ell = 4, 6, 8, 10$): Direct substitution of character values into the Molien projection sum yields identically $m_2 = m_3 = m_4 = m_5 = 0$.
-- For $L = 6$ ($\ell = 12$): The character sum evaluates to $\sum_{g \in I^\ast} \chi_{12}(g) = 120$, giving $m_6^{\mathrm{SO}(3)} = 1$.  
+- For $L = 2, 3, 4, 5$ $(\ell = 4, 6, 8, 10)$: Direct substitution of character values into the Molien projection sum yields identically $m_2 = m_3 = m_4 = m_5 = 0$.
+- For $L = 6$ $(\ell = 12)$: The character sum evaluates to $\sum_{g \in I^\ast} \chi_{12}(g) = 120$, giving $m_6^{\mathrm{SO}(3)} = 1$.  
 This completes the proof. $\blacksquare$
 
 ### 2.4 Complete Invariant Ring Structure and Molien Generating Series
@@ -237,7 +237,7 @@ $$
 \mathbb{C}[u, v]^{I^\ast} \cong \mathbb{C}[f_{12}, f_{20}, f_{30}] / \left( f_{30}^2 - f_{12}^5 + 1728 f_{20}^3 \right).
 $$
 
-Here $f_{12}$ is the icosahedral vertex invariant (Klein form $\Phi_{12}$), $f_{20}$ is the face invariant ($\Phi_{20}$), and $f_{30} = J(f_{12}, f_{20})$ is their Jacobian edge invariant.
+Here $f_{12}$ is the icosahedral vertex invariant (Klein form $\Phi_{12}$), $f_{20}$ is the face invariant $(\Phi_{20})$, and $f_{30} = J(f_{12}, f_{20})$ is their Jacobian edge invariant.
 
 By Molien's theorem, the generating function for $\mathrm{SU}(2)$ representation invariant multiplicities is:
 
@@ -251,9 +251,9 @@ $$
 M_{\mathrm{SU}(2)}(t) = \sum_{k \in \mathcal{D}} t^k = 1 + t^{12} + t^{20} + t^{24} + t^{30} + t^{32} + t^{36} + t^{40} + t^{42} + t^{44} + t^{48} + t^{50} + \dots,
 $$
 
-where the active degrees $k \in \mathcal{D}$ are linear combinations $12 a + 20 b + 30 c$ with $a, b \in \mathbb{N}_0$ and $c \in \{0, 1\}$. In particular, composite products such as $f_{12} f_{30}$ and $f_{12}^2 f_{20}$ generate the active degrees $k = 42$ and $k = 44$.
+where the active degrees $k \in \mathcal{D}$ are linear combinations $12 a + 20 b + 30 c$ with $a, b \in \mathbb N_0$ and $c \in \{0, 1\}$. In particular, composite products such as $f_{12} f_{30}$ and $f_{12}^2 f_{20}$ generate the active degrees $k = 42$ and $k = 44$.
 
-Similarly, for spatial $\mathrm{SO}(3)$ harmonics ($L = \ell/2$), the generating function is:
+Similarly, for spatial $\mathrm{SO}(3)$ harmonics $(L = \ell/2)$, the generating function is:
 
 $$
 M_{\mathrm{SO}(3)}(t) = \sum_{L=0}^\infty m_L^{\mathrm{SO}(3)} t^L = \frac{1 + t^{15}}{(1 - t^6)(1 - t^{10})} = 1 + t^6 + t^{10} + t^{12} + t^{15} + t^{16} + t^{18} + 2 t^{20} + t^{21} + t^{22} + \dots
@@ -311,7 +311,7 @@ We now determine the spectral asymptotics of the Laplace--Beltrami operator $\De
 The eigenvalues of the negative Laplace--Beltrami operator $-\Delta$ on the round 3-sphere $S^3$ of unit radius are given by:
 
 $$
-\lambda_\ell = \ell(\ell + 2), \quad \ell \in \mathbb{N}_0,
+\lambda_\ell = \ell(\ell + 2), \quad \ell \in \mathbb N_0,
 $$
 
 with eigenspace dimension on $S^3$ equal to $d_\ell(S^3) = (\ell + 1)^2$.
@@ -343,7 +343,7 @@ a_0 = \frac{\mathrm{Vol}(M)}{(4 \pi)^{3/2}}, \quad a_2 = \frac{1}{(4 \pi)^{3/2}}
 $$
 
 > Theorem 3.1 (Exact Seeley--DeWitt Coefficients on $S^3 / I^\ast$).  
-> For the Poincaré Homology 3-Sphere $S^3 / I^\ast$ equipped with the round metric of unit radius ($R_c = 1$):
+> For the Poincaré Homology 3-Sphere $S^3 / I^\ast$ equipped with the round metric of unit radius $(R_c = 1)$:
 > 1. **Leading Volume Coefficient**:
 >
 > $$
@@ -394,7 +394,7 @@ a_4(M) = \frac{1}{(4\pi)^{3/2}} \frac{1}{360} \int_M \left( 5 \mathcal{R}^2 - 2 
 $$
 
 > Theorem 3.2 (Exact Fourth Seeley--DeWitt Coefficient $a_4$ on $S^3 / I^\ast$).  
-> For the Poincaré Homology 3-Sphere $S^3 / I^\ast$ equipped with the unit round metric ($R_c = 1$):
+> For the Poincaré Homology 3-Sphere $S^3 / I^\ast$ equipped with the unit round metric $(R_c = 1)$:
 > 1. **Gilkey Integrand Evaluation**: With $\mathcal{R} = 6$, $\lvert \mathrm{Ric} \rvert^2 = 12$, and $\lvert \mathrm{Riem} \rvert^2 = 12$:
 >
 > $$
@@ -422,23 +422,26 @@ We now embed $S^3 / I^\ast$ into the Chamseddine--Connes almost-commutative spec
 Let $M = \mathbb{R} \times (S^3 / I^\ast)$ denote the 4-dimensional Riemannian product spacetime. The almost-commutative spectral triple $(\mathcal{A}, \mathcal{H}, \mathcal{D}, J, \gamma)$ is defined by:
 
 $$
-\mathcal{A} = C^\infty(M) \otimes \mathcal{A}_F, \quad \mathcal{H} = L^2(M, \mathbb{S}) \otimes \mathcal{H}_F, \quad \mathcal{D} = \mathcal{D}_M \otimes \gamma_F + \mathbb{I} \otimes \mathcal{D}_F,
+\mathcal{A} = C^\infty(M) \otimes \mathcal A_F, \quad \mathcal{H} = L^2(M, \mathbb{S}) \otimes \mathcal H_F, \quad \mathcal{D} = \mathcal{D}_M \otimes \gamma_F + \mathbb{I} \otimes \mathcal D_F,
 $$
 
 where:
-1. **Finite Algebra**: $\mathcal{A}_F = \mathbb{C} \oplus \mathbb{H} \oplus M_3(\mathbb{C})$, whose unitary subgroup $\mathcal{U}(\mathcal{A}_F)$ modulo phases generates the Standard Model gauge group $\mathrm{SU}(3)_c \times \mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$.
+
+1. **Finite Algebra**: $\mathcal A_F = \mathbb{C} \oplus \mathbb{H} \oplus M_3(\mathbb{C})$, whose unitary subgroup $\mathcal{U}(\mathcal A_F)$ modulo phases generates the Standard Model gauge group $\mathrm{SU}(3)_c \times \mathrm{SU}(2)_L \times \mathrm{U}(1)_Y$.
+
 2. **Fermion Hilbert Space**:
-   - Complex Chiral Weyl Representation ($\dim_{\mathbb{C}} \mathcal{H}_F = 48$): 3 generations of 16 Weyl fermions:
+   - Complex Chiral Weyl Representation $(\dim_{\mathbb{C}} \mathcal H_F = 48)$: 3 generations of 16 Weyl fermions:
 
 $$
 3 \times \left( 4 \text{ leptons } (\nu_L, e_L, \nu_R, e_R) + 12 \text{ quarks } (u_L, d_L, u_R, d_R) \times 3 \text{ colors} \right) = 48.
 $$
 
-- Real Particle-Antiparticle Degrees of Freedom ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$): Accounting for antiparticles via the antilinear charge conjugation real structure $J_F$ ($J_F^2 = 1, J_F \mathcal{D}_F = \mathcal{D}_F J_F$), yielding $48 \times 2 = 96$ real degrees of freedom.
+   - Real Particle-Antiparticle Degrees of Freedom $(\dim_{\mathbb{R}} \mathcal H_F = 96)$: Accounting for antiparticles via the antilinear charge conjugation real structure $J_F$ $(J_F^2 = 1, J_F \mathcal D_F = \mathcal D_F J_F)$, yielding $48 \times 2 = 96$ real degrees of freedom.
+
 3. **Finite Dirac Operator**:
 
 $$
-\mathcal{D}_F = \begin{pmatrix}
+\mathcal D_F = \begin{pmatrix}
 S & T^\dagger \\
 T & \overline{S}
 \end{pmatrix}
@@ -490,7 +493,7 @@ $$
 g_1^2 = g_2^2 = g_3^2 = \frac{\pi^2 f_0}{2 f_2 \Lambda^2},
 $$
 
-where $g_1 = \sqrt{5/3} g_Y$ is the canonical Grand Unified Theory (GUT) normalized hypercharge coupling. (Parameterization note: In the formalization `StandardModel.lean`, the coupling parameter is defined algebraically as $g_{\mathrm{unified}}^2 = \frac{\pi^2 f_0}{2 f_2 \Lambda^2}$, where $\Lambda$ enters in dimensionless cutoff units ($\Lambda / \Lambda_{\mathrm{UV}} = 1$); in canonical 4D physical normalization, the scale-invariant Yang--Mills action is generated purely by $f_0 a_4$ with dimensionless coupling $g^2 \propto \pi^2 / (2 f_0)$.)
+where $g_1 = \sqrt{5/3} g_Y$ is the canonical Grand Unified Theory (GUT) normalized hypercharge coupling. (Parameterization note: In the formalization `StandardModel.lean`, the coupling parameter is defined algebraically as $g_{\mathrm{unified}}^2 = \frac{\pi^2 f_0}{2 f_2 \Lambda^2}$, where $\Lambda$ enters in dimensionless cutoff units $(\Lambda / \Lambda_{\mathrm{UV}} = 1)$; in canonical 4D physical normalization, the scale-invariant Yang--Mills action is generated purely by $f_0 a_4$ with dimensionless coupling $g^2 \propto \pi^2 / (2 f_0)$.)
 
 2. **Higgs Quartic Potential**:
 
@@ -547,7 +550,7 @@ $$
 \Lambda_0 = \frac{f_4}{f_2} \Lambda^2 \sim 10^{32}\text{ GeV}^2 \quad (\text{for } \Lambda \sim 10^{16}\text{ GeV}).
 $$
 
-This bare value exceeds the observed dark energy density ($\Lambda_{\mathrm{obs}} \sim 10^{-84}\text{ GeV}^2$) by 116 orders of magnitude.
+This bare value exceeds the observed dark energy density $(\Lambda_{\mathrm{obs}} \sim 10^{-84}\text{ GeV}^2)$ by 116 orders of magnitude.
 
 We emphasize that this constitutes an open foundational problem inherent to all perturbative quantum field theories and spectral action formulations. The resolution cannot be achieved by naive fine-tuning; rather, it requires non-perturbative spectral flow mechanisms, unimodular spectral triples, or dynamical vacuum screening across the adèlic places.
 
@@ -562,13 +565,13 @@ We now situate the smooth manifold $M = \mathbb{R} \times (S^3 / I^\ast)$ within
 The global adele ring $\mathbb{A}_{\mathbb{Q}}$ over the rational numbers $\mathbb{Q}$ is the restricted topological product:
 
 $$
-\mathbb{A}_{\mathbb{Q}} = \mathbb{R} \times {\prod_{p < \infty}}' \mathbb{Q}_p = \{ (x_\infty, x_2, x_3, x_5, \dots) \mid x_\infty \in \mathbb{R}, x_p \in \mathbb{Q}_p, \text{ and } x_p \in \mathbb{Z}_p \text{ for almost all } p \},
+\mathbb{A}_{\mathbb{Q}} = \mathbb{R} \times {\prod_{p < \infty}}' \mathbb Q_p = \{ (x_\infty, x_2, x_3, x_5, \dots) \mid x_\infty \in \mathbb{R}, x_p \in \mathbb Q_p, \text{ and } x_p \in \mathbb Z_p \text{ for almost all } p \},
 $$
 
 where:
 - **Archimedean completion**: $\mathbb{R} \equiv \mathbb{Q}_\infty$ under the standard Euclidean absolute value $\lvert x \rvert_\infty$.
-- **Non-Archimedean completion**: $\mathbb{Q}_p$ at prime $p$ under the $p$-adic absolute value $\lvert x \rvert_p = p^{-v_p(x)}$.
-- **Ring of integers**: $\mathbb{Z}_p = \{x \in \mathbb{Q}_p \mid \lvert x \rvert_p \le 1\}$ is the compact open subring of $p$-adic integers.
+- **Non-Archimedean completion**: $\mathbb Q_p$ at prime $p$ under the $p$-adic absolute value $\lvert x \rvert_p = p^{-v_p(x)}$.
+- **Ring of integers**: $\mathbb Z_p = \{x \in \mathbb Q_p \mid \lvert x \rvert_p \le 1\}$ is the compact open subring of $p$-adic integers.
 
 By the Artin product formula, every non-zero rational number $x \in \mathbb{Q}^\times$ satisfies:
 
@@ -585,42 +588,42 @@ $$
 $$
 
 where:
-1. The Archimedean Fiber ($\mathcal{M}_\infty = \mathbb{R} \times S^3 / I^\ast$): The continuous, smooth, macroscopic 4D spacetime manifold where Seeley--DeWitt asymptotics, Riemannian geometry, and classical General Relativity reside.
-2. The Non-Archimedean Fibers ($\mathcal{T}_p$): Discrete, ultrametric $p$-adic spaces (such as the Bruhat--Tits tree for $\mathrm{PGL}(2, \mathbb{Q}_p)$), modeling quantum Planckian micro-structure.
+1. The Archimedean Fiber $(\mathcal{M}_\infty = \mathbb{R} \times S^3 / I^\ast)$: The continuous, smooth, macroscopic 4D spacetime manifold where Seeley--DeWitt asymptotics, Riemannian geometry, and classical General Relativity reside.
+2. The Non-Archimedean Fibers $(\mathcal{T}_p)$: Discrete, ultrametric $p$-adic spaces (such as the Bruhat--Tits tree for $\mathrm{PGL}(2, \mathbb Q_p)$), modeling quantum Planckian micro-structure.
 
-### 5.3 Concrete $p$-Adic Spectral Triples: The Vladimirov Operator on $\mathbb{Z}_p$
+### 5.3 Concrete $p$-Adic Spectral Triples: The Vladimirov Operator on $\mathbb Z_p$
 
-To substantiate the non-Archimedean factors beyond formal definitions, we consider the canonical $p$-adic spectral model defined by the Vladimirov fractional pseudo-differential operator $\mathcal{D}_p = D^{\alpha}$ on $L^2(\mathbb{Q}_p)$ for $\alpha > 0$. For any test function $f \in \mathcal{D}(\mathbb{Q}_p)$, the Vladimirov operator is defined by the singular integral:
+To substantiate the non-Archimedean factors beyond formal definitions, we consider the canonical $p$-adic spectral model defined by the Vladimirov fractional pseudo-differential operator $\mathcal{D}_p = D^{\alpha}$ on $L^2(\mathbb Q_p)$ for $\alpha > 0$. For any test function $f \in \mathcal{D}(\mathbb Q_p)$, the Vladimirov operator is defined by the singular integral:
 
 $$
-(D^\alpha f)(x) = \frac{1 - p^{-\alpha}}{1 - p^{\alpha + 1}} \int_{\mathbb{Q}_p} \frac{f(x) - f(y)}{\lvert x - y \rvert_p^{\alpha + 1}} dy,
+(D^\alpha f)(x) = \frac{1 - p^{-\alpha}}{1 - p^{\alpha + 1}} \int_{\mathbb Q_p} \frac{f(x) - f(y)}{\lvert x - y \rvert_p^{\alpha + 1}} dy,
 $$
 
-where $dy$ is the Haar measure on $(\mathbb{Q}_p, +)$ normalized such that $\mathrm{Vol}(\mathbb{Z}_p) = 1$.
+where $dy$ is the Haar measure on $(\mathbb Q_p, +)$ normalized such that $\mathrm{Vol}(\mathbb Z_p) = 1$.
 
-Under the non-Archimedean Fourier transform on $L^2(\mathbb{Q}_p)$, the operator $D^\alpha$ acts as a multiplication operator by the symbol $\lvert \xi \rvert_p^\alpha$:
+Under the non-Archimedean Fourier transform on $L^2(\mathbb Q_p)$, the operator $D^\alpha$ acts as a multiplication operator by the symbol $\lvert \xi \rvert_p^\alpha$:
 
 $$
 \mathcal{F}(D^\alpha f)(\xi) = \lvert \xi \rvert_p^\alpha (\mathcal{F} f)(\xi).
 $$
 
-Restricting $D^\alpha$ to the Hilbert space $L^2(\mathbb{Z}_p)$ over the compact subring of $p$-adic integers, the spectrum is pure point, discrete, and non-negative. The space $L^2(\mathbb{Z}_p)$ decomposes into an orthogonal direct sum of eigenspaces:
+Restricting $D^\alpha$ to the Hilbert space $L^2(\mathbb Z_p)$ over the compact subring of $p$-adic integers, the spectrum is pure point, discrete, and non-negative. The space $L^2(\mathbb Z_p)$ decomposes into an orthogonal direct sum of eigenspaces:
 
 $$
-L^2(\mathbb{Z}_p) = \mathbb{C} \mathbf{1}_{\mathbb{Z}_p} \oplus \left( \bigoplus_{k=1}^\infty L_0^2(p^{-k} \mathbb{Z}_p^\times) \right),
+L^2(\mathbb Z_p) = \mathbb{C} \mathbf{1}_{\mathbb Z_p} \oplus \left( \bigoplus_{k=1}^\infty L_0^2(p^{-k} \mathbb Z_p^\times) \right),
 $$
 
-where the ground state $\mathbf{1}_{\mathbb{Z}_p}$ has eigenvalue $\lambda_0 = 0$, and the orthogonal eigenspace at scale $k \ge 1$ has dimension and eigenvalue:
+where the ground state $\mathbf{1}_{\mathbb Z_p}$ has eigenvalue $\lambda_0 = 0$, and the orthogonal eigenspace at scale $k \ge 1$ has dimension and eigenvalue:
 
 $$
-\dim L_0^2(p^{-k} \mathbb{Z}_p^\times) = (p - 1) p^{k-1}, \quad \lambda_k = p^{\alpha k}.
+\dim L_0^2(p^{-k} \mathbb Z_p^\times) = (p - 1) p^{k-1}, \quad \lambda_k = p^{\alpha k}.
 $$
 
 > Theorem 5.1 (Exact Local $p$-Adic Heat Trace and Absolute Convergence).  
-> For every prime $p$ and $t > 0$, the local non-Archimedean heat kernel trace on $\mathbb{Z}_p$ evaluates to the absolutely convergent series:
+> For every prime $p$ and $t > 0$, the local non-Archimedean heat kernel trace on $\mathbb Z_p$ evaluates to the absolutely convergent series:
 >
 > $$
-> Z_p(t) = \mathrm{Tr}_{L^2(\mathbb{Z}_p)}\left(e^{-t D^\alpha}\right) = 1 + \sum_{k=1}^\infty (1 - p^{-1}) p^k e^{-t p^{\alpha k}}.
+> Z_p(t) = \mathrm{Tr}_{L^2(\mathbb Z_p)}\left(e^{-t D^\alpha}\right) = 1 + \sum_{k=1}^\infty (1 - p^{-1}) p^k e^{-t p^{\alpha k}}.
 > $$
 >
 > Furthermore, the local spectral zeta function is given by:
@@ -637,7 +640,7 @@ $$
 Z_{\mathbb{A}}(t) = Z_\infty(t) \prod_{p < \infty} Z_p(t) = \left( \sum_{\ell=0}^\infty m_\ell (\ell+1) e^{-t \ell(\ell+2)} \right) \prod_{p < \infty} \left[ 1 + \sum_{k=1}^\infty (1 - p^{-1}) p^k e^{-t p^{\alpha k}} \right].
 $$
 
-Because the discrete ultrametric spectrum on each $\mathbb{Z}_p$ is bounded below by 0 with exponential spectral gap $p^\alpha$, the product provides a natural mathematical regularization of ultraviolet modes without ad-hoc momentum cutoffs.
+Because the discrete ultrametric spectrum on each $\mathbb Z_p$ is bounded below by 0 with exponential spectral gap $p^\alpha$, the product provides a natural mathematical regularization of ultraviolet modes without ad-hoc momentum cutoffs.
 
 ### 5.4 Mathematical Classification & Distinction of $S^3 / I^\ast$
 
@@ -651,7 +654,7 @@ While infinitely many other spherical space forms exist (lens spaces $L(p, q)$, 
 
 ## 6. Formal Lean 4 Verification & Algebraic Map
 
-All core algebraic structures, group representation dimensions, Seeley--DeWitt algebraic coefficient identities (including the fourth coefficient $a_4$), and Noncommutative Standard Model spectral triples presented in this monograph have been formally formalized and machine-checked in Lean 4 (toolchain `v4.34.0-rc2` with Mathlib). Specifically, group closure, quaternionic unit norms, central inversion, exact Chebyshev character evaluations across all 9 conjugacy classes, Molien selection rules ($m_0..m_{12}$ on $\mathrm{SU}(2)$ and $m_0^{\mathrm{SO}(3)}..m_6^{\mathrm{SO}(3)}$ on $\mathrm{SO}(3)$), Seeley--DeWitt algebraic coefficient identities ($a_0, a_2, a_4$), the 96-dimensional fermion Hilbert space $\mathcal{H}_F$, and bare Standard Model gauge-Higgs unification relations are machine-checked in Lean 4 with 0 custom axioms beyond Lean's standard kernel (`propext`, `Quot.sound`, `Classical.choice`). The smooth manifold heat kernel asymptotic remainder $R(t) = \mathcal{O}(t^{1/2})$ is formulated conditionally under the analytical hypothesis `heatTrace_asymptotic_remainder_holds`, while the $p$-adic Vladimirov operator and adèlic framework (Section 5) are analytical mathematical physics constructions providing global arithmetic context.
+All core algebraic structures, group representation dimensions, Seeley--DeWitt algebraic coefficient identities (including the fourth coefficient $a_4$), and Noncommutative Standard Model spectral triples presented in this monograph have been formally formalized and machine-checked in Lean 4 (toolchain `v4.34.0-rc2` with Mathlib). Specifically, group closure, quaternionic unit norms, central inversion, exact Chebyshev character evaluations across all 9 conjugacy classes, Molien selection rules ($m_0..m_{12}$ on $\mathrm{SU}(2)$ and $m_0^{\mathrm{SO}(3)}..m_6^{\mathrm{SO}(3)}$ on $\mathrm{SO}(3)$), Seeley--DeWitt algebraic coefficient identities $(a_0, a_2, a_4)$, the 96-dimensional fermion Hilbert space $\mathcal H_F$, and bare Standard Model gauge-Higgs unification relations are machine-checked in Lean 4 with 0 custom axioms beyond Lean's standard kernel (`propext`, `Quot.sound`, `Classical.choice`). The smooth manifold heat kernel asymptotic remainder $R(t) = \mathcal{O}(t^{1/2})$ is formulated conditionally under the analytical hypothesis `heatTrace_asymptotic_remainder_holds`, while the $p$-adic Vladimirov operator and adèlic framework (Section 5) are analytical mathematical physics constructions providing global arithmetic context.
 
 The formalization resides in the `Formalization.PoincareDodecahedron` module tree within the public repository at [github.com/sneed-and-feed/original-research](https://github.com/sneed-and-feed/original-research/tree/main/Formalization/PoincareDodecahedron). Table 3 maps each analytical result to its verified formal declaration.
 
@@ -659,31 +662,31 @@ The formalization resides in the `Formalization.PoincareDodecahedron` module tre
 | :--- | :--- | :--- |
 | Binary Icosahedral Group $I^\ast \subset \mathbb{H}[\mathbb{R}]^\times$ ($120$ units) | `BinaryIcosahedral.lean` | `binaryIcosahedralFinset`, `binaryIcosahedral` |
 | Golden Ratio Norm Identity on $S^3$ | `BinaryIcosahedral.lean` | `golden_ratio_norm_sq_sum` |
-| Unit Norm Equality ($\forall u \in I^\ast, \lvert u \rvert^2 = 1$) | `BinaryIcosahedral.lean` | `binaryIcosahedralUnits_normSq` |
+| Unit Norm Equality $(\forall u \in I^\ast, \lvert u \rvert^2 = 1)$ | `BinaryIcosahedral.lean` | `binaryIcosahedralUnits_normSq` |
 | Group Closure & Center Subgroup ($Z(I^\ast)=\{\pm 1\}$, $\lvert Z \rvert=2$) | `BinaryIcosahedral.lean` | `mem_binaryIcosahedral_centralInv`, `binaryIcosahedral_center` |
 | Quotient Order Ratio $(\lvert I^\ast \rvert / \lvert Z(I^\ast) \rvert = 120/2 = 60)$ | `BinaryIcosahedral.lean` | `binaryIcosahedral_quotient_order_sixty` |
-| Subgroup Embedding ($2T \le I^\ast$) | `BinaryIcosahedral.lean` | `binaryTetrahedral_le_binaryIcosahedral` |
+| Subgroup Embedding $(2T \le I^\ast)$ | `BinaryIcosahedral.lean` | `binaryTetrahedral_le_binaryIcosahedral` |
 | $\mathrm{SU}(2)$ Quaternionic Character Formula $\chi_\ell(u) = U_\ell(a)$ | `SpectralDecomposition.lean` | `chebyshevU`, `chi_re`, `chi` |
 | Molien Invariant Projection Formula $m_\ell = \frac{1}{120} \sum \chi_\ell(g)$ | `SpectralDecomposition.lean` | `sum_chi_binaryIcosahedral`, `m` |
 | Monopole Ground State Multiplicity $(m_0^{\mathrm{SO}(3)} = 1)$ | `SpectralDecomposition.lean` | `m_SO3_zero` |
-| Harmonic Selection Vanishing ($m_1 = \dots = m_5 = 0$) | `SpectralDecomposition.lean` | `m_SO3_one` .. `m_SO3_five` |
+| Harmonic Selection Vanishing $(m_1 = \dots = m_5 = 0)$ | `SpectralDecomposition.lean` | `m_SO3_one` .. `m_SO3_five` |
 | First Active Mode Multiplicity $(m_6^{\mathrm{SO}(3)} = 1)$ | `SpectralDecomposition.lean` | `m_SO3_six` |
-| Representation Multiplicities on $\mathrm{SU}(2)$ ($m_0=1, m_1..m_{11}=0, m_{12}=1$) | `SpectralDecomposition.lean` | `m_zero` .. `m_twelve` |
+| Representation Multiplicities on $\mathrm{SU}(2)$ $(m_0=1, m_1..m_{11}=0, m_{12}=1)$ | `SpectralDecomposition.lean` | `m_zero` .. `m_twelve` |
 | Weyl--Molien Linear & Quadratic Densities | `SpectralDecomposition.lean` | `weyl_molien_invariant_density`, `laplacian_spectral_density_leading` |
-| Weyl--Molien Landmark Values ($\ell = 12, 60, 120$) | `SpectralDecomposition.lean` | `weyl_molien_landmark_values`, `laplacian_spectral_density_landmark_values` |
+| Weyl--Molien Landmark Values $(\ell = 12, 60, 120)$ | `SpectralDecomposition.lean` | `weyl_molien_landmark_values`, `laplacian_spectral_density_landmark_values` |
 | Discrete Heat Kernel Trace $Z(t)$ on $S^3/I^\ast$ | `SpectralDecomposition.lean` | `heatTrace`, `heatTraceTerm_zero` .. `heatTraceTerm_twelve` |
-| Volume of $S^3/I^\ast$ Closed-Form ($\mathrm{Vol} = \pi^2/60$) | `HeatKernelAsymptotics.lean` | `vol_PDS_eq` |
+| Volume of $S^3/I^\ast$ Closed-Form $(\mathrm{Vol} = \pi^2/60)$ | `HeatKernelAsymptotics.lean` | `vol_PDS_eq` |
 | Constant Scalar Curvature $\mathcal{R}(S^3/I^\ast) = 6$ | `HeatKernelAsymptotics.lean` | `scalarCurvature_PDS_eq` |
 | Seeley--DeWitt Coefficients $a_0 = (\pi^2/60)/(4\pi)^{3/2}$ and $a_2 = a_0$ | `HeatKernelAsymptotics.lean` | `a0`, `a2`, `a2_eq_a0` |
 | Gilkey Curvature Factor $(\mathcal{G}(6,12,12) = 1/2)$ | `HeatKernelAsymptotics.lean` | `gilkey_integrand_a4_S3` |
 | Fourth Seeley--DeWitt Coefficient $a_4 = a_0/2 = \sqrt{\pi}/960$ | `HeatKernelAsymptotics.lean` | `a4_PDS`, `a4_PDS_from_gilkey` |
 | $\text{Small-}t$ Asymptotic Remainder Hypothesis | `HeatKernelAsymptotics.lean` | `heatTrace_asymptotic_remainder_holds` |
-| Spectral Action Einstein--Hilbert Recovery ($G_{\mathrm{eff}} > 0$) | `HeatKernelAsymptotics.lean` | `einstein_hilbert_recovery` |
-| Curvature/Volume Ratio Relation ($= \Lambda_0^{-1}$) | `HeatKernelAsymptotics.lean` | `spectral_ratio_eq_inv_cosmologicalConstant` |
-| 96 Real Fermion Basis States ($\dim_{\mathbb{R}} \mathcal{H}_F = 96$) | `StandardModel.lean` | `dim_fermion_space` |
-| Bare Gauge Coupling Identity ($g_1^2 = g_2^2 = g_3^2 = \frac{\pi^2 f_0}{2 f_2 \Lambda^2}$) | `StandardModel.lean` | `gauge_coupling_unification` |
+| Spectral Action Einstein--Hilbert Recovery $(G_{\mathrm{eff}} > 0)$ | `HeatKernelAsymptotics.lean` | `einstein_hilbert_recovery` |
+| Curvature/Volume Ratio Relation $(= \Lambda_0^{-1})$ | `HeatKernelAsymptotics.lean` | `spectral_ratio_eq_inv_cosmologicalConstant` |
+| 96 Real Fermion Basis States $(\dim_{\mathbb{R}} \mathcal H_F = 96)$ | `StandardModel.lean` | `dim_fermion_space` |
+| Bare Gauge Coupling Identity $(g_1^2 = g_2^2 = g_3^2 = \frac{\pi^2 f_0}{2 f_2 \Lambda^2})$ | `StandardModel.lean` | `gauge_coupling_unification` |
 | Scale-Invariant Mass Ratio $(m_H/m_W)^2 = 8 Y_4 / Y_2^2$ | `StandardModel.lean` | `higgs_to_W_mass_relation` |
-| Bare $Z$ to $W$ Mass Ratio at Unification ($m_Z^2 = 2 m_W^2$) | `StandardModel.lean` | `mZ_to_mW_relation` |
+| Bare $Z$ to $W$ Mass Ratio at Unification $(m_Z^2 = 2 m_W^2)$ | `StandardModel.lean` | `mZ_to_mW_relation` |
 | Spectral Action Grand Unification Structural Consistency | `StandardModel.lean` | `spectral_action_standard_model_unification` |
 
 **Table 3:** Lean 4 Machine-Checked Formal Verification Map (`Formalization.PoincareDodecahedron`).
@@ -695,7 +698,7 @@ The formalization resides in the `Formalization.PoincareDodecahedron` module tre
 We have presented a complete mathematical physics treatment of spectral geometry, Molien invariant theory, and heat kernel asymptotics on the Poincaré Homology 3-Sphere $S^3 / I^\ast$.
 
 The core findings of this monograph are:
-1. **Exact Representation-Theoretic Selection Rules**: Using Molien's character projection formula over the 9 conjugacy classes of $I^\ast$, we proved the exact vanishing of spatial harmonic invariants for degrees $L = 1, 2, 3, 4, 5$ on $\mathrm{SO}(3)$ and an 11-degree representation gap on $\mathrm{SU}(2)$ ($m_1 = \dots = m_{11} = 0$), with the first non-trivial spatial invariant emerging uniquely at $L = 6$ ($\ell = 12$).
+1. **Exact Representation-Theoretic Selection Rules**: Using Molien's character projection formula over the 9 conjugacy classes of $I^\ast$, we proved the exact vanishing of spatial harmonic invariants for degrees $L = 1, 2, 3, 4, 5$ on $\mathrm{SO}(3)$ and an 11-degree representation gap on $\mathrm{SU}(2)$ $(m_1 = \dots = m_{11} = 0)$, with the first non-trivial spatial invariant emerging uniquely at $L = 6$ $(\ell = 12)$.
 2. **Exact Heat Kernel Asymptotics**: We derived the $\text{small-}t$ Seeley--DeWitt expansion $Z(t) = a_0 t^{-3/2} + a_2 t^{-1/2} + a_4 t^{1/2} + \mathcal{O}(t^{3/2})$ with $a_0 = a_0(S^3)/120 = \sqrt{\pi}/480$, $a_2 = a_0$, and $a_4 = a_0/2 = \sqrt{\pi}/960$, proving that non-identity group contributions are super-exponentially suppressed as $\mathcal{O}(e^{-\pi^2/100t})$.
 3. **Spectral Action & UV Boundary Conditions**: We established the emergence of 4D Einstein--Hilbert gravity with strictly positive Newton constant $G_{\mathrm{eff}} = 3\pi/(4 f_2 \Lambda^2) > 0$, gauge coupling unification $g_1^2 = g_2^2 = g_3^2 = \frac{\pi^2 f_0}{2 f_2 \Lambda^2}$, and bare relation $m_Z^2 = 2 m_W^2$ at $\Lambda \sim 10^{16}\text{ GeV}$, emphasizing the necessity of 2-loop RG running down to $M_Z$.
 4. **Adèlic Geometric Embedding**: We formulated an analytical framework situating $S^3 / I^\ast$ as the canonical smooth Archimedean fiber of an adèlic spacetime manifold $\mathcal{M}_{\mathbb{A}} = \mathbb{R} \times (S^3/I^\ast) \times \prod'_p \mathcal{T}_p$, providing a mathematically coherent bridge to non-Archimedean Vladimirov spectral triples and Tate's thesis.
